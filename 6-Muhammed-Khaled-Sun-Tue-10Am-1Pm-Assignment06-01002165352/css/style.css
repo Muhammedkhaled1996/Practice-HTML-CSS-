@@ -9,12 +9,10 @@
   list-style: none;
 }
 
-
-
 :root {
-  --accent-color: #C9FB1A;
-  --bg-color: #0B0E13;
-  --bg-sub: #1E2939;
+  --accent-color: #c9fb1a;
+  --bg-color: #0b0e13;
+  --bg-sub: #1e2939;
   --secondary-color: rgb(113, 118, 129);
 }
 
@@ -32,10 +30,12 @@
   left: -75%;
   width: 20px;
   height: 100%;
-  background: linear-gradient(120deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
   transform: skewX(-25deg);
 }
 
@@ -87,7 +87,7 @@
 }
 
 .smallFont {
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .xsmallFont {
@@ -98,8 +98,10 @@
   .big-font {
     font-size: 3.5rem;
   }
+  .smallFont {
+    font-size: 1.2rem;
+  }
 }
-
 
 .bg-main {
   background-color: var(--bg-color) !important;
@@ -142,7 +144,6 @@
   height: 2px;
 }
 
-
 /* Nav Section */
 #navSec i {
   vertical-align: middle;
@@ -164,7 +165,6 @@
   --bs-nav-link-padding-y: 0;
   padding-top: 0;
   padding-bottom: 0;
-
 }
 
 .navbar {
@@ -199,10 +199,10 @@
 #home::before {
   content: "";
   position: absolute;
-  top: 76.87px;
+  top: 77px;
   left: 0;
   width: 100%;
-  height: calc(100vh - 77px);
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: -1;
 }
@@ -226,7 +226,6 @@
   padding: 40px 0;
 }
 
-
 .upperSec h2 {
   font-size: 1rem;
   letter-spacing: 3px;
@@ -247,26 +246,34 @@
 }
 
 .upperSec h2::after {
-  content: '';
+  content: "";
   width: 50px;
   height: 3px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   left: 110%;
-  background: linear-gradient(149deg, var(--accent-color) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    149deg,
+    var(--accent-color) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
   clip-path: polygon(0 0, 100% 15%, 100% 85%, 0% 100%);
 }
 
 .upperSec h2::before {
-  content: '';
+  content: "";
   width: 50px;
   height: 3px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 110%;
-  background: linear-gradient(270deg, rgba(201, 251, 26, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    270deg,
+    rgba(201, 251, 26, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
   clip-path: polygon(0 0, 100% 15%, 100% 85%, 0% 100%);
 }
 
@@ -296,12 +303,16 @@
 }
 
 .innercard::after {
-  content: '';
+  content: "";
   width: 100%;
   height: 100%;
   inset: 0;
   top: 110%;
-  background: linear-gradient(0deg, rgba(201, 251, 26, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(201, 251, 26, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
   position: absolute;
   transition: 0.4s;
   z-index: 1;
@@ -329,7 +340,6 @@
   transition: 0.3s;
 }
 
-
 .carousel-control-next-icon {
   background-image: none;
 }
@@ -350,7 +360,6 @@
 .carousel-control-next:hover i,
 .carousel-control-next:focus i {
   border: 2px solid var(--accent-color);
-
 }
 
 .carousel-control-prev-icon i,
@@ -361,7 +370,6 @@
   border: 2px solid gray;
   font-size: 1.3rem;
 }
-
 
 .carousel-control-prev,
 .carousel-control-next {
@@ -385,7 +393,7 @@
 
 #whatWeDo .cardItem {
   height: 250px;
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
   border: 2px solid rgba(72, 72, 72, 0.2);
   border-radius: 20px;
   position: relative;
@@ -394,16 +402,15 @@
 
 #whatWeDo .cardItem2 {
   height: 250px;
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
   border: 2px solid rgba(72, 72, 72, 0.2);
   border-radius: 20px;
   position: relative;
   overflow: hidden;
 }
 
-
 #whatWeDo .cardItem::after {
-  content: '';
+  content: "";
   position: absolute;
   background-color: var(--accent-color);
   top: -20px;
@@ -415,7 +422,7 @@
 }
 
 #whatWeDo .cardItem::before {
-  content: '';
+  content: "";
   position: absolute;
   background-color: var(--accent-color);
   bottom: -20px;
@@ -425,8 +432,6 @@
   clip-path: polygon(100% 0, 0 100%, 100% 100%);
   transition: 0.3s;
 }
-
-
 
 #whatWeDo .cardItem:hover {
   cursor: pointer;
@@ -466,19 +471,26 @@
 #whatWeDo .line {
   width: 70%;
   height: 2px;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(201, 251, 26, 1) 20%, rgba(201, 251, 26, 1) 80%, rgba(0, 0, 0, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(201, 251, 26, 1) 20%,
+    rgba(201, 251, 26, 1) 80%,
+    rgba(0, 0, 0, 1) 100%
+  );
   box-shadow: 0px 0px 23px 9px rgba(201, 251, 26, 0.47);
   margin: 40px auto;
 }
 
-
 .imagesSection {
   overflow: hidden;
-  background: radial-gradient(rgba(201, 251, 26, 0.52) 0%, rgba(0, 0, 0, 0) 75%);
+  background: radial-gradient(
+    rgba(201, 251, 26, 0.52) 0%,
+    rgba(0, 0, 0, 0) 75%
+  );
   padding: 20px;
   margin: 0 30px;
 }
-
 
 .upperimages {
   white-space: nowrap;
@@ -520,7 +532,6 @@
   margin: 10px;
 }
 
-
 /* Our Team Section */
 
 #ourTeam .cardItem {
@@ -531,7 +542,7 @@
 }
 
 #ourTeam .cardItem::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 100%;
@@ -589,7 +600,7 @@
 /* Contact Us Section */
 
 #contactUs {
-  background-color: #0E1420;
+  background-color: #0e1420;
 }
 
 #contactUs i {
@@ -603,7 +614,11 @@
 }
 
 #contactUs .joinCard {
-  background: linear-gradient(90deg, rgba(201, 251, 26, 1) 0%, rgba(32, 224, 112, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(201, 251, 26, 1) 0%,
+    rgba(32, 224, 112, 1) 100%
+  );
 }
 
 #contactUs .joinCard i {
@@ -618,12 +633,10 @@
   transition: 0.3s;
 }
 
-
-#contactUs .joinCard i:hover{
+#contactUs .joinCard i:hover {
   background-color: rgba(50, 50, 50, 0.8);
   cursor: pointer;
 }
-
 
 .form-control {
   font-size: 1rem;
@@ -664,9 +677,12 @@
   color: black !important;
 }
 
-
 form button {
-  background: linear-gradient(90deg, rgba(201, 251, 26, 1) 0%, rgba(32, 224, 112, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(201, 251, 26, 1) 0%,
+    rgba(32, 224, 112, 1) 100%
+  );
   display: flex;
   justify-content: center;
   align-items: center;
@@ -703,8 +719,6 @@ form button {
   height: auto;
 }
 
-
-
 /* Footer Section */
 
 #footer {
@@ -728,17 +742,15 @@ form button {
   background-color: var(--secondary-color);
 }
 
-#footer li a{
+#footer li a {
   transition: 0.3s;
 }
 #footer li:hover a {
   color: var(--accent-color) !important;
 }
-#footer li{
+#footer li {
   transition: 0.3s;
 }
-#footer li:hover{
+#footer li:hover {
   color: var(--accent-color) !important;
 }
-
-
