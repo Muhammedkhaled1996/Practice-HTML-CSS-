@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدبّر | إدارة أموالك بذكاء</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Side Section -->
+            <div
+                class="col-md-1 col-lg-2 d-none d-md-block d-lg-block d-flex flex-column justify-content-start px-3 py-4 bg-light-subtle position-sticky top-0 start-0 vh-100 arabicFont boxshadows">
+                <div class="title d-flex justify-content-center align-items-center mb-3">
+                    <img class="mainIcon p-2 bg-info rounded" src="images/icons/coins-solid-full.png" alt="coins-solid">
+                    <div class="text me-3 lh-sm d-none d-lg-block">
+                        <h1 class="fs-4 fw-bold">مدبّر</h1>
+                        <span class="fontSmall">إدارة أموالك بذكاء</span>
+                    </div>
+                </div>
+                <div class="mainList">
+                    <ul class="list-unstyled p-0 fw-bold">
+                        <li
+                            class="fontSmall px-2 py-2 mb-1 d-flex justify-content-sm-center justify-content-md-start align-items-center rounded text-primary-emphasis bg-primary bg-opacity-10">
+                            <img class="subIcon ms-lg-2 flex-md-grow-1 flex-lg-grow-0 "
+                                src="images/icons/house-solid-full.png" alt="house-solid">
+                            <div class="d-none d-lg-block">الصفحةالرئيسية</div>
+                        </li>
+                        <li
+                            class="fontSmall px-2 py-2 mb-1 d-flex justify-content-sm-center justify-content-md-start align-items-center rounded">
+                            <img class="subIcon ms-lg-2 flex-md-grow-1 flex-lg-grow-0"
+                                src="images/icons/arrow-right-arrow-left-solid-full.png" alt="house-solid">
+                            <div class="d-none d-lg-block">المعاملات</div>
+                        </li>
+                        <li
+                            class="fontSmall px-2 py-2 mb-1 d-flex justify-content-sm-center justify-content-md-start align-items-center rounded">
+                            <img class="subIcon ms-lg-2 flex-md-grow-1 flex-lg-grow-0"
+                                src="images/icons/chart-pie-solid-full.png" alt="house-solid">
+                            <div class="d-none d-lg-block">الميزانيات</div>
+                        </li>
+                        <li
+                            class="fontSmall px-2 py-2 mb-1 d-flex justify-content-sm-center justify-content-md-start align-items-center rounded">
+                            <img class="subIcon  ms-lg-2 flex-md-grow-1 flex-lg-grow-0"
+                                src="images/icons/piggy-bank-solid.png" alt="house-solid">
+                            <div class="d-none d-lg-block">المدخرات</div>
+                        </li>
+                        <li
+                            class="fontSmall px-2 py-2 mb-1 d-flex justify-content-sm-center justify-content-md-start align-items-center rounded">
+                            <img class="subIcon ms-lg-2 flex-md-grow-1 flex-lg-grow-0"
+                                src="images/icons/file-invoice-dollar-solid-full.png" alt="house-solid">
+                            <div class="d-none d-lg-block">الفواتير الشهرية</div>
+                        </li>
+                    </ul>
+                </div>
+                <span class="fontSmall d-none mx-2 my-2 py-1">إجراءات سريعة</span>
+                <div class="subList">
+                    <ul class="list-unstyled p-0">
+                        <li
+                            class="fontSmall fw-semibold px-lg-2 py-2 mb-1 d-flex justify-content-sm-center justify-content-md-start align-items-center rounded">
+                            <img class="subIconLager ms-lg-2 p-2 flex-md-grow-1 flex-lg-grow-0 rounded bg-info-subtle"
+                                src="images/icons/paper-plane-solid-full.png" alt="paper-plane">
+                            <div class="d-none d-lg-block">إرسال أموال</div>
+                        </li>
+                        <li
+                            class="fontSmall fw-semibold px-lg-2 py-2 mb-1 d-flex justify-content-sm-center justify-content-md-start align-items-center rounded">
+                            <img class="subIconLager ms-lg-2 p-2 flex-md-grow-1 flex-lg-grow-0 rounded bg-info-subtle"
+                                src="images/icons/plus-solid-full.png" alt="plus-solid">
+                            <div class="d-none d-lg-block">إضافة أموال</div>
+                        </li>
+                        <li
+                            class="fontSmall fw-semibold px-lg-2 py-2 mb-1 d-flex justify-content-sm-center justify-content-md-start align-items-center rounded">
+                            <img class="subIconLager ms-lg-2 p-2 flex-md-grow-1  flex-lg-grow-0  rounded bg-info-subtle"
+                                src="images/icons/receipt-solid-full.png" alt="receipt-solid">
+                            <div class="d-none d-lg-block">دفع فواتير</div>
+                        </li>
+                        <li
+                            class="fontSmall fw-semibold px-lg-2 py-2 mb-1 d-flex justify-content-sm-center justify-content-md-start align-items-center rounded">
+                            <img class="subIconLager ms-lg-2 p-2 flex-md-grow-1  flex-lg-grow-0 rounded bg-info-subtle"
+                                src="images/icons/chart-line-solid-full.png" alt="chart-line">
+                            <div class="d-none d-lg-block">استثمار</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-sm-12 col-md-11 col-lg-10 bg-light bg-opacity-10 p-sm-1 p-md-2 p-lg-4">
+                <div class="parent">
+                    <div class="header-sec">
+                        <div class="header p-2 bg-light rounded arabicFont boxshadows">
+                            <div class="item-1">
+                                <div class="d-flex align-items-center">
+                                    <img class="mainIcon p-2 bg-info rounded" src="images/icons/coins-solid-full.png"
+                                        alt="coins-solid">
+                                    <div class="text me-3 lh-sm">
+                                        <h1 class="fs-4 fw-bold">مدبّر</h1>
+                                        <span class="fontSmall">إدارة أموالك بذكاء</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-2">
+                                <div
+                                    class="d-flex justify-content-sm-between justify-content-md-end align-items-center">
+                                    <div>
+                                        <img class="subIconLager mx-1 p-2 rounded bg-secondary bg-opacity-10 border"
+                                            src="images/icons/magnifying-glass-solid-full.png" alt="magnifying-glass">
+                                        <small class="position-relative mx-1">
+                                            <span
+                                                class="bg-danger  position-absolute translate-middle top-0 start-100 rounded-circle text-light fw-bold text-center">2</span>
+                                            <img class="subIconLager p-2 rounded bg-secondary bg-opacity-10 border"
+                                                src="images/icons/bell-regular-full.png" alt="bell-regular">
+                                        </small>
+                                    </div>
+                                    <div
+                                        class="d-flex justify-content-center align-items-center flex-row-reverse boxshadows p-2 rounded bg-light-subtle mx-2">
+                                        <img style="width: 30px;" class="rounded " src="images/avatar-1.jpg"
+                                            alt="avatar-1">
+                                        <div class="contactInfo px-2">
+                                            <p class="m-0 fontSmall fw-bold">سيف أسامة</p>
+                                            <span class="p-0 fontSmall">حساب مميز</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-3">
+                                <div
+                                    class="d-flex justify-content-center align-items-center px-2 text-center rounded bg-success bg-opacity-10 ">
+                                    <span class="smsquare rounded-circle"></span>
+                                    <span class="bg-opacity-10 rounded p-2">متصل</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="current-balance">
+                        <div class="bg-light rounded px-2 py-3 arabicFont boxshadows">
+                            <small class="fontSmall">الرصيد الحالى</small>
+                            <h3 class="fw-bold">8,450 جنية</h3>
+                            <small class="text-success fontSmall"><i class="fa-solid fa-arrow-up"></i>+2.5%</small>
+                        </div>
+                    </div>
+                    <div class="income">
+                        <div class="bg-light rounded px-2 py-3 arabicFont boxshadows">
+                            <small class="fontSmall">الدخل</small>
+                            <h3 class="fw-bold">15,000 جنية</h3>
+                            <small class="text-success fontSmall"><i class="fa-solid fa-arrow-up"></i>+8.2%</small>
+                        </div>
+                    </div>
+                    <div class="masrofat">
+                        <div class="bg-light rounded px-2 py-3 arabicFont boxshadows">
+                            <small class="fontSmall">المصروفات</small>
+                            <h3 class="fw-bold">10,000 جنية</h3>
+                            <small class="text-danger fontSmall"><i class="fa-solid fa-arrow-down"></i>-1.2%</small>
+                        </div>
+                    </div>
+                    <div class="recent-activity">
+                        <div class=" bg-light rounded px-2 py-3 mb-3 arabicFont boxshadows">
+                            <h3 class="fw-bold fs-6">الأنشطة الحديثة</h3>
+                            <div
+                                class="carditem mb-2 p-3 bg-info-subtle border-start border-3 border-info rounded d-flex justify-content-between align-items-center">
+                                <div class="d-flex ">
+                                    <i
+                                        class="fa-solid fa-user align-self-start d-flex justify-content-center align-items-center square rounded-circle text-center bg-info bg-opacity-25"></i>
+                                    <div class="content mx-2">
+                                        <div>
+                                            <h4 class="fontSmall fw-bold">إنشاء حساب توفير جديد</h4>
+                                            <small class="fontSmall">تم إنشاء حساب توفير بنك الأهلي
+                                                بنجاح</small>
+                                        </div>
+                                        <small class="fontSmall">منذ ساعة واحدة</small>
+                                    </div>
+                                </div>
+                                <span class="fontSmall align-self-start">حساب</span>
+                            </div>
+                            <div
+                                class="carditem mb-2 p-3 bg-success-subtle border-start border-3 border-success rounded d-flex justify-content-between align-items-center">
+                                <div class="d-flex">
+                                    <i
+                                        class="fa-solid fa-credit-card align-self-start d-flex justify-content-center align-items-center square rounded-circle text-center bg-success bg-opacity-25"></i>
+                                    <div class="content mx-2">
+                                        <div>
+                                            <h4 class="fontSmall fw-bold">إضافة بطاقة جديدة</h4>
+                                            <small class="fontSmall">تمت إضافة بطاقة Visa الجديدة
+                                                ****2847</small>
+                                        </div>
+                                        <small class="fontSmall">منذ 3 ساعات</small>
+                                    </div>
+                                </div>
+                                <span class="fontSmall align-self-start">بطاقة</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="monthly-pills">
+                        <div
+                            class="d-flex flex-column justify-content-between bg-light rounded px-2 py-3 arabicFont boxshadows">
+                            <div class="upper d-flex justify-content-between align-items-center fs-6">
+                                <span class="fw-bold">الفواتير الشهرية</span>
+                                <span class="fontSmall">عرض الكل<i
+                                        class="fa-solid fa-circle-arrow-left me-2"></i></span>
+                            </div>
+                            <small class="text-center fw-bold fs-4">1920 جنية</small>
+                            <small class="text-center fontSmall">إجمالي الفواتير الشهرية</small>
+                            <div class="row g-2 my-3">
+                                <div class="col-6">
+                                    <div
+                                        class="d-flex flex-column justify-content-between align-items-center rounded p-3 bg-body-secondary bg-opacity-50">
+                                        <i
+                                            class="fa-solid fa-wifi d-flex align-items-center justify-content-center square mb-1 bg-info text-info bg-opacity-10 rounded"></i>
+                                        <small class="fontXSmall">إنترنت</small>
+                                        <small class="fontXSmall fw-bold">450 جنية</small>
+                                        <small class="fontXSmall text-danger fw-bold">يستحق في 3
+                                            أيام</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div
+                                        class="d-flex flex-column justify-content-between align-items-center rounded p-3 bg-body-secondary bg-opacity-50">
+                                        <i
+                                            class="fa-solid fa-bolt d-flex align-items-center justify-content-center square mb-1 bg-warning text-warning bg-opacity-10 rounded"></i>
+                                        <small class="fontXSmall">كهرباء</small>
+                                        <small class="fontXSmall fw-bold">400 جنية</small>
+                                        <small class="fontXSmall text-danger fw-bold">يستحق في 5
+                                            أيام</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div
+                                        class="d-flex flex-column justify-content-between align-items-center rounded p-3 bg-body-secondary bg-opacity-50">
+                                        <i
+                                            class="fa-solid fa-phone d-flex align-items-center justify-content-center square mb-1 bg-success text-success bg-opacity-10 rounded"></i>
+                                        <small class="fontXSmall">هاتف</small>
+                                        <small class="fontXSmall fw-bold">290 جنية</small>
+                                        <small class="fontXSmall text-success fw-bold">يستحق في 10
+                                            أيام</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div
+                                        class="d-flex flex-column justify-content-between align-items-center rounded p-3 bg-body-secondary bg-opacity-50">
+                                        <i
+                                            class="fa-brands fa-internet-explorer d-flex align-items-center justify-content-center square mb-1 bg-danger text-danger bg-opacity-10 rounded"></i>
+                                        <small class="fontXSmall">Netflix</small>
+                                        <small class="fontXSmall fw-bold">780 جنية</small>
+                                        <small class="fontXSmall fw-bold">يستحق في 15 أيام</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-sec">
+                        <div class="bg-light h-100 rounded px-2 py-3 arabicFont boxshadows">
+                            <div class="upper d-flex justify-content-between align-items-center fs-6">
+                                <span class="fw-bold fs-6">المعاملات الأخيرة</span>
+                                <span class="fontSmall">عرض الكل<i
+                                        class="fa-solid fa-circle-arrow-left me-2"></i></span>
+                            </div>
+                            <div class="fontSmall p-3 h-100 overflow-auto">
+                                <table class="w-100">
+                                    <thead class="fw-bold">
+                                        <tr class="border-bottom">
+                                            <td class="pb-2">المعاملة</td>
+                                            <td class="pb-2">الفئة</td>
+                                            <td class="pb-2">التاريخ</td>
+                                            <td class="pb-2">الحالة</td>
+                                            <td class="pb-2">المبلغ</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="my-2 py-1 d-flex align-items-center">
+                                                <img class="square rounded-circle" src="images/avatar-2.jpg"
+                                                    alt="avatar-2">
+                                                <div class="d-flex flex-column me-2">
+                                                    <small class="fw-bold fontSmall">محمود النجار</small>
+                                                    <small class="fontSmall">تحويل أموال</small>
+                                                </div>
+                                            </td>
+                                            <td><small class="p-1 bg-success bg-opacity-10 px-2 rounded-pill"><i
+                                                        class="fa-solid fa-arrow-down ps-3"></i>دخل</small></td>
+                                            <td class="fw-semibold">١٤ أكتوبر ٢٠٢٥</td>
+                                            <td><small
+                                                    class="p-1 mx-3 rounded bg-success bg-opacity-10 text-success">مكتمل</small>
+                                            </td>
+                                            <td class="text-success fw-bold fontSmall">+350 جنية</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="my-2 py-1 d-flex align-items-center">
+                                                <i
+                                                    class="fa-solid fa-utensils square rounded-circle p-2 bg-danger bg-opacity-10 text-danger d-flex justify-content-center"></i>
+                                                <div class="d-flex flex-column me-2">
+                                                    <small class="fw-bold fontSmall">مطعم Meat moot</small>
+                                                    <small class="fontSmall">دفع مطعم</small>
+                                                </div>
+                                            </td>
+                                            <td><small class="p-1 bg-danger bg-opacity-10 px-2 rounded-pill"><i
+                                                        class="fa-solid fa-utensils text-danger ps-3 "></i>طعام</small>
+                                            </td>
+                                            <td class="fw-semibold">١٤ أكتوبر ٢٠٢٥</td>
+                                            <td><small
+                                                    class="p-1 mx-3 rounded bg-success bg-opacity-10 text-success">مكتمل</small>
+                                            </td>
+                                            <td class="fw-bold fontSmall">-2200 جنية</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="my-2 py-1 d-flex align-items-center">
+                                                <i
+                                                    class="fa-solid fa-cart-shopping square rounded-circle p-2 bg-info bg-opacity-10 text-info d-flex justify-content-center"></i>
+                                                <div class="d-flex flex-column me-2">
+                                                    <small class="fw-bold fontSmall">مطعم Meat moot</small>
+                                                    <small class="fontSmall">دفع مطعم</small>
+                                                </div>
+                                            </td>
+                                            <td><small class="p-1 bg-info bg-opacity-10 px-2 rounded-pill"><i
+                                                        class="fa-solid fa-cart-shopping text-info ps-3"></i>تسوق</small>
+                                            </td>
+                                            <td class="fw-semibold">١٤ أكتوبر ٢٠٢٥</td>
+                                            <td><small
+                                                    class="p-1 mx-3 rounded bg-success bg-opacity-10 text-success">مكتمل</small>
+                                            </td>
+                                            <td class="fw-bold fontSmall">-1250 جنية</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="my-2 py-1 d-flex align-items-center">
+                                                <img class="square rounded-circle" src="images/avatar-1.jpg"
+                                                    alt="avatar-2">
+                                                <div class="d-flex flex-column me-2">
+                                                    <small class="fw-bold fontSmall">عمر المهدي</small>
+                                                    <small class="fontSmall">دفع فاتورة مقسمة</small>
+                                                </div>
+                                            </td>
+                                            <td><small class="p-1 bg-warning bg-opacity-10 px-2 rounded-pill"><i
+                                                        class="fa-solid fa-users text-warning ps-3"></i>فاتورة
+                                                    مقسمة</small></td>
+                                            <td class="fw-semibold">١٤ أكتوبر ٢٠٢٥</td>
+                                            <td><small
+                                                    class="p-1 mx-3 rounded bg-success bg-opacity-10 text-success">مكتمل</small>
+                                            </td>
+                                            <td class="fw-bold fontSmall">-1400 جنية</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="my-2 py-1 d-flex align-items-center">
+                                                <img class="square rounded-circle" src="images/avatar-3.jpg"
+                                                    alt="avatar-2">
+                                                <div class="d-flex flex-column me-2">
+                                                    <small class="fw-bold fontSmall">محمد عوض</small>
+                                                    <small class="fontSmall">دفع عمل حر</small>
+                                                </div>
+                                            </td>
+                                            <td><small class="p-1 bg-success bg-opacity-10 px-2 rounded-pill"><i
+                                                        class="fa-solid fa-bag-shopping text-success ps-3"></i>عمل</small>
+                                            </td>
+                                            <td class="fw-semibold">١٤ أكتوبر ٢٠٢٥</td>
+                                            <td><small
+                                                    class="p-1 mx-3 rounded bg-success bg-opacity-10 text-success">مكتمل</small>
+                                            </td>
+                                            <td class="text-success fw-bold fontSmall">+2500 جنية</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="my-2 py-1 d-flex align-items-center">
+                                                <i
+                                                    class="fa-solid fa-gas-pump square rounded-circle p-2 bg-danger bg-opacity-10 text-danger d-flex justify-content-center"></i>
+                                                <div class="d-flex flex-column me-2">
+                                                    <small class="fw-bold fontSmall">محطة وقود Shell</small>
+                                                    <small class="fontSmall">شراء وقود</small>
+                                                </div>
+                                            </td>
+                                            <td><small class="p-1 bg-danger bg-opacity-10 px-2 rounded-pill"><i
+                                                        class="fa-solid fa-gas-pump text-danger ps-3 "></i>مواصلات</small>
+                                            </td>
+                                            <td class="fw-semibold">١٤ أكتوبر ٢٠٢٥</td>
+                                            <td><small
+                                                    class="p-1 mx-3 rounded bg-warning bg-opacity-10 text-warning">معلق</small>
+                                            </td>
+                                            <td class="fw-bold fontSmall">-700 جنية</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="my-2 py-1 d-flex align-items-center">
+                                                <i
+                                                    class="fa-solid fa-film square rounded-circle p-2 bg-danger bg-opacity-10 text-danger d-flex justify-content-center"></i>
+                                                <div class="d-flex flex-column me-2">
+                                                    <small class="fw-bold fontSmall">اشتراك Netflix</small>
+                                                    <small class="fontSmall">اشتراك شهري</small>
+                                                </div>
+                                            </td>
+                                            <td><small class="p-1 bg-danger bg-opacity-10 px-2 rounded-pill"><i
+                                                        class="fa-solid fa-tv text-danger ps-3 "></i>ترفية</small>
+                                            </td>
+                                            <td class="fw-semibold">١٤ أكتوبر ٢٠٢٥</td>
+                                            <td><small
+                                                    class="p-1 mx-3 rounded bg-success bg-opacity-10 text-success">مكتمل</small>
+                                            </td>
+                                            <td class="fw-bold fontSmall">-780 جنية</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="my-2 py-1 d-flex align-items-center">
+                                                <i
+                                                    class="fa-solid fa-heart-pulse square rounded-circle p-2 bg-info bg-opacity-10 text-info d-flex justify-content-center"></i>
+                                                <div class="d-flex flex-column me-2">
+                                                    <small class="fw-bold fontSmall">نادي FitLife</small>
+                                                    <small class="fontSmall">عضوية شهرية</small>
+                                                </div>
+                                            </td>
+                                            <td><small class="p-1 bg-info bg-opacity-10 px-2 rounded-pill"><i
+                                                        class="fa-solid fa-dumbbell text-info ps-3 "></i>صحة</small>
+                                            </td>
+                                            <td class="fw-semibold">١٤ أكتوبر ٢٠٢٥</td>
+                                            <td><small
+                                                    class="p-1 mx-3 rounded bg-success bg-opacity-10 text-success">مكتمل</small>
+                                            </td>
+                                            <td class="fw-bold fontSmall">-500 جنية</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="my-2 py-1 d-flex align-items-center">
+                                                <i
+                                                    class="fa-solid fa-graduation-cap square rounded-circle p-2 bg-success bg-opacity-10 text-success d-flex justify-content-center"></i>
+                                                <div class="d-flex flex-column me-2">
+                                                    <small class="fw-bold fontSmall">نادي FitLife</small>
+                                                    <small class="fontSmall">عضوية شهرية</small>
+                                                </div>
+                                            </td>
+                                            <td><small class="p-1 bg-success bg-opacity-10 px-2 rounded-pill"><i
+                                                        class="fa-solid fa-book text-success ps-3 "></i>صحة</small>
+                                            </td>
+                                            <td class="fw-semibold">١٤ أكتوبر ٢٠٢٥</td>
+                                            <td><small
+                                                    class="p-1 mx-3 rounded bg-success bg-opacity-10 text-success">مكتمل</small>
+                                            </td>
+                                            <td class="fw-bold fontSmall">-250 جنية</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="public-view">
+                        <div class="d-flex flex-column gap-3">
+                            <div
+                                class="d-flex flex-column justify-content-between bg-light rounded px-2 py-3 arabicFont boxshadows">
+                                <div class="upper d-flex justify-content-between align-items-center fs-6">
+                                    <span class="fw-bold">نظرة عامة على الميزانية</span>
+                                    <span class="fontSmall">عرض الكل<i
+                                            class="fa-solid fa-circle-arrow-left me-2"></i></span>
+                                </div>
+                                <div class="row g-2 mt-3">
+                                    <div class="col-12">
+                                        <div
+                                            class="border border-info border-opacity-25 d-flex flex-column justify-content-between align-items-center rounded p-3 bg-info bg-opacity-10 mb-2">
+                                            <small class="text-info-emphasis align-self-start">إجمالي
+                                                الميزانية</small>
+                                            <small class="text-info-emphasis fw-bold fs-4 align-self-start">10000
+                                                جنية</small>
+                                            <div class="d-flex flex-column align-self-end py-2">
+                                                <small class="text-secondary">المتبقي</small>
+                                                <small class="text-success fw-bold fs-6">1750
+                                                    جنية</small>
+                                            </div>
+                                            <div
+                                                class="w-100 fontSmall d-flex justify-content-between align-items-center fw-bold text-secondary py-2">
+                                                <span class="">المستخدم: 8250 جنية</span>
+                                                <span class="">82.5%</span>
+                                            </div>
+
+                                            <div class="progress w-100 smHeight" role="progressbar"
+                                                aria-label="Basic example" aria-valuenow="85" aria-valuemin="0"
+                                                aria-valuemax="100">
+                                                <div class="progress-bar bg-gradient" style="width: 85%"></div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="hoverElement border border-secondary border-opacity-25 d-flex flex-column justify-content-between align-items-center rounded p-3 bg-body-secondary bg-opacity-50 my-3">
+                                            <div class="d-flex align-self-start">
+                                                <i
+                                                    class="fa-solid fa-film px-4 py-2 fs-5 rounded bg-warning bg-opacity-10 text-warning d-flex justify-content-center align-items-center ms-3 align-self-start"></i>
+                                                <div class="d-flex flex-column">
+                                                    <small
+                                                        class="text-secondary-emphasis fw-bold align-self-start">ترفيه</small>
+                                                    <small class="text-secondary-emphasis align-self-start">الميزانية:
+                                                        1500 جنية</small>
+                                                </div>
+                                            </div>
+                                            <small class="fs-6 fw-bold align-self-end">750 جنية</small>
+                                            <small
+                                                class="fontSmall text-success fw-bold px-2 py-1 mb-2 align-self-end bg-success bg-opacity-10 rounded-pill">متبقي
+                                                50%</small>
+
+                                            <div class="progress w-100 smHeight" role="progressbar"
+                                                aria-label="Basic example" aria-valuenow="50" aria-valuemin="0"
+                                                aria-valuemax="100">
+                                                <div class="progress-bar bg-warning " style="width: 50%"></div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class=" hoverElement border border-secondary border-opacity-25 d-flex flex-column justify-content-between align-items-center rounded p-3 bg-body-secondary bg-opacity-50 my-3">
+                                            <div class="d-flex align-self-start">
+                                                <i
+                                                    class="fa-solid fa-square-poll-horizontal px-4 py-2 fs-5 rounded bg-danger bg-opacity-10 text-danger d-flex justify-content-center align-items-center ms-3 align-self-start"></i>
+                                                <div class="d-flex flex-column">
+                                                    <small
+                                                        class="text-secondary-emphasis fw-bold align-self-start">فواتير</small>
+                                                    <small class="text-secondary-emphasis align-self-start">الميزانية:
+                                                        2000 جنية</small>
+                                                </div>
+                                            </div>
+                                            <small class="fs-6 fw-bold align-self-end">750 جنية</small>
+                                            <small
+                                                class="fontSmall text-danger fw-bold px-2 py-1 mb-2 align-self-end bg-danger bg-opacity-10 rounded-pill">مستخدم
+                                                100%</small>
+
+                                            <div class="progress w-100 smHeight" role="progressbar"
+                                                aria-label="Basic example" aria-valuenow="100" aria-valuemin="0"
+                                                aria-valuemax="100">
+                                                <div class="progress-bar bg-danger " style="width: 100%"></div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="hoverElement border border-secondary border-opacity-25 d-flex flex-column justify-content-between align-items-center rounded p-3 bg-body-secondary bg-opacity-50 my-3">
+                                            <div class="d-flex align-self-start">
+                                                <i
+                                                    class="fa-solid fa-heart px-4 py-2 fs-5 rounded bg-danger bg-opacity-10 roseColor d-flex justify-content-center align-items-center ms-3 align-self-start"></i>
+                                                <div class="d-flex flex-column">
+                                                    <small
+                                                        class="text-secondary-emphasis fw-bold align-self-start">العناية
+                                                        الشخصية</small>
+                                                    <small class="text-secondary-emphasis align-self-start">الميزانية:
+                                                        1500 جنية</small>
+                                                </div>
+                                            </div>
+                                            <small class="fs-6 fw-bold align-self-end">1200 جنية</small>
+                                            <small
+                                                class="fontSmall text-warning fw-bold px-2 py-1 mb-2 align-self-end bg-warning bg-opacity-10 rounded-pill">متبقى
+                                                20%</small>
+
+                                            <div class="progress w-100 smHeight" role="progressbar"
+                                                aria-label="Basic example" aria-valuenow="75" aria-valuemin="0"
+                                                aria-valuemax="100">
+                                                <div class="progress-bar roseColor" style="width: 75%"></div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="hoverElement border border-secondary border-opacity-25 d-flex flex-column justify-content-between align-items-center rounded p-3 bg-body-secondary bg-opacity-50 my-3">
+                                            <div class="d-flex align-self-start">
+                                                <i
+                                                    class="fa-solid fa-cart-shopping px-4 py-2 fs-5 rounded bg-success bg-opacity-10 text-success d-flex justify-content-center align-items-center ms-3 align-self-start"></i>
+                                                <div class="d-flex flex-column">
+                                                    <small
+                                                        class="text-secondary-emphasis fw-bold align-self-start">مستلزمات
+                                                        المنزل</small>
+                                                    <small class="text-secondary-emphasis align-self-start">الميزانية:
+                                                        5000 جنية</small>
+                                                </div>
+                                            </div>
+                                            <small class="fs-6 fw-bold align-self-end">4300 جنية</small>
+                                            <small
+                                                class="fontSmall text-success fw-bold px-2 py-1 mb-2 align-self-end bg-success bg-opacity-10 rounded-pill">متبقى
+                                                14%</small>
+
+                                            <div class="progress w-100 smHeight" role="progressbar"
+                                                aria-label="Basic example" aria-valuenow="90" aria-valuemin="0"
+                                                aria-valuemax="100">
+                                                <div class="progress-bar bg-success " style="width: 90%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="incomeVspayed">
+                        <div
+                            class="d-flex flex-column justify-content-between bg-light rounded px-2 py-3 arabicFont boxshadows">
+                            <div class="upper d-flex justify-content-between align-items-center fs-6">
+                                <span class="fw-bold">الدخل مقابل المصروفات</span>
+                                <span class="fontSmall">التحليل<i class="fa-solid fa-circle-arrow-left me-2"></i></span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center my-3">
+                                <span class="smsquare rounded-1 bg-success  mx-1"></span>
+                                <small class="fontSmall text-secondary fw-bold">الدخل</small>
+                                <span class="smsquare rounded-1 bg-danger mx-1"></span>
+                                <small class="fontSmall text-secondary fw-bold">المصروفات</small>
+                            </div>
+                            <div class="row height170px">
+                                <div class="col-3 ">
+                                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                                        <div class="d-flex justify-content-evenly align-items-end w-100 h-100 ">
+                                            <span class="subIcon h-75 bg-success rounded-top-1"></span>
+                                            <span class="subIcon h-25 bg-danger rounded-top-1"></span>
+                                        </div>
+                                        <small class="fontSmall my-2">الأسبوع 1</small>
+                                    </div>
+                                </div>
+                                <div class="col-3 ">
+                                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                                        <div class="d-flex justify-content-evenly align-items-end w-100 h-100 ">
+                                            <span class="subIcon h-75 bg-success rounded-top-1"></span>
+                                            <span class="subIcon h-25 bg-danger rounded-top-1"></span>
+                                        </div>
+                                        <small class="fontSmall my-2">الأسبوع 2</small>
+                                    </div>
+                                </div>
+                                <div class="col-3 ">
+                                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                                        <div class="d-flex justify-content-evenly align-items-end w-100 h-100 ">
+                                            <span class="subIcon h-50 bg-success rounded-top-1"></span>
+                                            <span class="subIcon h-25 bg-danger rounded-top-1"></span>
+                                        </div>
+                                        <small class="fontSmall my-2">الأسبوع 3</small>
+                                    </div>
+                                </div>
+                                <div class="col-3 ">
+                                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                                        <div class="d-flex justify-content-evenly align-items-end w-100 h-100 ">
+                                            <span class="subIcon h-100 bg-success rounded-top-1"></span>
+                                            <span class="subIcon h-50 bg-danger rounded-top-1"></span>
+                                        </div>
+                                        <small class="fontSmall my-2">الأسبوع 4</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-summary">
+                        <div class="d-flex flex-column gap-3 mb-2">
+                            <div
+                                class="d-flex flex-column justify-content-between bg-light rounded px-2 py-3 arabicFont boxshadows">
+                                <div class="upper d-flex justify-content-between align-items-center fs-6">
+                                    <span class="fw-bold">ملخص الحساب</span>
+                                    <span class="fontSmall">التفاصيل<i
+                                            class="fa-solid fa-circle-arrow-left me-2"></i></span>
+                                </div>
+                                <div
+                                    class="d-flex justify-content-between align-items-center p-2 bg-body-secondary bg-opacity-10 rounded my-2 border">
+                                    <i
+                                        class="fa-solid fa-building text-info px-3 py-2 rounded bg-info bg-opacity-10 d-flex justify-content-center me-2"></i>
+                                    <div class="d-flex flex-column justify-content-around flex-grow-1 pe-3">
+                                        <small class="fw-bold">حساب جاري</small>
+                                        <small>بنك مصر [•••• 4532]</small>
+                                    </div>
+                                    <small class="fw-bold">8,450 جنية</small>
+                                </div>
+                                <div
+                                    class="d-flex justify-content-between align-items-center p-2 bg-body-secondary bg-opacity-10 rounded my-2 border">
+                                    <i
+                                        class="fa-solid fa-piggy-bank text-success px-3 py-2 rounded bg-success bg-opacity-10 d-flex justify-content-center me-2"></i>
+                                    <div class="d-flex flex-column justify-content-around flex-grow-1 pe-3">
+                                        <small class="fw-bold">حساب التوفير</small>
+                                        <small>بنك مصر [•••• 8901]</small>
+                                    </div>
+                                    <small class="fw-bold">297,540 جنية</small>
+                                </div>
+                                <div
+                                    class="d-flex justify-content-between align-items-center p-2 bg-body-secondary bg-opacity-10 rounded my-2 border">
+                                    <i
+                                        class="fa-solid fa-credit-card text-danger px-3 py-2 rounded bg-danger bg-opacity-10 d-flex justify-content-center me-2"></i>
+                                    <div class="d-flex flex-column justify-content-around flex-grow-1 pe-3">
+                                        <small class="fw-bold">بطاقة ائتمان</small>
+                                        <small class="fontXSmall">متاح: 1,850 جنية من 2,500 جنية</small>
+                                    </div>
+                                    <small class="fw-bold text-danger">- 6,000 جنية</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-methods">
+                        <div class="d-flex flex-column gap-3 mb-3">
+                            <div
+                                class="d-flex flex-column justify-content-between bg-light rounded px-2 py-3 arabicFont boxshadows">
+                                <div class="upper d-flex justify-content-between align-items-center fs-6">
+                                    <span class="fw-bold">وسائل الدفع</span>
+                                    <span class="fontSmall">إدارة<i
+                                            class="fa-solid fa-circle-arrow-left me-2"></i></span>
+                                </div>
+                                <div class="visa">
+                                    <div class="cardInner">
+                                        <div class="frontCard card-item bg-primary bg-gradient my-3 rounded position-absolute top-0 start-0">
+                                            <span
+                                                class="positionStart position-absolute px-2 py-1 text-white fw-bold bg-white bg-opacity-25 rounded-pill fontXSmall">أساسية</span>
+                                            <div class="d-flex justify-content-between align-items-center w-100 p-3">
+                                                <i
+                                                    class="fa-solid fa-rectangle-list text-white bg-white bg-opacity-25 px-3 py-2 rounded d-flex align-items-center justify-content-center"></i>
+                                                <img class="col-2" src="images/icons/cc-visa-brands-solid-full.png"
+                                                    alt="cc-visa-brands">
+                                            </div>
+                                            <small class="text-white p-3">●●●● ●●●● ●●●● 4532</small>
+                                            <div
+                                                class="text-white fw-bold fontSmall d-flex justify-content-between align-items-center p-3">
+                                                <div
+                                                    class="d-flex justify-content-between align-items-center flex-column">
+                                                    <small>حامل البطاقة</small>
+                                                    <small>محمد خالد</small>
+                                                </div>
+                                                <div
+                                                    class="d-flex justify-content-between align-items-center flex-column">
+                                                    <small>تنتهي</small>
+                                                    <small>12/26</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="backFace d-flex flex-column card-item p-4 bg-dark bg-gradient my-3 rounded text-light fw-bold">
+                                            <small class="backSide backGradiant"></small>
+                                            <small class="text-secondary fontXSmall text-end">توقيع معتمد - غير
+                                                صالحة بدون توقيع</small>
+                                            <div
+                                                class="d-flex justify-content-center align-items-center p-2 bg-white rounded my-2">
+                                                <small class="backXsmSide backGradiant"></small>
+                                                <small class="text-dark fontXSmall">4532</small>
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center align-items-end ">
+                                                <span class="fontXSmall mb-1">CVV</span>
+                                                <span
+                                                    class="p-2 fontSmall rounded bg-light text-dark bg-opacity-50">123</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="visa">
+                                    <div class="cardInner">
+                                        <div
+                                            class="frontCard card-item bg-danger bg-gradient my-3 rounded position-absolute top-0 start-0">
+                                            <div class="d-flex justify-content-between align-items-center w-100 p-3">
+                                                <i
+                                                    class="fa-solid fa-rectangle-list text-white bg-white bg-opacity-25 px-3 py-2 rounded d-flex align-items-center justify-content-center"></i>
+                                                <img class="col-2"
+                                                    src="images/icons/cc-mastercard-brands-solid-full.png"
+                                                    alt="cc-visa-brands">
+                                            </div>
+                                            <small class="text-white p-3">●●●● ●●●● ●●●● 8901</small>
+                                            <div
+                                                class="text-white fw-bold fontSmall d-flex justify-content-between align-items-center p-3">
+                                                <div
+                                                    class="d-flex justify-content-between align-items-center flex-column">
+                                                    <small>حامل البطاقة</small>
+                                                    <small>محمد خالد</small>
+                                                </div>
+                                                <div
+                                                    class="d-flex justify-content-between align-items-center flex-column">
+                                                    <small>تنتهي</small>
+                                                    <small>08/27</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="backFace d-flex flex-column card-item p-4 bg-dark bg-gradient my-3 rounded text-light fw-bold">
+                                            <small class="backSide backGradiant"></small>
+                                            <small class="text-secondary fontXSmall text-end">توقيع معتمد - غير
+                                                صالحة بدون توقيع</small>
+                                            <div
+                                                class="d-flex justify-content-center align-items-center p-2 bg-white rounded my-2">
+                                                <small class="backXsmSide backGradiant"></small>
+                                                <small class="text-dark fontXSmall">4532</small>
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center align-items-end ">
+                                                <span class="fontXSmall mb-1">CVV</span>
+                                                <span
+                                                    class="p-2 fontSmall rounded bg-light text-dark bg-opacity-50">123</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="visa">
+                                    <div class="cardInner">
+                                        <div
+                                            class="frontCard card-item bg-secondary bg-gradient my-3 rounded position-absolute top-0 start-0">
+                                            <div class="d-flex justify-content-between align-items-center w-100 p-3">
+                                                <i
+                                                    class="fa-solid fa-rectangle-list text-white bg-white bg-opacity-25 px-3 py-2 rounded d-flex align-items-center justify-content-center"></i>
+                                                <img class="col-2" src="images/icons/paypal-brands-solid-full.png"
+                                                    alt="cc-visa-brands">
+                                            </div>
+                                            <small class="text-white p-3">حساب Paypal</small>
+                                            <div
+                                                class="text-white fw-bold fontSmall d-flex justify-content-between align-items-center p-3">
+                                                <div
+                                                    class="d-flex justify-content-between align-items-start flex-column">
+                                                    <small>الإيميل</small>
+                                                    <small>Muhammedkhaled25@gmail.com</small>
+                                                </div>
+                                                <div
+                                                    class="d-flex justify-content-between align-items-center flex-column">
+                                                    <small>الحالة</small>
+                                                    <small
+                                                        class="text-success fw-bold p-1 rounded-1 bg-light bg-opacity-25">موثق</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="backFace d-flex flex-column card-item p-4 bg-dark bg-gradient my-3 rounded text-light fw-bold">
+                                            <small class="backSide backGradiant"></small>
+                                            <small class="text-secondary fontXSmall text-end">توقيع معتمد - غير
+                                                صالحة بدون توقيع</small>
+                                            <div
+                                                class="d-flex justify-content-center align-items-center p-2 bg-white rounded my-2">
+                                                <small class="backXsmSide backGradiant"></small>
+                                                <small class="text-dark fontXSmall">4532</small>
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center align-items-end ">
+                                                <span class="fontXSmall mb-1">CVV</span>
+                                                <span
+                                                    class="p-2 fontSmall rounded bg-light text-dark bg-opacity-50">123</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
