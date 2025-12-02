@@ -1,0 +1,306 @@
+.arabicFont {
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+
+}
+
+.boxshadows {
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+.mainIcon {
+    width: 45px;
+    background-image: linear-gradient(343deg, rgba(19, 38, 128, 1) 0%, rgba(46, 78, 239, 1) 72%);
+}
+
+.fontSmall {
+    font-size: 0.75rem;
+}
+
+.fontXSmall {
+    font-size: 0.6rem;
+}
+
+.subIcon {
+    width: 20px;
+}
+
+.subIconLager {
+    width: 32px;
+}
+
+.smHeight {
+    height: 10px;
+}
+
+.mainList ul li,
+.subList ul li {
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.mainList ul li:hover,
+.subList ul li:hover {
+    background-color: rgba(128, 128, 128, 0.1);
+
+}
+
+small span {
+    width: 12px;
+    height: 12px;
+    /* right: 2px; */
+    font-size: 0.5rem;
+}
+
+.left img:hover {
+    cursor: pointer;
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+.square {
+    width: 30px;
+    height: 30px;
+}
+
+.smsquare {
+    width: 15px;
+    height: 15px;
+}
+
+
+.hoverElement {
+    transition: 0.25s;
+}
+
+.hoverElement:hover {
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.1);
+    background-color: rgba(207, 206, 206, 0.196) !important;
+}
+
+.roseColor {
+    background-color: #F7339A;
+    color: #F7339A;
+}
+
+.height170px {
+    height: 170px;
+}
+
+.card-item {
+    width: 100%;
+    height: 180px;
+}
+
+.positionStart {
+    top: 5px;
+    left: 5px;
+}
+
+.visa {
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.cardInner {
+    transition: 0.8s;
+    transform-style: preserve-3d;
+}
+
+.cardbackheight {
+    height: 50px;
+}
+
+.visa:hover .cardInner {
+    transform: rotateY(180deg);
+}
+
+.frontCard,
+.backFace {
+    backface-visibility: hidden;
+}
+
+.backFace {
+    transform: rotateY(180deg);
+}
+
+.backSide {
+    height: 30px;
+    width: 100%;
+}
+
+.backXsmSide {
+    height: 15px;
+    width: 100%;
+}
+
+.backGradiant {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.26) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+table {
+    white-space: nowrap;
+}
+
+.item-3 span:first-child {
+    animation: bulse 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    background-color: green;
+    opacity: 1;
+}
+
+@keyframes bulse {
+    0% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 0.8;
+    }
+}
+
+
+.parent {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    grid-template-areas:
+        "header-sec header-sec header-sec"
+        "current-balance income masrofat"
+        "recent-activity table-sec table-sec"
+        "monthly-pills table-sec table-sec"
+        "public-view incomeVspayed payment-methods"
+        "public-view account-summary payment-methods"
+        "public-view . payment-methods";
+}
+
+.header-sec {
+    grid-area: header-sec;
+    order: 0;
+}
+
+.masrofat {
+    grid-area: masrofat;
+}
+
+.income {
+    grid-area: income;
+}
+
+.current-balance {
+    grid-area: current-balance;
+}
+
+.recent-activity {
+    grid-area: recent-activity;
+}
+
+.monthly-pills {
+    grid-area: monthly-pills;
+}
+
+.table-sec {
+    grid-area: table-sec;
+}
+
+.public-view {
+    grid-area: public-view;
+}
+
+.incomeVspayed {
+    grid-area: incomeVspayed;
+}
+
+.account-summary {
+    grid-area: account-summary;
+}
+
+.payment-methods {
+    grid-area: payment-methods;
+}
+
+.header {
+    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 15px;
+    grid-template-areas:
+        "item-1 item-1 item-3 . . .  item-2 item-2 item-2";
+}
+
+.item-1 {
+    grid-area: item-1;
+}
+
+.item-2 {
+    grid-area: item-2;
+}
+
+.item-3 {
+    grid-area: item-3;
+}
+
+@media (max-width:992px) {
+    .parent {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+        grid-template-areas:
+            "header-sec header-sec header-sec header-sec header-sec header-sec"
+            "current-balance current-balance income income masrofat masrofat"
+            "recent-activity recent-activity recent-activity incomeVspayed incomeVspayed incomeVspayed"
+            "table-sec table-sec table-sec table-sec table-sec table-sec"
+            "account-summary account-summary account-summary monthly-pills monthly-pills monthly-pills"
+            "account-summary account-summary account-summary monthly-pills monthly-pills monthly-pills"
+            "public-view public-view public-view payment-methods payment-methods payment-methods "
+    }
+
+    .header {
+        align-items: center;
+        grid-template-columns: repeat(9, 1fr);
+        gap: 15px;
+        grid-template-areas:
+            "item-1 item-1 item-1 item-3  . item-2  item-2 item-2 item-2";
+    }
+
+    .item-2>div {
+        justify-content: flex-end !important;
+    }
+}
+
+
+@media (max-width:576px) {
+    .parent {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        grid-template-areas:
+            "header-sec"
+            "current-balance"
+            "income"
+            "masrofat"
+            "recent-activity"
+            "incomeVspayed"
+            "table-sec"
+            "account-summary"
+            "monthly-pills"
+            "public-view"
+            "payment-methods"
+    }
+
+    .header {
+        align-items: center;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        grid-template-areas:
+            "item-1"
+            "item-2"
+            "item-3";
+    }
+
+    .item-2>div {
+        justify-content: space-between !important;
+    }
+
+    .item-3 div {
+        justify-content: center !important;
+    }
+}
