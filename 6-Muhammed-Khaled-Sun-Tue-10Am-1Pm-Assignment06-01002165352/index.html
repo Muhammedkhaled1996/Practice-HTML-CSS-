@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
+  <title>Games Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Days+One&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="bg-main">
+
+
+  <!-- Nav Section -->
+  <section id="navSec" class="fixed-top bg-dark w-100 border-bottom border-light border-opacity-10">
+    <nav class="container navbar navbar-expand-lg font-Chakra ">
+      <div class="d-flex justify-content-center align-items-center fs-3">
+        <i class="fa-solid fa-gamepad color-main mx-1 "></i>
+        <a class="navbar-brand fw-bold fs-5 mx-1" href="#">GameArena</a>
+      </div>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars text-light fs-4"></i>
+      </button>
+      <div class="collapse navbar-collapse px-4" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-5">
+          <li class="nav-item py-2 p-lg-0">
+            <a class="nav-link active " aria-current="page" href="#home">Home</a>
+          </li>
+          <li class="nav-item py-2 py-lg-0">
+            <a class="nav-link" href="#ourGames">OUR GAMES</a>
+          </li>
+          <li class="nav-item py-2 py-lg-0">
+            <a class="nav-link" href="#whatWeDo">What We Do</a>
+          </li>
+          <li class="nav-item py-2 py-lg-0">
+            <a class="nav-link" href="#ourTeam">Our Team</a>
+          </li>
+          <li class="nav-item py-2 py-lg-0  d-sm-block d-lg-none">
+            <a class="nav-link" href="#">Tournaments</a>
+          </li>
+          <li class="nav-item py-2 py-lg-0">
+            <a class="nav-link" href="#contactUs">Contact Us</a>
+          </li>
+        </ul>
+        <div class="w-100 mb-2 bg-light bg-opacity-10 hrLine d-lg-none d-block"></div>
+        <div class="itemHover d-flex py-2 my-2 fs-5 align-items-center d-block d-lg-none">
+          <i class="fa-regular fa-bell text-light me-2 fs-4"></i>
+          <span class="text-light">Notification</span>
+        </div>
+        <div class="itemHover d-flex py-2 my-2 fs-5 align-items-center d-block d-lg-none">
+          <i class="fa-regular fa-message text-light me-2 fs-4"></i>
+          <span class="text-light">Messages</span>
+        </div>
+        <button class="mainBtn py-3 my-2 mx-2 fw-bold shine fs-5 w-100 d-block d-lg-none" type="submit">Sign
+          In</button>
+      </div>
+      <div class="d-flex justify-content-between align-items-center d-none d-lg-block">
+        <i class="itemHover fa-regular fa-bell text-light mx-2 fs-4"></i>
+        <i class="itemHover fa-regular fa-message text-light mx-2 fs-4"></i>
+        <button class="mainBtnNav mx-2 fw-bold shine fs-6" type="submit">Sign In</button>
+      </div>
+    </nav>
+  </section>
+
+  <div data-bs-spy="scroll" data-bs-target="#navbar-example2">
+
+
+    <!-- Hero Section -->
+    <section id="home">
+      <div class="row g-1 g-md-3 g-lg-5 container m-auto justify-content-evenly align-items-center p-4 h-100">
+        <div class="col-12 col-lg-6">
+          <div class="p-2">
+            <h1 class="text-center text-lg-start text-light font-Days big-font lh-base">THE ULTIMATE <span
+                class="color-main">GAMING</span>
+              EXPERIENCE
+            </h1>
+            <p class="text-center text-lg-start text-light text-opacity-75">Join millions of gamers worldwide in the
+              most
+              competitive eSports
+              tournaments.
+              Experience next-level gaming
+              with cutting-edge technology and endless possibilities.</p>
+            <div class="d-flex flex-column flex-md-row justify-content-start justify-content-md-center W-100 align-items-start">
+              <button class="mainBtn px-3 me-2 fw-bold shine w-100  mb-1" type="submit">Start Gaming Now</button>
+              <button class="mainOutlineBtn px-3 me-2 fw-bold shine w-100 mb-1" type="submit">Watch Tournaments</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="p-2 position-relative">
+            <img src="images/hero-img.png" alt="hero-img" class="image rounded-4 w-100 object-fit-cover">
+            <div
+              class="move position-absolute rounded p-4 border border-2 border-light border-opacity-10 d-flex align-items-center bg-main">
+              <i class="fa-solid fa-trophy color-main fs-3"></i>
+              <div class="ms-3 d-flex flex-column">
+                <small class="text-light fw-semibold">Active Players</small>
+                <span class="fw-bolder fs-4 text-light font-Chakra">2.5M+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Games Section -->
+    <section id="ourGames">
+      <div class="container">
+        <div class="upperSec">
+          <h2 class="color-main font-Chakra fw-bold text-center position-relative">OUR GAMES</h2>
+          <p class="text-light font-Days fw-bold text-center">Our Latest Games</p>
+        </div>
+        <div class="d-none d-md-none d-lg-block">
+          <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-1.png" alt="latest-games-1" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-gamepad color-main"></i>
+                          <span>ADVENTURE</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-users color-main"></i>
+                          <span>MULTIPLAYER</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Alien Companions</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-2.png" alt="latest-games-2" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-flag color-main"></i>
+                          <span>RACING</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-bolt  color-main"></i>
+                          <span>SCI-FI</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Cyber Run 2099</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-3.png" alt="latest-games-3" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-brands fa-discord  color-main"></i>
+                          <span>ACTION</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-microchip  color-main"></i>
+                          <span>GEFORCE</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>The Legend of Zelda: Tears of the Kingdom</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-4.png" alt="latest-games-4" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-shield color-main"></i>
+                          <span>RPG</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-wand-magic-sparkles color-main"></i>
+                          <span>FANTASY</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Aetheria Chronicles</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-5.png" alt="latest-games-5" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-crosshairs  color-main"></i>
+                          <span>SHOOTER</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-user-group  color-main"></i>
+                          <span>CO-OP</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Warfront Protocol</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-3.png" alt="latest-games-3" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-dragon  color-main"></i>
+                          <span>FOOTBALL</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-star  color-main"></i>
+                          <span>FANTASY</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Shot Striker</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-7.png" alt="latest-games-7" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-trophy  color-main"></i>
+                          <span>SPORTS</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-fire  color-main"></i>
+                          <span>LEAGUE</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Epic Gaming League</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-8.png" alt="latest-games-8" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-rocket  color-main"></i>
+                          <span>SPACE</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-globe  color-main"></i>
+                          <span>EXPLORATION</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Barren alien worlds</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-9.png" alt="latest-games-9" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-hat-wizard color-main"></i>
+                          <span>ACTION</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-dungeon  color-main"></i>
+                          <span>FUTURISTIC</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Cloveland Quest</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="d-flex my-3 justify-content-center align-items-center">
+              <div class="d-flex align-items-center justify-content-center">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true">
+                    <i class="fa-solid fa-arrow-left d-flex align-items-center justify-content-center" ype="button"
+                      data-bs-target="#carouselExample" data-bs-slide="prev"></i>
+                  </span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true">
+                    <i class="fa-solid fa-arrow-right d-flex align-items-center justify-content-center"></i>
+                  </span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+                <button class="mainOutlineBtn px-3 fw-bold shine font-Chakra" type="submit">View All Games</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-none d-md-block d-lg-none">
+          <div id="carouselExampleMD" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-1.png" alt="latest-games-1" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-gamepad color-main"></i>
+                          <span>ADVENTURE</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-users color-main"></i>
+                          <span>MULTIPLAYER</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Alien Companions</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-2.png" alt="latest-games-2" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-flag color-main"></i>
+                          <span>RACING</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-bolt color-main"></i>
+                          <span>SCI-FI</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Cyber Run 2099</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-3.png" alt="latest-games-3" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-brands fa-discord color-main"></i>
+                          <span>ACTION</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-microchip color-main"></i>
+                          <span>GEFORCE</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>The Legend of Zelda: Tears of the Kingdom</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-4.png" alt="latest-games-4" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-dragon color-main"></i>
+                          <span>RPG</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-star color-main"></i>
+                          <span>FANTASY</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Aetheria Chronicles</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-5.png" alt="latest-games-5" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-trophy color-main"></i>
+                          <span>SHOOTER</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-trophy color-main"></i>
+                          <span>CO-OP</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Warfront Protocol</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-3.png" alt="latest-games-3" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-dragon color-main"></i>
+                          <span>FOOTBALL</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-star color-main"></i>
+                          <span>FANTASY</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Shot Striker</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-7.png" alt="latest-games-7" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-trophy color-main"></i>
+                          <span>SPORTS</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-fire color-main"></i>
+                          <span>LEAGUE</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Epic Gaming League</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-8.png" alt="latest-games-8" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-rocket color-main"></i>
+                          <span>SPACE</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-globe color-main"></i>
+                          <span>EXPLORATION</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Barren alien worlds</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="d-flex my-3 justify-content-center align-items-center">
+              <div class="d-flex align-items-center justify-content-center">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleMD"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true">
+                    <i class="fa-solid fa-arrow-left d-flex align-items-center justify-content-center"></i>
+                  </span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleMD"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true">
+                    <i class="fa-solid fa-arrow-right d-flex align-items-center justify-content-center"></i>
+                  </span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+                <button class="mainOutlineBtn px-3 fw-bold shine font-Chakra" type="submit">View All Games</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-block d-md-none d-lg-none">
+          <div id="carouselExampleSM" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-1.png" alt="latest-games-1" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-gamepad color-main"></i>
+                          <span>ADVENTURE</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-users color-main"></i>
+                          <span>MULTIPLAYER</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Alien Companions</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-2.png" alt="latest-games-2" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-flag color-main"></i>
+                          <span>RACING</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-bolt color-main"></i>
+                          <span>SCI-FI</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Cyber Run 2099</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-3.png" alt="latest-games-3" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-brands fa-discord color-main"></i>
+                          <span>ACTION</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-microchip color-main"></i>
+                          <span>GEFORCE</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>The Legend of Zelda: Tears of the Kingdom</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-4.png" alt="latest-games-4" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-dragon color-main"></i>
+                          <span>RPG</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-star color-main"></i>
+                          <span>FANTASY</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Aetheria Chronicles</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-5.png" alt="latest-games-5" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-trophy color-main"></i>
+                          <span>SHOOTER</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-trophy color-main"></i>
+                          <span>CO-OP</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Warfront Protocol</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-3.png" alt="latest-games-3" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-dragon color-main"></i>
+                          <span>FOOTBALL</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-star color-main"></i>
+                          <span>FANTASY</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Shot Striker</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-5.png" alt="latest-games-5" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-trophy color-main"></i>
+                          <span>SHOOTER</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-trophy color-main"></i>
+                          <span>CO-OP</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Warfront Protocol</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex">
+                  <div class="outercard">
+                    <div class="position-relative innercard">
+                      <img src="images/latest-games-8.png" alt="latest-games-8" class="w-100 rounded-4">
+                      <div class="upper d-flex position-absolute z-2 fw-bold">
+                        <div
+                          class="me-2 font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-rocket color-main"></i>
+                          <span>SPACE</span>
+                        </div>
+                        <div class="font-Chakra px-2 py-1 text-light rounded-pill bg-dark bg-opacity-50 xsmallFont">
+                          <i class="fa-solid fa-globe color-main"></i>
+                          <span>EXPLORATION</span>
+                        </div>
+                      </div>
+                      <div class="lower position-absolute z-2 font-Chakra fw-bold">
+                        <span>Barren alien worlds</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="d-flex my-3 justify-content-center align-items-center w-100">
+              <div class="d-flex align-items-center justify-content-center w-100">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSM"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true">
+                    <i class="fa-solid fa-arrow-left d-flex align-items-center justify-content-center"></i>
+                  </span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSM"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true">
+                    <i class="fa-solid fa-arrow-right d-flex align-items-center justify-content-center"></i>
+                  </span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+                <button class="mainOutlineBtn px-3 fw-bold shine font-Chakra" type="submit">View All Games</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT WE DO Section -->
+    <section id="whatWeDo">
+      <div class="container">
+        <div class="upperSec d-flex flex-column justify-content-center align-items-center">
+          <h2 class="color-main font-Chakra fw-bold position-relative text-center">WHAT WE DO</h2>
+          <p class="text-light font-Days fw-bold mb-0 text-center">More Than Just Games</p>
+          <small class="text-light font-Days fw-bold text-center mb-3">We Build <span>Interactive</span>
+            Journeys</small>
+        </div>
+        <div class="row g-4">
+          <div class="col-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-center align-items-center cardItem">
+              <i class="fa-solid fa-desktop icon"></i>
+              <p class="text-light fs-5 text-center fw-bold m-0 font-Days">PC Game</p>
+              <small class="text-light fs-5 text-center fw-bold m-0 font-Days">Development</small>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-center align-items-center cardItem">
+              <i class="fa-solid fa-mobile-screen-button icon"></i>
+              <p class="text-light fs-5 text-center fw-bold m-0 font-Days">Mobile Game</p>
+              <small class="text-light fs-5 text-center fw-bold m-0 font-Days">Development</small>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-center align-items-center cardItem2">
+              <img src="images/what-we-do-1.png" alt="what-we-do-1" class="w-100">
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-center align-items-center cardItem">
+              <i class="fa-solid fa-vr-cardboard icon"></i>
+              <p class="text-light fs-5 text-center fw-bold m-0 font-Days">AR/VR</p>
+              <small class="text-light fs-5 text-center fw-bold m-0 font-Days">Solutions</small>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-center align-items-center cardItem">
+              <i class="fa-solid fa-cubes icon"></i>
+              <p class="text-light fs-5 text-center fw-bold m-0 font-Days">AR/VR</p>
+              <small class="text-light fs-5 text-center fw-bold m-0 font-Days">Design</small>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-center align-items-center cardItem2">
+              <img src="images/what-we-do-2.png" alt="what-we-do-2" class="w-100">
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-center align-items-center cardItem">
+              <i class="fa-brands fa-playstation icon"></i>
+              <p class="text-light fs-5 text-center fw-bold m-0 font-Days">PS4 Game</p>
+              <small class="text-light fs-5 text-center fw-bold m-0 font-Days">Development</small>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-center align-items-center cardItem">
+              <i class="fa-solid fa-cube icon"></i>
+              <p class="text-light fs-5 text-center fw-bold m-0 font-Days">3D</p>
+              <small class="text-light fs-5 text-center fw-bold m-0 font-Days">Modelings</small>
+            </div>
+          </div>
+        </div>
+        <div class="line"></div>
+      </div>
+      <div class="imagesSection">
+        <div class="upperimages">
+          <img src="images/logo-1.jpg" alt="logo-1">
+          <img src="images/logo-2.jpg" alt="logo-1">
+          <img src="images/logo-3.jpg" alt="logo-1">
+          <img src="images/logo-4.jpg" alt="logo-1">
+          <img src="images/logo-5.jpg" alt="logo-1">
+          <img src="images/logo-6.jpg" alt="logo-1">
+          <img src="images/logo-7.jpg" alt="logo-1">
+          <img src="images/logo-8.jpg" alt="logo-1">
+          <img src="images/logo-9.jpg" alt="logo-1">
+          <img src="images/logo-10.jpg" alt="logo-1">
+          <img src="images/logo-11.jpg" alt="logo-1">
+          <img src="images/logo-12.jpg" alt="logo-1">
+          <img src="images/logo-1.jpg" alt="logo-1">
+          <img src="images/logo-2.jpg" alt="logo-1">
+          <img src="images/logo-3.jpg" alt="logo-1">
+          <img src="images/logo-4.jpg" alt="logo-1">
+          <img src="images/logo-5.jpg" alt="logo-1">
+          <img src="images/logo-6.jpg" alt="logo-1">
+          <img src="images/logo-7.jpg" alt="logo-1">
+          <img src="images/logo-8.jpg" alt="logo-1">
+          <img src="images/logo-9.jpg" alt="logo-1">
+          <img src="images/logo-10.jpg" alt="logo-1">
+          <img src="images/logo-11.jpg" alt="logo-1">
+          <img src="images/logo-12.jpg" alt="logo-1">
+        </div>
+        <div class="lowerimages">
+          <img src="images/logo-1.jpg" alt="logo-1">
+          <img src="images/logo-2.jpg" alt="logo-1">
+          <img src="images/logo-3.jpg" alt="logo-1">
+          <img src="images/logo-4.jpg" alt="logo-1">
+          <img src="images/logo-5.jpg" alt="logo-1">
+          <img src="images/logo-6.jpg" alt="logo-1">
+          <img src="images/logo-7.jpg" alt="logo-1">
+          <img src="images/logo-8.jpg" alt="logo-1">
+          <img src="images/logo-9.jpg" alt="logo-1">
+          <img src="images/logo-10.jpg" alt="logo-1">
+          <img src="images/logo-11.jpg" alt="logo-1">
+          <img src="images/logo-12.jpg" alt="logo-1">
+          <img src="images/logo-1.jpg" alt="logo-1">
+          <img src="images/logo-2.jpg" alt="logo-1">
+          <img src="images/logo-3.jpg" alt="logo-1">
+          <img src="images/logo-4.jpg" alt="logo-1">
+          <img src="images/logo-5.jpg" alt="logo-1">
+          <img src="images/logo-6.jpg" alt="logo-1">
+          <img src="images/logo-7.jpg" alt="logo-1">
+          <img src="images/logo-8.jpg" alt="logo-1">
+          <img src="images/logo-9.jpg" alt="logo-1">
+          <img src="images/logo-10.jpg" alt="logo-1">
+          <img src="images/logo-11.jpg" alt="logo-1">
+          <img src="images/logo-12.jpg" alt="logo-1">
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section id="ourTeam">
+      <div class="container">
+        <div class="upperSec d-flex flex-column justify-content-center align-items-center">
+          <h2 class="color-main font-Chakra fw-bold position-relative text-center">OUR TEAM</h2>
+          <p class="text-light font-Days fw-bold mb-0 text-center">Our Best Team Members</p>
+          <span class="text-secondary fs-5 fw-medium font-Chakra  lead text-center mb-5">Meet the professional gamers
+            and
+            experts behind our success</span>
+        </div>
+        <div class="row g-4 mb-5">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-between align-items-end cardItem">
+              <img src="images/avatar-1.png" alt="avatar-1" class="w-100">
+              <div class="w-100 info p-2 d-flex justify-content-center align-items-center">
+                <div>
+                  <h3 class="font-Days fs-5  fw-bold">Alex "Phantom" Chen</h3>
+                  <p class="m-0 p-0">Pro Player - VALORANT</p>
+                  <span class="font-Chakra m-0 p-0 text-light text-opacity-75">World Champion 2023</span>
+                </div>
+                <div class="verticalWord p-2 fw-bold align-self-stretch">PHANTOM</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-between align-items-end cardItem">
+              <img src="images/avatar-2.png" alt="avatar-2" class="w-100">
+              <div class="w-100 info p-2 d-flex justify-content-center align-items-center">
+                <div>
+                  <h3 class="font-Days fs-5  fw-bold">Ali "Nova" Ahmed</h3>
+                  <p class="m-0 p-0">Pro Player - League of Legends</p>
+                  <span class="font-Chakra m-0 p-0 text-light text-opacity-75">MVP 2023 Season</span>
+                </div>
+                <div class="verticalWord p-2 fw-bold align-self-stretch">NOVA</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-between align-items-end cardItem">
+              <img src="images/avatar-3.png" alt="avatar-3" class="w-100">
+              <div class="w-100 info p-2 d-flex justify-content-center align-items-center">
+                <div>
+                  <h3 class="font-Days fs-5  fw-bold">Marcus "Viper" Rodriguez</h3>
+                  <p class="m-0 p-0">Head Coach - CS:GO</p>
+                  <span class="font-Chakra m-0 p-0 text-light text-opacity-75">5x Major Winner</span>
+                </div>
+                <div class="verticalWord p-2 fw-bold align-self-stretch">VIPER</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-between align-items-end cardItem">
+              <img src="images/avatar-4.png" alt="avatar-4" class="w-100">
+              <div class="w-100 info p-2 d-flex justify-content-center align-items-center">
+                <div>
+                  <h3 class="font-Days fs-5  fw-bold">Seif "Saga" Usama</h3>
+                  <p class="m-0 p-0">Strategic Analyst</p>
+                  <span class="font-Chakra m-0 p-0 text-light text-opacity-75">Data Science Expert</span>
+                </div>
+                <div class="verticalWord p-2 fw-bold align-self-stretch">SAGA</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-between align-items-end cardItem">
+              <img src="images/avatar-5.png" alt="avatar-5" class="w-100">
+              <div class="w-100 info p-2 d-flex justify-content-center align-items-center">
+                <div>
+                  <h3 class="font-Days fs-5  fw-bold">Jake "Storm" Wilson</h3>
+                  <p class="m-0 p-0">Pro Player - Apex Legends</p>
+                  <span class="font-Chakra m-0 p-0 text-light text-opacity-75">Rising Star 2023</span>
+                </div>
+                <div class="verticalWord p-2 fw-bold align-self-stretch">STORM</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-between align-items-end cardItem">
+              <img src="images/avatar-6.png" alt="avatar-6" class="w-100">
+              <div class="w-100 info p-2 d-flex justify-content-center align-items-center">
+                <div>
+                  <h3 class="font-Days fs-5  fw-bold">David "Titan" Park</h3>
+                  <p class="m-0 p-0">Team Captain - Dota 2</p>
+                  <span class="font-Chakra m-0 p-0 text-light text-opacity-75">The International Winner</span>
+                </div>
+                <div class="verticalWord p-2 fw-bold align-self-stretch">TITAN</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-between align-items-end cardItem">
+              <img src="images/avatar-7.png" alt="avatar-7" class="w-100">
+              <div class="w-100 info p-2 d-flex justify-content-center align-items-center">
+                <div>
+                  <h3 class="font-Days fs-5  fw-bold">Khaled "Phoenix" Ali</h3>
+                  <p class="m-0 p-0">Content Creator</p>
+                  <span class="font-Chakra m-0 p-0 text-light text-opacity-75">2M+ Followers</span>
+                </div>
+                <div class="verticalWord p-2 fw-bold align-self-stretch">PHOENIX</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="d-flex flex-column justify-content-between align-items-end cardItem">
+              <img src="images/avatar-8.png" alt="avatar-8" class="w-100">
+              <div class="w-100 info p-2 d-flex justify-content-center align-items-center">
+                <div>
+                  <h3 class="font-Days fs-5  fw-bold">Ryan "Ghost" Miller</h3>
+                  <p class="m-0 p-0">Team Manager</p>
+                  <span class="font-Chakra m-0 p-0 text-light text-opacity-75">Operations Lead</span>
+                </div>
+                <div class="verticalWord p-2 fw-bold align-self-stretch">GHOST</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT US Section -->
+    <section id="contactUs">
+      <div class="container">
+        <div class="upperSec d-flex flex-column justify-content-center align-items-center">
+          <h2 class="color-main font-Chakra fw-bold position-relative text-center">CONTACT US</h2>
+          <p class="text-light font-Days fw-bold mb-0 text-center">Get In Touch</p>
+          <span class="text-secondary fs-5 fw-medium font-Chakra  lead text-center mb-5">Have questions or need support?
+            We're here to help!</span>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-6">
+            <div class="d-flex align-items-center p-4  mb-5 bg-sub rounded-3">
+              <i class="fa-solid fa-location-dot fs-4 me-4"></i>
+              <div>
+                <h4 class="font-Days m-0 fs-5 text-light">Our Location</h4>
+                <p class="font-Chakra m-0 text-light text-opacity-50">123 Gaming Street, Esports City, EC 12345</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-center p-4  mb-5 bg-sub rounded-3">
+              <i class="fa-solid fa-phone fs-4 me-4"></i>
+              <div>
+                <h4 class="font-Days m-0 fs-5 text-light">Phone Number</h4>
+                <p class="font-Chakra m-0 text-light text-opacity-50">+1 (555) 123-4567</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-center p-4  mb-5 bg-sub rounded-3">
+              <i class="fa-solid fa-envelope fs-4 me-4"></i>
+              <div>
+                <h4 class="font-Days m-0 fs-5 text-light">Email Address</h4>
+                <p class="font-Chakra m-0 text-light text-opacity-50">contact@gamearena.com</p>
+              </div>
+            </div>
+            <div class="p-4 mb-3 rounded-3 joinCard">
+              <h4 class="font-Days m-0 fs-4 fw-bold  mb-3">Join Our Community</h4>
+              <p class="font-Chakra m-0  mb-3">Connect with us on social media for the latest updates
+              </p>
+              <div class="d-flex align-items-center mb-2">
+                <i class="fa-solid fa-vr-cardboard  fs-5 me-3 socialLogo"></i>
+                <i class="fa-brands fa-x-twitter fs-5 me-3 socialLogo"></i>
+                <i class="fa-brands fa-instagram fs-5 me-3 socialLogo"></i>
+                <i class="fa-brands fa-youtube fs-5 socialLogo"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-6">
+            <div class="bg-sub rounded-3 p-4">
+              <h3 class="text-light fw-bold mb-3 font-Days">Send us a Message</h3>
+              <form class="row g-3 rounded text-light text-opacity-75 px-3 font-Chakra">
+                <div class="col-md-12 col-lg-6">
+                  <label for="fName" class="form-label fw-bold">First Name</label>
+                  <input type="text" class="form-control text-light" id="fName" placeholder="Muhammed">
+                </div>
+                <div class="col-md-12 col-lg-6">
+                  <label for="lName" class="form-label fw-bold">Last Name</label>
+                  <input type="text" class="form-control" id="lName" placeholder="Khaled">
+                </div>
+                <div class="col-12">
+                  <label for="Email" class="form-label fw-bold">Email Address</label>
+                  <input type="text" class="form-control" id="Email" placeholder="MuhammedKhaled25@gmail.om">
+                </div>
+                <div class="col-12">
+                  <label for="Property" class="form-label fw-bold">Subject</label>
+                  <select id="Property" class="form-select" aria-label="Default select example">
+                    <option selected>General Injuriy</option>
+                    <option value="1">Tournament Support</option>
+                    <option value="2">Technical Issue</option>
+                    <option value="3">Partnership</option>
+                    <option value="4">Media Request</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="messege" class="form-label fw-bold">Messege</label>
+                  <textarea class="form-control" id="messege" rows="3" style="height: 120px;"
+                    placeholder="Tell us about how we can help you..."></textarea>
+                </div>
+                <div class="col-12">
+                  <div class="form-check p-3 bg-purpule-faded rounded d-flex align-items-center">
+                    <input class="form-check-input me-3 socialLogo" type="checkbox" value="" id="checkDefault">
+                    <label class="form-check-label" for="checkDefault">
+                      Subscribe to our newsletter for gaming updates
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button type="submit"
+                    class="btn w-100 shine d-flex justify-content-center align-items-center text-dark fw-bold">
+                    <span>Send Messege</span>
+                    <i class="fa-solid fa-paper-plane ms-2"></i>
+                  </button>
+                </div>
+              </form>
+              <div class="hrLine"></div>
+              <div class="d-flex justify-content-around align-items-center fw-bold text-center font-Chakra lowerForm">
+                <div>
+                  <p class="m-0">24/7</p>
+                  <span class="text-secondary fw-light">Support Available</span>
+                </div>
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                  <div class="d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-less-than"></i>
+                    <p class="m-0">1hr</p>
+                  </div>
+                  <span class="text-secondary fw-light">Average Response</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section id="footer">
+      <div class="container">
+        <div class="row g-3">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="df justify-content-center align-items-center mb-3">
+              <i class="fa-solid fa-gamepad ms-2 color-main fs-4 me-2 fw-bold"></i>
+              <span class="color-main font-Chakra fs-4 fw-bold">GameArena</span>
+            </div>
+            <p class="secondaryColor xsmallFont lh-lg">The ultimate destination for competitive gaming, esports
+              tournaments, and gaming
+              community.</p>
+            <div class="icon">
+              <i class="fa-brands fa-x-twitter me-3"></i>
+              <i class="fa-brands fa-facebook me-3"></i>
+              <i class="fa-brands fa-instagram me-3"></i>
+              <i class="fa-brands fa-youtube me-3"></i>
+              <i class="fa-brands fa-twitch"></i>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <h3 class="text-light fw-bold font-Days fs-5">Games</h3>
+            <ul class="p-0">
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">VALORANT</a></li>
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">League of Legends</a></li>
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">CS:GO</a></li>
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">Dota 2</a></li>
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">Apex Legends</a></li>
+            </ul>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <h3 class="text-light fw-bold font-Days fs-5">Tournaments</h3>
+            <ul class="p-0">
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">Upcoming Events</a></li>
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">Live Matches</a></li>
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">Results</a></li>
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">Rankings</a></li>
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">Schedule</a></li>
+            </ul>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <h3 class="text-light fw-bold font-Days fs-5">Support</h3>
+            <ul class="p-0">
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">Help Center</a></li>
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">Contact Us</a></li>
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">Bug Reports</a></li>
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">Feature Requests</a></li>
+              <li class="mb-3"><a href="#" class="font-Chakra secondaryColor">Community Guidelines</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="hrLine"></div>
+        <div class="font-Chakra d-flex flex-column flex-md-row flex-lg-row justify-content-between align-items-center">
+          <span class="secondaryColor mb-3 mb-md-0 mb-lg-0">© 2025 GameArena. All rights reserved.</span>
+          <ul class="d-flex justify-content-center align-items-center p-0 m-0">
+            <li class="ms-3"><a href="#" class=" secondaryColor">Privacy Policy</a></li>
+            <li class="ms-3"><a href="#" class=" secondaryColor">Terms of Service</a></li>
+            <li class="ms-3"><a href="#" class=" secondaryColor">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <script src=" js/bootstrap.bundle.min.js">
+  </script>
+</body>
+
+</html>
