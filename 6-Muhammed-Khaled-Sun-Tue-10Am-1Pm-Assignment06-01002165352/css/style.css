@@ -189,7 +189,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  padding-top: 76.87px;
+  /* padding-top: 30px !important; */
   min-height: 100vh;
   position: relative;
   z-index: 0;
@@ -199,7 +199,7 @@
 #home::before {
   content: "";
   position: absolute;
-  top: 77px;
+  top: 75px;
   left: 0;
   width: 100%;
   min-height: 100vh;
