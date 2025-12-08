@@ -188,9 +188,19 @@ a:hover {
   border-radius: 30px;
 }
 
-.col-md-5 img {
-  min-height: 350px;
+@media (max-width: 768px) {
+  .col-md-5 img {
+    width: 100%;
+    min-height: 350px;
+    max-height: 400px;
+    object-fit: cover;
+  }
+
+  .nav-link {
+    padding: 0.2rem 0.5rem;
+  }
 }
+
 .btnCustom {
   background: linear-gradient(
     90deg,
