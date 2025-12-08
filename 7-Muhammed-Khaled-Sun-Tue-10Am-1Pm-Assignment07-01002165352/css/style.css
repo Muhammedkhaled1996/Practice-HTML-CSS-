@@ -1,0 +1,253 @@
+:root {
+  --main-color: #f54a00;
+}
+
+/* عرض أو حجم الـ scrollbar */
+::-webkit-scrollbar {
+  width: 10px; /* اسكروول رأسي */
+  height: 10px; /* اسكروول أفقي */
+}
+
+/* الخلفية */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* الجزء اللي بيتحرك */
+::-webkit-scrollbar-thumb {
+  background: rgba(222, 147, 128, 0.49);
+  border-radius: 10px;
+}
+
+/* تنسيق عند الـ hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(180, 102, 83);
+}
+
+.profileImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ffb86a;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.smallText {
+  font-size: 0.8rem;
+  line-height: 1rem;
+}
+
+.radialGradientBg {
+  background: radial-gradient(circle, rgba(255, 95, 0, 0.97) 100%);
+  color: white;
+}
+
+.nav-link:focus,
+.nav-link:hover {
+  color: var(--main-color);
+}
+
+a:hover {
+  --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
+}
+.navbar-toggler:hover span {
+  color: var(--main-color);
+}
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.ratePosition {
+  top: 20px;
+  left: 20px;
+}
+
+.mainColorText {
+  color: var(--main-color);
+}
+.sendColorText {
+  color: #fa2c37;
+}
+
+.lowerPosition {
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+.card {
+  border-radius: 30px;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rounded-start {
+  border-bottom-left-radius: 0px !important;
+  border-top-left-radius: 30px !important;
+  border-top-right-radius: 30px !important;
+}
+@media (min-width: 768px) {
+  .rounded-start {
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 30px !important;
+    border-top-left-radius: 30px !important;
+  }
+}
+
+.badgeItem1 {
+  padding: 5px 10px;
+  border-radius: 30px;
+  color: #008235;
+  background-color: #dcfce7;
+  font-weight: bold;
+}
+.badgeItem2 {
+  padding: 5px 10px;
+  border-radius: 30px;
+  color: #1d47e6;
+  background-color: #dbeafe;
+  font-weight: bold;
+}
+.iconTop {
+  width: 40px;
+  height: 40px;
+  color: var(--main-color);
+  background-color: #f54a002a;
+  transition: 0.4s;
+}
+.iconTop:hover {
+  background-color: #f54a005b;
+  cursor: pointer;
+}
+
+.nav {
+  --bs-nav-link-color: rgb(87, 86, 86);
+}
+
+.navbar-toggler-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: none;
+  transition: 0.3s;
+}
+
+.navbar-toggler-icon:hover {
+  color: var(--main-color);
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: var(--main-color);
+  background-color: transparent;
+  border-bottom: 2px solid var(--main-color);
+}
+.nav-pills .nav-link {
+  border-radius: 0;
+}
+
+.numIcon {
+  width: 25px;
+  height: 25px;
+  background-color: var(--main-color);
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.numIcon2 {
+  width: 35px;
+  height: 35px;
+  background-color: var(--main-color);
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+.secondaryBG {
+  background-color: #fffcea;
+}
+
+.listHegiht {
+  min-height: 300px;
+  max-height: 300px;
+  border-radius: 30px;
+}
+
+.col-md-5 img {
+  min-height: 350px;
+}
+.btnCustom {
+  background: linear-gradient(
+    90deg,
+    rgba(251, 138, 0, 1) 0%,
+    rgba(251, 45, 54, 0.97) 100%
+  );
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+.btnCustom:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(251, 96, 0, 1) 0%,
+    rgba(251, 45, 54, 0.97) 100%
+  );
+  scale: 1.05;
+}
+
+.smallicon {
+  width: 25px;
+  height: 25px;
+  font-size: 0.9rem;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+.icon1 {
+  color: var(--main-color);
+  background-color: #f54a002a;
+}
+.icon2 {
+  color: #1e5dfb;
+  background-color: #dbeafe;
+}
+.icon3 {
+  color: #d18700;
+  background-color: #fef9c2;
+}
+.icon4 {
+  color: #e7000b;
+  background-color: #ffe1e2;
+}
+.icon5 {
+  color: #00a63e;
+  background-color: #dcfce7;
+}
+.icon6 {
+  color: #e50076;
+  background-color: #fce7f3;
+}
+
+#heroSec {
+  min-height: 100vh;
+}
