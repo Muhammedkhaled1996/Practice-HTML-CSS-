@@ -2,12 +2,11 @@ var allRecapies = [
   {
     name: "Chicken Alfredo Pasta",
     desc: "Creamy Italian pasta coated with rich Alfredo sauce and grilled chicken",
-    warning: true,
     rate: 4.8,
     reviews: 430,
     image: "https://www.justspices.co.uk/media/recipe/chicken-alfredo.jpg",
-    prepTime: "15 min",
-    cookTime: "25 min",
+    prepTime: "15",
+    cookTime: "25",
     serves: 3,
     deficaulty: "Medium",
     city: "Italy",
@@ -43,13 +42,12 @@ var allRecapies = [
   {
     name: "Sushi Platter",
     desc: "Assorted Japanese sushi rolls filled with fresh seafood",
-    warning: false,
     rate: 4.9,
     reviews: 380,
     image:
       "https://s3-eu-west-1.amazonaws.com/images-olympus/products/8165690_details.jpg",
-    prepTime: "30 min",
-    cookTime: "0 min",
+    prepTime: "30",
+    cookTime: "0",
     serves: 2,
     deficaulty: "Hard",
     city: "Japan",
@@ -84,13 +82,12 @@ var allRecapies = [
   {
     name: "Butter Chicken",
     desc: "Rich and creamy Indian curry cooked with spiced tomato sauce",
-    warning: false,
     rate: 4.7,
     reviews: 520,
     image:
       "https://www.cookingclassy.com/wp-content/uploads/2021/01/butter-chicken-4.jpg",
-    prepTime: "20 min",
-    cookTime: "35 min",
+    prepTime: "20",
+    cookTime: "35",
     serves: 4,
     deficaulty: "Medium",
     city: "India",
@@ -125,13 +122,12 @@ var allRecapies = [
   {
     name: "French Onion Soup",
     desc: "Classic French soup made from caramelized onions and beef broth",
-    warning: true,
     rate: 4.5,
     reviews: 320,
     image:
       "https://www.thespruceeats.com/thmb/BYc5SJFHrCWFCRpTO5Z2IvMtrZs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-french-onion-soup-3062131-hero-01-2a93bd3c60084db5a8a8e1039c0e0a2f.jpg",
-    prepTime: "10 min",
-    cookTime: "40 min",
+    prepTime: "10",
+    cookTime: "40",
     serves: 4,
     deficaulty: "Medium",
     city: "France",
@@ -164,13 +160,12 @@ var allRecapies = [
   {
     name: "Greek Salad",
     desc: "Fresh Mediterranean salad with olives and feta cheese",
-    warning: false,
     rate: 4.3,
     reviews: 180,
     image:
       "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/greek_salad_16407_16x9.jpg",
-    prepTime: "10 min",
-    cookTime: "0 min",
+    prepTime: "10",
+    cookTime: "0",
     serves: 2,
     deficaulty: "Easy",
     city: "Greece",
@@ -202,13 +197,12 @@ var allRecapies = [
   {
     name: "Shawarma Wrap",
     desc: "Middle Eastern wrap packed with marinated chicken and garlic sauce",
-    warning: true,
     rate: 4.8,
     reviews: 600,
     image:
       "https://lifeloveandgoodfood.com/wp-content/uploads/2020/04/Chicken-Shawarma_09_1200x1200.jpg",
-    prepTime: "15 min",
-    cookTime: "25 min",
+    prepTime: "15",
+    cookTime: "25",
     serves: 3,
     deficaulty: "Easy",
     city: "Lebanon",
@@ -240,13 +234,12 @@ var allRecapies = [
   {
     name: "Paella",
     desc: "Traditional Spanish rice dish cooked with seafood and saffron",
-    warning: false,
     rate: 4.6,
     reviews: 410,
     image:
       "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/paella-837f12c.jpg?quality=90&resize=440,400",
-    prepTime: "20 min",
-    cookTime: "45 min",
+    prepTime: "20",
+    cookTime: "45",
     serves: 5,
     deficaulty: "Hard",
     city: "Spain",
@@ -280,13 +273,12 @@ var allRecapies = [
   {
     name: "Falafel Plate",
     desc: "Crispy Middle Eastern falafel served with tahini and salad",
-    warning: true,
     rate: 4.4,
     reviews: 270,
     image:
       "https://www.whollytasteful.com/wp-content/uploads/2023/03/falafel-platter-featured.jpg",
-    prepTime: "15 min",
-    cookTime: "20 min",
+    prepTime: "15",
+    cookTime: "20",
     serves: 3,
     deficaulty: "Medium",
     city: "Egypt",
@@ -317,13 +309,12 @@ var allRecapies = [
   {
     name: "Cheeseburger",
     desc: "Juicy American burger topped with melted cheddar",
-    warning: false,
     rate: 4.7,
     reviews: 720,
     image:
       "https://www.recipetineats.com/tachyon/2022/08/Stack-of-cheeseburgers.jpg",
-    prepTime: "10 min",
-    cookTime: "12 min",
+    prepTime: "10",
+    cookTime: "12",
     serves: 2,
     deficaulty: "Easy",
     city: "USA",
@@ -352,13 +343,12 @@ var allRecapies = [
   {
     name: "Margherita Pizza",
     desc: "Classic Italian pizza topped with tomato, mozzarella, and basil",
-    warning: true,
     rate: 4.9,
     reviews: 880,
     image:
       "https://www.tasteofhome.com/wp-content/uploads/2018/01/Pizza-Margherita_EXPS_FT21_40895_F_0729_1.jpg",
-    prepTime: "15 min",
-    cookTime: "15 min",
+    prepTime: "15",
+    cookTime: "15",
     serves: 3,
     deficaulty: "Easy",
     city: "Italy",
@@ -432,7 +422,7 @@ function innerWeb() {
                   >
                     <i class="fa-solid fa-clock fs-4 mb-1 mainColorText"></i>
                     <p class="mb-1 text-body-tertiary">Prep Time</p>
-                    <small class="fw-bold fs-6">${returnedRecipe.prepTime}</small>
+                    <small class="fw-bold fs-6">${returnedRecipe.prepTime} min</small>
                   </div>
                   <div
                     class="d-flex flex-column justify-content-center align-items-center"
@@ -441,7 +431,7 @@ function innerWeb() {
                       class="fa-solid fa-fire-burner fs-4 mb-1 sendColorText"
                     ></i>
                     <p class="mb-1 text-body-tertiary">Cook Time</p>
-                    <small class="fw-bold fs-6">${returnedRecipe.cookTime}</small>
+                    <small class="fw-bold fs-6">${returnedRecipe.cookTime} min</small>
                   </div>
                   <div
                     class="d-flex flex-column justify-content-center align-items-center"
@@ -458,7 +448,7 @@ function innerWeb() {
     `;
   nameSec.innerText = returnedRecipe.name;
   descSec.innerText = returnedRecipe.desc;
-  if (returnedRecipe.warning) {
+  if (+returnedRecipe.prepTime + +returnedRecipe.cookTime > 45) {
     warningMsg.style.display = "block";
   } else {
     warningMsg.style.display = "none";
@@ -513,7 +503,7 @@ function innerWeb() {
   }
 }
 
-innerWeb()
+innerWeb();
 
 changeRecipeBtn.onclick = function () {
   innerWeb();
