@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ContactHub - Smart Contact Manager</title>
+    <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/sweetalert2.css" />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body class="bg-body-secondary bg-opacity-50">
+    <!-- Navbar Section -->
+    <section class="shadow-sm bg-light fixed-top bg-opacity-75" id="navSec">
+      <div class="container-lg container-fluid">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <a
+              class="navbar-brand d-flex justify-content-center align-items-center"
+              href="#"
+            >
+              <i
+                class="fa-solid fa-address-book me-3 rounded-3 gradiantBgMain text-light px-4 py-3 d-flex justify-content-center align-items-center"
+              ></i>
+              <div>
+                <h2 class="fs-4 mb-1 fw-bold">
+                  Contact<span class="gradiantTextMain">Hub</span>
+                </h2>
+                <p
+                  class="smallText fw-bold text-body-secondary m-0 d-none d-md-block"
+                >
+                  Smart Contact Manager
+                </p>
+              </div>
+            </a>
+            <div>
+              <div
+                class="d-flex justify-content-between align-items-center ms-auto justify-content-center align-items-lg-center"
+              >
+                <button
+                  onclick="addContactbtn()"
+                  type="button"
+                  class="btn gradiantBgMain mx-2 text-light fw-bold"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                >
+                  + Add <span class="d-none d-md-inline-block">Contact</span>
+                </button>
+                <a
+                  class="nav-link mx-2 hoverEffect d-none d-md-block p-2"
+                  aria-current="page"
+                  href="#"
+                >
+                  <i class="fa-solid fa-bell"></i>
+                </a>
+                <a
+                  class="nav-link hoverEffect d-none d-md-block mx-2 p-2"
+                  href="#"
+                >
+                  <i class="fa-solid fa-gear"></i>
+                </a>
+                <a class="nav-link" href="#">
+                  <img src="./images/profilePic.jpg" alt="profilePic" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Count Section -->
+    <section id="CountSec" class="container-lg container-fluid my-4">
+      <div class="row g-3">
+        <div class="col-12 col-md-4">
+          <div class="bg-light rounded-4 p-3 d-flex cardHover">
+            <i
+              class="fa-solid fa-users d-flex justify-content-center align-items-center bgGradBlue badgeIcon me-3"
+            ></i>
+            <div class="d-flex flex-column">
+              <small class="text-secondary">Total</small>
+              <small class="fw-bold fs-5" id="totalContacts">0</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="bg-light rounded-4 p-3 d-flex cardHover">
+            <i
+              class="fa-solid fa-star d-flex justify-content-center align-items-center bgGradOrange badgeIcon me-3"
+            ></i>
+            <div class="d-flex flex-column">
+              <small class="text-secondary">Favorites</small>
+              <small class="fw-bold fs-5" id="totalFavContacts">0</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="bg-light rounded-4 p-3 d-flex cardHover">
+            <i
+              class="fa-solid fa-heart-pulse d-flex justify-content-center align-items-center bgGradRed badgeIcon me-3"
+            ></i>
+            <div class="d-flex flex-column">
+              <small class="text-secondary">Emergency</small>
+              <small class="fw-bold fs-5" id="totalEmergncyContacts">0</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="container-lg container-fluid">
+      <div class="row position-relative">
+        <div class="col-12 col-md-8">
+          <div class="fw-bold fs-3">All Contacts</div>
+          <p class="text-secondary mb-2">
+            Manage and organize your <span id="manageContacts">0</span> contacts
+          </p>
+          <div class="mt-4">
+            <div class="input-group">
+              <span
+                class="input-group-text bg-white border-end-0 rounded-start-4 p-3"
+              >
+                <i class="fa-solid fa-magnifying-glass text-secondary"></i>
+              </span>
+              <input
+                type="search"
+                class="form-control border-start-0 rounded-end-4"
+                placeholder="Search by name, phone, or email..."
+                oninput="search(this.value)"
+              />
+            </div>
+          </div>
+          <!-- If no contacts exist -->
+          <div
+            class="d-flex flex-column align-items-center d-block fixedHeight"
+            id="nullContacts"
+          >
+            <i
+              class="fa-solid fa-address-book me-3 rounded-3 text-secondary text-opacity-50 bg-secondary bg-opacity-10 px-4 py-3 d-flex justify-content-center align-items-center"
+            ></i>
+            <small>No Contacts Found</small>
+            <small>Click "Add Contact" To Get Started </small>
+          </div>
+          <!-- if contacts exist -->
+          <div class="row g-4 my-3" id="contactsContainer"></div>
+        </div>
+        <div class="col-12 col-md-4 sticky-top heightFit">
+          <div class="shadow-sm rounded-4 mb-3">
+            <div
+              class="p-3 d-flex align-items-center bg-warning bg-opacity-10 bg-gradient rounded-top-4"
+            >
+              <i
+                class="fa-solid fa-star d-flex justify-content-center align-items-center bgGradOrange badgeIcon2 me-3"
+              ></i>
+              <div class="d-flex flex-column">
+                <small class="fw-bold">Favorites</small>
+                <small class="text-body-secondary smallText"
+                  >Quick access to starred contacts
+                </small>
+              </div>
+            </div>
+            <!-- If no favorites exist -->
+            <div
+              id="emptyFav"
+              class="emptyFav d-flex justify-content-center align-items-center text-secondary d-none rounded-bottom-4"
+            >
+              No Favorites Yet
+            </div>
+            <!-- if favorites exist -->
+            <div
+              class="p-3 bg-light d-none rounded-bottom-4 favLeftSec"
+              id="favContactSec"
+            ></div>
+          </div>
+          <div class="shadow-sm rounded-4 mb-3">
+            <div
+              class="p-3 d-flex align-items-center bg-danger bg-opacity-10 bg-gradient rounded-top-4"
+            >
+              <i
+                class="fa-solid fa-heart-pulse d-flex justify-content-center align-items-center bgGradRed badgeIcon2 me-3"
+              ></i>
+              <div class="d-flex flex-column">
+                <small class="fw-bold">Emergency</small>
+                <small class="text-body-secondary smallText"
+                  >Important contacts for urgent calls
+                </small>
+              </div>
+            </div>
+            <!-- If no emergency contacts -->
+            <div
+              id="emptyemergncy"
+              class="emptyFav d-flex justify-content-center align-items-center text-secondary d-none rounded-bottom-4"
+            >
+              No Emergency Contacts
+            </div>
+            <!-- if emergency contacts exist -->
+            <div
+              class="p-3 bg-light d-none rounded-bottom-4 favLeftSec"
+              id="emergncyContactSec"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Model Add -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">
+              Add New Contact
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div
+              class="text-center w-100 d-flex align-items-center justify-content-center"
+            >
+              <img
+                id="imagePreview"
+                src="./images/meal1.jpeg"
+                alt=""
+                class="d-none personPic"
+              />
+              <i
+                id="DefaultImage"
+                class="fa-solid fa-user d-block d-flex align-items-center justify-content-center personPic"
+              ></i>
+            </div>
+            <input
+              type="file"
+              name=""
+              id="profilePic"
+              class="d-none"
+              onchange="previewImage()"
+            />
+            <label
+              for="profilePic"
+              class="btn btn-outline-primary text-center my-3 m-auto d-flex justify-content-center align-items-center fit-contant"
+            >
+              <i
+                class="fa-solid fa-camera d-flex align-items-center justify-content-center me-2"
+              ></i>
+              <small>Change Photo</small>
+            </label>
+
+            <form class="row g-2 rounded px-3 needs-validation" novalidate>
+              <div class="col-12">
+                <label for="fName" class="form-label fw-bold"
+                  >Full Name <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fName"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <label for="phone" class="form-label fw-bold"
+                  >Phone Number <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone"
+                  placeholder="e.g., 01002165350"
+                  required
+                  oninput="checkPhone()"
+                />
+                <div class="invalid-feedback" id="validPhone">
+                  Please enter a valid Egyptian phone number
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="Email" class="form-label fw-bold"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="Email"
+                  placeholder="name@example.com"
+                  oninput="checkEmail()"
+                />
+                <div class="invalid-feedback" id="validPhone">
+                  Please enter a valid Email
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="Address" class="form-label fw-bold">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="Address"
+                  placeholder="Enter your address"
+                />
+              </div>
+              <div class="col-12">
+                <label for="Group" class="form-label fw-bold">Group</label>
+                <select
+                  id="Group"
+                  class="form-select"
+                  aria-label="Default select example"
+                >
+                  <option selected disabled value="other">
+                    Select a group
+                  </option>
+                  <option value="Family">Family</option>
+                  <option value="Friends">Friends</option>
+                  <option value="Work">Work</option>
+                  <option value="School">School</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="Notes" class="form-label fw-bold">Notes</label>
+                <textarea
+                  class="form-control"
+                  id="Notes"
+                  rows="3"
+                  style="height: 80px"
+                  placeholder="Add notes about the contact"
+                ></textarea>
+              </div>
+              <div class="col-auto my-2">
+                <input
+                  class="form-check-input me-1 socialLogo"
+                  type="checkbox"
+                  value=""
+                  id="Favorite"
+                />
+                <label class="form-check-label me-2" for="Favorite">
+                  <i class="fa-solid fa-star text-warning me-1"></i>
+                  <small>Favorite</small>
+                </label>
+              </div>
+              <div class="col-auto my-2">
+                <input
+                  class="form-check-input me-1 socialLogo"
+                  type="checkbox"
+                  value=""
+                  id="Emergency"
+                />
+                <label class="form-check-label" for="Emergency">
+                  <i class="fa-solid fa-heart-pulse text-danger me-1"></i>
+                  <small>Emergency</small>
+                </label>
+              </div>
+              <div class="col-6">
+                <button
+                  type="button"
+                  class="btn-cancel w-100 col-6"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div class="col-6">
+                <button
+                  type="button"
+                  class="btn-purple w-100 col-6 d-flex align-items-center justify-content-center"
+                  id="saveContactBtn"
+                  onclick="addContact()"
+                >
+                  <i
+                    class="fa-solid fa-check text-light d-flex align-items-center justify-content-center me-2"
+                  ></i>
+                  <small>Save Contact</small>
+                </button>
+                <button
+                  type="button"
+                  class="btn-purple w-100 col-6 d-flex align-items-center justify-content-center d-none"
+                  id="updateContactBtn"
+                  onclick="updateAction()"
+                >
+                  <i
+                    class="fa-solid fa-check text-light d-flex align-items-center justify-content-center me-2"
+                  ></i>
+                  <small>Update Contact</small>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/sweetalert2.all.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
