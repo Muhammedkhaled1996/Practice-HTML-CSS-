@@ -486,7 +486,7 @@ form input::placeholder {
 }
 .modal-dialog {
   margin: 20px auto;
-  height: calc(100vh - 40px);
+  min-height: calc(100vh - 40px);
   overflow-y: auto;
   border-radius: 20px;
 }
