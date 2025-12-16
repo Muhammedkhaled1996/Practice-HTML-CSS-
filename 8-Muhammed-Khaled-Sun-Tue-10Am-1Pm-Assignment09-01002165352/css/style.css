@@ -33,7 +33,6 @@
   border-radius: 10px;
 }
 #navSec {
-  
   backdrop-filter: blur(7px);
 }
 #navSec img {
@@ -147,7 +146,7 @@ button.gradiantBgMain:hover {
   height: 40px;
   border-radius: 10px;
   color: white;
- background: linear-gradient(
+  background: linear-gradient(
     90deg,
     rgba(124, 37, 253, 1) 0%,
     rgba(81, 56, 247, 0.97) 100%
@@ -164,6 +163,7 @@ button.gradiantBgMain:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  object-fit: cover;
 }
 
 .fa-phone {
@@ -239,6 +239,7 @@ button.gradiantBgMain:hover {
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
+  object-fit: cover;
 }
 
 .cardIcon {
@@ -481,6 +482,7 @@ form input::placeholder {
 .modal {
   backdrop-filter: blur(4px);
   --bs-modal-border-width: 0px;
+  overflow-y: auto;
 }
 .modal-dialog {
   margin: 20px auto;
