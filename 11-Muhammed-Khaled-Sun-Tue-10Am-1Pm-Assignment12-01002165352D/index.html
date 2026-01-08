@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="QuizMaster - The ultimate trivia challenge."
+    />
+    <title>QuizMaster</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./images/favicon.png" />
+
+    <!-- Font Awesome --> 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="./CSS/style.css" />
+  </head>
+
+  <body>
+    <main class="app-container" role="main">
+      <header class="logo-container">
+        <h1 class="logo"><i class="fa-solid fa-brain"></i> QuizMaster</h1>
+        <p class="logo-tagline">Test Your Knowledge</p>
+      </header>
+
+      <!-- ============================================ -->
+      <!-- QUIZ SETUP FORM - Starting screen -->
+      <!-- This is the first view users see -->
+      <!-- ============================================ -->
+      <form class="game-card quiz-setup d-flex" id="quizOptions" >
+        <!-- Player Name Input -->
+        <div class="form-group">
+          <label class="form-label" for="playerName">
+            <i class="fa-solid fa-user"></i> Player Name
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            id="playerName"
+            placeholder="Enter your name"
+            maxlength="20"
+          />
+        </div>
+
+        <!-- Category Select -->
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fa-solid fa-layer-group"></i> Select Category
+          </label>
+          <div class="custom-select" id="categorySelect" data-value="">
+            <div class="custom-select-trigger">
+              <span class="custom-select-icon"
+                ><i class="fa-solid fa-shuffle"></i
+              ></span>
+              <span class="custom-select-text">Random Category</span>
+              <span class="custom-select-arrow"
+                ><i class="fa-solid fa-chevron-down"></i
+              ></span>
+            </div>
+            <div class="custom-select-options">
+              <div class="custom-select-option" data-value="">
+                <i class="fa-solid fa-shuffle"></i> Random Category
+              </div>
+              <div class="custom-select-option" data-value="9">
+                <i class="fa-solid fa-brain"></i> General Knowledge
+              </div>
+              <div class="custom-select-option" data-value="18">
+                <i class="fa-solid fa-laptop-code"></i> Computers
+              </div>
+              <div class="custom-select-option" data-value="21">
+                <i class="fa-solid fa-futbol"></i> Sports
+              </div>
+              <div class="custom-select-option" data-value="23">
+                <i class="fa-solid fa-landmark"></i> History
+              </div>
+              <div class="custom-select-option" data-value="17">
+                <i class="fa-solid fa-flask"></i> Science
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="categoryMenu" name="category" value="" />
+        </div>
+
+        <!-- Difficulty Select -->
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fa-solid fa-gauge-high"></i> Difficulty Level
+          </label>
+          <div class="custom-select" id="difficultySelect" data-value="easy">
+            <div class="custom-select-trigger">
+              <span class="custom-select-icon"
+                ><i class="fa-solid fa-face-smile"></i
+              ></span>
+              <span class="custom-select-text">Easy Mode</span>
+              <span class="custom-select-arrow"
+                ><i class="fa-solid fa-chevron-down"></i
+              ></span>
+            </div>
+            <div class="custom-select-options">
+              <div class="custom-select-option selected" data-value="easy">
+                <i class="fa-solid fa-face-smile"></i> Easy Mode
+              </div>
+              <div class="custom-select-option" data-value="medium">
+                <i class="fa-solid fa-face-meh"></i> Medium Mode
+              </div>
+              <div class="custom-select-option" data-value="hard">
+                <i class="fa-solid fa-skull"></i> Hard Mode
+              </div>
+            </div>
+          </div>
+          <input
+            type="hidden"
+            id="difficultyOptions"
+            name="difficulty"
+            value="easy"
+          />
+        </div>
+
+        <!-- Number of Questions -->
+        <div class="form-group">
+          <label class="form-label" for="questionsNumber">
+            <i class="fa-solid fa-bolt"></i> Number of Questions
+          </label>
+          <div class="number-input-wrapper">
+            <input
+              type="number"
+              class="form-control"
+              id="questionsNumber"
+              placeholder="Enter 1-50"
+              min="1"
+              max="50"
+              value="10"
+            />
+            <div class="number-controls">
+              <button type="button" class="number-btn" data-action="increment">
+                <i class="fa-solid fa-chevron-up"></i>
+              </button>
+              <button type="button" class="number-btn" data-action="decrement">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Start Button -->
+        <button type="button" class="btn-play" id="startQuiz">
+          <i class="fa-solid fa-play"></i> Start Game
+        </button>
+      </form>
+
+      <!-- ============================================ -->
+      <!-- QUESTIONS CONTAINER -->
+      <!-- Your JavaScript will inject content here -->
+      <!-- ============================================ -->
+      <div class="questions-container" id="questionsContainer">
+      </div>
+
+      <div id="finallyScore">
+        <!-- <div class="game-card results-card">
+          <h2 class="results-title">Quiz Complete!</h2>
+          <p class="results-score-display">8/10</p>
+          <p class="results-percentage">80% Accuracy</p>
+        
+          <div class="new-record-badge">
+            <i class="fa-solid fa-star"></i> New High Score!
+          </div>
+        
+          <div class="leaderboard">
+            <h4 class="leaderboard-title">
+              <i class="fa-solid fa-trophy"></i> Leaderboard
+            </h4>
+            <ul class="leaderboard-list">
+              <li class="leaderboard-item gold">
+                <span class="leaderboard-rank">#1</span>
+                <span class="leaderboard-name">John</span>
+                <span class="leaderboard-score">100%</span>
+              </li>
+              <li class="leaderboard-item silver">
+                <span class="leaderboard-rank">#2</span>
+                <span class="leaderboard-name">Jane</span>
+                <span class="leaderboard-score">90%</span>
+              </li>
+              <li class="leaderboard-item bronze">
+                <span class="leaderboard-rank">#3</span>
+                <span class="leaderboard-name">Bob</span>
+                <span class="leaderboard-score">80%</span>
+              </li>
+            </ul>
+          </div>
+        
+          <div class="action-buttons">
+            <button class="btn-restart">
+              <i class="fa-solid fa-rotate-right"></i> Play Again
+            </button>
+          </div>
+        </div> -->
+      </div>
+       
+
+    </main>
+
+    
+    <!-- UI Controls (custom selects work automatically) -->
+    <script src="./js/ui-controls.js"></script>
+    
+    <!-- Your JavaScript Files -->
+    <script src="./js/index.js" type="module"></script>
+  </body>
+  </html>
+  
+
+
+
+   <!-- ============================================ -->
+   <!-- DESIGN REFERENCE: LOADING STATE -->
+   <!-- Copy this HTML when showing loading spinner -->
+   <!-- ============================================ -->
+   <!--
+   <div class="loading-overlay">
+     <div class="loading-spinner"></div>
+     <p class="loading-text">Loading Questions...</p>
+   </div>
+   -->
+
+   <!-- ============================================ -->
+   <!-- DESIGN REFERENCE: QUESTION CARD -->
+   <!-- This is the structure for displaying a question -->
+   <!-- Replace the static data with dynamic data from API -->
+   <!-- ============================================ -->
+   <!--     
+   <div class="game-card question-card">
+     
+     <div class="xp-bar-container">
+       <div class="xp-bar-header">
+         <span class="xp-label"><i class="fa-solid fa-bolt"></i> Progress</span>
+         <span class="xp-value">Question 1/10</span>
+       </div>
+       <div class="xp-bar">
+         <div class="xp-bar-fill" style="width: 10%"></div>
+       </div>
+     </div>
+
+     <div class="stats-row">
+       <div class="stat-badge category">
+         <i class="fa-solid fa-bookmark"></i>
+         <span>General Knowledge</span>
+       </div>
+       <div class="stat-badge difficulty easy">
+         <i class="fa-solid fa-face-smile"></i>
+         <span>easy</span>
+       </div>
+       <div class="stat-badge timer">
+         <i class="fa-solid fa-stopwatch"></i>
+         <span class="timer-value">15</span>s
+       </div>
+       <div class="stat-badge counter">
+         <i class="fa-solid fa-gamepad"></i>
+         <span>1/10</span>
+       </div>
+     </div>
+
+     <h2 class="question-text">What is the capital of France?</h2>
+
+     <div class="answers-grid">
+       <button class="answer-btn" data-answer="London">
+         <span class="answer-key">1</span>
+         <span class="answer-text">London</span>
+       </button>
+       <button class="answer-btn" data-answer="Paris">
+         <span class="answer-key">2</span>
+         <span class="answer-text">Paris</span>
+       </button>
+       <button class="answer-btn" data-answer="Berlin">
+         <span class="answer-key">3</span>
+         <span class="answer-text">Berlin</span>
+       </button>
+       <button class="answer-btn" data-answer="Madrid">
+         <span class="answer-key">4</span>
+         <span class="answer-text">Madrid</span>
+       </button>
+     </div>
+
+     <p class="keyboard-hint">
+       <i class="fa-regular fa-keyboard"></i> Press 1-4 to select
+     </p>
+
+     <div class="score-panel">
+       <div class="score-item">
+         <div class="score-item-label">Score</div>
+         <div class="score-item-value">0</div>
+       </div>
+     </div>
+   </div>
+   -->
+
+   <!-- ============================================ -->
+   <!-- DESIGN REFERENCE: CORRECT ANSWER STATE -->
+   <!-- Add class "correct" to the button when answer is correct -->
+   <!-- ============================================ -->
+   <!--
+   <button class="answer-btn correct" data-answer="Paris">
+     <span class="answer-key">2</span>
+     <span class="answer-text">Paris</span>
+   </button>
+   -->
+
+   <!-- ============================================ -->
+   <!-- DESIGN REFERENCE: WRONG ANSWER STATE -->
+   <!-- Add class "wrong" to selected wrong answer -->
+   <!-- Add class "correct-reveal" to show correct answer -->
+   <!-- Add class "disabled" to other buttons -->
+   <!-- ============================================ -->
+   <!--
+   <button class="answer-btn wrong" data-answer="London">...</button>
+   <button class="answer-btn correct-reveal" data-answer="Paris">...</button>
+   <button class="answer-btn disabled" data-answer="Berlin">...</button>
+   -->
+
+   <!-- ============================================ -->
+   <!-- DESIGN REFERENCE: TIMER WARNING STATE -->
+   <!-- Add class "warning" when time is running low -->
+   <!-- ============================================ -->
+   <!--
+   <div class="stat-badge timer warning">
+     <i class="fa-solid fa-stopwatch"></i>
+     <span class="timer-value">3</span>s
+   </div>
+   -->
+
+   <!-- ============================================ -->
+   <!-- DESIGN REFERENCE: TIME'S UP MESSAGE -->
+   <!-- Show this when timer reaches 0 -->
+   <!-- ============================================ -->
+   <!--     
+   <div class="time-up-message">
+     <i class="fa-solid fa-clock"></i> TIME'S UP!
+   </div>
+   -->
+
+   <!-- ============================================ -->
+   <!-- DESIGN REFERENCE: RESULTS SCREEN -->
+   <!-- Show this when quiz is complete -->
+   <!-- ============================================ -->
+   <!--
+   <div class="game-card results-card">
+     <h2 class="results-title">Quiz Complete!</h2>
+     <p class="results-score-display">8/10</p>
+     <p class="results-percentage">80% Accuracy</p>
+     
+     <div class="new-record-badge">
+       <i class="fa-solid fa-star"></i> New High Score!
+     </div>
+     
+     <div class="leaderboard">
+       <h4 class="leaderboard-title">
+         <i class="fa-solid fa-trophy"></i> Leaderboard
+       </h4>
+       <ul class="leaderboard-list">
+         <li class="leaderboard-item gold">
+           <span class="leaderboard-rank">#1</span>
+           <span class="leaderboard-name">John</span>
+           <span class="leaderboard-score">100%</span>
+         </li>
+         <li class="leaderboard-item silver">
+           <span class="leaderboard-rank">#2</span>
+           <span class="leaderboard-name">Jane</span>
+           <span class="leaderboard-score">90%</span>
+         </li>
+         <li class="leaderboard-item bronze">
+           <span class="leaderboard-rank">#3</span>
+           <span class="leaderboard-name">Bob</span>
+           <span class="leaderboard-score">80%</span>
+         </li>
+       </ul>
+     </div>
+     
+     <div class="action-buttons">
+       <button class="btn-restart">
+         <i class="fa-solid fa-rotate-right"></i> Play Again
+       </button>
+     </div>
+   </div>
+   -->
+
+   <!-- ============================================ -->
+   <!-- DESIGN REFERENCE: ERROR SCREEN -->
+   <!-- Show this when API fails -->
+   <!-- ============================================ -->
+   <!--
+   <div class="game-card error-card">
+     <div class="error-icon">
+       <i class="fa-solid fa-triangle-exclamation"></i>
+     </div>
+     <h3 class="error-title">Oops! Something went wrong</h3>
+     <p class="error-message">Failed to load questions. Please try again.</p>
+     <button class="btn-play retry-btn">
+       <i class="fa-solid fa-rotate-right"></i> Try Again
+     </button>
+   </div>
+   -->
+
+   <!-- ============================================ -->
+   <!-- DESIGN REFERENCE: FORM ERROR -->
+   <!-- Show this below form when validation fails -->
+   <!-- ============================================ -->
+   <!--
+   <div class="form-error">
+     <i class="fa-solid fa-circle-exclamation"></i> Please enter the number of questions.
+   </div>
+   -->
