@@ -10,7 +10,6 @@ const wrongSound = new Audio("../audio/خطاء.wav");
 const Sound = new Audio("../audio/ثواني.wav");
 const finishSound = new Audio("../audio/تم الانتهاء.wav");
 
-
 export default class Question {
   constructor(index) {
     this.index = index;
@@ -66,11 +65,8 @@ export default class Question {
     <div class="answers-grid"> 
       ${this.answers
         .map(
-          (
-            answer,
-            index
-          ) => `<button class="answer-btn" data-answer="${answer}"> 
-            <span class="answer-key">${index + 1}</span> 
+          (answer) => `<button class="answer-btn" data-answer="${answer}"> 
+            <span class="answer-key">${this.index + 1}</span> 
             <span class="answer-text">${answer}</span> 
           </button>`
         )
@@ -107,7 +103,9 @@ export default class Question {
         Sound.pause();
         Sound.currentTime = 0;
       }
+
       const selectedAnswer = e.currentTarget.dataset.answer;
+
       if (selectedAnswer === this.correctAnswer) {
         e.target?.classList.add(
           "correct",
@@ -145,6 +143,8 @@ export default class Question {
       console.log("end");
     }
   }
+
+  
   startTimer() {
     let timeLeft = 15;
     const timerEl = questionsContainer.querySelector(".timer-value");
@@ -171,15 +171,6 @@ export default class Question {
   }
 }
 
-
-
-
-
-
-
-
-
-
 // export default class Question {
 //   constructor(index) {
 //     this.index = index;
@@ -197,7 +188,7 @@ export default class Question {
 //     questionsContainer.style.display = "block";
 //     questionsContainer.innerHTML = `
 //  <div class="game-card question-card">
-      
+
 //       <div class="xp-bar-container">
 //         <div class="xp-bar-header">
 //           <span class="xp-label"><i class="fa-solid fa-bolt"></i> Progress</span>
@@ -298,16 +289,10 @@ export default class Question {
 //       finishSound.play();
 //     currentQuiz.displayFinalScreen()
 //       console.log('end');
-      
+
 //     }
 //   }
 // }
-
-
-
-
-
-
 
 /**
  * ============================================

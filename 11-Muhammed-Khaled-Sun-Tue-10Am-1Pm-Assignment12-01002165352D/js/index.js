@@ -1,40 +1,26 @@
-
-
-
 import Question from "./question.js";
-import Quiz  from "./quiz.js";
+import Quiz from "./quiz.js";
+
 export let questions;
 export let currentQuiz;
+
 export const quizOptions = document.querySelector("#quizOptions");
 export const questionsContainer = document.querySelector("#questionsContainer");
 
-
-
-document.querySelector("#startQuiz").addEventListener("click", async() => {
-
+document.querySelector("#startQuiz").addEventListener("click", async () => {
   const categoryMenu = document.querySelector("#categoryMenu").value;
-
   const difficultyOptions = document.querySelector("#difficultyOptions").value;
-
   const questionsNumber = document.querySelector("#questionsNumber").value;
 
-  currentQuiz = new Quiz(categoryMenu,difficultyOptions,questionsNumber);
+  currentQuiz = new Quiz(categoryMenu, difficultyOptions, questionsNumber);
 
   questions = await currentQuiz.getQuestion();
   currentQuiz.questions = questions;
 
-const firstQuestion =new Question(0);
-
-firstQuestion.displayQuestion();
-  
-console.log(currentQuiz);
-
-
+  const firstQuestion = new Question(0);
+  firstQuestion.displayQuestion();
+  console.log(currentQuiz);
 });
-
-
-
-
 
 /**
  * ============================================
