@@ -1,5 +1,3 @@
-
-
 export const finallyScore = document.querySelector("#finallyScore");
 export default class Quiz {
   constructor(category, difficulty, questionNumber) {
