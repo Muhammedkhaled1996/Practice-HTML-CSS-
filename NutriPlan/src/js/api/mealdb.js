@@ -404,6 +404,8 @@ export async function getAllMealsGridView(meals) {
 
 // جلب وعرض كل الوجبات فى شكل قائمة
 export async function getAllMealsListView(meals) {
+  console.log(meals, "meals");
+
   if (meals.length > 0) {
     listView.innerHTML = "";
     listView.innerHTML = meals
@@ -469,7 +471,7 @@ export async function getAllMealsListView(meals) {
                                   ${meal.name}
                                 </h3>
                                 <p class="text-xs text-gray-600 mb-3 line-clamp-2">
-                                  ${meal.instruction}
+                                  ${meal.instructions}
                                 </p>
                                 <div class="flex items-center justify-between text-xs">
                                   <span class="font-semibold text-gray-900">
@@ -552,14 +554,14 @@ function getYoutubeEmbedUrl(url) {
 
 // جلب تفاصيل الوجبة
 export function getMealDetails(meal, mealNutraints) {
-console.log("before getMealDetails", meal, mealNutraints);
+  console.log("before getMealDetails", meal, mealNutraints);
   thumbnail.src = `${meal.thumbnail}`;
   category.innerHTML = `${meal.category}`;
   area.innerHTML = `${meal.area}`;
   name.innerHTML = `${meal.name}`;
   IngredientsCount.innerHTML = `${meal.ingredients.length}`;
   IngredientsItems.innerHTML = "";
-  
+
   IngredientsItems.innerHTML = meal.ingredients
     .map((item) => {
       return `

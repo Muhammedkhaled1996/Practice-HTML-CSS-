@@ -462,7 +462,6 @@ listView.addEventListener("click", async (e) => {
       }),
     };
 
-    console.log(mealFullDetails, "التفاصيل اللى هتروح للlocalStorage");
   } catch (err) {
     console.error("ERROR IN RECIPE CLICK:", err);
     appLoadingOverlayMealDetails.querySelector("p").innerHTML =
@@ -610,3 +609,35 @@ closeProductModal.forEach((el) => {
 });
 
 
+// لعمل نفس فكرة ال routing url history
+const tabs = document.querySelectorAll(".tab");
+const buttons = document.querySelectorAll("a[data-route]");
+
+function showTab(route) {
+  tabs.forEach(tab => {
+    tab.classList.toggle("active", tab.id === route);
+  });
+}
+
+function navigate(route) {
+  history.pushState({ route }, "", `/${route}`);
+  showTab(route);
+}
+
+// click on tabs
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const route = btn.dataset.route;
+    navigate(route);
+  });
+});
+
+// handle refresh + back/forward
+window.addEventListener("popstate", (e) => {
+  const route = e.state?.route || location.pathname.replace("/", "") || "home-section";
+  showTab(route);
+});
+
+// initial load
+const initialRoute = location.pathname.replace("/", "") || "home-section";
+showTab(initialRoute);
