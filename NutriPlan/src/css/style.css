@@ -8,3 +8,10 @@
 .alignLeft{
   text-align: left;
 }
+
+.tab {
+  display: none;
+}
+.tab.active {
+  display: block;
+}

@@ -82,7 +82,7 @@
           </p>
           <ul class="space-y-1">
             <li id="home">
-              <a
+              <a data-route="home-section"
                 class="nav-link flex items-center gap-3 px-3 py-2.5 bg-emerald-50 text-emerald-700 rounded-lg transition-all"
                 href="#"
               >
@@ -91,7 +91,7 @@
               </a>
             </li>
             <li id="products">
-              <a
+              <a data-route="products-section"
                 class="nav-link flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-all"
                 href="#"
               >
@@ -100,7 +100,7 @@
               </a>
             </li>
             <li id="foodlog">
-              <a
+              <a data-route="foodlog-section"
                 class="nav-link flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-all"
                 href="#"
               >
@@ -152,6 +152,7 @@
           </div>
         </div>
       </header>
+
       <section id="home-section" data-section="home">
         <section
           id="search-filters-section"
@@ -249,8 +250,7 @@
         </section>
       </section>
       <!-- ============= Meal Details SECTION ============= -->
-      <section
-        id="meal-details"
+      <section id="meal-details"
         class="px-8 py-8 bg-gray-50"
         style="display: none"
       >
@@ -625,8 +625,7 @@
       </section>
 
       <!-- ============= PRODUCT SCANNER SECTION ============= -->
-      <section
-        id="products-section"
+      <section id="products-section"
         class="px-8 py-8 bg-gray-50 min-h-screen"
         data-section="products"
       >
@@ -768,8 +767,7 @@
       </section>
 
       <!-- ============= FOOD LOG SECTION ============= -->
-      <section
-        id="foodlog-section"
+      <section id="foodlog-section"
         class="px-8 py-8 bg-gray-50 min-h-screen"
         data-section="foodlog"
       >
