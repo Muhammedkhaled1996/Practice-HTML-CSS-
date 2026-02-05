@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-tajawal: "Tajawal", sans-serif;
+  --color-main: #161616;
+  --color-main-orange: #ff6800;
+}
+
+@layer components {
+  .activeC {
+    @apply p-3 rounded-xl border-main-orange! bg-linear-to-r from-main-orange to-[#f64b00] text-white;
+  }
+
+  .navbar .active {
+    @apply bg-main-orange/10 text-main-orange  border border-main-orange p-3 rounded-xl lg:bg-linear-to-r lg:from-main-orange lg:to-[#f64b00] lg:text-white lg:p-3 lg:rounded-full;
+  }
+
+  .btn {
+    @apply bg-linear-to-r from-main-orange to-[#f64b00] text-white rounded-full;
+  }
+
+  .linerGradiantText {
+    @apply bg-linear-to-r from-[#ff893a] to-main-orange bg-clip-text text-transparent;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade {
+  animation: fade 0.3s ease-in-out;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 25px;
+}
