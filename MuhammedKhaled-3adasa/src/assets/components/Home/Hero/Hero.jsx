@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Hero() {
   return (
     <>
-      <div className=" relative bg-[url(../../../../public/gridBackground2.jpg)] bg-main bg-blend-multiply bg-cover py-5 lg:p-0">
+      <div className=" relative bg-[url(./public/gridBackground2.jpg)] bg-main bg-blend-multiply bg-cover py-5 lg:p-0">
         <div
           style={{ minHeight: "calc(100vh - 84px)" }}
           className="z-10 mt-21 mx-auto w-full max-w-360 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 flex justify-center items-center "
