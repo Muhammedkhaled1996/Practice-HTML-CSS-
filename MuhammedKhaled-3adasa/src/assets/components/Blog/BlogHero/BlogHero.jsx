@@ -48,7 +48,7 @@ export default function BlogHero({ categories, posts }) {
   return (
     <>
       <div className="bg-main">
-        <div className="bg-[url(./public/gridBackground2.jpg)] bg-main bg-blend-multiply bg-cover  border-b border-gray-500">
+        <div className="bg-[url(/gridBackground2.jpg)] bg-main bg-blend-multiply bg-cover  border-b border-gray-500">
           <div className="mx-auto w-full max-w-360 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 mt-21">
             <div className="relative h-full flex justify-center items-center ">
               <div className=" flex flex-col justify-center items-center text-center py-6">
