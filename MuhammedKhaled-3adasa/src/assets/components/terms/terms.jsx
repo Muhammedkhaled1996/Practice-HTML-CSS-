@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Terms() {
   return (
     <>
-      <div className="bg-[url(/gridBackground2.jpg)] bg-main bg-blend-multiply bg-cover border-b border-gray-600">
+      <div className="bg-[url(/gridBackground.jpg)] bg-main bg-blend-multiply bg-cover border-b border-gray-600">
         {/* hero setion in about page */}
         <div className="relative mt-21 mx-auto w-full max-w-360 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 flex justify-center items-center">
           <div className=" flex justify-center items-center py-6">
