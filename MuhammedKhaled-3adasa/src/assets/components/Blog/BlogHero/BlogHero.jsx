@@ -48,29 +48,34 @@ export default function BlogHero({ categories, posts }) {
   return (
     <>
       <div className="bg-main">
-        <div className="bg-[url(/gridBackground.jpg)] bg-main bg-blend-multiply bg-cover  border-b border-gray-500">
-          <div className="mx-auto w-full max-w-360 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 mt-21">
-            <div className="relative h-full flex justify-center items-center ">
-              <div className=" flex flex-col justify-center items-center text-center py-6">
-                <div className="bg-main-orange/20 border border-main-orange rounded-xl w-fit p-3 flex justify-center items-center mb-6">
-                  <i className="fa-solid fa-circle me-3 text-[10px] text-main-orange animate-pulse  "></i>
-                  <div className="relative">
-                    <i className="fa-solid absolute top-1/2 -translate-y-1/2  fa-circle me-3 text-sm text-main-orange"></i>
-                    <i className="fa-solid fa-circle me-3 text-sm text-main-orange animate-ping  "></i>
+        <div className="relative bg-[url(/gridBackground.jpg)] bg-cover border-b border-gray-500">
+          <div className="inset-0 bg-black/80 absolute z-10"></div>
+
+          <div className="relative z-20">
+            <div className="mx-auto w-full max-w-360 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 mt-21">
+              <div className="relative h-full flex justify-center items-center ">
+                <div className=" flex flex-col justify-center items-center text-center py-6">
+                  <div className="bg-main-orange/20 border border-main-orange rounded-xl w-fit p-3 flex justify-center items-center mb-6">
+                    <i className="fa-solid fa-circle me-3 text-[10px] text-main-orange animate-pulse  "></i>
+                    <div className="relative">
+                      <i className="fa-solid absolute top-1/2 -translate-y-1/2  fa-circle me-3 text-sm text-main-orange"></i>
+                      <i className="fa-solid fa-circle me-3 text-sm text-main-orange animate-ping  "></i>
+                    </div>
+                    <p className="font-bold text-white">مدونتنا</p>
                   </div>
-                  <p className="font-bold text-white">مدونتنا</p>
-                </div>
-                <div class="h-80 w-80 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.35)_0%,rgba(249,115,22,0.15)_30%,rgba(249,115,22,0.05)_50%,transparent_70%)] absolute top-5 left-5"></div>
-                <div class="h-80 w-80 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.35)_0%,rgba(249,115,22,0.15)_30%,rgba(249,115,22,0.05)_50%,transparent_70%)] absolute bottom-5 right-5"></div>
-                <div className="text-white font-extrabold text-3xl md:text-7xl text-center mb-2">
-                  استكشف <span className="linerGradiantText">مقالاتنا</span>
-                </div>
-                <div className="text-xl md:text-2xl text-gray-400 my-4 mb-4">
-                  اكتشف الدروس والرؤى وأفضل الممارسات للتطوير الحديث
+                  <div class="h-80 w-80 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.35)_0%,rgba(249,115,22,0.15)_30%,rgba(249,115,22,0.05)_50%,transparent_70%)] absolute top-5 left-5"></div>
+                  <div class="h-80 w-80 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.35)_0%,rgba(249,115,22,0.15)_30%,rgba(249,115,22,0.05)_50%,transparent_70%)] absolute bottom-5 right-5"></div>
+                  <div className="text-white font-extrabold text-5xl md:text-7xl text-center mb-2">
+                    استكشف <span className="linerGradiantText">مقالاتنا</span>
+                  </div>
+                  <div className="text-2xl md:text-3xl text-gray-400 my-4 mb-4">
+                    اكتشف الدروس والرؤى وأفضل الممارسات للتطوير الحديث
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
 
         <div>
@@ -179,11 +184,10 @@ export default function BlogHero({ categories, posts }) {
                       setCurrentPage((prev) => prev - 1);
                       window.scrollTo({ top: 270, behavior: "smooth" });
                     }}
-                    className={`px-3 py-2  rounded-lg border text-gray-500 border-gray-500 cursor-pointer ${
-                      currentPage === 1
-                        ? "opacity-40 cursor-not-allowed"
-                        : "hover:border-main-orange hover:bg-main-orange/20"
-                    }`}
+                    className={`px-3 py-2  rounded-lg border text-gray-500 border-gray-500 cursor-pointer ${currentPage === 1
+                      ? "opacity-40 cursor-not-allowed"
+                      : "hover:border-main-orange hover:bg-main-orange/20"
+                      }`}
                     np
                   >
                     <i className="fa-solid fa-chevron-right"></i>
@@ -198,11 +202,10 @@ export default function BlogHero({ categories, posts }) {
                           setCurrentPage(page);
                           window.scrollTo({ top: 270, behavior: "smooth" });
                         }}
-                        className={`px-4 py-2 rounded-lg  border cursor-pointer text-gray-500 border-gray-500 ${
-                          currentPage === page
-                            ? "bg-main-orange text-white border-none font-bold"
-                            : "hover:border-main-orange hover:bg-main-orange/20"
-                        }`}
+                        className={`px-4 py-2 rounded-lg  border cursor-pointer text-gray-500 border-gray-500 ${currentPage === page
+                          ? "bg-main-orange text-white border-none font-bold"
+                          : "hover:border-main-orange hover:bg-main-orange/20"
+                          }`}
                       >
                         {page}
                       </button>
@@ -216,11 +219,10 @@ export default function BlogHero({ categories, posts }) {
                       setCurrentPage((prev) => prev + 1);
                       window.scrollTo({ top: 270, behavior: "smooth" });
                     }}
-                    className={`px-3 py-2 rounded-lg border cursor-pointer text-gray-500 border-gray-500 ${
-                      currentPage === totalPages
-                        ? "opacity-40 cursor-not-allowed"
-                        : "hover:border-main-orange hover:bg-main-orange/20"
-                    }`}
+                    className={`px-3 py-2 rounded-lg border cursor-pointer text-gray-500 border-gray-500 ${currentPage === totalPages
+                      ? "opacity-40 cursor-not-allowed"
+                      : "hover:border-main-orange hover:bg-main-orange/20"
+                      }`}
                   >
                     <i className="fa-solid fa-chevron-left"></i>
                   </button>

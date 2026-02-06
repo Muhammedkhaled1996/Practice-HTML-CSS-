@@ -16,7 +16,7 @@ function App() {
   // حفظ بيانات البوسات
   const [posts, setPosts] = useState(data.posts);
   // حفظ بيانات الموقع
-  const [siteInfo, setٍiteInfo] = useState(data.siteInfo);
+  const [siteInfo, setSiteInfo] = useState(data.siteInfo);
   // حفظ التصنيفات الخاصة بالتصوير
   const [categories, setCategories] = useState(data.categories);
   // الراوتينج الخاص بالموقع

@@ -4,77 +4,80 @@ import { Link } from "react-router-dom";
 export default function About({ posts }) {
   return (
     <>
-      <div className="bg-[url(/gridBackground.jpg)] bg-main bg-blend-multiply bg-cover border-b border-gray-600">
+      <div className="relative bg-[url(/gridBackground.jpg)] bg-cover border-b border-gray-600">
+        <div className="inset-0 bg-black/80 absolute z-10"></div>
         {/* hero setion in about page */}
-        <div className="mt-21 mx-auto w-full max-w-360 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 flex justify-center items-center">
-          <div className="relative flex justify-center items-center py-6">
-            <div className="flex flex-col justify-center items-center text-center md:mb-0 md:mt-0">
-              <div className="bg-main-orange/20 border border-main-orange rounded-xl w-fit p-3 flex justify-center items-center mb-6">
-                <i className="fa-solid fa-circle me-3 text-[10px] text-main-orange animate-pulse  "></i>
-                <div className="relative">
-                  <i className="fa-solid absolute top-1/2 -translate-y-1/2  fa-circle me-3 text-sm text-main-orange"></i>
-                  <i className="fa-solid fa-circle me-3 text-sm text-main-orange animate-ping  "></i>
+        <div className="relative z-20">
+          <div className="mt-21 mx-auto w-full max-w-360 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 flex justify-center items-center">
+            <div className="relative flex justify-center items-center py-6">
+              <div className="flex flex-col justify-center items-center text-center md:mb-0 md:mt-0">
+                <div className="bg-main-orange/20 border border-main-orange rounded-xl w-fit p-3 flex justify-center items-center mb-6">
+                  <i className="fa-solid fa-circle me-3 text-[10px] text-main-orange animate-pulse  "></i>
+                  <div className="relative">
+                    <i className="fa-solid absolute top-1/2 -translate-y-1/2  fa-circle me-3 text-sm text-main-orange"></i>
+                    <i className="fa-solid fa-circle me-3 text-sm text-main-orange animate-ping  "></i>
+                  </div>
+                  <p className="font-bold text-white">من نحن</p>
                 </div>
-                <p className="font-bold text-white">من نحن</p>
-              </div>
-              <div className="text-white font-extrabold text-4xl lg:text-7xl text-center mb-6">
-                <h1>
-                  مهمتنا هي
-                  <span className="linerGradiantText"> الإعلام والإلهام</span>
-                </h1>
-              </div>
-              <div className="text-xl md:text-2xl text-gray-600 my-4 lg:w-3/4">
-                مدونة متخصصة في فن التصوير الفوتوغرافي، نشارك معكم أسرار
-                المحترفين ونصائح عملية لتطوير مهاراتكم. نحن شغوفون بمشاركة
-                المعرفة ومساعدة المصورين على تنمية مهاراتهم من خلال محتوى عالي
-                الجودة.
-              </div>
-              <div className="w-full  md:w-3/4 grid grid-cols-2 lg:grid-cols-4 gap-5 my-4">
-                <div className="flex flex-col justify-between items-center text-white bg-main/75 border border-gray-700 py-4 rounded-2xl hover:scale-[1.03] transition-all duration-200 cursor-pointer">
-                  <i className="fa-solid fa-newspaper text-3xl linerGradiantText mb-2"></i>
-                  <div>
-                    <p className="linerGradiantText font-bold text-4xl mb-2">
-                      +2مليون
-                    </p>
-                    <span className="text-[1.4rem] text-gray-500 ">
-                      قارئ شهرياَ
-                    </span>
+                <div className="text-white font-extrabold text-5xl lg:text-7xl text-center mb-6">
+                  <h1>
+                    مهمتنا هي
+                    <span className="linerGradiantText"> الإعلام والإلهام</span>
+                  </h1>
+                </div>
+                <div className="text-2xl md:text-3xl text-gray-600 my-4 lg:w-3/4">
+                  مدونة متخصصة في فن التصوير الفوتوغرافي، نشارك معكم أسرار
+                  المحترفين ونصائح عملية لتطوير مهاراتكم. نحن شغوفون بمشاركة
+                  المعرفة ومساعدة المصورين على تنمية مهاراتهم من خلال محتوى عالي
+                  الجودة.
+                </div>
+                <div className="w-full  md:w-3/4 grid grid-cols-2 lg:grid-cols-4 gap-5 my-4">
+                  <div className="flex flex-col justify-between items-center text-white bg-main/75 border border-gray-700 py-4 rounded-2xl hover:scale-[1.03] transition-all duration-200 cursor-pointer">
+                    <i className="fa-solid fa-newspaper text-3xl linerGradiantText mb-2"></i>
+                    <div>
+                      <p className="linerGradiantText font-bold text-4xl mb-2">
+                        +2مليون
+                      </p>
+                      <span className="text-[1.4rem] text-gray-500 ">
+                        قارئ شهرياَ
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-between items-center text-white bg-main/75 border border-gray-700 py-4 rounded-2xl hover:scale-[1.03] transition-all duration-200 cursor-pointer">
+                    <i className="fa-solid fa-people-group text-3xl linerGradiantText mb-2"></i>
+                    <div>
+                      <p className="linerGradiantText font-bold text-4xl mb-2">
+                        +500
+                      </p>
+                      <span className="text-[1.4rem] text-gray-500 ">
+                        مقالة منشورة
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-between items-center text-white bg-main/75 border border-gray-700 py-4 rounded-2xl hover:scale-[1.03] transition-all duration-200 cursor-pointer">
+                    <i className="fa-solid fa-folder-open text-3xl linerGradiantText mb-2"></i>
+                    <div>
+                      <p className="linerGradiantText font-bold text-4xl mb-2">
+                        +50
+                      </p>
+                      <span className="text-[1.4rem] text-gray-500 ">
+                        كاتب خبير
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-between items-center text-white bg-main/75 border border-gray-700 py-4 rounded-2xl hover:scale-[1.03] transition-all duration-200 cursor-pointer">
+                    <i className="fa-solid fa-pen-nib text-3xl linerGradiantText mb-2"></i>
+                    <div>
+                      <p className="linerGradiantText font-bold text-4xl mb-2">
+                        +15
+                      </p>
+                      <span className="text-[1.4rem] text-gray-500 ">تصنيف</span>
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-col justify-between items-center text-white bg-main/75 border border-gray-700 py-4 rounded-2xl hover:scale-[1.03] transition-all duration-200 cursor-pointer">
-                  <i className="fa-solid fa-people-group text-3xl linerGradiantText mb-2"></i>
-                  <div>
-                    <p className="linerGradiantText font-bold text-4xl mb-2">
-                      +500
-                    </p>
-                    <span className="text-[1.4rem] text-gray-500 ">
-                      مقالة منشورة
-                    </span>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-between items-center text-white bg-main/75 border border-gray-700 py-4 rounded-2xl hover:scale-[1.03] transition-all duration-200 cursor-pointer">
-                  <i className="fa-solid fa-folder-open text-3xl linerGradiantText mb-2"></i>
-                  <div>
-                    <p className="linerGradiantText font-bold text-4xl mb-2">
-                      +50
-                    </p>
-                    <span className="text-[1.4rem] text-gray-500 ">
-                      كاتب خبير
-                    </span>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-between items-center text-white bg-main/75 border border-gray-700 py-4 rounded-2xl hover:scale-[1.03] transition-all duration-200 cursor-pointer">
-                  <i className="fa-solid fa-pen-nib text-3xl linerGradiantText mb-2"></i>
-                  <div>
-                    <p className="linerGradiantText font-bold text-4xl mb-2">
-                      +15
-                    </p>
-                    <span className="text-[1.4rem] text-gray-500 ">تصنيف</span>
-                  </div>
-                </div>
+                <div class="h-80 w-80 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.35)_0%,rgba(249,115,22,0.15)_30%,rgba(249,115,22,0.05)_50%,transparent_70%)] absolute top-5 left-5"></div>
+                <div class="h-80 w-80 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.35)_0%,rgba(249,115,22,0.15)_30%,rgba(249,115,22,0.05)_50%,transparent_70%)] absolute bottom-5 right-5"></div>
               </div>
-              <div class="h-80 w-80 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.35)_0%,rgba(249,115,22,0.15)_30%,rgba(249,115,22,0.05)_50%,transparent_70%)] absolute top-5 left-5"></div>
-              <div class="h-80 w-80 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.35)_0%,rgba(249,115,22,0.15)_30%,rgba(249,115,22,0.05)_50%,transparent_70%)] absolute bottom-5 right-5"></div>
             </div>
           </div>
         </div>
