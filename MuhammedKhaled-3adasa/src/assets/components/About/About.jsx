@@ -19,13 +19,13 @@ export default function About({ posts }) {
                   </div>
                   <p className="font-bold text-white">من نحن</p>
                 </div>
-                <div className="text-white font-extrabold text-5xl lg:text-7xl text-center mb-6">
+                <div className="text-white font-extrabold text-4xl lg:text-7xl text-center mb-6">
                   <h1>
                     مهمتنا هي
                     <span className="linerGradiantText"> الإعلام والإلهام</span>
                   </h1>
                 </div>
-                <div className="text-2xl md:text-3xl text-gray-600 my-4 lg:w-3/4">
+                <div className="text-xl md:text-3xl text-gray-600 mb-4 lg:w-3/4">
                   مدونة متخصصة في فن التصوير الفوتوغرافي، نشارك معكم أسرار
                   المحترفين ونصائح عملية لتطوير مهاراتكم. نحن شغوفون بمشاركة
                   المعرفة ومساعدة المصورين على تنمية مهاراتهم من خلال محتوى عالي
@@ -71,7 +71,9 @@ export default function About({ posts }) {
                       <p className="linerGradiantText font-bold text-4xl mb-2">
                         +15
                       </p>
-                      <span className="text-[1.4rem] text-gray-500 ">تصنيف</span>
+                      <span className="text-[1.4rem] text-gray-500 ">
+                        تصنيف
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -202,6 +204,35 @@ export default function About({ posts }) {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* last Section */}
+      <div className="bg-linear-to-r from-[#F74C00] to-[#F6A000] border-b border-gray-600">
+        <div className="mx-auto w-full max-w-360 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 flex justify-center items-center py-20 ">
+          <div className="w-full flex flex-col justify-center items-center text-center">
+            <div className="text-white font-extrabold text-3xl md:text-5xl text-center mb-6">
+              <h1>لديك أسئلة؟ دعنا نتحدث!</h1>
+            </div>
+            <div className="text-lg md:text-2xl text-white mb-6 w-full md:w-2/3">
+              نحب أن نسمع منك. سواء كان لديك سؤال حول محتوانا، أو تريد المساهمة،
+              أو تريد فقط إلقاء التحية، لا تتردد في التواصل.
+            </div>
+            <div className="flex gap-3">
+              <a
+                href="tomail:muhammedkhaled25@gmail.com"
+                className=" p-4 bg-black rounded-lg text-white font-bold hover:-translate-y-1 duration-300 transition-all"
+              >
+                <i className="fa-regular fa-envelope me-2 "></i>
+                <span>تواصل معنا</span>
+              </a>
+              <Link
+                to={"/blog"}
+                className="hover:bg-white hover:text-black duration-300 translate-all p-4 bg-transparent border border-gray-400 rounded-lg text-white font-bold"
+              >
+                تصفح المقالات
+              </Link>
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ export default function Hero() {
                   </div>
                   <p className="font-bold text-white">مرحباً بك في عدسة</p>
                 </div>
-                <div className="text-white font-extrabold text-5xl md:text-7xl text-center mb-6 flex flex-col">
+                <div className="text-white font-extrabold text-4xl md:text-7xl text-center mb-6 flex flex-col">
                   <h1 className="">
                     اكتشف <span className="linerGradiantText">فن</span>
                   </h1>

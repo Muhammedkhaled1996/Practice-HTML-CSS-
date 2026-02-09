@@ -65,7 +65,7 @@ export default function BlogHero({ categories, posts }) {
                   </div>
                   <div class="h-80 w-80 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.35)_0%,rgba(249,115,22,0.15)_30%,rgba(249,115,22,0.05)_50%,transparent_70%)] absolute top-5 left-5"></div>
                   <div class="h-80 w-80 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.35)_0%,rgba(249,115,22,0.15)_30%,rgba(249,115,22,0.05)_50%,transparent_70%)] absolute bottom-5 right-5"></div>
-                  <div className="text-white font-extrabold text-5xl md:text-7xl text-center mb-2">
+                  <div className="text-white font-extrabold text-4xl md:text-7xl text-center mb-2">
                     استكشف <span className="linerGradiantText">مقالاتنا</span>
                   </div>
                   <div className="text-2xl md:text-3xl text-gray-400 my-4 mb-4">
@@ -80,7 +80,7 @@ export default function BlogHero({ categories, posts }) {
 
         <div>
           {/* Search section by category or input feild  */}
-          <section className="grid grid-cols-1 md:grid-cols-4 items-center w-full bg-[#0A0A0A] p-6 z-40 sticky top-21 left-0 border-b border-gray-500">
+          <section className="grid grid-cols-1 md:grid-cols-4 items-center w-full bg-[#0A0A0A] p-6 z-40 static md:sticky md:top-21 md:left-0 border-b border-gray-500">
             <div className=" flex justify-between items-center md:w-full relative my-4 bg-gray-500/20 rounded-2xl text-xl ">
               <input
                 value={search}
@@ -92,13 +92,13 @@ export default function BlogHero({ categories, posts }) {
               <i className="fa-solid fa-magnifying-glass text-white absolute top-1/2 left-3 -translate-y-1/2"></i>
             </div>
 
-            <div className="flex flex-wrap justify-center items-center justify-self-end gap-3 text-xl md:col-span-3">
+            <div className="flex flex-wrap justify-center items-center justify-self-end gap-2 text-xl md:col-span-3">
               <div
                 data-category="جميع المقالات"
                 onClick={(e) => {
                   setSearchParams({ Category: "جميع المقالات" });
                 }}
-                className={`${category == "جميع المقالات" ? "activeC" : ""} border border-gray-500  text-white p-3 bg-gray-500/20 rounded-lg cursor-pointer hover:border-main-orange duration-300 transition-all`}
+                className={`${category == "جميع المقالات" ? "activeC" : ""} border border-gray-500  text-white p-2 bg-gray-500/20 rounded-lg cursor-pointer hover:border-main-orange duration-300 transition-all`}
               >
                 جميع المقالات
               </div>
@@ -110,7 +110,7 @@ export default function BlogHero({ categories, posts }) {
                     onClick={(e) => {
                       setSearchParams({ Category: cat.name });
                     }}
-                    className={`${category == cat.name ? "activeC" : ""} border border-gray-500  text-white p-3 bg-gray-500/20 rounded-lg cursor-pointer hover:border-main-orange duration-300 transition-all`}
+                    className={`${category == cat.name ? "activeC" : ""} border border-gray-500  text-white p-2 bg-gray-500/20 rounded-lg cursor-pointer hover:border-main-orange duration-300 transition-all`}
                   >
                     {cat.name}
                   </div>
