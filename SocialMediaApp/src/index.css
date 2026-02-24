@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+@plugin '../hero.js';
+/* Note: You may need to change the path to fit your project structure */
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
+
+@import "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
+@import 'react-photo-view/dist/react-photo-view.css';
+
+input:-webkit-autofill {
+  transition: background-color 999999s ease-in-out 0s;
+  -webkit-text-fill-color: black !important;
+}
+input:autofill,
+input:-webkit-autofill {
+  border-bottom-color: black !important;
+}
+
+@utility container {
+  margin: auto;
+  @media (width >= 80rem /* 1280px */) {
+    max-width: 70rem /* 1280px */;
+  }
+  @media (width >= 96rem /* 1536px */) {
+    max-width: 80rem /* 1536px */;
+  }
+}
+
+@theme {
+  --font-main: "Inter", sans-serif;
+}
+
+body {
+  background-color: #f0f2f5;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
