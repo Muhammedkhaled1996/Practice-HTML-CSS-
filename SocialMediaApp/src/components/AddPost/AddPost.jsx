@@ -53,7 +53,7 @@ export default function AddPost() {
   });
 
   const selectedImage = watch("image");
-  console.log(selectedImage?.[0] || null, "selectedImage");
+  // console.log(selectedImage?.[0] || null, "selectedImage");
 
   const [preview, setPreview] = useState(null);
 
@@ -73,7 +73,7 @@ export default function AddPost() {
     }
   }, [selectedImage]);
 
-  console.log(postToBeUpdate, "postToBeUpdate from add post");
+  // console.log(postToBeUpdate, "postToBeUpdate from add post");
 
   const { mutate: updatePostMutate, isPending: isUpdatePending } = useMutation({
     mutationFn: updatePost,

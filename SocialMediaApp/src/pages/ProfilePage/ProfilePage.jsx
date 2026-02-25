@@ -11,7 +11,6 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import { useForm } from "react-hook-form";
 import { headerObjectData } from "../../helpers/headersObj";
 import { useQueryClient } from "@tanstack/react-query";
-import { Spinner } from "@heroui/react";
 import axios from "axios";
 
 export default function ProfilePage() {
@@ -35,18 +34,25 @@ export default function ProfilePage() {
 
   const posts = data?.posts || [];
 
-  console.log(posts, "posts from profile");
+  console.log(posts, "posts from profile Page");
 
   // update profile photo function
 
-  const { register, handleSubmit, reset, watch } = useForm({
+  const { register, reset, watch } = useForm({
     defaultValues: {
       photo: null,
     },
   });
 
+  const { register: coverRegister, reset: coverReset, watch: coverWatch } = useForm({
+    defaultValues: {
+      cover: null,
+    },
+  });
+
   const queryClient = useQueryClient();
 
+  // function to update profile photo
   async function updateProfilePhoto(files) {
     try {
       console.log(files[0], "files");
@@ -71,8 +77,36 @@ export default function ProfilePage() {
     }
   }
 
+  // function to update Cover photo
+  async function updateCoverPhoto(files) {
+    try {
+      console.log(files[0], "files");
+      const formData = new FormData();
+      if (files[0]) {
+        formData.append("cover", files[0]);
+      }
+      await axios.put(
+        "https://route-posts.routemisr.com/users/upload-cover",
+        formData,
+        headerObjectData(),
+      );
+      queryClient.invalidateQueries(["allUserPosts"]);
+      queryClient.invalidateQueries(["loggedInUserData"]);
+      toast.success("Cover Photo Updated Successfully");
+      coverReset();
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || "Error in Updating Cover Photo",
+      );
+      console.log(error, "error in updating cover photo");
+    }
+  }
+
   const selectedImage = watch("photo");
   console.log(selectedImage?.[0] || null, "selectedImage");
+
+  const selectedCoverImage = coverWatch("photo");
+  console.log(selectedCoverImage?.[0] || null, "selectedCoverImage");
 
   useEffect(() => {
     if (selectedImage && selectedImage[0] instanceof File) {
@@ -81,14 +115,53 @@ export default function ProfilePage() {
     }
   }, [selectedImage]);
 
+
+  useEffect(() => {
+    if (selectedCoverImage && selectedCoverImage[0] instanceof File) {
+      const url = URL.createObjectURL(selectedCoverImage[0]);
+      return () => URL.revokeObjectURL(url);
+    }
+  }, [selectedCoverImage]);
+
   return (
     <>
       <title>Social Media - Profile</title>
       <div className="flex flex-col">
         {/* Cover Photo */}
-        <div className="relative h-48 md:h-56 rounded-t-2xl overflow-hidden bg-linear-to-r from-slate-700 via-slate-600 to-slate-800">
-          <div className="absolute inset-0 bg-linear-to-b from-transparent to-black/30" />
+        <div className="cursor-pointer relative h-48 md:h-70 rounded-t-2xl overflow-hidden bg-linear-to-r from-slate-700 via-slate-600 to-slate-800 group">
+          <PhotoProvider>
+            <PhotoView key={_id} src={userData?.cover || profileDefaultImage}>
+
+              <img
+                src={
+                  userData?.cover || "https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y292ZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
+                }
+                alt={`${name}'s cover`}
+                className="w-full h-full object-cover"
+                onError={(e) => (e.target.src = profileDefaultImage)}
+              />
+            </PhotoView>
+
+          </PhotoProvider>
+
+          <label
+            htmlFor="coverPhoto"
+            className="size-8 flex justify-center items-center opacity-0 group-hover:scale-110 group-hover:opacity-100 duration-200 transition-all absolute top-2 right-2 bg-blue-500 text-white rounded-full p-1 shadow-md cursor-pointer z-10"
+          >
+            <IoCameraOutline />
+          </label>
+          <input
+            type="file"
+            id="coverPhoto"
+            className="hidden"
+            accept="image/*"
+            {...coverRegister("cover")}
+            onChange={(e) => updateCoverPhoto(e.target.files)}
+          />
+
         </div>
+
+
 
         {/* Profile Info Card */}
         <PhotoProvider>
@@ -97,6 +170,7 @@ export default function ProfilePage() {
             <div className="flex flex-col lg:flex-row justify-between gap-4 bg-white p-3 rounded-t-2xl -mt-14 relative z-10">
               <div className="flex justify-center gap-4">
                 <div className="relative group cursor-pointer w-fit">
+
                   <img
                     src={
                       photo ||
@@ -164,7 +238,7 @@ export default function ProfilePage() {
             {/* About + Post Stats */}
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 mt-3 p-3">
               {/* About */}
-              <div className="border border-gray-200 rounded-xl p-4">
+              <div className="border border-gray-200 bg-gray-300/20 rounded-xl p-4">
                 <h3 className="font-semibold text-gray-900 text-sm mb-3">
                   About
                 </h3>
@@ -181,8 +255,8 @@ export default function ProfilePage() {
               </div>
 
               {/* Post Stats */}
-              <div className="flex flex-col gap-3">
-                <div className="border border-gray-200 rounded-xl p-4 min-w-40">
+              <div className="flex md:flex-col gap-3">
+                <div className="border border-gray-200 rounded-xl p-4 min-w-40 bg-blue-200/20 w-full">
                   <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
                     MY POSTS
                   </p>
@@ -190,7 +264,7 @@ export default function ProfilePage() {
                     {posts.length}
                   </p>
                 </div>
-                <div className="border border-gray-200 rounded-xl p-4 min-w-40">
+                <div className="border border-gray-200 rounded-xl p-4 min-w-40 bg-blue-200/20 w-full  ">
                   <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
                     SAVED POSTS
                   </p>
@@ -240,7 +314,7 @@ export default function ProfilePage() {
           {isFetched && (
             <div className="flex mb-3 flex-col gap-3">
               {posts.map((post) => (
-                <PostCard key={post._id} post={post} isProfilePage={true} />
+                <PostCard key={post._id} post={post} />
               ))}
             </div>
           )}

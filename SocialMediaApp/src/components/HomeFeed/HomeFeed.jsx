@@ -1,20 +1,23 @@
-import AddPost from "../AddPost/AddPost.jsx";
 import PostCard from "../PostCard/PostCard.jsx";
 import PostCardSkeleton from "../PostCard/PostCardSkeleton.jsx";
 import usePost from "../../CustomHooks/usePost.jsx";
-import Sidebar from "../Sidebar/Sidebar.jsx";
-import SuggestedFriends from "../SuggestedFriends/SuggestedFriends.jsx";
+import { useContext } from "react";
+import { GeneralContext } from "./../../Context/GeneralContext";
 
-export default function HomeFeed() {
+export default function HomeFeed({ endPointFeedPage }) {
+  const { queryFn } = useContext(GeneralContext);
   const { data, isLoading, isFetching, isFetched, isError } = usePost(
-    ["feedPosts"],
+    [queryFn],
     true,
-    "/posts/feed?only=following&limit=10",
+    endPointFeedPage,
   );
 
-  const posts = data?.posts || [];
+  // console.log(queryFn, "queryFn");
 
-  console.log(posts);
+  const posts =
+    queryFn === "savedPosts" ? data?.bookmarks || [] : data?.posts || [];
+
+  // console.log(posts);
 
   return (
     <>

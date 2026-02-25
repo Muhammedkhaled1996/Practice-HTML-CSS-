@@ -116,6 +116,13 @@ export default function AppNav() {
                       >
                         <FaUser className="text-gray-400" /> Profile
                       </Link>
+                      <Link
+                        to="/setting"
+                        onClick={() => setShowDropdown(false)}
+                        className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors"
+                      >
+                        <FaUser className="text-gray-400" /> Setting
+                      </Link>
                       <div className="border-t border-gray-100 mt-1 pt-1">
                         <button
                           onClick={() => {

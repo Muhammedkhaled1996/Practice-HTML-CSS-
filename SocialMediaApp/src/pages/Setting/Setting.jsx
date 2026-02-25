@@ -1,14 +1,16 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import React, { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { LoginSchema } from "../../Schema/AuthSchema";
-import { Spinner } from "flowbite-react";
-import { FaDoorOpen } from "react-icons/fa";
 import { AuthContext } from "../../Context/AuthContext";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { PasswordChangeSchema } from "../../Schema/AuthSchema";
+import { FaArrowLeft, FaDoorOpen } from "react-icons/fa";
+import { Button, Spinner } from "flowbite-react";
+import { IoKeyOutline } from "react-icons/io5";
+import { headerObjectData } from "../../helpers/headersObj";
+import axios from "axios";
 
-export default function Login() {
+export default function Setting() {
   const navigate = useNavigate();
   const [apiError, setApiError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,26 +20,34 @@ export default function Login() {
     mode: "onSubmit",
     reValidateMode: "onChange",
     defaultValues: {
-      email: "",
       password: "",
+      newPassword: "",
+      confirmNewPassword: "",
     },
-    resolver: zodResolver(LoginSchema), // to connect zod validation to hook-forms
+    resolver: zodResolver(PasswordChangeSchema), // to connect zod validation to hook-forms
   });
 
   async function handleLogin(values) {
     console.log(values);
 
+    const data = {
+      password: values.password,
+      newPassword: values.newPassword,
+    };
+
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        "https://route-posts.routemisr.com/users/signin",
-        values,
+      const response = await axios.patch(
+        "https://route-posts.routemisr.com/users/change-password",
+        data,
+        headerObjectData(),
       );
       console.log(response.data.data, "data from login page");
       if (response.data.success == true) {
+        localStorage.removeItem("token");
         localStorage.setItem("token", response.data.data.token);
         setToken(response.data.data.token);
-        navigate("/");
+        navigate("/login");
       }
     } catch (err) {
       console.log(err.response.data.errors, "error from login page");
@@ -49,42 +59,38 @@ export default function Login() {
 
   return (
     <>
-      <title>Social Media - Login</title>
+      <title>Setting</title>
+      <div className="flex justify-center items-center">
+        <div className="flex flex-col justify-center items-center gap-5 text-center shadow-lg bg-white rounded-xl z-20 p-4 w-full md:w-5/6 lg:w-1/2">
+          <Button
+            as={Link}
+            to={"/"}
+            size="sm"
+            className="flex self-start gap-2 mb-3 -mt-2 bg-gray-400 cursor-pointer w-fit hover:bg-gray-600"
+          >
+            <FaArrowLeft />
+            <span>Back</span>
+          </Button>
+          <div className="flex gap-3 items-center justify-start w-full">
+            <div className="text-2xl p-3 bg-blue-600/20 rounded-full  flex items-center justify-center text-blue-600 font-bold">
+              <IoKeyOutline />
+            </div>
+            <div className="flex flex-col items-start">
+              <h1 className="font-extrabold text-xl">Change Password</h1>
+              <p className="text-gray-400 text-sm">
+                Keep your account secure by using a strong password.
+              </p>
+            </div>
+          </div>
 
-      <div className="flex flex-wrap lg:flex-nowrap justify-center items-center w-full min-h-screen relative font-main p-4 py-10 lg:p-0">
-        <div className="text-center shadow-lg bg-white w-full md:w-5/6 lg:w-96 min-h-96 px-6 rounded-xl z-20 flex flex-col justify-center items-center gap-5 translate-y-4 lg:translate-y-0 relative">
-          <h1 className="font-bold text-3xl">Login</h1>
           {apiError && (
             <p className="bg-red-900 text-white font-bold p-2 m-5 rounded-sm w-full mx-auto ">
               {apiError}
             </p>
           )}
-          <form
-            onSubmit={handleSubmit(handleLogin)}
-            className="max-w-md mx-auto w-full"
-          >
-            {/* email */}
-            <div className="relative z-0 w-full my-5 group">
-              <input
-                {...register("email")}
-                type="email"
-                id="email"
-                className="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-                placeholder=" "
-              />
-              {formState.errors.email && (
-                <p className="absolute -bottom-4 right-0 text-red-600 text-start text-[10px] font-bold mt-1">
-                  {formState.errors.email.message}
-                </p>
-              )}
-              <label
-                htmlFor="email"
-                className="absolute start-1 top-3  text-sm text-body duration-300 transform -translate-y-6 scale-75 -z-10 origin-left peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-              >
-                Enter Your Email
-              </label>
-            </div>
-            {/* password */}
+
+          <form onSubmit={handleSubmit(handleLogin)} className="mx-auto w-full">
+            {/* Current password */}
             <div className="relative z-0 w-full my-5 group">
               <input
                 {...register("password")}
@@ -102,27 +108,53 @@ export default function Login() {
                 htmlFor="password"
                 className="absolute start-1 top-3  text-sm text-body duration-300 transform -translate-y-6 scale-75 -z-10 origin-left peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
               >
-                Enter Your Password
+                Enter current password
               </label>
             </div>
-            <div className="flex justify-between items-center my-8">
-              <div className="flex justify-center items-center gap-3">
-                <input
-                  type="checkbox"
-                  id="remeber"
-                  className="accent-blue-900 text-sm"
-                />
-                <label
-                  htmlFor="remeber"
-                  className="text-gray-600 text-sm font-semibold"
-                >
-                  Remember Me
-                </label>
-              </div>
-              <p className="underline text-sm cursor-pointer text-blue-800 ">
-                Forget Password?
-              </p>
+            {/* New password */}
+            <div className="relative z-0 w-full my-5 group">
+              <input
+                {...register("newPassword")}
+                type="password"
+                id="newPassword"
+                className="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+                placeholder=" "
+              />
+              {formState.errors.newPassword && (
+                <p className="absolute -bottom-4 right-0 text-red-600 text-start text-[10px] font-bold mt-1">
+                  {formState.errors.newPassword.message}
+                </p>
+              )}
+              <label
+                htmlFor="newPassword"
+                className="absolute start-1 top-3  text-sm text-body duration-300 transform -translate-y-6 scale-75 -z-10 origin-left peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+              >
+                Enter new password
+              </label>
             </div>
+
+            {/*  confirm password */}
+            <div className="relative z-0 w-full my-5 group">
+              <input
+                {...register("confirmNewPassword")}
+                type="password"
+                id="confirmNewPassword"
+                className="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+                placeholder=" "
+              />
+              {formState.errors.confirmNewPassword && (
+                <p className="absolute -bottom-4 right-0 text-red-600 text-start text-[10px] font-bold mt-1">
+                  {formState.errors.confirmNewPassword.message}
+                </p>
+              )}
+              <label
+                htmlFor="confirmNewPassword"
+                className="absolute start-1 top-3  text-sm text-body duration-300 transform -translate-y-6 scale-75 -z-10 origin-left peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+              >
+                Re-enter new password
+              </label>
+            </div>
+
             {/* submit */}
 
             <button
@@ -148,19 +180,6 @@ export default function Login() {
               )}
             </button>
           </form>
-        </div>
-        <div className="w-full md:w-5/6 lg:w-120 h-120 lg:h-auto lg:min-h-120 bg-red-200 relative z-10 flex justify-center items-center flex-col bg-[url(/background.jpeg)] bg-cover bg-center bg-no-repeat shadow-lg rounded-xl lg:-translate-x-12 -translate-y-2.5 lg:translate-y-0 ">
-          <div className="text-center bg-white/30 backdrop-blur-sm p-8 rounded-2xl">
-            <p className="text-2xl font-bold mb-1">Welcome Back!</p>
-            <p className="text-2xl font-bold ">Sign in to continue</p>
-            <p className="text-2xl font-bold my-4">OR</p>
-            <Link
-              to={"/register"}
-              className="bg-blue-900 px-6 py-3 text-white rounded-lg font-bold hover:bg-red-600! duration-300 translate-all shadow-md inline-block"
-            >
-              Register Now
-            </Link>
-          </div>
         </div>
       </div>
     </>

@@ -11,8 +11,8 @@ import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import PostDetails from "../pages/PostDetails/PostDetails";
 import Notifications from "../pages/Notifications/Notifications";
 import FeedPage from "../pages/FeedPage/FeedPage";
-import HomeFeed from "../components/HomeFeed/HomeFeed";
-import CommunityPage from "../pages/CommunityPage/CommunityPage";
+import Setting from "./../pages/Setting/Setting";
+import ProfileUsersPage from "../pages/ProfileUsersPage/ProfileUsersPage";
 
 export const routes = createBrowserRouter([
   {
@@ -26,30 +26,20 @@ export const routes = createBrowserRouter([
             <FeedPage />
           </AuthPosts>
         ),
-        children: [
-          {
-            path: "feed",
-            element: <HomeFeed />,
-          },
-          {
-            path: "posts",
-            element: <MyPosts />,
-          },
-          {
-            index: true,
-            element: <CommunityPage />,
-          },
-          {
-            path: "saved",
-            element: <CommunityPage />, // Placeholder for Saved Posts page
-          },
-        ],
       },
       {
         path: "profile",
         element: (
           <AuthPosts>
             <ProfilePage />
+          </AuthPosts>
+        ),
+      },
+      {
+        path: "profile/:_id",
+        element: (
+          <AuthPosts>
+            <ProfileUsersPage />
           </AuthPosts>
         ),
       },
@@ -74,6 +64,14 @@ export const routes = createBrowserRouter([
         element: (
           <AuthPosts>
             <PostDetails />
+          </AuthPosts>
+        ),
+      },
+      {
+        path: "setting",
+        element: (
+          <AuthPosts>
+            <Setting />
           </AuthPosts>
         ),
       },

@@ -64,3 +64,35 @@ export const LoginSchema = zod.object({
       "Password must include uppercase, lowercase, number, and special character.",
     ),
 });
+
+// Password change schema
+export const PasswordChangeSchema = zod
+  .object({
+    password: zod
+      .string()
+      .nonempty("Old password is required.")
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$/,
+        "Password must include uppercase, lowercase, number, and special character.",
+      ),
+    newPassword: zod
+      .string()
+      .nonempty("New password is required.")
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$/,
+        "Password must include uppercase, lowercase, number, and special character.",
+      ),
+    confirmNewPassword: zod
+      .string()
+      .nonempty("Please confirm your new password."),
+  })
+  .refine(
+    (object) => {
+      if (object.newPassword === object.confirmNewPassword) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    { error: "New passwords do not match.", path: ["confirmNewPassword"] },
+  );

@@ -29,6 +29,9 @@ export default function AuthContextProvider({ children }) {
     }
   }
 
+  console.log(userData);
+  
+
   useEffect(() => {
     if (token) {
       getLoggedInUserData();

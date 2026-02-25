@@ -3,9 +3,6 @@ import { AuthContext } from "./../../Context/AuthContext";
 import usePost from "../../CustomHooks/usePost";
 import PostCard from "../../components/PostCard/PostCard.jsx";
 import PostCardSkeleton from "../../components/PostCard/PostCardSkeleton";
-import AddPost from "../../components/AddPost/AddPost";
-import Sidebar from "../../components/Sidebar/Sidebar.jsx";
-import SuggestedFriends from "../../components/SuggestedFriends/SuggestedFriends.jsx";
 
 export default function MyPosts() {
   const { userData } = useContext(AuthContext);
@@ -13,8 +10,10 @@ export default function MyPosts() {
   const { data, isLoading, isFetching, isFetched, isError } = usePost(
     ["allUserPosts"],
     Boolean(userData?._id),
-    `users/${userData?._id}/posts`,
+    `posts/feed?only=me&limit=20`,
   );
+
+  console.log(data, "data from my posts");
 
   return (
     <>

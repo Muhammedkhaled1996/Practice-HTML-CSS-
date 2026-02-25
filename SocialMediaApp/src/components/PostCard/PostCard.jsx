@@ -21,10 +21,15 @@ import TopComment from "../TopComment/TopComment";
 import { FiEdit } from "react-icons/fi";
 import { GeneralContext } from "../../Context/GeneralContext";
 import { PhotoProvider, PhotoView } from "react-photo-view";
+import { FaRegBookmark } from "react-icons/fa";
+import { FcLike } from "react-icons/fc";
+import { CiHeart } from "react-icons/ci";
 
-export default function PostCard({ post, isPostDetails = false , isProfilePage = false}) {
+export default function PostCard({
+  post,
+  isPostDetails = false,
+}) {
   const [showComment, setShowComment] = useState(false);
-
   const {
     body,
     _id: postID,
@@ -34,7 +39,11 @@ export default function PostCard({ post, isPostDetails = false , isProfilePage =
     likesCount,
     sharesCount,
     commentsCount,
+    bookmarked,
+    likes,
   } = post;
+  const [like, setLike] = useState(likesCount || 0);
+  const [likeState, setLikeState] = useState(likes.includes(user?._id));
   const { _id: creatoruserID, name, photo } = post.user;
   const { userData } = useContext(AuthContext);
   const { profileDefaultImage, setpostToBeUpdate } = useContext(GeneralContext);
@@ -57,6 +66,7 @@ export default function PostCard({ post, isPostDetails = false , isProfilePage =
     },
   });
 
+  // delete post
   async function deletePost() {
     try {
       const response = await axios.delete(
@@ -70,6 +80,46 @@ export default function PostCard({ post, isPostDetails = false , isProfilePage =
     }
   }
 
+  // like or dislike post
+  async function likePost() {
+    try {
+      const response = await axios.put(
+        `https://route-posts.routemisr.com/posts/${postID}/like`,
+        {},
+        headerObjectData(),
+      );
+      queryClient.invalidateQueries(["allPosts"]);
+      queryClient.invalidateQueries(["allUserPosts"]);
+      console.log(response, "likePost");
+      return response;
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+  // save or unsave post
+  async function bookmarkPost() {
+    try {
+      const response = await axios.put(
+        `https://route-posts.routemisr.com/posts/${postID}/bookmark`,
+        {},
+        headerObjectData(),
+      );
+      queryClient.invalidateQueries(["allPosts"]);
+      queryClient.invalidateQueries(["allUserPosts"]);
+      if (bookmarked) {
+        toast.success("Post Unbookmarked Successfully!");
+      } else {
+        toast.success("Post Bookmarked Successfully!");
+      }
+      return response;
+    } catch (err) {
+      console.log(err);
+      toast.error("Error in Bookmarking Post");
+      return err;
+    }
+  }
+
   if (!body && !image) return null;
 
   return (
@@ -78,16 +128,19 @@ export default function PostCard({ post, isPostDetails = false , isProfilePage =
         {/* Header */}
         <div className="flex justify-between items-start px-5">
           <div className="flex items-center gap-3">
-            <img
-              src={photo}
-              alt={name}
-              className="w-11 h-11 rounded-full object-cover"
-              onError={(e) => {
-                e.target.src = profileDefaultImage;
-              }}
-            />
+            <Link to={`/profile${loginUserId === creatoruserID ? "" : `/${creatoruserID}`}`} className="flex items-center gap-3">
+              <img
+                src={photo}
+                alt={name}
+                className="w-11 h-11 rounded-full object-cover cursor-pointer"
+                onError={(e) => {
+                  e.target.src = profileDefaultImage;
+                }}
+              /></Link>
             <div>
-              <p className="font-semibold text-sm text-gray-900">{name}</p>
+              <Link to={`/profile${loginUserId === creatoruserID ? "" : `/${creatoruserID}`}`}>
+                <p className="font-semibold text-sm text-gray-900">{name}</p>
+              </Link>
               <div className="flex items-center gap-2 text-xs text-gray-400">
                 <span>@{name?.toLowerCase().replace(/\s/g, "")}</span>
                 <span>·</span>
@@ -140,13 +193,20 @@ export default function PostCard({ post, isPostDetails = false , isProfilePage =
               <div className="absolute right-0 top-8 bg-white border border-gray-200 rounded-xl shadow-lg py-2 px-1 z-10 min-w-[140px]">
                 <button
                   onClick={() => {
-                    // mutate();
-                    // setShowMenu(false);
+                    bookmarkPost();
+                    setShowMenu(false);
                   }}
-                  className="flex items-center gap-2 w-full px-3 py-2 text-sm text-green-600 hover:bg-green-50 rounded-lg transition-colors cursor-pointer"
+                  className={`font-bold flex items-center gap-2 w-full px-3 py-2 text-sm  rounded-lg transition-colors cursor-pointer ${bookmarked
+                    ? "text-red-600 hover:bg-red-50"
+                    : "text-blue-600 hover:bg-blue-50"
+                    }`}
                 >
-                  <FaSave className="text-xs" />
-                  {isPending ? "Saving..." : "Save Post"}
+                  <FaRegBookmark className="text-xs" />
+                  {isPending
+                    ? "Saving..."
+                    : bookmarked
+                      ? "Unsave Post"
+                      : "Save Post"}
                 </button>
               </div>
             )}
@@ -157,9 +217,17 @@ export default function PostCard({ post, isPostDetails = false , isProfilePage =
 
         <div className="px-5">
           {body && (
-            <p className="mt-3 text-sm text-gray-800 leading-relaxed">{body}</p>
+            <p className="mt-3 text-sm text-gray-800 leading-relaxed overflow-hidden">
+              {body}
+            </p>
           )}
         </div>
+        {bookmarked && (
+          <div className="font-bold flex items-center justify-center gap-1 ms-4 my-2 rounded-full px-2 py-0.5 text-[10px] bg-blue-200/40 text-blue-700 w-fit">
+            <FaRegBookmark />
+            <span>Saved</span>
+          </div>
+        )}
 
         {/* Image */}
         {image && (
@@ -182,7 +250,7 @@ export default function PostCard({ post, isPostDetails = false , isProfilePage =
             <span className="bg-blue-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-[10px]">
               👍
             </span>
-            <span>{likesCount} likes</span>
+            <span>{like} likes</span>
           </div>
           <div className="flex items-center gap-3">
             <span>↗ {sharesCount} shares</span>
@@ -197,20 +265,29 @@ export default function PostCard({ post, isPostDetails = false , isProfilePage =
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-between mt-3 py-3 border-t border-gray-100 px-5">
-          <button className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 font-medium transition-colors cursor-pointer py-1.5 px-3 rounded-lg hover:bg-blue-50">
-            <FaThumbsUp />
+        <div
+          className="flex items-center justify-between mt-3 py-3 border-t border-gray-100 px-5"
+        >
+          <button onClick={() => {
+            likePost();
+            setLike(likeState ? like - 1 : like + 1);
+            setLikeState(!likeState);
+          }} className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 font-medium transition-colors cursor-pointer py-1.5 px-3 rounded-lg hover:bg-blue-50">
+            {likeState ? (
+              <FcLike className="text-xl" />
+            ) : (
+              <CiHeart className="text-xl" />
+            )}
             <span>Like</span>
           </button>
-          <button className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 font-medium transition-colors cursor-pointer py-1.5 px-3 rounded-lg hover:bg-blue-50">
+          <button
+            onClick={() => {
+              setShowComment(!showComment);
+            }}
+            className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 font-medium transition-colors cursor-pointer py-1.5 px-3 rounded-lg hover:bg-blue-50"
+          >
             <FaRegComment />
-            <span
-              onClick={() => {
-                setShowComment(!showComment);
-              }}
-            >
-              Comment
-            </span>
+            <span>Comment</span>
           </button>
           <button className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 font-medium transition-colors cursor-pointer py-1.5 px-3 rounded-lg hover:bg-blue-50">
             <FaShareAlt />
@@ -218,19 +295,19 @@ export default function PostCard({ post, isPostDetails = false , isProfilePage =
           </button>
         </div>
 
-        {isPostDetails && !isProfilePage && (
+        {isPostDetails && (
           <div className="">
             <Comments postID={postID} />
           </div>
         )}
 
-        {showComment && !isPostDetails && !isProfilePage && (
+        {showComment && !isPostDetails && (
           <div className="">
             <Comments postID={postID} />
           </div>
         )}
 
-        {!isPostDetails && !showComment && !isProfilePage && (
+        {!isPostDetails && !showComment && (
           <div className="px-4 pb-4">
             <TopComment post={post} />
           </div>
