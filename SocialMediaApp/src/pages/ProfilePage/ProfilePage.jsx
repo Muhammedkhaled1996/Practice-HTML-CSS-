@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import usePost from "../../CustomHooks/usePost";
 import { FaEnvelope, FaUsers, FaBookmark } from "react-icons/fa";
@@ -26,25 +26,39 @@ export default function ProfilePage() {
     bookmarksCount,
   } = userData || {};
 
+  const [postType, setPostType] = useState("myPosts");
+
   const { data, isLoading, isFetched } = usePost(
     ["allUserPosts"],
     Boolean(_id),
     `users/${_id}/posts`,
   );
 
-  const posts = data?.posts || [];
+  const { data: savedPostsData } = usePost(
+    ["savedPosts"],
+    true,
+    `users/bookmarks`,
+  );
+
+  const posts =
+    postType === "savedPosts"
+      ? savedPostsData?.bookmarks || []
+      : data?.posts || [];
 
   console.log(posts, "posts from profile Page");
 
   // update profile photo function
-
   const { register, reset, watch } = useForm({
     defaultValues: {
       photo: null,
     },
   });
 
-  const { register: coverRegister, reset: coverReset, watch: coverWatch } = useForm({
+  const {
+    register: coverRegister,
+    reset: coverReset,
+    watch: coverWatch,
+  } = useForm({
     defaultValues: {
       cover: null,
     },
@@ -115,7 +129,6 @@ export default function ProfilePage() {
     }
   }, [selectedImage]);
 
-
   useEffect(() => {
     if (selectedCoverImage && selectedCoverImage[0] instanceof File) {
       const url = URL.createObjectURL(selectedCoverImage[0]);
@@ -131,17 +144,16 @@ export default function ProfilePage() {
         <div className="cursor-pointer relative h-48 md:h-70 rounded-t-2xl overflow-hidden bg-linear-to-r from-slate-700 via-slate-600 to-slate-800 group">
           <PhotoProvider>
             <PhotoView key={_id} src={userData?.cover || profileDefaultImage}>
-
               <img
                 src={
-                  userData?.cover || "https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y292ZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
+                  userData?.cover ||
+                  "https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y292ZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
                 }
                 alt={`${name}'s cover`}
                 className="w-full h-full object-cover"
                 onError={(e) => (e.target.src = profileDefaultImage)}
               />
             </PhotoView>
-
           </PhotoProvider>
 
           <label
@@ -158,10 +170,7 @@ export default function ProfilePage() {
             {...coverRegister("cover")}
             onChange={(e) => updateCoverPhoto(e.target.files)}
           />
-
         </div>
-
-
 
         {/* Profile Info Card */}
         <PhotoProvider>
@@ -170,7 +179,6 @@ export default function ProfilePage() {
             <div className="flex flex-col lg:flex-row justify-between gap-4 bg-white p-3 rounded-t-2xl -mt-14 relative z-10">
               <div className="flex justify-center gap-4">
                 <div className="relative group cursor-pointer w-fit">
-
                   <img
                     src={
                       photo ||
@@ -261,14 +269,16 @@ export default function ProfilePage() {
                     MY POSTS
                   </p>
                   <p className="text-2xl font-bold text-gray-900">
-                    {posts.length}
+                    {data?.posts.length}
                   </p>
                 </div>
                 <div className="border border-gray-200 rounded-xl p-4 min-w-40 bg-blue-200/20 w-full  ">
                   <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
                     SAVED POSTS
                   </p>
-                  <p className="text-2xl font-bold text-gray-900">0</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {savedPostsData?.bookmarks.length}
+                  </p>
                 </div>
               </div>
             </div>
@@ -280,10 +290,22 @@ export default function ProfilePage() {
           {/* Tabs */}
           <div className="flex items-center justify-between mb-4 bg-white rounded-2xl shadow-sm p-2">
             <div className="flex items-center gap-2">
-              <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 border border-blue-200 rounded-xl transition-colors">
+              <button
+                onClick={() => {
+                  setPostType("myPosts");
+                  console.log(postType);
+                }}
+                className={`flex items-center gap-2 px-4 py-2 text-sm font-medium  rounded-xl transition-colors ${postType === "myPosts" ? "text-blue-600 bg-blue-50 border border-blue-200" : "text-gray-500 hover:bg-gray-50"} cursor-pointer`}
+              >
                 <FaBookmark className="text-xs" /> My Posts
               </button>
-              <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-xl transition-colors cursor-pointer">
+              <button
+                onClick={() => {
+                  setPostType("savedPosts");
+                  console.log(postType);
+                }}
+                className={`flex items-center gap-2 px-4 py-2 text-sm font-medium  rounded-xl transition-colors ${postType === "savedPosts" ? "text-blue-600 bg-blue-50 border border-blue-200" : "text-gray-500 hover:bg-gray-50"} cursor-pointer `}
+              >
                 <FaBookmark className="text-xs" /> Saved
               </button>
             </div>

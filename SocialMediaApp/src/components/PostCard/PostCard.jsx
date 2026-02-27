@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  FaThumbsUp,
   FaRegComment,
   FaShareAlt,
   FaEllipsisH,
@@ -9,7 +8,7 @@ import {
   FaSave,
 } from "react-icons/fa";
 import { formatDistanceToNow } from "date-fns";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import axios from "axios";
@@ -24,11 +23,13 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import { FaRegBookmark } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
 import { CiHeart } from "react-icons/ci";
+import SharedPost from "../SharedPost/SharedPost";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SharedSchema } from "../../Schema/AuthSchema";
+import ModelOfSharedPost from "../ModelOfSharedPost/ModelOfSharedPost";
 
-export default function PostCard({
-  post,
-  isPostDetails = false,
-}) {
+export default function PostCard({ post, isPostDetails = false }) {
   const [showComment, setShowComment] = useState(false);
   const {
     body,
@@ -41,9 +42,9 @@ export default function PostCard({
     commentsCount,
     bookmarked,
     likes,
+    isShare,
   } = post;
-  const [like, setLike] = useState(likesCount || 0);
-  const [likeState, setLikeState] = useState(likes.includes(user?._id));
+
   const { _id: creatoruserID, name, photo } = post.user;
   const { userData } = useContext(AuthContext);
   const { profileDefaultImage, setpostToBeUpdate } = useContext(GeneralContext);
@@ -128,7 +129,10 @@ export default function PostCard({
         {/* Header */}
         <div className="flex justify-between items-start px-5">
           <div className="flex items-center gap-3">
-            <Link to={`/profile${loginUserId === creatoruserID ? "" : `/${creatoruserID}`}`} className="flex items-center gap-3">
+            <Link
+              to={`/profile${loginUserId === creatoruserID ? "" : `/${creatoruserID}`}`}
+              className="flex items-center gap-3"
+            >
               <img
                 src={photo}
                 alt={name}
@@ -136,9 +140,12 @@ export default function PostCard({
                 onError={(e) => {
                   e.target.src = profileDefaultImage;
                 }}
-              /></Link>
+              />
+            </Link>
             <div>
-              <Link to={`/profile${loginUserId === creatoruserID ? "" : `/${creatoruserID}`}`}>
+              <Link
+                to={`/profile${loginUserId === creatoruserID ? "" : `/${creatoruserID}`}`}
+              >
                 <p className="font-semibold text-sm text-gray-900">{name}</p>
               </Link>
               <div className="flex items-center gap-2 text-xs text-gray-400">
@@ -196,10 +203,11 @@ export default function PostCard({
                     bookmarkPost();
                     setShowMenu(false);
                   }}
-                  className={`font-bold flex items-center gap-2 w-full px-3 py-2 text-sm  rounded-lg transition-colors cursor-pointer ${bookmarked
-                    ? "text-red-600 hover:bg-red-50"
-                    : "text-blue-600 hover:bg-blue-50"
-                    }`}
+                  className={`font-bold flex items-center gap-2 w-full px-3 py-2 text-sm  rounded-lg transition-colors cursor-pointer ${
+                    bookmarked
+                      ? "text-red-600 hover:bg-red-50"
+                      : "text-blue-600 hover:bg-blue-50"
+                  }`}
                 >
                   <FaRegBookmark className="text-xs" />
                   {isPending
@@ -222,26 +230,35 @@ export default function PostCard({
             </p>
           )}
         </div>
-        {bookmarked && (
-          <div className="font-bold flex items-center justify-center gap-1 ms-4 my-2 rounded-full px-2 py-0.5 text-[10px] bg-blue-200/40 text-blue-700 w-fit">
-            <FaRegBookmark />
-            <span>Saved</span>
-          </div>
-        )}
 
-        {/* Image */}
-        {image && (
-          <PhotoProvider>
-            <div className="mt-3 overflow-hidden">
-              <PhotoView key={postID} src={image}>
-                <img
-                  src={image}
-                  alt={`Post by ${name}`}
-                  className="w-full max-h-[400px] object-contain bg-gray-50 cursor-pointer"
-                />
-              </PhotoView>
-            </div>
-          </PhotoProvider>
+        {/* if post is from shared Post */}
+        {isShare && <SharedPost post={post} />}
+
+        {/* if post isn't from shared Post */}
+        {!isShare && (
+          <>
+            {bookmarked && (
+              <div className="font-bold flex items-center justify-center gap-1 ms-4 my-2 rounded-full px-2 py-0.5 text-[10px] bg-blue-200/40 text-blue-700 w-fit">
+                <FaRegBookmark />
+                <span>Saved</span>
+              </div>
+            )}
+
+            {/* Image */}
+            {image && (
+              <PhotoProvider>
+                <div className="mt-3 overflow-hidden">
+                  <PhotoView key={postID} src={image}>
+                    <img
+                      src={image}
+                      alt={`Post by ${name}`}
+                      className="w-full max-h-[400px] object-contain bg-gray-50 cursor-pointer"
+                    />
+                  </PhotoView>
+                </div>
+              </PhotoProvider>
+            )}
+          </>
         )}
 
         {/* Stats Row */}
@@ -250,7 +267,7 @@ export default function PostCard({
             <span className="bg-blue-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-[10px]">
               👍
             </span>
-            <span>{like} likes</span>
+            <span>{likesCount} likes</span>
           </div>
           <div className="flex items-center gap-3">
             <span>↗ {sharesCount} shares</span>
@@ -265,15 +282,14 @@ export default function PostCard({
         </div>
 
         {/* Action Buttons */}
-        <div
-          className="flex items-center justify-between mt-3 py-3 border-t border-gray-100 px-5"
-        >
-          <button onClick={() => {
-            likePost();
-            setLike(likeState ? like - 1 : like + 1);
-            setLikeState(!likeState);
-          }} className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 font-medium transition-colors cursor-pointer py-1.5 px-3 rounded-lg hover:bg-blue-50">
-            {likeState ? (
+        <div className="flex items-center justify-between mt-3 py-3 border-t border-gray-100 px-5">
+          <button
+            onClick={() => {
+              likePost();
+            }}
+            className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 font-medium transition-colors cursor-pointer py-1.5 px-3 rounded-lg hover:bg-blue-50"
+          >
+            {likes.includes(loginUserId) ? (
               <FcLike className="text-xl" />
             ) : (
               <CiHeart className="text-xl" />
@@ -289,10 +305,9 @@ export default function PostCard({
             <FaRegComment />
             <span>Comment</span>
           </button>
-          <button className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 font-medium transition-colors cursor-pointer py-1.5 px-3 rounded-lg hover:bg-blue-50">
-            <FaShareAlt />
-            <span>Share</span>
-          </button>
+          <div>
+            <ModelOfSharedPost post={post} />
+          </div>
         </div>
 
         {isPostDetails && (

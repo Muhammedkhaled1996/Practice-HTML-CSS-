@@ -12,12 +12,10 @@ export default function HomeFeed({ endPointFeedPage }) {
     endPointFeedPage,
   );
 
-  // console.log(queryFn, "queryFn");
-
   const posts =
     queryFn === "savedPosts" ? data?.bookmarks || [] : data?.posts || [];
 
-  // console.log(posts);
+  console.log(posts);
 
   return (
     <>

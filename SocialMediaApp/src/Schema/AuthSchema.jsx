@@ -96,3 +96,8 @@ export const PasswordChangeSchema = zod
     },
     { error: "New passwords do not match.", path: ["confirmNewPassword"] },
   );
+
+// Shared schema
+export const SharedSchema = zod.object({
+  body: zod.string().nonempty("Contant is required."),
+});

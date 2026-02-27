@@ -29,8 +29,7 @@ export default function AuthContextProvider({ children }) {
     }
   }
 
-  console.log(userData);
-  
+  // console.log(userData);
 
   useEffect(() => {
     if (token) {

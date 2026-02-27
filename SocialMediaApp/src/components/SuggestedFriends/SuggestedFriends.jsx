@@ -5,10 +5,11 @@ import axios from "axios";
 import { headerObjectData } from "./../../helpers/headersObj";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { GeneralContext } from "../../Context/GeneralContext";
+import toast from "react-hot-toast";
 
 export default function SuggestedFriends() {
 
-  const {profileDefaultImage} = useContext(GeneralContext)
+  const { profileDefaultImage } = useContext(GeneralContext)
   const [searchTerm, setSearchTerm] = useState("");
   const queryClient = useQueryClient();
 
@@ -48,10 +49,10 @@ export default function SuggestedFriends() {
     onSuccess: () => {
       queryClient.invalidateQueries(["allPosts"]);
       queryClient.invalidateQueries(["allUserPosts"]);
-      toast.success("Follo Deleted Successfully!");
+      toast.success("Follow Successfully!");
     },
-    onError: () => {
-      toast.error("Error in Deleting Post");
+    onError: (err) => {
+      toast.error(err.response.messege);
     },
   });
   // follow or unfollow user
@@ -64,10 +65,12 @@ export default function SuggestedFriends() {
       );
       return response;
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
       return err;
     }
   }
+
+
 
   return (
     <div className="sticky top-6">
@@ -112,7 +115,7 @@ export default function SuggestedFriends() {
                       src={friend.photo || profileDefaultImage}
                       alt={friend.name}
                       className="w-10 h-10 rounded-full object-cover"
-                      onError={(e)=> e.target.src = profileDefaultImage}
+                      onError={(e) => e.target.src = profileDefaultImage}
                     />
                     <div>
                       <p className="text-sm font-semibold text-gray-900 leading-tight">

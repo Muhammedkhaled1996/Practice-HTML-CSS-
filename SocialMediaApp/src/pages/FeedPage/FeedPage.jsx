@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import AddPost from "../../components/AddPost/AddPost";
 import SuggestedFriends from "../../components/SuggestedFriends/SuggestedFriends";
-
 import HomeFeed from "./../../components/HomeFeed/HomeFeed";
 import { GeneralContext } from "../../Context/GeneralContext";
 
