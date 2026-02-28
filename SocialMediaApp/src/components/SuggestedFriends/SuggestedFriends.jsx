@@ -6,10 +6,12 @@ import { headerObjectData } from "./../../helpers/headersObj";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { GeneralContext } from "../../Context/GeneralContext";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthContext";
 
 export default function SuggestedFriends() {
-
-  const { profileDefaultImage } = useContext(GeneralContext)
+  const { userData } = useContext(AuthContext);
+  const { profileDefaultImage } = useContext(GeneralContext);
   const [searchTerm, setSearchTerm] = useState("");
   const queryClient = useQueryClient();
 
@@ -27,7 +29,7 @@ export default function SuggestedFriends() {
       );
       return data.data.suggestions;
     } catch (err) {
-      console.log(err, "error from SuggestedFriends");
+      // console.log(err, "error from SuggestedFriends");
       throw err;
     }
   }
@@ -41,8 +43,6 @@ export default function SuggestedFriends() {
   const displayedFriends = searchTerm
     ? matchesSearch
     : matchesSearch?.slice(0, 5);
-
-  console.log(suggestions, "data from suggested friends");
 
   const { mutate, isPending } = useMutation({
     mutationFn: followUser,
@@ -69,8 +69,6 @@ export default function SuggestedFriends() {
       return err;
     }
   }
-
-
 
   return (
     <div className="sticky top-6">
@@ -106,24 +104,33 @@ export default function SuggestedFriends() {
           ) : (
             displayedFriends?.map((friend) => (
               <div
-                key={friend._id}
+                key={friend?._id}
                 className="px-2 py-3 rounded-xl border border-gray-200 "
               >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={friend.photo || profileDefaultImage}
-                      alt={friend.name}
-                      className="w-10 h-10 rounded-full object-cover"
-                      onError={(e) => e.target.src = profileDefaultImage}
-                    />
-                    <div>
-                      <p className="text-sm font-semibold text-gray-900 leading-tight">
-                        {friend.name}
-                      </p>
-                      {friend.username ? (
-                        <p className="text-xs text-gray-400 line-clamp-1 overflow-hidden">
-                          @{friend.username}
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
+                    <Link
+                      to={`/profile${userData?._id === friend?._id ? "" : `/${friend?._id}`}`}
+                    >
+                      <img
+                        src={friend?.photo || profileDefaultImage}
+                        alt={friend?.name}
+                        className="w-10 h-10 rounded-full object-cover shrink-0"
+                        onError={(e) => (e.target.src = profileDefaultImage)}
+                      />
+                    </Link>
+                    <div className="min-w-0">
+                      <Link
+                        to={`/profile${userData?._id === friend?._id ? "" : `/${friend?._id}`}`}
+                        className="min-w-0"
+                      >
+                        <p className="text-sm font-semibold text-gray-900 truncate">
+                          {friend?.name}
+                        </p>
+                      </Link>
+                      {friend?.username ? (
+                        <p className="text-xs text-gray-400 truncate">
+                          @{friend?.username}
                         </p>
                       ) : (
                         <p className="text-xs text-gray-400">Route User</p>
@@ -133,9 +140,9 @@ export default function SuggestedFriends() {
 
                   <button
                     onClick={() => {
-                      mutate(friend._id);
+                      mutate(friend?._id);
                     }}
-                    className="text-xs bg-gray-300/20 px-1.5 py-1 rounded-full font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 transition-colors cursor-pointer disabled:opacity-50"
+                    className="text-xs bg-gray-300/20 px-1.5 py-1 rounded-full font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 transition-colors cursor-pointer disabled:opacity-50 shrink-0"
                   >
                     <IoPersonAddOutline />
                     <span>Follow</span>
@@ -143,10 +150,10 @@ export default function SuggestedFriends() {
                 </div>
                 <div className="flex gap-3 mt-2 items-center">
                   <p className="text-xs text-gray-700 p-1 rounded-full bg-gray-300/20 ">
-                    {friend.followersCount} followers
+                    {friend?.followersCount} followers
                   </p>
                   <p className="text-xs text-blue-700 p-1 rounded-full bg-blue-300/20">
-                    {friend.mutualFollowersCount} mutual
+                    {friend?.mutualFollowersCount} mutual
                   </p>
                 </div>
               </div>

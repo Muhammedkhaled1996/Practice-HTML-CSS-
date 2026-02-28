@@ -43,7 +43,7 @@ export default function ProfileUsersPage() {
     }
   }
 
-  const posts = data?.posts || [];
+  const posts = data?.data?.posts || [];
 
   // console.log(posts, "posts from profile Page");
 
@@ -52,9 +52,9 @@ export default function ProfileUsersPage() {
   const isFollowing =
     loginUserData?.following?.includes(userData?._id) ?? false;
 
-  console.log(loginUserData, "loginUserData from Profile of user page");
-  console.log(userData, "userData from Profile of user page");
-  console.log(isFollowing, "isFollowing State");
+  // console.log(loginUserData, "loginUserData from Profile of user page");
+  // console.log(userData, "userData from Profile of user page");
+  // console.log(isFollowing, "isFollowing State");
 
   const { mutate, isPending } = useMutation({
     mutationFn: followUser,
@@ -79,10 +79,10 @@ export default function ProfileUsersPage() {
         {},
         headerObjectData(),
       );
-      console.log(response, "from profile of user");
+      // console.log(response, "from profile of user");
       return response;
     } catch (err) {
-      console.log(err.response);
+      // console.log(err.response);
       throw err;
     }
   }

@@ -1,14 +1,7 @@
 import React, { useState } from "react";
-import {
-  FaRegComment,
-  FaShareAlt,
-  FaEllipsisH,
-  FaGlobe,
-  FaTrash,
-  FaSave,
-} from "react-icons/fa";
+import { FaRegComment, FaEllipsisH, FaGlobe, FaTrash } from "react-icons/fa";
 import { formatDistanceToNow } from "date-fns";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import axios from "axios";
@@ -24,10 +17,9 @@ import { FaRegBookmark } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
 import { CiHeart } from "react-icons/ci";
 import SharedPost from "../SharedPost/SharedPost";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { SharedSchema } from "../../Schema/AuthSchema";
 import ModelOfSharedPost from "../ModelOfSharedPost/ModelOfSharedPost";
+import LikesPersons from "./../LikesPersons/LikesPersons";
+import { AiOutlineLike } from "react-icons/ai";
 
 export default function PostCard({ post, isPostDetails = false }) {
   const [showComment, setShowComment] = useState(false);
@@ -47,8 +39,8 @@ export default function PostCard({ post, isPostDetails = false }) {
 
   const { _id: creatoruserID, name, photo } = post.user;
   const { userData } = useContext(AuthContext);
-  const { profileDefaultImage, setpostToBeUpdate } = useContext(GeneralContext);
   const { id: loginUserId } = userData;
+  const { profileDefaultImage, setpostToBeUpdate } = useContext(GeneralContext);
   const [showMenu, setShowMenu] = useState(false);
 
   const result = formatDistanceToNow(new Date(postDate), { addSuffix: true });
@@ -58,8 +50,10 @@ export default function PostCard({ post, isPostDetails = false }) {
   const { mutate, isPending } = useMutation({
     mutationFn: deletePost,
     onSuccess: () => {
-      queryClient.invalidateQueries(["allPosts"]);
+      queryClient.invalidateQueries(["feedPosts"]);
       queryClient.invalidateQueries(["allUserPosts"]);
+      queryClient.invalidateQueries(["coummunityPosts"]);
+      queryClient.invalidateQueries(["savedPosts"]);
       toast.success("Post Deleted Successfully!");
     },
     onError: () => {
@@ -82,6 +76,10 @@ export default function PostCard({ post, isPostDetails = false }) {
   }
 
   // like or dislike post
+  const [likeState, setlikeState] = useState(likes?.includes(loginUserId));
+
+  const [likeCountState, setlikeCount] = useState(likesCount);
+
   async function likePost() {
     try {
       const response = await axios.put(
@@ -89,15 +87,19 @@ export default function PostCard({ post, isPostDetails = false }) {
         {},
         headerObjectData(),
       );
-      queryClient.invalidateQueries(["allPosts"]);
+      queryClient.invalidateQueries(["feedPosts"]);
       queryClient.invalidateQueries(["allUserPosts"]);
-      console.log(response, "likePost");
+      queryClient.invalidateQueries(["coummunityPosts"]);
+      queryClient.invalidateQueries(["savedPosts"]);
+      queryClient.invalidateQueries(["ProfileUsersPosts", _id]);
+      queryClient.invalidateQueries(["postComments", postID]);
       return response;
     } catch (err) {
       console.log(err);
       return err;
     }
   }
+
   // save or unsave post
   async function bookmarkPost() {
     try {
@@ -106,12 +108,17 @@ export default function PostCard({ post, isPostDetails = false }) {
         {},
         headerObjectData(),
       );
-      queryClient.invalidateQueries(["allPosts"]);
+      queryClient.invalidateQueries(["feedPosts"]);
       queryClient.invalidateQueries(["allUserPosts"]);
+      queryClient.invalidateQueries(["coummunityPosts"]);
+      queryClient.invalidateQueries(["savedPosts"]);
+      queryClient.invalidateQueries(["ProfileUsersPosts", _id]);
+      queryClient.invalidateQueries(["postComments", postID]);
+
       if (bookmarked) {
-        toast.success("Post Unbookmarked Successfully!");
+        toast.success("Post Unsaved Successfully!");
       } else {
-        toast.success("Post Bookmarked Successfully!");
+        toast.success("Post Saved Successfully!");
       }
       return response;
     } catch (err) {
@@ -177,7 +184,7 @@ export default function PostCard({ post, isPostDetails = false }) {
                     mutate();
                     setShowMenu(false);
                   }}
-                  className="flex items-center gap-2 w-full px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                  className="font-bold flex items-center gap-2 w-full px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
                 >
                   <FaTrash className="text-xs" />
                   {isPending ? "Deleting..." : "Delete Post"}
@@ -187,10 +194,28 @@ export default function PostCard({ post, isPostDetails = false }) {
                     setpostToBeUpdate(post);
                     setShowMenu(false);
                   }}
-                  className="flex items-center gap-2 w-full px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer"
+                  className="font-bold flex items-center gap-2 w-full px-3 py-2 text-sm text-green-600 hover:bg-green-50 rounded-lg transition-colors cursor-pointer"
                 >
                   <FiEdit className="text-xs" />
                   {isPending ? "Updating..." : "Edit Post"}
+                </button>
+                <button
+                  onClick={() => {
+                    bookmarkPost();
+                    setShowMenu(false);
+                  }}
+                  className={`font-bold flex items-center gap-2 w-full px-3 py-2 text-sm  rounded-lg transition-colors cursor-pointer ${
+                    bookmarked
+                      ? "text-red-600 hover:bg-red-50"
+                      : "text-blue-600 hover:bg-blue-50"
+                  }`}
+                >
+                  <FaRegBookmark className="text-xs" />
+                  {isPending
+                    ? "Saving..."
+                    : bookmarked
+                      ? "Unsave Post"
+                      : "Save Post"}
                 </button>
               </div>
             )}
@@ -263,11 +288,16 @@ export default function PostCard({ post, isPostDetails = false }) {
 
         {/* Stats Row */}
         <div className="flex items-center justify-between pt-3 border-t border-gray-100 text-xs text-gray-500 px-5">
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-3">
             <span className="bg-blue-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-[10px]">
-              👍
+              <AiOutlineLike />
             </span>
-            <span>{likesCount} likes</span>
+            <span>{likeCountState}</span>
+            {likeCountState ? (
+              <LikesPersons post={post} />
+            ) : (
+              <span className="text-sm">Likes</span>
+            )}
           </div>
           <div className="flex items-center gap-3">
             <span>↗ {sharesCount} shares</span>
@@ -286,10 +316,16 @@ export default function PostCard({ post, isPostDetails = false }) {
           <button
             onClick={() => {
               likePost();
+              setlikeState(!likeState);
+              {
+                likeState
+                  ? setlikeCount(likeCountState - 1)
+                  : setlikeCount(likeCountState + 1);
+              }
             }}
             className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 font-medium transition-colors cursor-pointer py-1.5 px-3 rounded-lg hover:bg-blue-50"
           >
-            {likes.includes(loginUserId) ? (
+            {likeState ? (
               <FcLike className="text-xl" />
             ) : (
               <CiHeart className="text-xl" />

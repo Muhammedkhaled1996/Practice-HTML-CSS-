@@ -9,9 +9,12 @@ import {
   FaSignOutAlt,
   FaCog,
 } from "react-icons/fa";
+import usePost from "../../CustomHooks/usePost";
+import { GeneralContext } from "../../Context/GeneralContext";
 
 export default function AppNav() {
   const { token, setToken, userData } = useContext(AuthContext);
+  const { unReadMessegsCount } = useContext(GeneralContext);
   const { name, email, photo } = userData || {};
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
@@ -26,7 +29,12 @@ export default function AppNav() {
   const navLinks = [
     { to: "/", icon: FaHome, label: "Feed" },
     { to: "/profile", icon: FaUser, label: "Profile" },
-    { to: "/notifications", icon: FaBell, label: "Notifications", badge: 2 },
+    {
+      to: "/notifications",
+      icon: FaBell,
+      label: "Notifications",
+      badge: unReadMessegsCount?.unreadCount || "",
+    },
   ];
 
   return (

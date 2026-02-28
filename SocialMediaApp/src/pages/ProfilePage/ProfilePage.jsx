@@ -28,6 +28,8 @@ export default function ProfilePage() {
 
   const [postType, setPostType] = useState("myPosts");
 
+  // console.log(userData, "userData");
+
   const { data, isLoading, isFetched } = usePost(
     ["allUserPosts"],
     Boolean(_id),
@@ -42,10 +44,10 @@ export default function ProfilePage() {
 
   const posts =
     postType === "savedPosts"
-      ? savedPostsData?.bookmarks || []
-      : data?.posts || [];
+      ? savedPostsData?.data?.bookmarks || []
+      : data?.data.posts || [];
 
-  console.log(posts, "posts from profile Page");
+  // console.log(posts, "posts from profile Page");
 
   // update profile photo function
   const { register, reset, watch } = useForm({
@@ -69,7 +71,7 @@ export default function ProfilePage() {
   // function to update profile photo
   async function updateProfilePhoto(files) {
     try {
-      console.log(files[0], "files");
+      // console.log(files[0], "files");
       const formData = new FormData();
       if (files[0]) {
         formData.append("photo", files[0]);
@@ -87,7 +89,7 @@ export default function ProfilePage() {
       toast.error(
         error.response?.data?.message || "Error in Updating Profile Photo",
       );
-      console.log(error, "error in updating profile photo");
+      // console.log(error, "error in updating profile photo");
     }
   }
 
@@ -112,15 +114,13 @@ export default function ProfilePage() {
       toast.error(
         error.response?.data?.message || "Error in Updating Cover Photo",
       );
-      console.log(error, "error in updating cover photo");
+      // console.log(error, "error in updating cover photo");
     }
   }
 
   const selectedImage = watch("photo");
-  console.log(selectedImage?.[0] || null, "selectedImage");
 
   const selectedCoverImage = coverWatch("photo");
-  console.log(selectedCoverImage?.[0] || null, "selectedCoverImage");
 
   useEffect(() => {
     if (selectedImage && selectedImage[0] instanceof File) {
@@ -226,7 +226,10 @@ export default function ProfilePage() {
                 {[
                   { label: "FOLLOWERS", value: followersCount },
                   { label: "FOLLOWING", value: followingCount },
-                  { label: "BOOKMARKS", value: bookmarksCount },
+                  {
+                    label: "BOOKMARKS",
+                    value: savedPostsData?.data?.bookmarks.length,
+                  },
                 ].map((stat) => (
                   <div
                     key={stat.label}
@@ -269,7 +272,7 @@ export default function ProfilePage() {
                     MY POSTS
                   </p>
                   <p className="text-2xl font-bold text-gray-900">
-                    {data?.posts.length}
+                    {data?.data?.posts.length}
                   </p>
                 </div>
                 <div className="border border-gray-200 rounded-xl p-4 min-w-40 bg-blue-200/20 w-full  ">
@@ -277,7 +280,7 @@ export default function ProfilePage() {
                     SAVED POSTS
                   </p>
                   <p className="text-2xl font-bold text-gray-900">
-                    {savedPostsData?.bookmarks.length}
+                    {savedPostsData?.data?.bookmarks.length}
                   </p>
                 </div>
               </div>
@@ -293,7 +296,6 @@ export default function ProfilePage() {
               <button
                 onClick={() => {
                   setPostType("myPosts");
-                  console.log(postType);
                 }}
                 className={`flex items-center gap-2 px-4 py-2 text-sm font-medium  rounded-xl transition-colors ${postType === "myPosts" ? "text-blue-600 bg-blue-50 border border-blue-200" : "text-gray-500 hover:bg-gray-50"} cursor-pointer`}
               >
@@ -302,7 +304,6 @@ export default function ProfilePage() {
               <button
                 onClick={() => {
                   setPostType("savedPosts");
-                  console.log(postType);
                 }}
                 className={`flex items-center gap-2 px-4 py-2 text-sm font-medium  rounded-xl transition-colors ${postType === "savedPosts" ? "text-blue-600 bg-blue-50 border border-blue-200" : "text-gray-500 hover:bg-gray-50"} cursor-pointer `}
               >

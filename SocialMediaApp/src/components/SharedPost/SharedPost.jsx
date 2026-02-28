@@ -3,7 +3,7 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Link } from "react-router-dom";
 
 export default function SharedPost({ post }) {
-  console.log(post, "post from shared post component");
+  // console.log(post, "post from shared post component");
 
   const { body, _id, isShare, sharedPost } = post;
   const { body: sharedBody, image, user, id: postId } = sharedPost;

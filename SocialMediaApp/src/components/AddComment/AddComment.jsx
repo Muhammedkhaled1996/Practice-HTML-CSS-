@@ -46,7 +46,7 @@ export default function AddComment({ postID }) {
   );
 
   const selectedImage = watch("image");
-  console.log(selectedImage?.[0] || null, "selectedImage");
+  // console.log(selectedImage?.[0] || null, "selectedImage");
 
   const [preview, setPreview] = useState(null);
 

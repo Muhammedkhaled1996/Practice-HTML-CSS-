@@ -1,22 +1,12 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useContext, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
 import axios from "axios";
 import { headerObjectData } from "../../helpers/headersObj";
 import { Spinner } from "@heroui/react";
-import toast from "react-hot-toast";
-import { formatDistanceToNow } from "date-fns";
 import AddComment from "../AddComment/AddComment";
-import { AuthContext } from "../../Context/AuthContext";
-import { FaEllipsisH, FaPencilAlt, FaSave, FaTrash } from "react-icons/fa";
-import { GeneralContext } from "../../Context/GeneralContext";
+import Comment from "./Comment/Comment";
 
 export default function Comments({ postID }) {
-  const { userData } = useContext(AuthContext);
-  const { profileDefaultImage ,setcommentToBeUpdate} = useContext(GeneralContext);
-
-  const { _id: userID } = userData || {};
-  const [showMenu, setShowMenu] = useState(false);
-
   async function getPostComments() {
     const response = await axios.get(
       `https://route-posts.routemisr.com/posts/${postID}/comments?page=1&limit=10`,
@@ -29,38 +19,10 @@ export default function Comments({ postID }) {
   const { data: commentsData, isLoading: commentsLoading } = useQuery({
     queryKey: ["postComments", postID],
     queryFn: getPostComments,
+    refetchInterval: 5000,
   });
 
   const commentsRows = commentsData?.data?.comments;
-  const queryClient = useQueryClient();
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: deletePost,
-    onSuccess: () => {
-      queryClient.invalidateQueries(["postComments", postID]);
-      toast.success("Comment Deleted Successfully!");
-    },
-    onError: () => {
-      toast.error("Error in Deleting Comment");
-    },
-  });
-
-  async function deletePost(commentID) {
-    console.log(postID, commentID);
-
-    try {
-      const response = await axios.delete(
-        `https://route-posts.routemisr.com/posts/${postID}/comments/${commentID}`,
-        headerObjectData(),
-      );
-      return response;
-    } catch (err) {
-      console.log(err);
-      console.log(err.response.data);
-
-      return err;
-    }
-  }
 
   return (
     <>
@@ -93,93 +55,7 @@ export default function Comments({ postID }) {
             </div>
           ) : (
             commentsRows?.map((comment) => (
-              <div
-                key={comment._id}
-                className="flex flex-col items-start gap-2 w-full"
-              >
-                <div className="flex gap-3 w-full">
-                  <img
-                    src={comment.commentCreator?.photo}
-                    alt={comment.commentCreator?.name}
-                    className="size-10 rounded-full object-cover"
-                    onError={(e) => {
-                      e.target.src = profileDefaultImage;
-                    }}
-                  />
-                  <div className="rounded-2xl p-2 bg-white w-full">
-                    <div>
-                      <div className=" flex justify-between">
-                        <div>
-                          <p className="text-sm font-bold">
-                            {comment.commentCreator?.name}
-                          </p>
-                          <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                            <span>
-                              {formatDistanceToNow(
-                                new Date(comment.createdAt),
-                                {
-                                  addSuffix: true,
-                                },
-                              )}
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Three-dot menu */}
-
-                        {userID === comment.commentCreator?._id && (
-                          <div className="relative">
-                            <button
-                              onClick={() => setShowMenu(!showMenu)}
-                              className="text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
-                            >
-                              <FaEllipsisH />
-                            </button>
-                            {showMenu &&
-                              userID === comment.commentCreator?._id && (
-                                <div className=" absolute right-0 top-8 bg-white border border-gray-200 rounded-xl shadow-lg py-2 px-1 z-10 min-w-[140px]">
-                                  <button
-                                    onClick={() => {
-                                      setcommentToBeUpdate(comment);
-                                      setShowMenu(false);
-                                    }}
-                                    className="flex items-center gap-2 w-full px-3 py-2 text-sm text-green-600 hover:bg-green-50 rounded-lg transition-colors cursor-pointer"
-                                  >
-                                    <FaPencilAlt className="text-xs" />
-                                    {isPending ? "Updating..." : "Update"}
-                                  </button>
-                                  <button
-                                    onClick={() => {
-                                      mutate(comment._id);
-                                      setShowMenu(false);
-                                    }}
-                                    className="flex items-center gap-2 w-full px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
-                                  >
-                                    <FaTrash className="text-xs" />
-                                    {isPending ? "Deleting..." : "Delete"}
-                                  </button>
-                                </div>
-                              )}
-                          </div>
-                        )}
-                      </div>
-
-                      {comment.content && (
-                        <p className="text-sm">{comment.content}</p>
-                      )}
-                    </div>
-                    {comment.image && (
-                      <div className="mt-2 rounded-lg overflow-hidden border border-gray-300">
-                        <img
-                          src={comment.image}
-                          alt="comment"
-                          className="max-h-60 w-full object-contain bg-gray-50"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <Comment key={comment._id} postID={postID} comment={comment} />
             ))
           )}
 

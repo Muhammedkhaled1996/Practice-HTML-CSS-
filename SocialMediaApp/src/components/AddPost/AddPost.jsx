@@ -43,8 +43,10 @@ export default function AddPost() {
   const { mutate, isPending } = useMutation({
     mutationFn: addPost,
     onSuccess: () => {
-      queryClient.invalidateQueries(["allPosts"]);
+      queryClient.invalidateQueries(["feedPosts"]);
       queryClient.invalidateQueries(["allUserPosts"]);
+      queryClient.invalidateQueries(["coummunityPosts"]);
+      queryClient.invalidateQueries(["savedPosts"]);
       toast.success("Post Added Successfully");
     },
     onError: (error) => {
@@ -53,7 +55,6 @@ export default function AddPost() {
   });
 
   const selectedImage = watch("image");
-  // console.log(selectedImage?.[0] || null, "selectedImage");
 
   const [preview, setPreview] = useState(null);
 
@@ -73,13 +74,13 @@ export default function AddPost() {
     }
   }, [selectedImage]);
 
-  // console.log(postToBeUpdate, "postToBeUpdate from add post");
-
   const { mutate: updatePostMutate, isPending: isUpdatePending } = useMutation({
     mutationFn: updatePost,
     onSuccess: () => {
-      queryClient.invalidateQueries(["allPosts"]);
+      queryClient.invalidateQueries(["feedPosts"]);
       queryClient.invalidateQueries(["allUserPosts"]);
+      queryClient.invalidateQueries(["coummunityPosts"]);
+      queryClient.invalidateQueries(["savedPosts"]);
       toast.success("Post Updated Successfully");
     },
     onError: (error) => {
