@@ -187,10 +187,6 @@ export default function AppNav() {
             ))}
           </div>
         )}
-
-        <div>
-          <ButttomLinksMobile />
-        </div>
       </div>
     </nav>
   );

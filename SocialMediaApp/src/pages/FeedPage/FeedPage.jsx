@@ -4,6 +4,7 @@ import AddPost from "../../components/AddPost/AddPost";
 import SuggestedFriends from "../../components/SuggestedFriends/SuggestedFriends";
 import HomeFeed from "./../../components/HomeFeed/HomeFeed";
 import { GeneralContext } from "../../Context/GeneralContext";
+import ButttomLinksMobile from "../../components/ButttomLinksMobile/ButttomLinksMobile";
 
 export default function FeedPage() {
   const { endPointFeedPage } = useContext(GeneralContext);
@@ -14,6 +15,7 @@ export default function FeedPage() {
         {/* Left Sidebar */}
         <aside>
           <Sidebar />
+          <ButttomLinksMobile />
         </aside>
 
         {/* Main Feed */}

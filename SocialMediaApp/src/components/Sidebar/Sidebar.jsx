@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { FaRss, FaUser, FaUsers, FaBookmark } from "react-icons/fa";
 import { GeneralContext } from "../../Context/GeneralContext";
+import ButttomLinksMobile from "../ButttomLinksMobile/ButttomLinksMobile";
 
 export default function Sidebar() {
   const { queryFn, setQueryFn, setEndPointFeedPage } =
