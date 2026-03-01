@@ -53,7 +53,7 @@ export default function AppNav() {
 
           {/* Center — Nav Links */}
           {token && (
-            <div className="hidden md:flex items-center gap-1">
+            <div className="flex items-center gap-1">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.label}
@@ -68,7 +68,7 @@ export default function AppNav() {
                   }
                 >
                   <link.icon className="text-base" />
-                  <span>{link.label}</span>
+                  <span className="hidden md:block">{link.label}</span>
                   {link.badge && (
                     <span className="absolute -top-1 right-0 bg-red-500 text-white text-[10px] font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center">
                       {link.badge}
@@ -85,7 +85,7 @@ export default function AppNav() {
               <div className="relative">
                 <button
                   onClick={() => setShowDropdown(!showDropdown)}
-                  className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 rounded-xl px-2 py-1.5 transition-colors"
+                  className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 rounded-xl px-2 py-1.5 transition-colors"
                 >
                   <img
                     src={
@@ -93,12 +93,12 @@ export default function AppNav() {
                       "https://ui-avatars.com/api/?name=U&background=3b82f6&color=fff"
                     }
                     alt={name}
-                    className="w-8 h-8 rounded-full object-cover"
+                    className="w-10 h-10 rounded-full object-cover"
                   />
                   <span className="text-sm font-medium text-gray-700 hidden sm:block">
                     {name}
                   </span>
-                  <FaBars className="text-gray-400 text-sm" />
+                  <FaBars className="text-gray-400 text-lg" />
                 </button>
 
                 {/* Dropdown */}
