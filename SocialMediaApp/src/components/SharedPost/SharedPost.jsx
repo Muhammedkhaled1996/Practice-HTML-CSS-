@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 export default function SharedPost({ post }) {
   // console.log(post, "post from shared post component");
 
-  const { body, _id, isShare, sharedPost } = post;
-  const { body: sharedBody, image, user, id: postId } = sharedPost;
-  const { name, photo, username, _id: userPostId } = user;
+  const { body, _id, isShare, sharedPost } = post || {};
+  const { body: sharedBody, image, user, id: postId } = sharedPost || {};
+  const { name, photo, username, _id: userPostId } = user || {};
 
   return (
     <>
@@ -51,9 +51,9 @@ export default function SharedPost({ post }) {
               </svg>
             </Link>
           </div>
-          {body && (
+          {sharedBody && (
             <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-800">
-              {body}
+              {sharedBody}
             </p>
           )}
         </div>

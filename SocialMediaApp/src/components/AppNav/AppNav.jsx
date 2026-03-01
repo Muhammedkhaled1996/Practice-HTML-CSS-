@@ -1,16 +1,9 @@
 import React, { useContext, useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
-import {
-  FaHome,
-  FaUser,
-  FaBell,
-  FaBars,
-  FaSignOutAlt,
-  FaCog,
-} from "react-icons/fa";
-import usePost from "../../CustomHooks/usePost";
+import { FaHome, FaUser, FaBell, FaBars, FaSignOutAlt } from "react-icons/fa";
 import { GeneralContext } from "../../Context/GeneralContext";
+import ButttomLinksMobile from "../ButttomLinksMobile/ButttomLinksMobile";
 
 export default function AppNav() {
   const { token, setToken, userData } = useContext(AuthContext);
@@ -43,11 +36,12 @@ export default function AppNav() {
         <div className="flex items-center justify-between h-14">
           {/* Left — Logo / Brand */}
           <Link to="/" className="flex items-center gap-2.5 shrink-0">
-            <div className="px-2 py-3 bg-blue-600 rounded-xl flex items-center justify-center text-white text-xs font-bold shadow-md">
+            {/* <div className="px-2 py-3 bg-blue-600 rounded-xl flex items-center justify-center text-white text-xs font-bold shadow-md">
               ROUTE
-            </div>
+            </div> */}
+            <img src="/BLAH.png" alt="" className="size-12  " />
             <span className="font-bold text-gray-900 text-lg hidden sm:block">
-              Route Posts
+              BLAH BLAH
             </span>
           </Link>
 
@@ -193,6 +187,10 @@ export default function AppNav() {
             ))}
           </div>
         )}
+
+        <div>
+          <ButttomLinksMobile />
+        </div>
       </div>
     </nav>
   );

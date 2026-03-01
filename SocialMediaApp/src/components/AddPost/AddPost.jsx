@@ -121,8 +121,11 @@ export default function AddPost() {
   }, [postToBeUpdate]);
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-5 mb-4">
-      <form onSubmit={handleSubmit(mutate)}>
+    <div className="bg-white rounded-2xl md:shadow-sm p-5 mb-4">
+      <form
+        onSubmit={handleSubmit(mutate)}
+        className="h-full flex-col justify-around"
+      >
         {/* User avatar + textarea */}
         <div className="flex items-start gap-3">
           <img
@@ -179,20 +182,22 @@ export default function AddPost() {
 
           <div className="flex items-center justify-between -mb-2 mt-2">
             {/* Action buttons */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-8 md:gap-4">
               <label
                 htmlFor="image"
                 className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 cursor-pointer transition-colors"
               >
-                <FaImage className="text-green-500" />
-                <span className="font-medium">Photo/video</span>
+                <FaImage className="text-green-500 text-2xl" />
+                <span className="font-medium hidden md:block">Photo/video</span>
               </label>
               <button
                 type="button"
                 className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 transition-colors"
               >
-                <FaSmile className="text-amber-500" />
-                <span className="font-medium">Feeling/activity</span>
+                <FaSmile className="text-amber-500 text-2xl" />
+                <span className="font-medium hidden md:block">
+                  Feeling/activity
+                </span>
               </button>
             </div>
 

@@ -10,7 +10,7 @@ export default function FeedPage() {
   return (
     <>
       <title>Social Media - Feed</title>
-      <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr_300px] gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr_300px] gap-6 -mt-6 md:mt-0">
         {/* Left Sidebar */}
         <aside>
           <Sidebar />

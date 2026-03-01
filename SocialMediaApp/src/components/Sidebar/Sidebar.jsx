@@ -35,7 +35,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="sticky top-6">
+    <div className="sticky top-6 hidden md:block">
       <nav className="bg-white rounded-2xl shadow-sm p-3">
         <ul className="grid grid-cols-2 lg:grid-cols-1 gap-1">
           {navItems.map((item) => (

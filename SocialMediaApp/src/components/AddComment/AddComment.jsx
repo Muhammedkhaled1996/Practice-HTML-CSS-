@@ -195,14 +195,18 @@ export default function AddComment({ postID }) {
               <button
                 type="submit"
                 disabled={isPending}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold size-6 rounded-sm flex items-center gap-2 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed justify-center"
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-sm flex items-center gap-2 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed justify-center px-2 py-1 text-sm"
               >
                 {isPending ? (
-                  <Spinner color="white" size="sm" />
+                  <div className="flex justify-center items-center gap-2">
+                    <Spinner color="white" size="sm" />
+                    <span>adding...</span>
+                  </div>
                 ) : (
-                  <>
-                    <FaPaperPlane className="text-xs" />
-                  </>
+                  <div className="flex justify-center items-center gap-2">
+                    <span>Add</span>
+                    <FaPaperPlane className="text-xs text-white" />
+                  </div>
                 )}
               </button>
             )}
