@@ -70,7 +70,7 @@ export default function ButttomLinksMobile() {
       {showNav && (
         <motion.div
           initial={{ y: 120, opacity: 0 }}
-          animate={{ y: -20, opacity: 1 }}
+          animate={{ y: -5, opacity: 1 }}
           exit={{ y: 120, opacity: 0 }}
           transition={{ duration: 0.3 }}
           className="fixed  bottom-[env(safe-area-inset-bottom)] left-1/2 -translate-x-1/2 z-50 md:hidden w-full flex justify-center px-4"
