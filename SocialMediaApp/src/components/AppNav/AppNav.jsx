@@ -40,7 +40,7 @@ export default function AppNav() {
               ROUTE
             </div> */}
             <img src="/BLAH.png" alt="" className="size-12  " />
-            <span className="font-extrabold text-[#1358B4] text-lg hidden sm:block">
+            <span className="font-extrabold text-[#1358B4] text-lg">
               BLAH BLAH
             </span>
           </Link>
@@ -87,7 +87,7 @@ export default function AppNav() {
                       "https://ui-avatars.com/api/?name=U&background=3b82f6&color=fff"
                     }
                     alt={name}
-                    className="w-10 h-10 rounded-full object-cover"
+                    className="size-11 rounded-full object-cover"
                   />
                   <span className="text-sm font-medium text-gray-700 hidden sm:block">
                     {name}
