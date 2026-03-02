@@ -89,7 +89,7 @@ export default function ProfileUsersPage() {
 
   return (
     <>
-      <title>Social Media - Profile</title>
+      <title>Profile Page | BLAH BLAH</title>
       <div className="flex flex-col">
         {/* Cover Photo */}
         <div className="cursor-pointer relative h-48 md:h-70 rounded-t-2xl overflow-hidden bg-linear-to-r from-slate-700 via-slate-600 to-slate-800 group">

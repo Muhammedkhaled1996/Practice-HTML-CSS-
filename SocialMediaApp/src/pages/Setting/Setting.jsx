@@ -59,7 +59,7 @@ export default function Setting() {
 
   return (
     <>
-      <title>Setting</title>
+      <title>Setting Page | BLAH BLAH</title>
       <div className="flex justify-center items-center">
         <div className="flex flex-col justify-center items-center gap-5 text-center shadow-lg bg-white rounded-xl z-20 p-4 w-full md:w-5/6 lg:w-1/2">
           <Button

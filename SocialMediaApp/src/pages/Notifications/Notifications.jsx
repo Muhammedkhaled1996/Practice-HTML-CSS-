@@ -60,7 +60,7 @@ export default function Notifications() {
   }, [inView]);
   return (
     <>
-      <title>Social Media - Notifications</title>
+      <title>Notifications | BLAH BLAH</title>
       <div className="max-w-3xl mx-auto">
         <div className="bg-white rounded-2xl shadow-sm p-6">
           {/* Header */}

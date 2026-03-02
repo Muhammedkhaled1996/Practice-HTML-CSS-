@@ -54,7 +54,7 @@ export default function Register() {
 
   return (
     <>
-      <title>Social Media - Register</title>
+      <title>Register Page | BLAH BLAH</title>
 
       <div className="flex flex-wrap flex-col-reverse lg:flex-row lg:flex-nowrap justify-center items-center w-full min-h-screen relative font-main p-4 py-12 lg:p-0">
         <div className="w-full md:w-5/6 lg:w-120 min-h-120 bg-red-200 relative z-10 flex justify-center items-center flex-col bg-[url(/background.jpeg)] bg-cover bg-center bg-no-repeat shadow-lg rounded-xl translate-y-2 lg:translate-y-0">

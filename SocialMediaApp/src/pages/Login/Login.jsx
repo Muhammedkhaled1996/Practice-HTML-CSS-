@@ -49,7 +49,7 @@ export default function Login() {
 
   return (
     <>
-      <title>Social Media - Login</title>
+      <title>Login Page | BLAH BLAH</title>
 
       <div className="flex flex-wrap lg:flex-nowrap justify-center items-center w-full min-h-screen relative font-main p-4 py-10 lg:p-0">
         <div className="text-center shadow-lg bg-white w-full md:w-5/6 lg:w-96 min-h-96 px-6 rounded-xl z-20 flex flex-col justify-center items-center gap-5 translate-y-4 lg:translate-y-0 relative">
