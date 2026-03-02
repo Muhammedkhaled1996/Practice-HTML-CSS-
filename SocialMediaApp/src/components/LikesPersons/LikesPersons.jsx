@@ -25,7 +25,7 @@ export default function LikesPersons({ post }) {
 
   const likes = data?.pages?.flatMap((page) => page?.data?.likes || []) ?? [];
 
-  console.log(likes, "likes");
+  // console.log(likes, "likes");
 
   const { ref, inView } = useInView();
 

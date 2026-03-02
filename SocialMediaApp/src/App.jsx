@@ -25,16 +25,18 @@ export default function App() {
           </div>
         </div>
       )}
-      <HeroUIProvider>
-        <QueryClientProvider client={queryClient}>
-          <GeneralContextProvider>
-            <AuthContextProvider>
-              <RouterProvider router={routes} />
-              <Toaster position="top-right" reverseOrder={true} />
-            </AuthContextProvider>
-          </GeneralContextProvider>
-        </QueryClientProvider>
-      </HeroUIProvider>
+      <div className="font-main">
+        <HeroUIProvider>
+          <QueryClientProvider client={queryClient}>
+            <GeneralContextProvider>
+              <AuthContextProvider>
+                <RouterProvider router={routes} />
+                <Toaster position="top-right" reverseOrder={true} />
+              </AuthContextProvider>
+            </GeneralContextProvider>
+          </QueryClientProvider>
+        </HeroUIProvider>
+      </div>
     </>
   );
 }

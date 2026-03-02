@@ -40,7 +40,7 @@ export default function AppNav() {
               ROUTE
             </div> */}
             <img src="/BLAH.png" alt="" className="size-12  " />
-            <span className="font-bold text-gray-900 text-lg hidden sm:block">
+            <span className="font-extrabold text-[#1358B4] text-lg hidden sm:block">
               BLAH BLAH
             </span>
           </Link>
@@ -54,7 +54,7 @@ export default function AppNav() {
                   to={link.to}
                   end={link.to === "/"}
                   className={({ isActive }) =>
-                    `flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative ${
+                    `hidden md:flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative ${
                       isActive
                         ? "text-blue-600 bg-blue-50"
                         : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
@@ -62,7 +62,7 @@ export default function AppNav() {
                   }
                 >
                   <link.icon className="text-base" />
-                  <span className="hidden md:block">{link.label}</span>
+                  <span>{link.label}</span>
                   {link.badge && (
                     <span className="absolute -top-1 right-0 bg-red-500 text-white text-[10px] font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center">
                       {link.badge}
@@ -187,6 +187,7 @@ export default function AppNav() {
             ))}
           </div>
         )}
+        <ButttomLinksMobile />
       </div>
     </nav>
   );

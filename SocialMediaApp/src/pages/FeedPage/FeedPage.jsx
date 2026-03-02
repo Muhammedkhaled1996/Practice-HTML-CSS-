@@ -15,7 +15,6 @@ export default function FeedPage() {
         {/* Left Sidebar */}
         <aside>
           <Sidebar />
-          <ButttomLinksMobile />
         </aside>
 
         {/* Main Feed */}

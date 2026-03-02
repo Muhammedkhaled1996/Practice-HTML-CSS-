@@ -124,7 +124,7 @@ export default function AddPost() {
     <div className="bg-white rounded-2xl md:shadow-sm p-5 mb-4">
       <form
         onSubmit={handleSubmit(mutate)}
-        className="h-full flex-col justify-around"
+        className="flex-col justify-around"
       >
         {/* User avatar + textarea */}
         <div className="flex items-start gap-3">
@@ -164,7 +164,7 @@ export default function AddPost() {
         {/* Divider */}
         <div className="border-t border-gray-100 mt-3 ">
           {preview && (
-            <div className="relative my-3 h-50 rounded-lg overflow-hidden border border-gray-200 group">
+            <div className="relative my-3 h-52 rounded-lg overflow-hidden border border-gray-200 group">
               <img
                 src={preview}
                 alt="Preview"

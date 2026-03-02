@@ -1,10 +1,13 @@
 import { FiHome, FiSearch, FiBookmark, FiUser } from "react-icons/fi";
-import { IoAdd } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useContext } from "react";
 import { GeneralContext } from "../../Context/GeneralContext";
-import { Modal, ModalContent, ModalBody } from "@heroui/react";
-import AddPost from "./../AddPost/AddPost";
+import { useNavigate } from "react-router-dom";
+import { FaBell } from "react-icons/fa";
+
+/* ============================= */
+/* Scroll Direction Hook         */
+/* ============================= */
 
 function useScrollDirection() {
   const [show, setShow] = useState(true);
@@ -31,12 +34,18 @@ function useScrollDirection() {
   return show;
 }
 
-export default function ButttomLinksMobile() {
-  const [isOpen, setIsOpen] = useState(false);
-  const showNav = useScrollDirection();
+/* ============================= */
+/* Main Component                */
+/* ============================= */
 
-  const { queryFn, setQueryFn, setEndPointFeedPage } =
+export default function ButttomLinksMobile() {
+  const showNav = useScrollDirection();
+  const navigate = useNavigate();
+
+  const { setQueryFn, setEndPointFeedPage, unReadMessegsCount } =
     useContext(GeneralContext);
+
+  const [activeTab, setActiveTab] = useState("coummunityPosts");
 
   const navItems = [
     {
@@ -44,26 +53,58 @@ export default function ButttomLinksMobile() {
       icon: FiHome,
       label: "Feed",
       endPoint: "posts/feed?only=following&limit=20",
+      type: "feed",
     },
     {
       key: "allUserPosts",
       icon: FiSearch,
-      label: " My Posts",
+      label: "My Posts",
       endPoint: "posts/feed?only=me&limit=20",
+      type: "feed",
     },
     {
       key: "coummunityPosts",
       icon: FiBookmark,
       label: "Community",
       endPoint: "posts/feed?only=all&limit=20",
+      type: "center",
     },
     {
-      key: "savedPosts",
+      key: "profile",
       icon: FiUser,
-      label: "Saved",
-      endPoint: "users/bookmarks",
+      label: "Profile",
+      type: "route",
+      path: "/profile",
+    },
+    {
+      key: "notifications",
+      icon: FaBell,
+      label: "Notifications",
+      type: "route",
+      path: "/notifications",
+      badge: unReadMessegsCount?.unreadCount || "",
     },
   ];
+
+  /* ============================= */
+  /* Click Handler                 */
+  /* ============================= */
+
+  const handleNavClick = (item) => {
+    setActiveTab(item.key);
+
+    // feed buttons
+    if (item.type === "feed" || item.type === "center") {
+      setQueryFn(item.key);
+      setEndPointFeedPage(item.endPoint);
+      navigate("/");
+    }
+
+    // route buttons
+    if (item.type === "route") {
+      navigate(item.path);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -73,73 +114,45 @@ export default function ButttomLinksMobile() {
           animate={{ y: -5, opacity: 1 }}
           exit={{ y: 120, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed  bottom-[env(safe-area-inset-bottom)] left-1/2 -translate-x-1/2 z-50 md:hidden w-full flex justify-center px-4"
+          className="fixed bottom-[env(safe-area-inset-bottom)] left-1/2 -translate-x-1/2 z-50 md:hidden w-full flex justify-center px-4"
         >
-          {/* Container */}
-          <div className="flex items-end justify-between w-full max-w-md px-6 pb-4 rounded-3xl backdrop-blur-2xl bg-white/80  border border-gray-200 shadow-xl">
-            {/* LEFT ITEMS */}
+          <div className="flex items-end justify-between w-full max-w-md px-6 pb-4 rounded-3xl backdrop-blur-2xl bg-white/80 border border-gray-200 shadow-xl">
+            {/* LEFT */}
             {navItems.slice(0, 2).map((item) => (
               <NavItem
                 key={item.key}
                 item={item}
-                queryFn={queryFn}
-                setQueryFn={setQueryFn}
-                setEndPointFeedPage={setEndPointFeedPage}
+                badge={item.badge}
+                isActive={activeTab === item.key}
+                onClick={() => handleNavClick(item)}
               />
             ))}
 
-            {/* CENTER ADD BUTTON */}
+            {/* CENTER BUTTON */}
             <motion.button
               whileTap={{ scale: 0.8 }}
-              className="relative -top-6 flex items-center justify-center size-14 rounded-full bg-blue-800 text-white shadow-lg shadow-blue-800/30"
-              onClick={() => setIsOpen(true)}
+              onClick={() => handleNavClick(navItems[2])}
+              className={`relative -top-6 flex items-center justify-center size-14 rounded-full text-white shadow-lg transition-all
+              ${
+                activeTab === "coummunityPosts"
+                  ? "bg-blue-900 shadow-blue-900/40"
+                  : "bg-blue-800 shadow-blue-800/30"
+              }`}
             >
-              <IoAdd size={28} />
+              <FiHome size={26} />
             </motion.button>
 
-            {/* RIGHT ITEMS */}
-            {navItems.slice(2).map((item) => (
+            {/* RIGHT */}
+            {navItems.slice(3).map((item) => (
               <NavItem
                 key={item.key}
                 item={item}
-                queryFn={queryFn}
-                setQueryFn={setQueryFn}
-                setEndPointFeedPage={setEndPointFeedPage}
+                badge={item.badge}
+                isActive={activeTab === item.key}
+                onClick={() => handleNavClick(item)}
               />
             ))}
           </div>
-          <Modal
-            isOpen={isOpen}
-            onOpenChange={setIsOpen}
-            placement="bottom-center"
-            backdrop="blur"
-            hideCloseButton
-            motionProps={{
-              initial: { y: 300 },
-              animate: { y: 0 },
-              exit: { y: 300 },
-              transition: { type: "spring", stiffness: 260, damping: 25 },
-            }}
-            classNames={{
-              base: "m-0",
-              wrapper: "items-end", // يخليه لازق تحت
-            }}
-          >
-            <ModalContent className="rounded-t-3xl h-[40vh] max-h-[40vh]">
-              {(onClose) => (
-                <>
-                  {/* Drag Handle */}
-                  <div className="flex justify-center pt-3 pb-2">
-                    <div className="w-12 h-1.5 rounded-full bg-gray-300" />
-                  </div>
-
-                  <ModalBody className="p-0 overflow-y-auto">
-                    <AddPost onClose={onClose} />
-                  </ModalBody>
-                </>
-              )}
-            </ModalContent>
-          </Modal>
         </motion.div>
       )}
     </AnimatePresence>
@@ -150,29 +163,33 @@ export default function ButttomLinksMobile() {
 /* Nav Item                      */
 /* ============================= */
 
-function NavItem({ item, queryFn, setQueryFn, setEndPointFeedPage }) {
+function NavItem({ item, isActive, onClick, badge }) {
   const Icon = item.icon;
-  const isActive = queryFn === item.key;
 
   return (
     <motion.button
       whileTap={{ scale: 0.9 }}
-      onClick={() => {
-        setQueryFn(item.key);
-        setEndPointFeedPage(item.endPoint);
-      }}
-      className="flex flex-col items-center gap-1 min-w-[50px]"
+      onClick={onClick}
+      className="flex flex-col items-center gap-1 min-w-[50px] relative"
     >
-      {/* Icon */}
-      <div
-        className={`text-xl transition-colors duration-200 ${
-          isActive ? "text-blue-800" : "text-gray-400"
-        }`}
-      >
-        <Icon />
+      {/* ICON WRAPPER */}
+      <div className="relative">
+        <div
+          className={`text-xl transition-colors duration-200 ${
+            isActive ? "text-blue-800" : "text-gray-400"
+          }`}
+        >
+          <Icon />
+        </div>
+
+        {/* BADGE */}
+        {badge ? (
+          <span className="absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 flex items-center justify-center rounded-full bg-red-500 text-white text-[10px] font-bold">
+            {badge}
+          </span>
+        ) : null}
       </div>
 
-      {/* Label */}
       <span
         className={`text-xs font-medium transition-colors ${
           isActive ? "text-blue-800" : "text-gray-400"
@@ -181,7 +198,6 @@ function NavItem({ item, queryFn, setQueryFn, setEndPointFeedPage }) {
         {item.label}
       </span>
 
-      {/* Active Line */}
       <AnimatePresence>
         {isActive && (
           <motion.div

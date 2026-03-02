@@ -28,8 +28,6 @@ export default function ProfilePage() {
 
   const [postType, setPostType] = useState("myPosts");
 
-  // console.log(userData, "userData");
-
   const { data, isLoading, isFetched } = usePost(
     ["allUserPosts"],
     Boolean(_id),
@@ -45,9 +43,7 @@ export default function ProfilePage() {
   const posts =
     postType === "savedPosts"
       ? savedPostsData?.data?.bookmarks || []
-      : data?.data.posts || [];
-
-  // console.log(posts, "posts from profile Page");
+      : data?.data?.posts || [];
 
   // update profile photo function
   const { register, reset, watch } = useForm({
