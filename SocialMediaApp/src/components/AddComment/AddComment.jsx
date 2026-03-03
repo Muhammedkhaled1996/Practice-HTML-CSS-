@@ -9,11 +9,15 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { IoIosCloseCircle } from "react-icons/io";
 import { GeneralContext } from "../../Context/GeneralContext";
+import { motion } from "framer-motion";
+import EmojiPicker from "emoji-picker-react";
 
 export default function AddComment({ postID }) {
   const { userData } = useContext(AuthContext);
   const { setcommentToBeUpdate, commentToBeUpdate } =
     useContext(GeneralContext);
+  const [text, setText] = useState("");
+  const [showPicker, setShowPicker] = useState(false);
 
   const { name, photo } = userData || {};
 
@@ -54,10 +58,12 @@ export default function AddComment({ postID }) {
     mutationFn: addComment,
     onSuccess: () => {
       queryClient.invalidateQueries(["postComments", postID]);
+      setShowPicker(false);
       toast.success("Comment added successfully");
     },
     onError: (error) => {
       toast.error(error.response.data.message);
+      setShowPicker(false);
     },
   });
 
@@ -82,12 +88,14 @@ export default function AddComment({ postID }) {
       mutationFn: updateComment,
       onSuccess: () => {
         queryClient.invalidateQueries(["postComments", postID]);
+        setShowPicker(false);
         toast.success("Comment Updated Successfully");
       },
       onError: (error) => {
         toast.error(
           error.response?.data?.message || "Error in Updating Comment",
         );
+        setShowPicker(false);
       },
     });
 
@@ -115,6 +123,7 @@ export default function AddComment({ postID }) {
     setPreview(null);
     setcommentToBeUpdate(null);
   }
+
   useEffect(() => {
     if (commentToBeUpdate) {
       setValue("content", commentToBeUpdate.content);
@@ -183,6 +192,7 @@ export default function AddComment({ postID }) {
                 <FaImage className="text-green-500" />
               </label>
               <button
+                onClick={() => setShowPicker((prev) => !prev)}
                 type="button"
                 className="flex items-center gap-2 text-lg text-gray-500 hover:text-blue-600 transition-colors  border border-transparent hover:border-gray-300 p-2 rounded-sm hover:bg-gray-100 cursor-pointer"
               >
@@ -240,6 +250,24 @@ export default function AddComment({ postID }) {
                   )}
                 </button>
               </div>
+            )}
+          </div>
+          <div className="w-fit mt-4">
+            {showPicker && (
+              <motion.div
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{ type: "tween", stiffness: 50 }}
+                className="bg-white"
+              >
+                <EmojiPicker
+                  onEmojiClick={(emojiData) => {
+                    const current = getValues("content") || "";
+                    setValue("content", current + emojiData.emoji);
+                  }}
+                />
+              </motion.div>
             )}
           </div>
         </div>

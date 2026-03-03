@@ -8,12 +8,14 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../Context/AuthContext";
 import { IoIosCloseCircle } from "react-icons/io";
 import { GeneralContext } from "../../Context/GeneralContext";
-import { image } from "@heroui/react";
+import { motion } from "framer-motion";
+import EmojiPicker from "emoji-picker-react";
 
 export default function AddPost() {
   const { userData } = useContext(AuthContext);
   const { postToBeUpdate, setpostToBeUpdate } = useContext(GeneralContext);
   const { name, photo } = userData || {};
+  const [showPicker, setShowPicker] = useState(false);
 
   const { register, handleSubmit, reset, watch, setValue, getValues } = useForm(
     {
@@ -47,10 +49,12 @@ export default function AddPost() {
       queryClient.invalidateQueries(["allUserPosts"]);
       queryClient.invalidateQueries(["coummunityPosts"]);
       queryClient.invalidateQueries(["savedPosts"]);
+      setShowPicker(false);
       toast.success("Post Added Successfully");
     },
     onError: (error) => {
       toast.error(error.response?.data?.message || "Error in Adding Post");
+      setShowPicker(false);
     },
   });
 
@@ -81,10 +85,12 @@ export default function AddPost() {
       queryClient.invalidateQueries(["allUserPosts"]);
       queryClient.invalidateQueries(["coummunityPosts"]);
       queryClient.invalidateQueries(["savedPosts"]);
+      setShowPicker(false);
       toast.success("Post Updated Successfully");
     },
     onError: (error) => {
       toast.error(error.response?.data?.message || "Error in Updating Post");
+      setShowPicker(false);
     },
   });
 
@@ -104,12 +110,14 @@ export default function AddPost() {
     console.log(data, "Update Post");
     reset();
     setPreview(null);
+    setShowPicker(false);
     setpostToBeUpdate(null);
   }
 
   function cancelUpdate() {
     reset();
     setPreview(null);
+    setShowPicker(false);
     setpostToBeUpdate(null);
   }
 
@@ -122,10 +130,7 @@ export default function AddPost() {
 
   return (
     <div className="bg-white rounded-2xl md:shadow-sm p-5 mb-4">
-      <form
-        onSubmit={handleSubmit(mutate)}
-        className="flex-col justify-around"
-      >
+      <form onSubmit={handleSubmit(mutate)} className="flex-col justify-around">
         {/* User avatar + textarea */}
         <div className="flex items-start gap-3">
           <img
@@ -180,75 +185,100 @@ export default function AddPost() {
             </div>
           )}
 
-          <div className="flex items-center justify-between -mb-2 mt-2">
-            {/* Action buttons */}
-            <div className="flex items-center gap-8 md:gap-4">
-              <label
-                htmlFor="image"
-                className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 cursor-pointer transition-colors"
-              >
-                <FaImage className="text-green-500 text-2xl" />
-                <span className="font-medium hidden md:block">Photo/video</span>
-              </label>
-              <button
-                type="button"
-                className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 transition-colors"
-              >
-                <FaSmile className="text-amber-500 text-2xl" />
-                <span className="font-medium hidden md:block">
-                  Feeling/activity
-                </span>
-              </button>
-            </div>
-
-            {/* Add button */}
-            {!postToBeUpdate && (
-              <button
-                type="submit"
-                disabled={isPending}
-                className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold px-6 py-2 rounded-xl flex items-center gap-2 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {isPending ? (
-                  <span>Posting...</span>
-                ) : (
-                  <>
-                    <span>Post</span>
-                    <FaPaperPlane className="text-xs" />
-                  </>
-                )}
-              </button>
-            )}
-
-            {/* Edit button */}
-            {postToBeUpdate && (
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={cancelUpdate}
-                  className="bg-red-500 hover:bg-red-600 text-white text-sm font-semibold px-6 py-2 rounded-xl flex items-center gap-2 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+          <div className="flex flex-col">
+            <div className="flex items-center justify-between -mb-2 mt-2">
+              {/* Action buttons */}
+              <div className="flex items-center gap-8 md:gap-4">
+                {/* Photo input */}
+                <label
+                  htmlFor="image"
+                  className="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 cursor-pointer transition-colors"
                 >
-                  <span>Cancel</span>
+                  <FaImage className="text-green-500 text-2xl" />
+                  <span className="font-medium hidden md:block">
+                    Photo/video
+                  </span>
+                </label>
+                {/* Feeling button */}
+                <button
+                  onClick={() => setShowPicker((prev) => !prev)}
+                  type="button"
+                  className="flex cursor-pointer items-center gap-2 text-sm text-gray-500 hover:text-blue-600 transition-colors"
+                >
+                  <FaSmile className="text-amber-500 text-2xl" />
+                  <span className="font-medium hidden md:block">
+                    Feeling/activity
+                  </span>
                 </button>
+              </div>
+
+              {/* Add button */}
+              {!postToBeUpdate && (
                 <button
-                  type="button"
-                  disabled={isUpdatePending}
-                  onClick={updatePostMutate}
-                  className="bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-6 py-2 rounded-xl flex items-center gap-2 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  type="submit"
+                  disabled={isPending}
+                  className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold px-6 py-2 rounded-xl flex items-center gap-2 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {isUpdatePending ? (
-                    <>
-                      <span>Updating...</span>
-                      <FaPaperPlane className="text-xs" />
-                    </>
+                  {isPending ? (
+                    <span>Posting...</span>
                   ) : (
                     <>
-                      <span>Update</span>
+                      <span>Post</span>
                       <FaPaperPlane className="text-xs" />
                     </>
                   )}
                 </button>
-              </div>
-            )}
+              )}
+
+              {/* Edit button */}
+              {postToBeUpdate && (
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={cancelUpdate}
+                    className="bg-red-500 hover:bg-red-600 text-white text-sm font-semibold px-6 py-2 rounded-xl flex items-center gap-2 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    <span>Cancel</span>
+                  </button>
+                  <button
+                    type="button"
+                    disabled={isUpdatePending}
+                    onClick={updatePostMutate}
+                    className="bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-6 py-2 rounded-xl flex items-center gap-2 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {isUpdatePending ? (
+                      <>
+                        <span>Updating...</span>
+                        <FaPaperPlane className="text-xs" />
+                      </>
+                    ) : (
+                      <>
+                        <span>Update</span>
+                        <FaPaperPlane className="text-xs" />
+                      </>
+                    )}
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="w-fit mt-4">
+              {showPicker && (
+                <motion.div
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "100%" }}
+                  transition={{ type: "tween", stiffness: 50 }}
+                  className="bg-white"
+                >
+                  <EmojiPicker
+                    onEmojiClick={(emojiData) => {
+                      const current = getValues("body") || "";
+                      setValue("body", current + emojiData.emoji);
+                    }}
+                  />
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
       </form>
