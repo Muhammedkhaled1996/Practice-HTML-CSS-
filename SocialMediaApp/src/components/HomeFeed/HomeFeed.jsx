@@ -16,7 +16,7 @@ export default function HomeFeed({ endPointFeedPage }) {
     hasNextPage,
     isFetchingNextPage,
     isFetched,
-  } = useInfinitePosts([queryFn], !!queryFn, endPointFeedPage);
+  } = useInfinitePosts([queryFn , endPointFeedPage], !!queryFn, endPointFeedPage);
 
   const posts =
     queryFn === "savedPosts"

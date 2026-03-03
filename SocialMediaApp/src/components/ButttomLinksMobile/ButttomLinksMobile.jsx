@@ -104,6 +104,11 @@ export default function ButttomLinksMobile() {
     if (item.type === "route") {
       navigate(item.path);
     }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (

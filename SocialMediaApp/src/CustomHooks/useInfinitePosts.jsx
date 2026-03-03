@@ -16,10 +16,13 @@ export default function useInfinitePosts(queryKey, isEnabled, endPoint) {
     queryKey,
     queryFn: getPosts,
     enabled: isEnabled,
+    initialPageParam: 1,
     getNextPageParam: (lastPage) => {
-      return lastPage.meta.pagination.nextPage ?? undefined;
+      return lastPage?.meta?.pagination?.nextPage ?? undefined;
     },
   });
+
+  if (!endPoint) return;
 
   return query;
 }
