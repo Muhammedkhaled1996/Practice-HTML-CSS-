@@ -16,7 +16,7 @@ export default function HomeFeed({ endPointFeedPage }) {
     hasNextPage,
     isFetchingNextPage,
     isFetched,
-  } = useInfinitePosts([queryFn], true, endPointFeedPage);
+  } = useInfinitePosts([queryFn], !!queryFn, endPointFeedPage);
 
   const posts =
     queryFn === "savedPosts"
@@ -31,7 +31,7 @@ export default function HomeFeed({ endPointFeedPage }) {
     if (inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [inView]);
+  }, [inView, hasNextPage, fetchNextPage]);
 
   return (
     <>
