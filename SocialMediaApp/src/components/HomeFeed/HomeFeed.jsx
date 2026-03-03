@@ -9,13 +9,21 @@ import { Spinner } from "@heroui/react";
 export default function HomeFeed({ endPointFeedPage }) {
   const { queryFn } = useContext(GeneralContext);
 
-  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfinitePosts([queryFn], true, endPointFeedPage);
+  const {
+    data,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetched,
+  } = useInfinitePosts([queryFn], true, endPointFeedPage);
 
   const posts =
     queryFn === "savedPosts"
-      ? (data?.pages?.flatMap((page) => page.data.bookmarks || []) ?? [])
-      : (data?.pages?.flatMap((page) => page.data.posts || []) ?? []);
+      ? (data?.pages?.flatMap((page) => page?.data?.bookmarks || []) ?? [])
+      : (data?.pages?.flatMap((page) => page?.data?.posts || []) ?? []);
+
+  console.log(posts, "posts from home page");
 
   const { ref, inView } = useInView();
 
@@ -35,14 +43,14 @@ export default function HomeFeed({ endPointFeedPage }) {
             <PostCardSkeleton />
           </>
         )}
-        {posts?.length === 0 && !isLoading && (
+        {posts?.length === 0 && isFetched && (
           <div className="bg-white rounded-2xl shadow-sm p-5 mb-4 text-center text-gray-600 text-sm">
             No posts yet. Be the first one to publish.
           </div>
         )}
-        {posts?.map((post) => (
-          <PostCard key={post._id} post={post} />
-        ))}
+        {isFetched &&
+          posts.map((post) => <PostCard key={post._id} post={post} />)}
+
         <div ref={ref} className="text-center text-sm text-gray-400">
           {isFetchingNextPage && (
             <div className="flex items-center justify-center gap-3 bg-white p-2 rounded-lg w-fit mx-auto">

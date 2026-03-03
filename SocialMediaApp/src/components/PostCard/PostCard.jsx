@@ -248,7 +248,7 @@ export default function PostCard({ post, isPostDetails = false }) {
 
         {/* Body */}
 
-        <div className="px-5">
+        <div className="px-5 mb-3">
           {body && (
             <p className="mt-3 text-sm text-gray-800 leading-relaxed overflow-hidden">
               {body}
@@ -288,7 +288,7 @@ export default function PostCard({ post, isPostDetails = false }) {
 
         {/* Stats Row */}
         <div className="flex items-center justify-between pt-3 border-t border-gray-100 text-xs text-gray-500 px-5">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <span className="bg-blue-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-[10px]">
               <AiOutlineLike />
             </span>
