@@ -26,12 +26,12 @@ export default function TopComment({ post }) {
               <img
                 src={commentCreator?.photo}
                 alt={commentCreator?.name}
-                className="size-10 rounded-full object-cover"
+                className="size-10 rounded-full object-cover shrink-0"
                 onError={(e) => {
                   e.target.src = profileDefaultImage;
                 }}
               />
-              <div className="rounded-2xl p-2 bg-white w-full">
+              <div className="rounded-2xl p-2 bg-white w-full min-w-0">
                 <p className="text-sm font-bold">{commentCreator?.name}</p>
                 <div className="flex items-center gap-2 text-[12px] text-gray-600 mb-2">
                   <span>
@@ -40,7 +40,7 @@ export default function TopComment({ post }) {
                       : ""}
                   </span>
                 </div>
-                <p className="text-sm">{topComment?.content}</p>
+                <p className="text-sm leading-relaxed overflow-hidden truncate min-w-0">{topComment?.content}</p>
                 {image && (
                   <div className="mt-2 rounded-lg overflow-hidden border border-gray-300">
                     <img

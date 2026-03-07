@@ -190,7 +190,7 @@ export default function ProfileUsersPage() {
             {isFetched && (
               <div className="flex mb-3 flex-col gap-3">
                 {posts.map((post) => (
-                  <PostCard key={post._id} post={post} />
+                  <PostCard key={post._id} post={post} userId={_id} />
                 ))}
               </div>
             )}

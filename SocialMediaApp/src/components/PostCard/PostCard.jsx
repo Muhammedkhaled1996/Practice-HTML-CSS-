@@ -21,7 +21,7 @@ import ModelOfSharedPost from "../ModelOfSharedPost/ModelOfSharedPost";
 import LikesPersons from "./../LikesPersons/LikesPersons";
 import { AiOutlineLike } from "react-icons/ai";
 
-export default function PostCard({ post, isPostDetails = false }) {
+export default function PostCard({ post, isPostDetails = false, userId }) {
   const [showComment, setShowComment] = useState(false);
   const {
     body,
@@ -36,6 +36,8 @@ export default function PostCard({ post, isPostDetails = false }) {
     likes,
     isShare,
   } = post;
+
+  const [bookmark, setBookmark] = useState(bookmarked);
 
   const { _id: creatoruserID, name, photo } = post.user;
   const { userData } = useContext(AuthContext);
@@ -80,6 +82,7 @@ export default function PostCard({ post, isPostDetails = false }) {
 
   const [likeCountState, setlikeCount] = useState(likesCount);
 
+  // like or unlike post
   async function likePost() {
     try {
       const response = await axios.put(
@@ -91,7 +94,7 @@ export default function PostCard({ post, isPostDetails = false }) {
       queryClient.invalidateQueries(["allUserPosts"]);
       queryClient.invalidateQueries(["coummunityPosts"]);
       queryClient.invalidateQueries(["savedPosts"]);
-      queryClient.invalidateQueries(["ProfileUsersPosts", _id]);
+      queryClient.invalidateQueries(["ProfileUsersPosts", userId]);
       queryClient.invalidateQueries(["postComments", postID]);
       return response;
     } catch (err) {
@@ -112,10 +115,12 @@ export default function PostCard({ post, isPostDetails = false }) {
       queryClient.invalidateQueries(["allUserPosts"]);
       queryClient.invalidateQueries(["coummunityPosts"]);
       queryClient.invalidateQueries(["savedPosts"]);
-      queryClient.invalidateQueries(["ProfileUsersPosts", _id]);
+      queryClient.invalidateQueries(["ProfileUsersPosts", userId]);
       queryClient.invalidateQueries(["postComments", postID]);
 
-      if (bookmarked) {
+      setBookmark(!bookmark);
+
+      if (bookmark) {
         toast.success("Post Unsaved Successfully!");
       } else {
         toast.success("Post Saved Successfully!");
@@ -213,7 +218,7 @@ export default function PostCard({ post, isPostDetails = false }) {
                   <FaRegBookmark className="text-xs" />
                   {isPending
                     ? "Saving..."
-                    : bookmarked
+                    : bookmark
                       ? "Unsave Post"
                       : "Save Post"}
                 </button>
@@ -229,7 +234,7 @@ export default function PostCard({ post, isPostDetails = false }) {
                     setShowMenu(false);
                   }}
                   className={`font-bold flex items-center gap-2 w-full px-3 py-2 text-sm  rounded-lg transition-colors cursor-pointer ${
-                    bookmarked
+                    bookmark
                       ? "text-red-600 hover:bg-red-50"
                       : "text-blue-600 hover:bg-blue-50"
                   }`}
@@ -237,7 +242,7 @@ export default function PostCard({ post, isPostDetails = false }) {
                   <FaRegBookmark className="text-xs" />
                   {isPending
                     ? "Saving..."
-                    : bookmarked
+                    : bookmark
                       ? "Unsave Post"
                       : "Save Post"}
                 </button>
@@ -250,7 +255,7 @@ export default function PostCard({ post, isPostDetails = false }) {
 
         <div className="px-5 mb-3">
           {body && (
-            <p className="mt-3 text-sm text-gray-800 leading-relaxed overflow-hidden">
+            <p className="mt-3 text-sm text-gray-800 leading-relaxed overflow-hidden truncate">
               {body}
             </p>
           )}
@@ -262,7 +267,7 @@ export default function PostCard({ post, isPostDetails = false }) {
         {/* if post isn't from shared Post */}
         {!isShare && (
           <>
-            {bookmarked && (
+            {bookmark && (
               <div className="font-bold flex items-center justify-center gap-1 ms-4 my-2 rounded-full px-2 py-0.5 text-[10px] bg-blue-200/40 text-blue-700 w-fit">
                 <FaRegBookmark />
                 <span>Saved</span>
