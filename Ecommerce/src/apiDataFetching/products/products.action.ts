@@ -6,7 +6,7 @@ import {
 
 // get all products
 export async function getAllProducts(
-  searchParams: Record<string, any>,
+  searchParams?: Record<string, any>,
 ): Promise<AllProductResponce> {
   const queryString = new URLSearchParams(searchParams).toString();
   const response = await fetch(
