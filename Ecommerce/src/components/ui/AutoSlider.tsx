@@ -16,12 +16,12 @@ export default function AutoSlider({ slides, className }: Props) {
   return (
     <div className={`w-full h-full ${className || ""}`}>
       <Swiper
-        spaceBetween={30}
+      spaceBetween={10}
         loop={true}
-        centeredSlides
         autoplay={{
           delay: 3500,
-          disableOnInteraction: true,
+          pauseOnMouseEnter:true,
+
         }}
         pagination={{ clickable: true }}
         navigation

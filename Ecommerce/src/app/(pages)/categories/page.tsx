@@ -15,7 +15,7 @@ export default async function page() {
         <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-white/10 blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-1/4 w-40 h-40 rounded-full bg-white/5 blur-2xl pointer-events-none" />
 
-        <div className="container mx-auto px-4 py-12 sm:py-16 relative">
+        <div className="container px-4 md:px-0 py-12 sm:py-16 relative">
           <div className="my-4">
             <AppBreadcrumb
               items={[{ label: "Home", href: "/" }]}
@@ -23,8 +23,8 @@ export default async function page() {
               linkClassName="hover:text-white text-white/70 text-sm"
             />
           </div>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-900/30 ring-1 ring-white/30 shrink-0">
+          <div className="flex items-start  gap-6">
+            <div className="shrink-0 w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-900/30 ring-1 ring-white/30 ">
               <FaLayerGroup className="text-4xl" />
             </div>
             <div className="flex-1">
@@ -39,7 +39,7 @@ export default async function page() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-10">
+      <div className="container px-4 md:px-0  py-10">
         <Suspense fallback={<SkeletonCards />}>
           <LazyCategoriesSection />
         </Suspense>

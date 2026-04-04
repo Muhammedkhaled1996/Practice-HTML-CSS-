@@ -69,7 +69,7 @@ export default function AddToCartProductDetails({
           {loading && <Spinner className={`text-green-500`} />}
           {!loading && <FaCheck className="text-green-400 text-xs" />}
           <span
-            className={`${pathName.includes("wishlist") ? "text-sm font-bold hidden lg:block" : ""} `}
+            className={`${pathName.includes("wishlist") ? "text-sm font-semibold md:hidden  lg:block" : ""} `}
           >
             <span>View Cart</span>
           </span>
@@ -84,7 +84,7 @@ export default function AddToCartProductDetails({
           {loading && <Spinner className={`text-green-500`} />}
           {!loading && <FaCartPlus />}
           <span
-            className={`${pathName.includes("wishlist") ? "text-sm font-bold hidden lg:block" : ""} `}
+            className={`${pathName.includes("wishlist") ? "text-sm font-semibold md:hidden lg:block" : ""} `}
           >
             <span>Add to Cart</span>
           </span>

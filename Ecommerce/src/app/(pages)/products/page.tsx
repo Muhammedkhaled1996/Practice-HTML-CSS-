@@ -24,7 +24,7 @@ export default async function Page({
     <>
       {/* Header */}
       <div className="green-gradiant text-white">
-        <div className="container mx-auto px-4 py-12 sm:py-16">
+        <div className="container px-4 md:px-0 py-12 sm:py-16">
           <div className="my-4">
             {Object.keys(searchParamsValues).length > 0 &&
             allProductResponce?.data[0]?.category ? (
@@ -45,8 +45,8 @@ export default async function Page({
             )}
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-900/30 ring-1 ring-white/30">
+          <div className="flex items-start  gap-6">
+            <div className="shrink-0 w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-900/30 ring-1 ring-white/30">
               {Object.keys(searchParamsValues).length > 0 &&
               allProductResponce?.data[0]?.category ? (
                 <Image

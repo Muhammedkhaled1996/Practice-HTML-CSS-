@@ -15,7 +15,6 @@ import {
   FaTruck,
 } from "react-icons/fa";
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
-import { FaArrowRotateLeft } from "react-icons/fa6";
 import LowerInstractions from "@/src/component/publicComponents/LowerInstractions/LowerInstractions";
 
 export default function page() {
@@ -30,11 +29,11 @@ export default function page() {
               linkClassName="hover:text-white"
             />
           </div>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <div className="flex items-start  gap-6">
             <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-900/30 ring-1 ring-white/30">
               <FaShieldAlt className="text-4xl" />
             </div>
-            <div>
+            <div className="">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
                 Privacy Policy
               </h1>

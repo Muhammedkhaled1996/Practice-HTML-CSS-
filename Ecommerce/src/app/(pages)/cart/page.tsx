@@ -26,7 +26,7 @@ export default async function page() {
 
   return (
     <>
-      <div className="container">
+      <div className="container px-4 md:px-0">
         {/* breadcrumb section */}
         <div>
           <div className="mt-4">

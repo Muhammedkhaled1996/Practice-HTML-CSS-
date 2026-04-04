@@ -23,6 +23,7 @@ import {
   FaRegHeart,
   FaRegUserCircle,
 } from "react-icons/fa";
+import { useProfileEditStore } from "@/src/stores/profileSetting.store";
 
 interface ProfileDropMenuProps {
   name?: string | null | undefined;
@@ -31,6 +32,9 @@ interface ProfileDropMenuProps {
 }
 
 export function ProfileDropMenu({ user }: { user: ProfileDropMenuProps }) {
+  const { setProfileEdit, profileEdit } = useProfileEditStore();
+
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -50,7 +54,7 @@ export function ProfileDropMenu({ user }: { user: ProfileDropMenuProps }) {
         </div>
         <DropdownMenuSeparator />
 
-        <Link href={"/profile"}>
+        <Link onClick={()=>setProfileEdit("setting")} href={"/profile/settings"}>
           <DropdownMenuItem className="my-2 text-gray-600 cursor-pointer">
             <UserIcon />
             My Profile
@@ -68,13 +72,13 @@ export function ProfileDropMenu({ user }: { user: ProfileDropMenuProps }) {
             My Wishlist
           </DropdownMenuItem>
         </Link>
-        <Link href={"/profile/addresses"}>
+        <Link onClick={()=>setProfileEdit("address")} href={"/profile/addresses"}>
           <DropdownMenuItem className="my-2 text-gray-600 cursor-pointer">
             <FaRegAddressBook />
             Addresses
           </DropdownMenuItem>
         </Link>
-        <Link href={"/profile/settings"}>
+        <Link onClick={()=>setProfileEdit("setting")} href={"/profile/settings"}>
           <DropdownMenuItem className="my-2 text-gray-600 cursor-pointer">
             <FaGear />
             Setting

@@ -20,7 +20,7 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { IoCart, IoSearchSharp } from "react-icons/io5";
-import { FaHeadset, FaRegHeart } from "react-icons/fa";
+import { FaBoxOpen, FaHeadset, FaRegHeart } from "react-icons/fa";
 import { FileUser } from "lucide-react";
 import { FaRightFromBracket } from "react-icons/fa6";
 import { CiUser } from "react-icons/ci";
@@ -34,8 +34,8 @@ interface Props {
 }
 
 interface userObject {
-  name: string , 
-  email:string
+  name: string;
+  email: string;
 }
 
 export function SideMenu({
@@ -73,7 +73,10 @@ export function SideMenu({
 
           <Field className="px-5 mb-3">
             <InputGroup className="focus-within:ring-green-100! focus-within:border-green-600! transition-all duration-200">
-              <InputGroupInput placeholder="Search for product, brands and more..." className="py-2!"/>
+              <InputGroupInput
+                placeholder="Search for product, brands and more..."
+                className="py-2!"
+              />
 
               <InputGroupAddon align="inline-end" className="cursor-pointer ">
                 <div className="flex items-center justify-center rounded-md bg-green-600 text-white size-6 hover:bg-green-700 duration-300 transition-colors">
@@ -146,11 +149,23 @@ export function SideMenu({
                     </div>
                     <span className="text-lg">Cart</span>
                   </div>
-                   {numOfCartItems && numOfCartItems > 0 && (
+                  {numOfCartItems && numOfCartItems > 0 && (
                     <span className="size-6 bg-red-600 text-white rounded-full flex justify-center items-center text-sm font-semibold">
                       {numOfCartItems > 9 ? "9+" : numOfCartItems}
                     </span>
                   )}
+                </li>
+              </Link>
+            </DrawerClose>
+            <DrawerClose asChild className="w-full text-start">
+              <Link href={"/allorders"}>
+                <li className="text-start py-4 rounded-lg mb-1 px-2 text-gray-600 cursor-pointer hover:text-green-600 duration-200 transition-colors hover:bg-green-300/20 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="flex justify-center items-center size-8 bg-blue-300/20 text-blue-600 rounded-full text-xl">
+                      <FaBoxOpen />
+                    </div>
+                    <span className="text-lg">My Orders</span>
+                  </div>
                 </li>
               </Link>
             </DrawerClose>
@@ -160,24 +175,32 @@ export function SideMenu({
 
           {status === "authenticated" ? (
             <div className="p-4 space-y-1">
-              <Link
-                className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 transition-colors"
-                href="/profile"
-              >
-                <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">
-                  <CiUser />
-                </div>
-                <span className="font-medium text-gray-700 text-lg">{user?.name}</span>
-              </Link>
-              <button
-                onClick={() => signOut()}
-                className="cursor-pointer flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-50 transition-colors w-full text-left"
-              >
-                <div className=" w-9 h-9 rounded-full bg-red-50 flex items-center justify-center">
-                  <FaRightFromBracket className="text-red-600" />
-                </div>
-                <span className="font-medium text-red-600 text-lg">Sign Out</span>
-              </button>
+              <DrawerClose asChild>
+                <Link
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 transition-colors"
+                  href="/profile/settings"
+                >
+                  <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">
+                    <FaBoxOpen />
+                  </div>
+                  <span className="font-medium text-gray-700 text-lg">
+                    {user?.name}
+                  </span>
+                </Link>
+              </DrawerClose>
+              <DrawerClose asChild>
+                <button
+                  onClick={() => signOut()}
+                  className="cursor-pointer flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-50 transition-colors w-full text-left"
+                >
+                  <div className=" w-9 h-9 rounded-full bg-red-50 flex items-center justify-center">
+                    <FaRightFromBracket className="text-red-600" />
+                  </div>
+                  <span className="font-medium text-red-600 text-lg">
+                    Sign Out
+                  </span>
+                </button>
+              </DrawerClose>
             </div>
           ) : (
             <div className="flex items-center gap-3 w-full p-4">

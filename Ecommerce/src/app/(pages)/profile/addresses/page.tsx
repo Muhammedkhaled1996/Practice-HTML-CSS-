@@ -11,13 +11,12 @@ export default async function page() {
   console.log(userAddresses, "get all user addresses");
 
   const LazyAddressCards = lazy(
-    () =>
-      import("@/src/component/pagesComponents/AddressCard/AddressCard"),
+    () => import("@/src/component/pagesComponents/AddressCard/AddressCard"),
   );
 
   return (
     <>
-      <main className="flex-1 min-w-0">
+      <main className="flex-1 min-w-0 ">
         <div>
           <div className="flex items-center justify-between mb-6">
             <div>
@@ -48,7 +47,7 @@ export default async function page() {
         </div>
 
         <Suspense fallback={<AddressSkeleton />}>
-          <LazyAddressCards  userAddresses={userAddresses} />
+          <LazyAddressCards userAddresses={userAddresses} />
         </Suspense>
       </main>
     </>

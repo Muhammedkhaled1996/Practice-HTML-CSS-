@@ -16,7 +16,6 @@ import {
 import { FaArrowRotateLeft } from "react-icons/fa6";
 import Link from "next/link";
 import LowerInstractions from "../component/publicComponents/LowerInstractions/LowerInstractions";
-import { Skeleton } from "@/components/ui/skeleton";
 import SkeletonCards from "../component/publicComponents/SkeletonCards/SkeletonCards";
 
 const LazyCategoryHomePage = lazy(
@@ -36,7 +35,6 @@ export default async function Home() {
       <div className="h-100 w-full">
         <AutoSlider
           slides={[
-          
             <React.Fragment key="slide-1">
               <Image
                 src={cart}
@@ -47,7 +45,7 @@ export default async function Home() {
               <div className="absolute md:top-20 md:left-30 md:translate-0 top-[50%] left-[50%] -translate-1/2 font-bold text-4xl text-white w-full p-4 max-md:flex max-md:flex-col max-md:justify-center max-md:items-center ">
                 <p className="max-md:text-center">Fresh Product Delivered</p>
                 <span>to your Door</span>
-                <br className="max-md:hidden"/>
+                <br className="max-md:hidden" />
                 <span className="text-lg my-4 font-normal">
                   Get 20% off your first order{" "}
                 </span>
@@ -105,7 +103,7 @@ export default async function Home() {
               <div className="absolute md:top-20 md:left-30 md:translate-0 top-[50%] left-[50%] -translate-1/2 font-bold text-4xl text-white w-full p-4 max-md:flex max-md:flex-col max-md:justify-center max-md:items-center ">
                 <p>Premium Quality</p>
                 <span>Guaranteed</span>
-                <br className="max-md:hidden"/>
+                <br className="max-md:hidden" />
                 <span className="text-lg my-4 font-normal">
                   Fresh from farm to your table{" "}
                 </span>
@@ -130,7 +128,7 @@ export default async function Home() {
       </div>
       {/*  */}
       <div className="bg-gray-50">
-        <div className="container py-6">
+        <div className="container py-6 px-4 md:px-0">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div
               className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
@@ -195,40 +193,42 @@ export default async function Home() {
       </div>
       {/* categories */}
       <div className="container py-4">
-        <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-8">
-          <div className="flex  items-center gap-3 my-8">
-            <div className="h-8 w-1.5 bg-linear-to-b from-emerald-500 to-emerald-700 rounded-full" />
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
-              Shop By <span className="text-emerald-600">Category</span>
-            </h2>
+        <div className="flex flex-col sm:flex-row justify-between sm:items-center">
+          <div className="flex items-center justify-between gap-3 my-4 w-full">
+            <div className="flex items-center gap-3">
+              <div className="h-8 w-1.5 bg-linear-to-b from-emerald-500 to-emerald-700 rounded-full" />
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+                Shop By <span className="text-emerald-600">Category</span>
+              </h2>
+            </div>
+            <Link
+              className="text-green-600 self-end sm:self-auto hover:text-green-700 font-medium flex items-center cursor-pointer gap-3"
+              href="categories"
+            >
+              View All Categories
+              <FaLongArrowAltRight />
+            </Link>
           </div>
-          <Link
-            className="text-green-600 self-end sm:self-auto hover:text-green-700 font-medium flex items-center cursor-pointer gap-3"
-            href="categories"
-          >
-            View All Categories
-            <FaLongArrowAltRight />
-          </Link>
         </div>
         <Suspense fallback={<SkeletonCards />}>
           <LazyCategoryHomePage />
         </Suspense>
       </div>
       {/* offers */}
-      <div className="container mx-auto">
-        <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-8">
-          <div className="flex  items-center gap-3 my-8">
+      <div className="container px-4 md:px-0 ">
+        <div className="flex flex-col sm:flex-row justify-between sm:items-center">
+          <div className="flex  items-center gap-3 my-4">
             <div className="h-8 w-1.5 bg-linear-to-b from-emerald-500 to-emerald-700 rounded-full" />
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
               Featured <span className="text-emerald-600">Products</span>
             </h2>
           </div>
         </div>
+        {/* all products */}
         <Suspense fallback={<SkeletonCards />}>
           <LazyAllProductsHomePage />
         </Suspense>
       </div>
-      {/* all products */}
 
       {/* contact us */}
       <div className="relative grid lg:grid-cols-5 gap-8 p-8 lg:p-10 rounded-2xl shadow my-6   bg-linear-to-r from-green-100/40 to-green-200/20 container">

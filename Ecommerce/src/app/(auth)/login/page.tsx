@@ -36,6 +36,7 @@ import {
 } from "@/components/ui/input-group";
 import { signIn } from "next-auth/react";
 import LowerInstractions from "../../../component/publicComponents/LowerInstractions/LowerInstractions";
+import { Input } from "@/components/ui/input";
 
 export default function page() {
   const [loading, setLoading] = useState(false);
@@ -115,10 +116,10 @@ export default function page() {
         </div>
 
         <div className="flex flex-col shadowlg rounded-2xl max-w-6xl mx-auto p-5 my-5 w-full text-center">
-          <h1 className="text-3xl text-center font-bold mb-2">
+          <h1 className="text-4xl text-center font-bold mb-2">
             <span className="text-green-600">Fresh</span>Cart
           </h1>
-          <p className="font-bold mb-1">Welcome Back!</p>
+          <p className="font-bold mb-1 text-xl">Welcome Back!</p>
           <span className="text-gray-400 text-sm mb-4">
             Sign in to continue your fresh shopping experience
           </span>
@@ -192,6 +193,7 @@ export default function page() {
                       aria-invalid={fieldState.invalid}
                       placeholder="Enter your password"
                       autoComplete="off"
+                      type="password"
                     />
                     <InputGroupAddon align="inline-start">
                       <FaLock />
@@ -208,7 +210,7 @@ export default function page() {
             />
             <FieldGroup>
               <Field orientation="horizontal" className="mb-3">
-                <input
+                <Input
                   type="checkbox"
                   id="terms-checkbox-basic"
                   className="accent-green-600 size-4"

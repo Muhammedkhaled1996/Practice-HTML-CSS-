@@ -66,7 +66,7 @@ export default function AppBreadcrumb({
         <BreadcrumbItem>
           <BreadcrumbPage
             className={clsx(
-              "text-white flex items-center gap-1 w-100 min-w-0",
+              "text-white flex items-center gap-1 max-w-100 min-w-0",
               currentClassName,
             )}
           >

@@ -1,8 +1,8 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import cartLogo from "@/src/assets/images/cart.png";
-import { TfiHeadphoneAlt } from "react-icons/tfi";
 import {
   FaCcMastercard,
   FaCcPaypal,
@@ -15,8 +15,12 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
+import { useProfileEditStore } from "@/src/stores/profileSetting.store";
 
 export default function Footer() {
+
+    const { setProfileEdit, profileEdit } = useProfileEditStore();
+  
   return (
     <>
       <footer id="footer" className="bg-gray-900 text-white">
@@ -151,10 +155,10 @@ export default function Footer() {
             <div className="lg:col-span-2">
               <h3 className="font-semibold text-lg mb-5">Account</h3>
               <ul className="space-y-3">
-                <li>
+                <li onClick={()=>setProfileEdit("setting")}>
                   <Link
                     className="text-gray-400 hover:text-primary-400 transition-colors text-sm hover:text-green-500 duration-200 font-medium"
-                    href="/profile"
+                    href="/profile/settings"
                   >
                     My Account
                   </Link>
@@ -162,7 +166,7 @@ export default function Footer() {
                 <li>
                   <Link
                     className="text-gray-400 hover:text-primary-400 transition-colors text-sm hover:text-green-500 duration-200 font-medium"
-                    href="/profile/orders"
+                    href="/allorders"
                   >
                     Order History
                   </Link>
