@@ -5,6 +5,7 @@ import Navbar from "@/src/component/pagesComponents/Navbar/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 import Footer from "../component/pagesComponents/Footer/Footer";
 import SessionProviderServer from "../SessionProviderServer/SessionProviderServer";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default function RootLayout({
         <SessionProviderServer>
             <Navbar />
             {children}
+            <SpeedInsights />
             <Toaster position="bottom-right" duration={2000} richColors={true} />
             <Footer />
         </SessionProviderServer>

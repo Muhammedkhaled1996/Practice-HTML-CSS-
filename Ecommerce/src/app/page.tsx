@@ -192,17 +192,17 @@ export default async function Home() {
         </div>
       </div>
       {/* categories */}
-      <div className="container py-4">
+      <div className="container px-4 md:px-0 py-4">
         <div className="flex flex-col sm:flex-row justify-between sm:items-center">
           <div className="flex items-center justify-between gap-3 my-4 w-full">
             <div className="flex items-center gap-3">
               <div className="h-8 w-1.5 bg-linear-to-b from-emerald-500 to-emerald-700 rounded-full" />
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+              <h2 className="text-xl md:text-3xl font-bold text-gray-800 ">
                 Shop By <span className="text-emerald-600">Category</span>
               </h2>
             </div>
             <Link
-              className="text-green-600 self-end sm:self-auto hover:text-green-700 font-medium flex items-center cursor-pointer gap-3"
+              className="text-green-600 self-end sm:self-auto hover:text-green-700 font-medium flex items-center cursor-pointer gap-3 text-sm md:text-lg"
               href="categories"
             >
               View All Categories

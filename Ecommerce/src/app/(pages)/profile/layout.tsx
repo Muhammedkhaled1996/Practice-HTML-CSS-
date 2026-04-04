@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { FaChevronRight, FaPlus, FaUser } from "react-icons/fa";
 import { FaGear, FaLocationDot } from "react-icons/fa6";
 
+
 export default function layout({ children }: { children: React.ReactNode }) {
   const { setProfileEdit, profileEdit } = useProfileEditStore();
 
