@@ -5,7 +5,7 @@ import { FaBoxOpen } from "react-icons/fa";
 
 export default async function AllProductsHomePage() {
   
-  const allProductResponce = await getAllProducts();
+  const allProductResponce = await getAllProducts({});
 
 
   console.log(allProductResponce,"allProductResponce from home page");
