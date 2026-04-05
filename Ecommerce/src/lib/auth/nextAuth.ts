@@ -29,7 +29,10 @@ export const NextAuthConfig: NextAuthOptions = {
           },
         );
 
-        if (!res.ok) return null;
+        if (!res.ok) {
+          console.error("Auth API failed", await res.text());
+          return null;
+        }
 
         const data = await res.json();
 
