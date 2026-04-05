@@ -28,7 +28,12 @@ export const NextAuthConfig: NextAuthOptions = {
             },
           },
         );
+
+        if (!res.ok) return null;
+
         const data = await res.json();
+
+        console.log("LOGIN RESPONSE:", data);
 
         if (data.message === "success" && data.user) {
           return {
@@ -42,7 +47,7 @@ export const NextAuthConfig: NextAuthOptions = {
       },
     }),
   ],
-  secret: process.env.AUTH_SECRET, // المفتاح السري هنا
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     jwt: ({ token, user }) => {
       if (user) {
