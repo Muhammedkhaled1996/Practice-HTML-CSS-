@@ -23,13 +23,12 @@ export default function page() {
             <AppBreadcrumb
               items={[{ label: "Home", href: "/" }]}
               current="Cookies Policy"
-                            linkClassName="hover:text-white"
-
+              linkClassName="hover:text-white"
             />
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-900/30 ring-1 ring-white/30">
+          <div className="flex  items-start  gap-6">
+            <div className="shrink-0 w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-900/30 ring-1 ring-white/30">
               <FaCookie className="text-4xl" />
             </div>
 
@@ -263,10 +262,7 @@ export default function page() {
         </div>
       </div>
 
-
-      <LowerInstractions/>
-
-      
+      <LowerInstractions />
     </>
   );
 }

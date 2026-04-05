@@ -131,13 +131,15 @@ export default async function details({
               {/* AddToCartProductDetails */}
               <div className="flex flex-col sm:flex-row gap-3 mb-6">
                 <AddToCartProductDetails productId={product.data._id} />
-                <button
-                  id="buy-now"
-                  className="w-full bg-gray-900 text-white py-3.5 px-6 rounded-xl font-medium hover:bg-gray-800 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <AiFillThunderbolt />
-                  Buy Now
-                </button>
+                <Link href={"/checkout"} className="w-full">
+                  <button
+                    id="buy-now"
+                    className="w-full bg-gray-900 text-white py-3.5 px-6 rounded-xl font-medium hover:bg-gray-800 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <AiFillThunderbolt />
+                    Buy Now
+                  </button>
+                </Link>
               </div>
               <div className="flex gap-3 mb-6">
                 <AddtoWishlistProductDetails product={product} />

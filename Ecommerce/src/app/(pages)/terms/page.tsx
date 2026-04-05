@@ -24,13 +24,12 @@ export default function page() {
             <AppBreadcrumb
               items={[{ label: "Home", href: "/" }]}
               current="Terms of Service"
-                            linkClassName="hover:text-white"
-
+              linkClassName="hover:text-white"
             />
           </div>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-900/30 ring-1 ring-white/30">
-              <FaFileContract  className="text-4xl" />
+          <div className="flex items-start gap-6">
+            <div className="shrink-0 w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-900/30 ring-1 ring-white/30">
+              <FaFileContract className="text-4xl" />
             </div>
             <div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
@@ -48,7 +47,7 @@ export default function page() {
         <div className="bg-linear-to-r from-yellow-50 to-yellow-200/50 border border-yellow-200 rounded-3xl p-6 sm:p-8 mb-12 shadow-sm">
           <div className="flex items-start gap-4">
             <div className="grow shrink-0 w-15 h-15 rounded bg-yellow-400 text-white flex justify-center items-center text-xl">
-              <FaFileContract  />
+              <FaFileContract />
             </div>
             <div className="text-gray-700">
               <h2 className="text-lg font-bold text-yellow-900 mb-2">
@@ -67,7 +66,7 @@ export default function page() {
           <section className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:border-green-100 transition-all duration-300 group">
             <div className="flex items-start gap-4 mb-5">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 bg-green-200 group-hover:bg-green-500 group-hover:text-white to-green-500">
-                <FaHandsHelping  />
+                <FaHandsHelping />
               </div>
               <div>
                 <span className="text-xs font-bold text-green-600 uppercase tracking-wider">
@@ -112,7 +111,7 @@ export default function page() {
           <section className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:border-green-100 transition-all duration-300 group">
             <div className="flex items-start gap-4 mb-5">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 bg-green-200 group-hover:bg-green-500 group-hover:text-white to-green-500">
-                <FaUserCheck  />
+                <FaUserCheck />
               </div>
               <div>
                 <span className="text-xs font-bold text-green-600 uppercase tracking-wider">
@@ -156,7 +155,7 @@ export default function page() {
           <section className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:border-green-100 transition-all duration-300 group">
             <div className="flex items-start gap-4 mb-5">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 bg-green-200 group-hover:bg-green-500 group-hover:text-white to-green-500">
-                <BsCardText  />
+                <BsCardText />
               </div>
               <div>
                 <span className="text-xs font-bold text-green-600 uppercase tracking-wider">
@@ -209,7 +208,7 @@ export default function page() {
           <section className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:border-green-100 transition-all duration-300 group">
             <div className="flex items-start gap-4 mb-5">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 bg-green-200 group-hover:bg-green-500 group-hover:text-white to-green-500">
-                <CiCreditCard1  />
+                <CiCreditCard1 />
               </div>
               <div>
                 <span className="text-xs font-bold text-green-600 uppercase tracking-wider">
@@ -263,7 +262,7 @@ export default function page() {
           <section className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:border-green-100 transition-all duration-300 group">
             <div className="flex items-start gap-4 mb-5">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 bg-green-200 group-hover:bg-green-500 group-hover:text-white to-green-500">
-                <FaTruck  />
+                <FaTruck />
               </div>
               <div>
                 <span className="text-xs font-bold text-green-600 uppercase tracking-wider">
@@ -306,7 +305,7 @@ export default function page() {
           <section className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:border-green-100 transition-all duration-300 group">
             <div className="flex items-start gap-4 mb-5">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 bg-green-200 group-hover:bg-green-500 group-hover:text-white to-green-500">
-                <FaArrowRotateLeft  />
+                <FaArrowRotateLeft />
               </div>
               <div>
                 <span className="text-xs font-bold text-green-600 uppercase tracking-wider">
@@ -349,7 +348,7 @@ export default function page() {
           <section className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:border-green-100 transition-all duration-300 group">
             <div className="flex items-start gap-4 mb-5">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 bg-green-200 group-hover:bg-green-500 group-hover:text-white to-green-500">
-                <FaBalanceScale  />
+                <FaBalanceScale />
               </div>
               <div>
                 <span className="text-xs font-bold text-green-600 uppercase tracking-wider">
@@ -411,7 +410,7 @@ export default function page() {
         </div>
       </div>
 
-       <LowerInstractions/>
+      <LowerInstractions />
     </>
   );
 }

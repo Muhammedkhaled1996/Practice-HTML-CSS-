@@ -4,6 +4,7 @@ import { useWishlistStore } from "@/src/stores/wishlistStore.store";
 import { sepesificProductResponce } from "@/src/types/allProduct.interface";
 import { wishlistData } from "@/src/types/wishlst.interface";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { toast } from "sonner";
@@ -26,6 +27,8 @@ export default function AddtoWishlistProductDetails({
   const [inWishlist, setWishlist] = useState<boolean | undefined>(false);
   const [loading, setLoading] = useState(false);
 
+  const route = useRouter();
+
   // Add item to cart
   async function handleAddToWishlist(productId: string) {
     setLoading(true);
@@ -36,7 +39,8 @@ export default function AddtoWishlistProductDetails({
         toast.success(data.message);
         increaseNumOfWishlist();
       } else {
-        toast.error(data.message);
+        toast.error("Please Login");
+        route.push("/login");
       }
     } catch (err) {
       console.log(err);

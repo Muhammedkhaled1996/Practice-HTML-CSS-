@@ -5,10 +5,12 @@ import React, { useState } from "react";
 import { TiPlus } from "react-icons/ti";
 import { toast } from "sonner";
 import { useCounterStore } from "@/src/stores/cartStore.store";
+import { useRouter } from "next/navigation";
 
 export default function AddToCartButton({ productId }: { productId: string }) {
   const { addToCart } = useCounterStore();
   const [loading, setLoading] = useState(false);
+  const route = useRouter();
 
   // Add item to cart
   async function handleAddToCart() {
@@ -18,8 +20,10 @@ export default function AddToCartButton({ productId }: { productId: string }) {
 
       if (data.status === "success") {
         return toast.success(data.message);
+      } else {
+        toast.error("Please login");
+        route.push("/login");
       }
-      return toast.error(data.message);
     } catch (err) {
       console.log(err);
       toast.error("Error in Adding Product to your cart from server");

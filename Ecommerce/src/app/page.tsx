@@ -4,6 +4,7 @@ import cart from "@/src/assets/images/freshcartpic.png";
 import Image from "next/image";
 import {
   FaApple,
+  FaArrowRight,
   FaEnvelope,
   FaGooglePlay,
   FaHeadset,
@@ -32,7 +33,7 @@ export default async function Home() {
   return (
     <>
       {/* slider */}
-      <div className="h-100 w-full">
+      <div className="h-80 w-full">
         <AutoSlider
           slides={[
             <React.Fragment key="slide-1">
@@ -42,7 +43,7 @@ export default async function Home() {
                 className="relative w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-linear-to-r from-green-600/80 to-green-400/60"></div>
-              <div className="absolute md:top-20 md:left-30 md:translate-0 top-[50%] left-[50%] -translate-1/2 font-bold text-4xl text-white w-full p-4 max-md:flex max-md:flex-col max-md:justify-center max-md:items-center ">
+              <div className="absolute md:top-13 md:left-30 md:translate-0 top-[50%] left-[50%] -translate-1/2 font-bold text-4xl text-white w-full p-4 max-md:flex max-md:flex-col max-md:justify-center max-md:items-center ">
                 <p className="max-md:text-center">Fresh Product Delivered</p>
                 <span>to your Door</span>
                 <br className="max-md:hidden" />
@@ -72,7 +73,7 @@ export default async function Home() {
                 className="relative w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-linear-to-r from-green-600/80 to-green-400/60"></div>
-              <div className="absolute md:top-20 md:left-30 md:translate-0 top-[50%] left-[50%] -translate-1/2 font-bold text-4xl text-white w-full p-4 max-md:flex max-md:flex-col max-md:justify-center max-md:items-center ">
+              <div className="absolute md:top-13 md:left-30 md:translate-0 top-[50%] left-[50%] -translate-1/2 font-bold text-4xl text-white w-full p-4 max-md:flex max-md:flex-col max-md:justify-center max-md:items-center ">
                 <p>Fast & Free Delivery</p>
                 <span className="text-lg font-normal">
                   Same day delivery available{" "}
@@ -100,7 +101,7 @@ export default async function Home() {
                 className="relative w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-linear-to-r from-green-600/80 to-green-400/60"></div>
-              <div className="absolute md:top-20 md:left-30 md:translate-0 top-[50%] left-[50%] -translate-1/2 font-bold text-4xl text-white w-full p-4 max-md:flex max-md:flex-col max-md:justify-center max-md:items-center ">
+              <div className="absolute md:top-13 md:left-30 md:translate-0 top-[50%] left-[50%] -translate-1/2 font-bold text-4xl text-white w-full p-4 max-md:flex max-md:flex-col max-md:justify-center max-md:items-center ">
                 <p>Premium Quality</p>
                 <span>Guaranteed</span>
                 <br className="max-md:hidden" />
@@ -215,6 +216,80 @@ export default async function Home() {
         </Suspense>
       </div>
       {/* offers */}
+      <section className="py-10 px-4 md:px-0">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div
+              className="relative overflow-hidden rounded-2xl bg-linear-to-br from-emerald-500 to-emerald-700 p-8 text-white"
+              style={{ opacity: 1, transform: "none" }}
+            >
+              <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full text-sm mb-4">
+                  <span>🔥</span>
+                  <span>Deal of the Day</span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                  Fresh Organic Fruits
+                </h3>
+                <p className="text-white/80 mb-4">
+                  Get up to 40% off on selected organic fruits
+                </p>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="text-3xl font-bold">40% OFF</div>
+                  <div className="text-sm text-white/70">
+                    Use code:{" "}
+                    <span className="font-bold text-white">ORGANIC40</span>
+                  </div>
+                </div>
+                <Link
+                  className="inline-flex items-center gap-2 bg-white text-emerald-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+                  href="/products"
+                >
+                  Shop Now
+                 <FaArrowRight />
+                </Link>
+              </div>
+            </div>
+            <div
+              className="relative overflow-hidden rounded-2xl bg-linear-to-br from-orange-400 to-rose-500 p-8 text-white"
+              style={{ opacity: 1, transform: "none" }}
+            >
+              <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full text-sm mb-4">
+                  <span>✨</span>
+                  <span>New Arrivals</span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                  Exotic Vegetables
+                </h3>
+                <p className="text-white/80 mb-4">
+                  Discover our latest collection of premium vegetables
+                </p>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="text-3xl font-bold">25% OFF</div>
+                  <div className="text-sm text-white/70">
+                    Use code:{" "}
+                    <span className="font-bold text-white">FRESH25</span>
+                  </div>
+                </div>
+                <Link
+                  className="inline-flex items-center gap-2 bg-white text-orange-500 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+                  href="/products?sort=newest"
+                >
+                  Explore Now
+                  <FaArrowRight />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* all products */}
       <div className="container px-4 md:px-0 ">
         <div className="flex flex-col sm:flex-row justify-between sm:items-center">
           <div className="flex  items-center gap-3 my-4">

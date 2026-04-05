@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { useRouter } from "next/navigation";
 
 export default function AddWishlist({ productId }: { productId: string }) {
   const {
@@ -20,6 +21,8 @@ export default function AddWishlist({ productId }: { productId: string }) {
       (product: any) => String(product._id) === String(productId),
     ) ?? false;
 
+  const route = useRouter();
+
   async function addToWishlistProccess() {
     if (loading) return;
 
@@ -32,7 +35,8 @@ export default function AddWishlist({ productId }: { productId: string }) {
           decreaseNumOfWishlist();
           toast.success(res.message);
         } else {
-          toast.error("Error in removing item from your wishlist");
+          toast.error(res.message);
+          route.push("/login");
         }
       } else {
         const res = await addToWishlist(productId);
@@ -41,7 +45,8 @@ export default function AddWishlist({ productId }: { productId: string }) {
           increaseNumOfWishlist();
           toast.success(res.message);
         } else {
-          toast.error("Error in adding item to your wishlist");
+          toast.error("Please login");
+          route.push("/login");
         }
       }
     } catch (error) {

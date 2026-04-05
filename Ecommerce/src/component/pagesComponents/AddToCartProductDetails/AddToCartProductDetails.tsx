@@ -2,7 +2,7 @@
 import { Spinner } from "@/components/ui/spinner";
 import { useCounterStore } from "@/src/stores/cartStore.store";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaCartPlus, FaCheck } from "react-icons/fa";
 import { toast } from "sonner";
@@ -31,6 +31,8 @@ export default function AddToCartProductDetails({
   const [inCart, setInCart] = useState<boolean | undefined>(false);
   const [loading, setLoading] = useState(false);
 
+  const route = useRouter()
+
   // Add item to cart
   async function handleAddToCart() {
     setLoading(true);
@@ -45,7 +47,8 @@ export default function AddToCartProductDetails({
         toast.success(data.message);
         setInCart(true);
       } else {
-        toast.error(data.message);
+        toast.error("Please Login");
+        route.push("/login")
       }
     } catch (err) {
       console.log(err);
