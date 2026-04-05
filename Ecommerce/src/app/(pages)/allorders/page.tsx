@@ -15,10 +15,14 @@ import {
 } from "react-icons/fa";
 
 import { FaCalendarDays, FaLocationDot } from "react-icons/fa6";
+import { redirect } from "next/navigation";
 
 export default async function AllOrdersPage() {
-
   const data = await verifyTokenHandler();
+
+  if (!data) {
+    redirect("/login");
+  }
 
   const userOrders = await getUserOrders(data.decoded.id);
 

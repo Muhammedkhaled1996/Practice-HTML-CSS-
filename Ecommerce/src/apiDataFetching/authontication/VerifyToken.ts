@@ -16,7 +16,7 @@ export interface Decoded {
 }
 
 // verify token handler
-export async function verifyTokenHandler() {
+export async function verifyTokenHandler(): Promise<verifyTokenInterface | null> {
   const token = await getDecodedUserToken();
   try {
     const res = await fetch(
@@ -33,7 +33,7 @@ export async function verifyTokenHandler() {
       return null;
     }
 
-    const data: verifyTokenInterface = await res.json();
+    const data = await res.json();
     return data;
   } catch (error) {
     console.error("Error in verifyTokenHandler:", error);
