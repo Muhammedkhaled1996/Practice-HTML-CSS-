@@ -73,7 +73,6 @@ export interface productDetails {
   description: string
   quantity: number
   price: number
-  availableColors: string[];
   imageCover: string
   category: Category
   brand: Brand
@@ -81,7 +80,7 @@ export interface productDetails {
   createdAt: string
   updatedAt: string
   __v: number
-  reviews: string[];
+  reviews: Review[]
   id: string
   priceAfterDiscount?: number
 }
@@ -105,4 +104,20 @@ export interface Brand {
   name: string
   slug: string
   image: string
+}
+
+export interface Review {
+  _id: string
+  rating: number
+  review: string
+  product: string
+  user: User
+  createdAt: string
+  updatedAt: string
+  __v: number
+}
+
+export interface User {
+  _id: string
+  name: string
 }
