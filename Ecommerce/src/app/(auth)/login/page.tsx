@@ -35,8 +35,14 @@ import {
 import { signIn } from "next-auth/react";
 import LowerInstractions from "../../../component/publicComponents/LowerInstractions/LowerInstractions";
 import { Input } from "@/components/ui/input";
+import { useCounterStore } from "@/src/stores/cartStore.store";
+import { useWishlistStore } from "@/src/stores/wishlistStore.store";
 
 export default function LoginPage() {
+
+   const { getUserCart } = useCounterStore();
+    const { getUserWishlist } = useWishlistStore();
+  
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -63,6 +69,8 @@ export default function LoginPage() {
           duration: 2000,
           richColors: true,
         });
+        getUserCart()
+        getUserWishlist()
         router.push("/");
       } else {
         toast.error(result?.error || "Login failed", {

@@ -20,7 +20,7 @@ type CounterStore = {
   clearCart: () => Promise<CrudCartResponce>;
   deleteItemFromCart: (productId: string) => Promise<CrudCartResponce>;
   setNumOfCartItems: (count: number) => void;
-  quantity: number ;
+  quantity: number;
   setQuantity: (number: number) => void;
 };
 
