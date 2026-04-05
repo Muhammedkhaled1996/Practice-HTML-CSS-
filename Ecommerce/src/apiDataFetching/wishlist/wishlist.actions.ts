@@ -16,6 +16,7 @@ export async function getAllWishlist(): Promise<wishlistResponce> {
       },
       next: {
         tags: ["allWishlist"],
+        revalidate: 60,
       },
     });
     const data = await res.json();

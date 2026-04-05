@@ -12,21 +12,20 @@ export default async function CategoryHomePage() {
       {allCategoriesResponce?.data?.length > 0 ? (
         allCategoriesResponce?.data?.map((category: categoryDetails) => (
           <Link
-            key={category._id}
+            key={category?._id}
             className="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition group cursor-pointer"
-            href={`/categories/${category._id}`}
+            href={`/categories/${category?._id}`}
           >
             <div className="h-20 w-20 overflow-hidden bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-green-200 transition">
               <Image
-                alt={category.slug}
+                alt={category?.slug}
                 width={300}
                 height={300}
                 className="w-full h-full object-cover"
-                src={category.image}
-                style={{ color: "transparent" }}
+                src={category?.image}
               />
             </div>
-            <h3 className="font-medium">{category.name}</h3>
+            <h3 className="font-medium">{category?.name}</h3>
           </Link>
         ))
       ) : (
