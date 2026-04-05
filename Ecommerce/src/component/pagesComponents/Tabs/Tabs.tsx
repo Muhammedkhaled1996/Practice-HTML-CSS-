@@ -112,14 +112,14 @@ export function TabsDemo({ product }: Props) {
               <div className="text-center">
                 <div className="text-5xl font-bold text-gray-900 mb-2">3</div>
                 <div className="text-yellow-400">
-                  <Rating rating={product.data.ratingsAverage} />
+                  <Rating rating={product?.data?.ratingsAverage} />
                 </div>
                 <p className="text-sm text-gray-500 mt-2">
-                  Based on {product.data.reviews.length} reviews
+                  Based on {product?.data?.reviews?.length} reviews
                 </p>
               </div>
 
-              <RatingBars reviews={product.data.reviews} />
+              <RatingBars reviews={product?.data?.reviews} />
             </div>
 
             <div className="border-t border-gray-200 pt-6">

@@ -6,8 +6,6 @@ import { FaBoxOpen } from "react-icons/fa";
 export default async function AllProductsHomePage() {
   const allProductResponce = await getAllProducts({});
 
-  // console.log(allProductResponce,"allProductResponce from home page");
-
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 my-2">
       {allProductResponce?.data?.length > 0 ? (

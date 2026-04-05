@@ -8,10 +8,7 @@ import { IoShareSocial } from "react-icons/io5";
 import { FaArrowRotateLeft, FaTruckFast } from "react-icons/fa6";
 import ProductNumberSec from "@/src/component/pagesComponents/ProductNumberSec/ProductNumberSec";
 import Gallery from "@/src/component/pagesComponents/Gallery/Gallery";
-import {
-  getAllProducts,
-  getAllProductsByParams,
-} from "@/src/apiDataFetching/products/products.action";
+import { getAllProductsByParams } from "@/src/apiDataFetching/products/products.action";
 import LowerInstractions from "@/src/component/publicComponents/LowerInstractions/LowerInstractions";
 import { TabsDemo } from "@/src/component/pagesComponents/Tabs/Tabs";
 import SliderRelatedProduct from "@/src/component/pagesComponents/SliderRelatedProduct/SliderRelatedProduct";
@@ -27,7 +24,6 @@ export default async function details({
   const { id } = await params;
 
   const product = await getSpecificProducts(id);
-
 
   const relatedProducts = await getAllProductsByParams(
     "category[in]",
@@ -144,7 +140,7 @@ export default async function details({
                 </button>
               </div>
               <div className="flex gap-3 mb-6">
-                <AddtoWishlistProductDetails product={product}/>
+                <AddtoWishlistProductDetails product={product} />
                 <button className="border-2 border-gray-200 text-gray-700 py-3 px-4 rounded-xl hover:border-green-300 hover:text-green-600 transition cursor-pointer">
                   <IoShareSocial />
                 </button>
