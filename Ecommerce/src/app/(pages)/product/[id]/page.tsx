@@ -2,7 +2,7 @@ import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBre
 import { IoIosHome } from "react-icons/io";
 import Link from "next/link";
 import Rating from "@/src/component/publicComponents/Rating/Rating";
-import { FaRegHeart, FaShieldAlt } from "react-icons/fa";
+import { FaShieldAlt } from "react-icons/fa";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { IoShareSocial } from "react-icons/io5";
 import { FaArrowRotateLeft, FaTruckFast } from "react-icons/fa6";
@@ -25,11 +25,9 @@ export default async function details({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  console.log(id);
 
   const product = await getSpecificProducts(id);
 
-  const allProducts = await getAllProducts();
 
   const relatedProducts = await getAllProductsByParams(
     "category[in]",

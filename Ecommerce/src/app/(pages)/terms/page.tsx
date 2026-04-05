@@ -1,17 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import {
-  FaShieldAlt,
-  FaDatabase,
-  FaUserShield,
-  FaLock,
-  FaShareAlt,
   FaUserCheck,
-  FaClock,
   FaEnvelope,
   FaArrowLeft,
-  FaCookie,
-  FaHeadset,
   FaTruck,
   FaFileContract,
   FaHandsHelping,

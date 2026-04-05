@@ -20,30 +20,19 @@ import {
 import {
   FaFacebook,
   FaGoogle,
-  FaHeadset,
-  FaLock,
-  FaRegEnvelope,
   FaShieldAlt,
   FaShippingFast,
   FaStar,
   FaTruck,
   FaUserPlus,
-  FaUsers,
 } from "react-icons/fa";
-import { FaArrowRotateLeft } from "react-icons/fa6";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/components/ui/input-group";
 import Image from "next/image";
-import freshCartPic from "@/src/assets/images/freshcartpic.png";
 import Link from "next/link";
 import personReviwer from "@/src/assets/images/review-author.webp";
 import LowerInstractions from "@/src/component/publicComponents/LowerInstractions/LowerInstractions";
 
-export default function page() {
-  const { handleSubmit, register, formState, control } = useForm({
+export default function RegisterPage() {
+  const { handleSubmit, control } = useForm({
     defaultValues: {
       name: "",
       email: "",
@@ -146,9 +135,9 @@ export default function page() {
                 </div>
               </div>
               <p className="italic text-gray-600">
-                "FreshCart has transformed my shopping experience. The quality
+                &quot;FreshCart has transformed my shopping experience. The quality
                 of the products is outstanding, and the delivery is always on
-                time. Highly recommend!"
+                time. Highly recommend!&quot;
               </p>
             </div>
           </div>

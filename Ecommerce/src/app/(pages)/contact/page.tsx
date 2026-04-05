@@ -11,7 +11,6 @@ import {
   FaInstagram,
   FaLinkedinIn,
   FaHeadset,
-  FaArrowLeft,
   FaPaperPlane,
 } from "react-icons/fa";
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
@@ -61,7 +60,7 @@ export default function Page() {
             <div>
               <h1 className="text-4xl font-bold">Contact Us</h1>
               <p className="text-white/80 mt-2">
-                We'd love to hear from you. Get in touch with our team.
+                We&apos;d love to hear from you. Get in touch with our team.
               </p>
             </div>
           </div>
@@ -98,7 +97,7 @@ export default function Page() {
               <div>
                 <h3 className="font-bold">Email</h3>
                 <p className="text-sm text-gray-500 w-full">
-                  We'll respond within 24 hours
+                  We&apos;ll respond within 24 hours
                 </p>
                 <a
                   href="mailto:support@freshcart.com"
@@ -171,7 +170,7 @@ export default function Page() {
                 <div>
                   <h2 className="font-bold text-lg">Send us a Message</h2>
                   <p className="text-sm text-gray-500">
-                    Fill out the form and we'll get back to you
+                    Fill out the form and we&apos;ll get back to you
                   </p>
                 </div>
               </div>

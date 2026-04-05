@@ -44,7 +44,7 @@ export default function CheckoutSection({
         city: "",
         details: "",
         phone: "",
-        postalCode:""
+        postalCode: "",
       },
     },
     resolver: zodResolver(checkoutSchema),
@@ -186,9 +186,7 @@ export default function CheckoutSection({
                   control={control}
                   render={({ field, fieldState }) => (
                     <Field className="my-5" data-invalid={fieldState.invalid}>
-                      <FieldLabel htmlFor={field.name}>
-                        Postal Code
-                      </FieldLabel>
+                      <FieldLabel htmlFor={field.name}>Postal Code</FieldLabel>
                       <Input
                         className="focus-within:ring-green-100! focus-within:border-green-600! transition-all duration-200"
                         {...field}

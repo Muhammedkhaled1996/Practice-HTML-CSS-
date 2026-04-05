@@ -2,8 +2,8 @@
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
 import { useProfileEditStore } from "@/src/stores/profileSetting.store";
 import Link from "next/link";
-import React, { useState } from "react";
-import { FaChevronRight, FaPlus, FaUser } from "react-icons/fa";
+import React from "react";
+import { FaChevronRight, FaUser } from "react-icons/fa";
 import { FaGear, FaLocationDot } from "react-icons/fa6";
 
 

@@ -1,4 +1,3 @@
-import { getAllProducts } from "@/src/apiDataFetching/products/products.action";
 import { AllProductResponce, Product } from "@/src/types/allProduct.interface";
 import { ProductCard } from "@/src/component/publicComponents/ProductCard/ProductCard";
 import Link from "next/link";

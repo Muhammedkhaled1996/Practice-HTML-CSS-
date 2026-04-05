@@ -3,8 +3,6 @@ import { getUserOrders } from "@/src/apiDataFetching/order/order.action";
 import DetailsOrderBtn from "@/src/component/pagesComponents/DetailsOrderBtn/DetailsOrderBtn";
 import OrderDetails from "@/src/component/pagesComponents/OrderDetails/OrderDetails";
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
-import { NextAuthConfig } from "@/src/lib/auth/nextAuth";
-import { getServerSession } from "next-auth";
 import Image from "next/image";
 import React from "react";
 import {
@@ -18,13 +16,9 @@ import {
 
 import { FaCalendarDays, FaLocationDot } from "react-icons/fa6";
 
-export default async function page() {
-  const session = await getServerSession(NextAuthConfig);
-  console.log(session, "session from all order page");
+export default async function AllOrdersPage() {
 
   const data = await verifyTokenHandler();
-
-  //   console.log(data.decoded.id ,"verifyTokenHandler");
 
   const userOrders = await getUserOrders(data.decoded.id);
 
@@ -37,8 +31,10 @@ export default async function page() {
   }
 
   return (
-    <div className="container px-4 md:px-0
-">
+    <div
+      className="container px-4 md:px-0
+"
+    >
       {/* breadcrumb section */}
       <div>
         <div className="mt-4">
@@ -74,7 +70,10 @@ export default async function page() {
           {userOrders &&
             userOrders.length > 0 &&
             userOrders.map((order) => (
-              <div className="bg-white rounded-2xl border transition-all duration-300 overflow-hidden border-gray-100 shadow-sm hover:shadow-md hover:border-gray-200">
+              <div
+                key={order._id}
+                className="bg-white rounded-2xl border transition-all duration-300 overflow-hidden border-gray-100 shadow-sm hover:shadow-md hover:border-gray-200"
+              >
                 <div className="p-5 sm:p-6">
                   <div className="flex gap-5">
                     <div className="relative shrink-0">

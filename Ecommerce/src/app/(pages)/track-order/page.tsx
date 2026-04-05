@@ -5,12 +5,8 @@ import {
   FaTruck,
   FaRoute,
   FaCheckCircle,
-  FaQuestionCircle,
   FaArrowLeft,
   FaEnvelope,
-  FaHeadset,
-  FaShieldAlt,
-  FaUndoAlt,
 } from "react-icons/fa";
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
 import {

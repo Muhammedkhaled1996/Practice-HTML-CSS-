@@ -32,10 +32,10 @@ export const useWishlistStore = create<WishlistStore>((set) => ({
   // get user cart
   getUserWishlist: async () => {
     const data = await getAllWishlist();
-    set((state) => ({
+    set({
       wishlist: data,
       numOfWishlistItems: data.count,
-    }));
+    });
 
     return data;
   },

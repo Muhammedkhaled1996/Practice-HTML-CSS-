@@ -12,28 +12,26 @@ export interface registerFormValues {
 
 // handle register submit action
 export async function handleRegisterSubmitAction(values: registerFormValues) {
-  const res = await fetch(
-    `https://ecommerce.routemisr.com/api/v1/auth/signup`,
-    {
-      method: "POST",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json",
+  try {
+    const res = await fetch(
+      `https://ecommerce.routemisr.com/api/v1/auth/signup`,
+      {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
-    },
-  );
-  const data = await res.json();
-  console.log(data, "data from server component action");
+    );
+    const data = await res.json();
 
-  if (data.message === "success") {
-    // const cookie = await cookies();
-    // cookie.set("token", data.token, {
-    //   httpOnly: true,
-    //   sameSite: "strict",
-    //   maxAge: 60 * 60 * 7,
-    // });
-    return data.message;
+    if (data.message === "success") {
+      return data.message;
+    }
+
+    return data.message || "An error occurred during registration.";
+  } catch (error) {
+    console.error("Error in handleRegisterSubmitAction:", error);
+    return "An error occurred. Please try again later.";
   }
-
-  return data.message;
 }

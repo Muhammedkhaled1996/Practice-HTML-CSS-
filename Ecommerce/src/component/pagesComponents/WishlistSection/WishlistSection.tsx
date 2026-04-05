@@ -10,42 +10,11 @@ import AppBreadcrumb from "../../publicComponents/AppBreadcrumb/AppBreadcrumb";
 export default async function WishlistSection() {
   const data = await getAllWishlist();
 
-  const { data: wishlistProduct } = data;
+  const { data: wishlistProduct } = data || { data: [] };
 
-  if (wishlistProduct.length === 0) {
+  if (wishlistProduct?.length === 0) {
     return (
       <>
-        <div>
-          <div className="mt-4">
-            <AppBreadcrumb
-              items={[{ label: "Home", href: "/" }]}
-              current="Shopping Cart"
-              linkClassName="hover:text-black text-gray-500 text-sm"
-              itemClassName=""
-              currentClassName="text-black text-sm"
-              separatorClassName="text-gray-500"
-            />
-          </div>
-
-          <div className="flex items-center justify-between mt-5">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <span className="bg-linear-to-r from-red-600 to-red-700 text-white w-12 h-12 rounded-lg flex items-center justify-center">
-                  <FaHeart />
-                </span>
-                Shopping Cart
-              </h1>
-              <p className="text-gray-500 mt-2">
-                You have{" "}
-                <span className="font-semibold text-green-600">
-                  {wishlistProduct.length} items
-                </span>{" "}
-                item saved
-              </p>
-            </div>
-          </div>
-        </div>
-
         <div className="text-center py-20">
           <div className="w-25 h-25 rounded-full bg-green-100/50 flex items-center justify-center mx-auto mb-5 text-5xl text-green-600">
             <FaBoxOpen />
@@ -73,7 +42,7 @@ export default async function WishlistSection() {
         <div className="mt-4">
           <AppBreadcrumb
             items={[{ label: "Home", href: "/" }]}
-            current="Shopping Cart"
+            current="Wishlist"
             linkClassName="hover:text-black text-gray-500 text-sm"
             itemClassName=""
             currentClassName="text-black text-sm"
@@ -87,12 +56,12 @@ export default async function WishlistSection() {
               <span className="bg-linear-to-r from-red-600 to-red-700 text-white w-12 h-12 rounded-lg flex items-center justify-center">
                 <FaHeart />
               </span>
-              Shopping Cart
+              My Wishlist
             </h1>
             <p className="text-gray-500 mt-2">
               You have{" "}
               <span className="font-semibold text-green-600">
-                {wishlistProduct.length} items
+                {wishlistProduct?.length} items
               </span>{" "}
               item saved
             </p>
@@ -109,7 +78,7 @@ export default async function WishlistSection() {
             <div className="col-span-2 text-center">Actions</div>
           </div>
           <div className="divide-y divide-gray-100">
-            {wishlistProduct.length > 0 && wishlistProduct
+            {wishlistProduct?.length > 0 && wishlistProduct
               ? wishlistProduct.map((product) => (
                   <div
                     key={product._id}

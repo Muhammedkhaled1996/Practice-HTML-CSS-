@@ -32,7 +32,7 @@ export interface Product {
   updatedAt: string;
   id: string;
   priceAfterDiscount?: number;
-  availableColors?: any[];
+  availableColors?: string[];
 }
 
 export interface Subcategory {
@@ -73,7 +73,7 @@ export interface productDetails {
   description: string
   quantity: number
   price: number
-  availableColors: any[]
+  availableColors: string[];
   imageCover: string
   category: Category
   brand: Brand
@@ -81,7 +81,7 @@ export interface productDetails {
   createdAt: string
   updatedAt: string
   __v: number
-  reviews: any[]
+  reviews: string[];
   id: string
   priceAfterDiscount?: number
 }

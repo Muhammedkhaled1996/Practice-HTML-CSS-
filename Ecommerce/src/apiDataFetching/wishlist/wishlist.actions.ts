@@ -9,18 +9,34 @@ import { updateTag } from "next/cache";
 // get all wishlist
 export async function getAllWishlist(): Promise<wishlistResponce> {
   const token = await getDecodedUserToken();
-  const res = await fetch(`https://ecommerce.routemisr.com/api/v1/wishlist`, {
-    headers: {
-      token: token as any,
-    },
-    next: {
-      revalidate:60,
-      tags: ["allWishlist"],
-    },
-  });
-  const data = await res.json();
+  try {
+    const res = await fetch(`https://ecommerce.routemisr.com/api/v1/wishlist`, {
+      headers: {
+        token: token as string,
+      },
+      next: {
+        tags: ["allWishlist"],
+      },
+    });
+    const data = await res.json();
 
-  return data;
+    if (!res.ok) {
+      return {
+        status: "fail",
+        count: 0,
+        data: [],
+      };
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching wishlist:", error);
+    return {
+      status: "fail",
+      count: 0,
+      data: [],
+    };
+  }
 }
 
 // add product to wishlist
@@ -59,7 +75,7 @@ export async function removeFromWishlist(
   const data = await res.json();
 
   updateTag("allWishlist");
-    updateTag("allProducts");
+  updateTag("allProducts");
 
   return data;
 }

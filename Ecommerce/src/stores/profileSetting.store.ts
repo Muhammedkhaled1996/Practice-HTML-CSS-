@@ -8,8 +8,8 @@ type profileEditStore = {
 export const useProfileEditStore = create<profileEditStore>((set, get) => ({
   profileEdit: "address",
   setProfileEdit: (value) => {
-    set((state) => ({
+    set({
       profileEdit: value,
-    }));
+    });
   },
 }));

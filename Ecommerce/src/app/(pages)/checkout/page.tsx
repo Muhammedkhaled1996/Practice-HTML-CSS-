@@ -8,7 +8,7 @@ import { FaExclamationTriangle, FaReceipt } from "react-icons/fa";
 export default async function page() {
   const cartResponce = await getUserCart();
 
-  console.log(cartResponce, "cartResponce from checkout page");
+  // console.log(cartResponce, "cartResponce from checkout page");
 
   return (
     <>

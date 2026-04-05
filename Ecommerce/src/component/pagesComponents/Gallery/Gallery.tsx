@@ -40,8 +40,9 @@ export default function Gallery({ product }: Props) {
               <Image
                 src={ele}
                 alt="product image"
-                fill
-                className={`object-cover transition-transform duration-300 ${
+                width={200}
+                height={200}
+                className={`w-full h-full object-cover transition-transform duration-300 ${
                   zoom ? "scale-150 cursor-zoom-out" : ""
                 }`}
               />
@@ -71,7 +72,7 @@ export default function Gallery({ product }: Props) {
                     : "border-gray-200 hover:border-gray-400"
                 }`}
               >
-                <img
+                <Image
                   src={ele}
                   alt="product image"
                   width={200}

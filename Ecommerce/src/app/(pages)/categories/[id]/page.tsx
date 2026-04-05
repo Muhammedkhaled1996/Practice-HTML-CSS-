@@ -21,8 +21,7 @@ export default async function page({
   const allSubCategoriesResponce = await getAllSubCategoriesByCategory(id);
   const SpecificCategory = await getSpecificCategory(id);
 
-  console.log(SpecificCategory , "SpecificProducts from category");
-  
+  // console.log(SpecificCategory , "SpecificProducts from category");
 
   return (
     <>
@@ -39,7 +38,7 @@ export default async function page({
           </div>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-900/30 ring-1 ring-white/30">
-              {SpecificCategory?.data ?  (
+              {SpecificCategory?.data ? (
                 <Image
                   className="h-[90%] w-[90%] object-contain"
                   src={SpecificCategory?.data?.image}

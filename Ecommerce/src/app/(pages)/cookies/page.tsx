@@ -1,27 +1,16 @@
-// نفس الـ imports زي ما هي 👇 (مافيش تغيير)
 import React from "react";
 import Link from "next/link";
 import {
-  FaShieldAlt,
   FaDatabase,
   FaUserShield,
   FaLock,
-  FaShareAlt,
-  FaUserCheck,
   FaClock,
   FaEnvelope,
   FaArrowLeft,
   FaCookie,
-  FaHeadset,
-  FaTruck,
-  FaFileContract,
-  FaHandsHelping,
   FaBalanceScale,
 } from "react-icons/fa";
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
-import { FaArrowRotateLeft } from "react-icons/fa6";
-import { BsCardText } from "react-icons/bs";
-import { CiCreditCard1 } from "react-icons/ci";
 import LowerInstractions from "@/src/component/publicComponents/LowerInstractions/LowerInstractions";
 
 export default function page() {

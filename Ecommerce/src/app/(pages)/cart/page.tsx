@@ -19,7 +19,6 @@ export default async function page() {
   const data = await getUserCart();
 
   const {
-    cartId,
     numOfCartItems,
     data: { totalCartPrice, products },
   } = data;

@@ -29,7 +29,7 @@ export default async function page() {
             <DialogDemo />
           </div>
           {!userAddresses ||
-            (userAddresses.results === 0 && (
+            (userAddresses?.results === 0 && (
               <div className="bg-white rounded-3xl border border-gray-100 p-12 text-center">
                 <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-5">
                   <FaLocationDot className="text-3xl text-gray-400" />

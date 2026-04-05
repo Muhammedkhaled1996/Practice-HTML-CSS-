@@ -4,9 +4,7 @@ import {
   FaTruck,
   FaQuestionCircle,
   FaArrowLeft,
-  FaHeadset,
   FaEnvelope,
-  FaShieldAlt,
 } from "react-icons/fa";
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
 import {
@@ -15,7 +13,6 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion"; // تأكد المسار صحيح
-import { FaArrowRotateLeft } from "react-icons/fa6";
 import LowerInstractions from "@/src/component/publicComponents/LowerInstractions/LowerInstractions";
 
 export default function ShippingInfoPage() {

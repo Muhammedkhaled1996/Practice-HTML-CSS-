@@ -12,9 +12,7 @@ import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { Button } from "@/src/components/ui/button";
 import { toast } from "sonner";
-import { redirect } from "next/navigation";
 import {
-  handleLoginSubmitAction,
   loginFormValues,
 } from "@/src/apiDataFetching/authontication/signin";
 import Image from "next/image";
@@ -38,11 +36,11 @@ import { signIn } from "next-auth/react";
 import LowerInstractions from "../../../component/publicComponents/LowerInstractions/LowerInstractions";
 import { Input } from "@/components/ui/input";
 
-export default function page() {
+export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const { handleSubmit, register, formState, control } = useForm({
+  const { handleSubmit, control } = useForm({
     defaultValues: {
       email: "",
       password: "",

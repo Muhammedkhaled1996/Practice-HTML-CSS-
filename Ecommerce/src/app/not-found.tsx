@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
 import { FaArrowLeft, FaHeadset, FaShieldAlt, FaTruck } from "react-icons/fa";
@@ -34,7 +33,7 @@ export default function page() {
           <p className="text-6xl font-extrabold my-4">Oops! Nothing Here</p>
           {/*  */}
           <span className="text-gray-500 mb-4 font-semibold">
-            Looks like this page went out of stock! Don't worry, there's plenty
+            Looks like this page went out of stock! Don&apos;t worry, there&apos;s plenty
             more fresh content to explore.
           </span>
           {/*  */}
@@ -75,7 +74,7 @@ export default function page() {
               href={"/deals"}
               className="col-span-1 px-1 text-gray-600 bg-gray-200 rounded-lg py-2 hover:bg-gray-300/80"
             >
-              Today's Deals
+              Today&apos;s Deals
             </Link>
             <Link
               href={"/contact"}

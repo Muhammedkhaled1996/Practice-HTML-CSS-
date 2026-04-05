@@ -9,17 +9,35 @@ export async function getAllProducts(
   searchParams?: Record<string, any>,
 ): Promise<AllProductResponce> {
   const queryString = new URLSearchParams(searchParams).toString();
-  const response = await fetch(
-    `https://ecommerce.routemisr.com/api/v1/products?${queryString}`,
-    {
-      next: {
-        revalidate: 60,
-        tags: ["allProducts"],
+  try {
+    const response = await fetch(
+      `https://ecommerce.routemisr.com/api/v1/products?${queryString}`,
+      {
+        next: {
+          revalidate: 60,
+          tags: ["allProducts"],
+        },
       },
-    },
-  );
-  const data = await response.json();
-  return data;
+    );
+
+    if (!response.ok) {
+      return {
+        results: 0,
+        metadata: {} as any,
+        data: [],
+      };
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error in getAllProducts:", error);
+    return {
+      results: 0,
+      metadata: {} as any,
+      data: [],
+    };
+  }
 }
 
 // get all products by params
@@ -27,35 +45,64 @@ export async function getAllProductsByParams(
   paramName: String | null = null,
   id: String | null = null,
 ): Promise<AllProductResponce> {
-  const responce = await fetch(
-    `https://ecommerce.routemisr.com/api/v1/products?${paramName}=${id}`,
-    {
-      next: {
-        revalidate: 60,
-        tags: ["allProductsByParams"],
+  try {
+    const responce = await fetch(
+      `https://ecommerce.routemisr.com/api/v1/products?${paramName}=${id}`,
+      {
+        next: {
+          revalidate: 60,
+          tags: ["allProductsByParams"],
+        },
       },
-    },
-  );
-  const data = await responce.json();
-  return data;
+    );
+
+    if (!responce.ok) {
+      return {
+        results: 0,
+        metadata: {} as any,
+        data: [],
+      };
+    }
+
+    const data = await responce.json();
+    return data;
+  } catch (error) {
+    console.error("Error in getAllProductsByParams:", error);
+    return {
+      results: 0,
+      metadata: {} as any,
+      data: [],
+    };
+  }
 }
 
 // get specific product
 export async function getSpecificProducts(
   id: string,
 ): Promise<sepesificProductResponce> {
-  const responce = await fetch(
-    `https://ecommerce.routemisr.com/api/v1/products/${id}`,
-    {
-      next: {
-        revalidate: 60,
-        tags: ["product"],
+  try {
+    const responce = await fetch(
+      `https://ecommerce.routemisr.com/api/v1/products/${id}`,
+      {
+        next: {
+          revalidate: 60,
+          tags: ["product"],
+        },
       },
-    },
-  );
-  const data = await responce.json();
+    );
 
-  console.log(data, "data of product");
+    if (!responce.ok) {
+      return {
+        data: {} as any,
+      };
+    }
 
-  return data;
+    const data = await responce.json();
+    return data;
+  } catch (error) {
+    console.error("Error in getSpecificProducts (products):", error);
+    return {
+      data: {} as any,
+    };
+  }
 }

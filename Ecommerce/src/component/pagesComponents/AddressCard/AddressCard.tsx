@@ -17,9 +17,9 @@ export default async function AddressCard({
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {userAddresses.data.length > 0 &&
+        {userAddresses?.data?.length > 0 &&
           userAddresses &&
-          userAddresses.data.map((address) => (
+          userAddresses?.data?.map((address) => (
             <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm hover:shadow-md hover:border-green-100 transition-all duration-200 group">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-start gap-4 flex-1">

@@ -15,20 +15,28 @@ export interface Decoded {
   exp: number;
 }
 
-// create cash order
+// verify token handler
 export async function verifyTokenHandler() {
   const token = await getDecodedUserToken();
-  const res = await fetch(
-    `https://ecommerce.routemisr.com/api/v1/auth/verifyToken`,
-    {
-      method: "GET",
-      headers: {
-        token: token as any,
+  try {
+    const res = await fetch(
+      `https://ecommerce.routemisr.com/api/v1/auth/verifyToken`,
+      {
+        method: "GET",
+        headers: {
+          token: token as string,
+        },
       },
-    },
-  );
-  const data: verifyTokenInterface = await res.json();
-  console.log(data, "data from checkout action");
+    );
 
-  return data;
+    if (!res.ok) {
+      return null;
+    }
+
+    const data: verifyTokenInterface = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error in verifyTokenHandler:", error);
+    return null;
+  }
 }

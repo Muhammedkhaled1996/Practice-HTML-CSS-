@@ -2,9 +2,6 @@ import React from "react";
 import Link from "next/link";
 import {
   FaQuestionCircle,
-  FaTruck,
-  FaShieldAlt,
-  FaHeadset,
   FaEnvelope,
   FaArrowLeft,
 } from "react-icons/fa";
@@ -15,7 +12,6 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import { FaArrowRotateLeft } from "react-icons/fa6";
 import LowerInstractions from "@/src/component/publicComponents/LowerInstractions/LowerInstractions";
 
 export default function HelpPage() {

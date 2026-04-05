@@ -8,11 +8,9 @@ import {
   FaShareAlt,
   FaUserCheck,
   FaClock,
-  FaEnvelope,
   FaArrowLeft,
   FaCookie,
-  FaHeadset,
-  FaTruck,
+  FaEnvelope,
 } from "react-icons/fa";
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
 import LowerInstractions from "@/src/component/publicComponents/LowerInstractions/LowerInstractions";

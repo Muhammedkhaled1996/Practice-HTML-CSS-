@@ -30,27 +30,27 @@ export const useCounterStore = create<CounterStore>((set) => ({
   quantity: 1,
 
   setQuantity: (number) => {
-    set((state) => ({
-      quantity: number ,
-    }));
+    set({
+      quantity: number,
+    });
   },
 
   // get user cart
   getUserCart: async () => {
     const data = await getUserCart();
-    set((state) => ({
+    set({
       cart: data,
       numOfCartItems: data?.numOfCartItems,
-    }));
+    });
     return data;
   },
   // add to cart
   addToCart: async (productId: string) => {
     const data = await addToCartAction(productId);
-    set((state) => ({
+    set({
       cart: data,
       numOfCartItems: data?.numOfCartItems,
-    }));
+    });
     return data;
   },
   // update cart
@@ -65,25 +65,25 @@ export const useCounterStore = create<CounterStore>((set) => ({
   // delete item from cart
   deleteItemFromCart: async (productId: string) => {
     const data = await deleteItemCount(productId);
-    set((state) => ({
+    set({
       cart: data,
       numOfCartItems: data?.numOfCartItems,
-    }));
+    });
     return data;
   },
   // clear all cart items
   clearCart: async () => {
     const data = await clearUserCart();
-    set((state) => ({
+    set({
       numOfCartItems: null,
       cart: null,
-    }));
+    });
     return data;
   },
   // set number of cart items
   setNumOfCartItems: (count: number) => {
-    set((state) => ({
+    set({
       numOfCartItems: count,
-    }));
+    });
   },
 }));
