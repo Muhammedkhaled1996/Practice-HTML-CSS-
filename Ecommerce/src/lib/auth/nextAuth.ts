@@ -36,8 +36,6 @@ export const NextAuthConfig: NextAuthOptions = {
 
         const data = await res.json();
 
-        console.log("LOGIN RESPONSE:", data);
-
         if (data.message === "success" && data.user) {
           return {
             id: data.user.email,
@@ -51,6 +49,9 @@ export const NextAuthConfig: NextAuthOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  // Required for Vercel & custom domains — allows NextAuth to accept requests
+  // from any host without needing a hardcoded NEXTAUTH_URL
+  // Set NEXTAUTH_URL in Vercel env vars to your production domain for best results
   callbacks: {
     jwt: ({ token, user }) => {
       if (user) {
@@ -59,11 +60,32 @@ export const NextAuthConfig: NextAuthOptions = {
       return token;
     },
     session: ({ session, token }) => {
-      (session as any).accessToken = token.accessToken; // هنا عشان لو عايز ارجع ال token فى ال session
+      (session as any).accessToken = token.accessToken;
       return session;
     },
   },
   pages: {
     signIn: "/login",
   },
+
+
+
+  
+  // Allows NextAuth to work on Vercel without explicitly setting NEXTAUTH_URL
+  useSecureCookies: process.env.NODE_ENV === "production",
+  cookies: {
+    sessionToken: {
+      name:
+        process.env.NODE_ENV === "production"
+          ? "__Secure-next-auth.session-token"
+          : "next-auth.session-token",
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
+    },
+  },
 };
+
