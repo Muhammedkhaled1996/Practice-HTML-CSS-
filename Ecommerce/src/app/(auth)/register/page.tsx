@@ -47,7 +47,7 @@ export default function RegisterPage() {
     const handleRegister = await handleRegisterSubmitAction(values);
 
     if (handleRegister === "success") {
-      toast.success("Register successfully", {
+      toast.success("Registered Successfully", {
         position: "top-right",
         duration: 2000,
         richColors: true,
@@ -56,7 +56,7 @@ export default function RegisterPage() {
         redirect("/login");
       }, 3000);
     } else {
-      toast.error("Error in register", {
+      toast.error(handleRegister, {
         position: "top-right",
         duration: 2000,
         richColors: true,
@@ -321,7 +321,7 @@ export default function RegisterPage() {
 
               <button className="text-white rounded-xl font-semibold py-2 bg-green-700 hover:bg-green-800 duration-200 transition-colors cursor-pointer w-full flex justify-center items-center gap-3">
                 <FaUserPlus className="text-lg" />
-                <span> Create My Accoun</span>
+                <span> Create My Account</span>
               </button>
             </form>
             <div className="my-5 font-medium">

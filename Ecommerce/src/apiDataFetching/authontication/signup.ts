@@ -1,7 +1,5 @@
 "use server";
 
-import { cookies } from "next/headers";
-
 export interface registerFormValues {
   name: string;
   email: string;

@@ -62,7 +62,7 @@ export default function ReturnsRefundsPage() {
             />
           </div>
           <div className="flex items-center gap-6">
-            <div className="shrink-0 w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-900/30 ring-1 ring-white/30">
+          <div className="shrink-0 w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-green-900/30 ring-1 ring-white/30">
               <FaUndoAlt className="text-4xl" />
             </div>
             <div>

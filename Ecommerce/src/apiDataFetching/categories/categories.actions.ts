@@ -8,9 +8,10 @@ export async function getAllCategories(): Promise<allCategoriesResponce> {
       `https://ecommerce.routemisr.com/api/v1/categories`,
       {
         next: {
-          revalidate: 60,
+          // revalidate: 60,
           tags: ["allCategories"],
         },
+     cache:"no-store"
       },
     );
 

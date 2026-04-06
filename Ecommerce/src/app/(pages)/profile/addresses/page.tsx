@@ -2,7 +2,7 @@ import { getUserAddresses } from "@/src/apiDataFetching/address/address.actions"
 import DialogDemo from "@/src/component/pagesComponents/AddAddress/AddAddress";
 import AddressSkeleton from "@/src/component/pagesComponents/AddressSkeleton/AddressSkeleton";
 import AddAddressButton from "@/src/component/publicComponents/AddAddressBtn/AddAddressBtn";
-import React, { lazy, Suspense } from "react";
+import dynamic from "next/dynamic";
 import { FaLocationDot } from "react-icons/fa6";
 
 export default async function page() {
@@ -10,8 +10,11 @@ export default async function page() {
 
   console.log(userAddresses, "get all user addresses");
 
-  const LazyAddressCards = lazy(
+  const DynamicAddressCards = dynamic(
     () => import("@/src/component/pagesComponents/AddressCard/AddressCard"),
+    {
+      loading: () => <AddressSkeleton />,
+    },
   );
 
   return (
@@ -46,9 +49,7 @@ export default async function page() {
             ))}
         </div>
 
-        <Suspense fallback={<AddressSkeleton />}>
-          <LazyAddressCards userAddresses={userAddresses} />
-        </Suspense>
+        <DynamicAddressCards userAddresses={userAddresses} />
       </main>
     </>
   );

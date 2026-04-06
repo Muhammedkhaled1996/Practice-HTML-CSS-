@@ -23,6 +23,21 @@ export default async function page() {
     data: { totalCartPrice, products },
   } = data;
 
+  let shippingValue = 0;
+  function shippingCalculation() {
+    if (totalCartPrice >= 500) {
+      shippingValue = 0;
+    } else {
+      shippingValue = 50;
+    }
+    return shippingValue;
+  }
+
+  const finalShippingValues = shippingCalculation();
+  const finalShippingPercentage =  (totalCartPrice / 500) * 100;
+
+  console.log(finalShippingPercentage, "finalShippingPercentage");
+
   return (
     <>
       <div className="container px-4 md:px-0">
@@ -79,19 +94,38 @@ export default async function page() {
                   </div>
 
                   <div className="p-6 space-y-5">
-                    <div className="bg-linear-to-r from-green-50 to-emerald-50 rounded-xl p-4 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                        <FaTruck className="text-green-600" />
+                    {finalShippingValues === 0 ? (
+                      <div className="bg-linear-to-r from-green-50 to-emerald-50 rounded-xl p-4 flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                          <FaTruck className="text-green-600" />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-green-700">
+                            Free Shipping!
+                          </p>
+                          <p className="text-sm text-green-600">
+                            You qualify for free delivery
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="font-semibold text-green-700">
-                          Free Shipping!
-                        </p>
-                        <p className="text-sm text-green-600">
-                          You qualify for free delivery
-                        </p>
+                    ) : (
+                      <div className="bg-linear-to-r from-orange-50 to-amber-50 rounded-xl p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <FaTruck className="text-orange-500" />
+
+                          <span className="text-sm font-medium text-gray-700">
+                            Add {finalShippingValues} EGP for free shipping
+                          </span>
+                        </div>
+                        <div className="h-2 bg-orange-100 rounded-full overflow-hidden">
+                          <div
+                            style={{ width: `${finalShippingPercentage}%` }}
+                            className="h-full bg-linear-to-r from-orange-400 to-amber-400 rounded-full transition-all duration-500"
+                          />
+                        </div>
                       </div>
-                    </div>
+                    )}
+
                     <div className="space-y-3">
                       <div className="flex justify-between text-gray-600">
                         <span>Subtotal</span>
@@ -101,7 +135,15 @@ export default async function page() {
                       </div>
                       <div className="flex justify-between text-gray-600">
                         <span>Shipping</span>
-                        <span className="font-medium text-green-600">FREE</span>
+                        {finalShippingValues === 0 ? (
+                          <span className="font-medium text-green-600">
+                            FREE
+                          </span>
+                        ) : (
+                          <span className="font-medium text-gray-900">
+                            {finalShippingValues} EGP
+                          </span>
+                        )}
                       </div>
                       <div className="border-t border-dashed border-gray-200 pt-3 mt-3">
                         <div className="flex justify-between items-baseline">
@@ -110,7 +152,7 @@ export default async function page() {
                           </span>
                           <div className="text-right">
                             <span className="text-2xl font-bold text-gray-900">
-                              {totalCartPrice}
+                              {totalCartPrice + finalShippingValues}
                             </span>
                             <span className="text-sm text-gray-500 ml-1">
                               EGP

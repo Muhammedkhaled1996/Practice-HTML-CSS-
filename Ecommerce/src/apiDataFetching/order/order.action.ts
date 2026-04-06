@@ -18,30 +18,27 @@ export async function handlecheckoutSubmitAction(
   cartId: string,
 ) {
   const token = await getDecodedUserToken();
-  try {
-    const res = await fetch(
-      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${process.env.BASE_URL}`,
-      {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          token: token as string,
-          "Content-Type": "application/json",
-        },
+  const res = await fetch(
+    `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${process.env.BASE_URL}`,
+    {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        token: token as string,
+        "Content-Type": "application/json",
       },
-    );
-    const data = await res.json();
+    },
+  );
+  const data = await res.json();
 
-    if (data.status === "success") {
-      updateTag("userCart");
-      redirect(data.session.url);
-    }
-
-    return data.status || "fail";
-  } catch (error) {
-    console.error("Error in handlecheckoutSubmitAction:", error);
-    return "fail";
+  if (data.status === "success") {
+    updateTag("userCart");
+    redirect(data.session.url);
   }
+
+  console.log(data, "data visa checkout");
+
+  return data.status;
 }
 
 // create cash order
@@ -50,30 +47,25 @@ export async function handleCashOrderSubmitAction(
   cartId: string,
 ) {
   const token = await getDecodedUserToken();
-  try {
-    const res = await fetch(
-      `https://ecommerce.routemisr.com/api/v2/orders/${cartId}`,
-      {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          token: token as string,
-          "Content-Type": "application/json",
-        },
+  const res = await fetch(
+    `https://ecommerce.routemisr.com/api/v2/orders/${cartId}`,
+    {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        token: token as string,
+        "Content-Type": "application/json",
       },
-    );
-    const data = await res.json();
+    },
+  );
+  const data = await res.json();
 
-    if (data.status === "success") {
-      updateTag("userCart");
-      redirect("/");
-    }
-
-    return data.status || "fail";
-  } catch (error) {
-    console.error("Error in handleCashOrderSubmitAction:", error);
-    return "fail";
+  if (data.status === "success") {
+    updateTag("userCart");
+    redirect("/");
   }
+
+  return data.status || "fail";
 }
 
 // {"status":"success",
@@ -84,25 +76,20 @@ export async function handleCashOrderSubmitAction(
 export async function getUserOrders(
   userId: string,
 ): Promise<userOrdersResponce> {
-  try {
-    const responce = await fetch(
-      `https://ecommerce.routemisr.com/api/v1/orders/user/${userId}`,
-      {
-        next: {
-          revalidate: 60,
-          tags: ["allUserOrders"],
-        },
+  const responce = await fetch(
+    `https://ecommerce.routemisr.com/api/v1/orders/user/${userId}`,
+    {
+      next: {
+        // revalidate: 60,
+        tags: ["allUserOrders"],
       },
-    );
+    },
+  );
 
-    if (!responce.ok) {
-      return []; // userOrdersResponce is orderDetails[] (array of objects)
-    }
-
-    const data = await responce.json();
-    return data;
-  } catch (error) {
-    console.error("Error in getUserOrders:", error);
+  if (!responce.ok) {
     return [];
   }
+
+  const data = await responce.json();
+  return data;
 }

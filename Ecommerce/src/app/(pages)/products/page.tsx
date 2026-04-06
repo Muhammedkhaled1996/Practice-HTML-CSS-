@@ -1,11 +1,10 @@
-import { Suspense } from "react";
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
 import LowerInstractions from "@/src/component/publicComponents/LowerInstractions/LowerInstractions";
 import { FaLayerGroup } from "react-icons/fa";
 import SkeletonCards from "@/src/component/publicComponents/SkeletonCards/SkeletonCards";
-import ProductsSection from "@/src/component/pagesComponents/ProductsSection/ProductsSection";
 import { getAllProducts } from "@/src/apiDataFetching/products/products.action";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 export default async function Page({
   searchParams,
@@ -19,6 +18,12 @@ export default async function Page({
   );
 
   const allProductResponce = await getAllProducts(searchParamsValues);
+
+  const DynamicProductsSection = dynamic(
+    () =>
+      import("@/src/component/pagesComponents/ProductsSection/ProductsSection"),
+    { loading: () => <SkeletonCards /> },
+  );
 
   return (
     <>
@@ -75,12 +80,10 @@ export default async function Page({
 
       {/* Products with Suspense */}
       <div className="container mx-auto px-4 py-10">
-        <Suspense fallback={<SkeletonCards />}>
-          <ProductsSection
-            allProductResponce={allProductResponce}
-            searchParamsValues={searchParamsValues}
-          />
-        </Suspense>
+        <DynamicProductsSection
+          allProductResponce={allProductResponce}
+          searchParamsValues={searchParamsValues}
+        />
       </div>
 
       <LowerInstractions />

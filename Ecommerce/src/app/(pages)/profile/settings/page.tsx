@@ -1,8 +1,13 @@
+import { verifyTokenHandler } from "@/src/apiDataFetching/authontication/VerifyToken";
+import UserDataForm from "@/src/component/pagesComponents/UserDataForm/UserDataForm";
+import UserPasswordForm from "@/src/component/pagesComponents/UserPasswordForm/UserPasswordForm";
 import React from "react";
 import { FaLock, FaRegEye, FaUser } from "react-icons/fa";
 import { FaFloppyDisk } from "react-icons/fa6";
 
-export default function page() {
+export default async function page() {
+  const userData = await verifyTokenHandler();
+
   return (
     <>
       <main className="flex-1 min-w-0">
@@ -30,52 +35,9 @@ export default function page() {
                   </p>
                 </div>
               </div>
+
               {/* Profile Information Form */}
-              <form className="space-y-5">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    placeholder="Enter your name"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition-all"
-                    required
-                    type="text"
-                    defaultValue="muhammed"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    placeholder="Enter your email"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition-all"
-                    required
-                    type="email"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    placeholder="01xxxxxxxxx"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition-all"
-                    required
-                    type="tel"
-                  />
-                </div>
-                <div className="pt-4">
-                  <button
-                    type="submit"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors disabled:opacity-50 shadow-lg shadow-green-600/25"
-                  >
-                    <FaFloppyDisk />
-                    Save Changes
-                  </button>
-                </div>
-              </form>
+              <UserDataForm />
               {/* End Profile Information Form */}
             </div>
             <div className="p-6 sm:p-8 bg-gray-50">
@@ -85,12 +47,14 @@ export default function page() {
               <div className="space-y-3 text-sm">
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500">User ID</span>
-                  <span className="font-mono text-gray-700">—</span>
+                  <span className="font-mono text-gray-700">
+                    {userData ? userData.decoded.id : "_"}
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500">Role</span>
                   <span className="px-3 py-1 rounded-lg bg-green-100 text-green-700 font-medium capitalize">
-                    user
+                    {userData ? userData.decoded.role : "User"}
                   </span>
                 </div>
               </div>
@@ -111,78 +75,7 @@ export default function page() {
               </div>
 
               {/* Change Password Form */}
-              <form className="space-y-5">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Current Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      placeholder="Enter your current password"
-                      className="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition-all"
-                      required
-                      type="password"
-                    />
-                    <button
-                      type="button"
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                    >
-                      <FaRegEye />
-                    </button>
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    New Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      placeholder="Enter your new password"
-                      className="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition-all"
-                      required
-                      minLength={6}
-                      type="password"
-                    />
-                    <button
-                      type="button"
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                    >
-                      <FaRegEye />
-                    </button>
-                  </div>
-                  <p className="text-xs text-gray-500 mt-1">
-                    Must be at least 6 characters
-                  </p>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Confirm New Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      placeholder="Confirm your new password"
-                      className="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition-all"
-                      required
-                      type="password"
-                    />
-                    <button
-                      type="button"
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                    >
-                      <FaRegEye />
-                    </button>
-                  </div>
-                </div>
-                <div className="pt-4">
-                  <button
-                    type="submit"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-600 text-white font-semibold hover:bg-amber-700 transition-colors disabled:opacity-50 shadow-lg shadow-amber-600/25"
-                  >
-                    <FaLock />
-                    Change Password
-                  </button>
-                </div>
-              </form>
+             <UserPasswordForm />
               {/* End Change Password Form */}
             </div>
           </div>

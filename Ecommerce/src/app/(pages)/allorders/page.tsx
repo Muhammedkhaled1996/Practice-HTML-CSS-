@@ -12,10 +12,12 @@ import {
   FaMoneyBill,
   FaTruck,
   FaCreditCard,
+  FaShoppingCart,
 } from "react-icons/fa";
 
 import { FaCalendarDays, FaLocationDot } from "react-icons/fa6";
 import { redirect } from "next/navigation";
+import EmptyOrders from "@/src/component/pagesComponents/EmptyOrders/EmptyOrders";
 
 export default async function AllOrdersPage() {
   const data = await verifyTokenHandler();
@@ -62,11 +64,17 @@ export default async function AllOrdersPage() {
                 My Orders
               </h1>
               <p className="text-gray-500 text-sm">
-                Track and manage your 7 orders
+                {userOrders.length > 0
+                  ? `Track and manage your ${userOrders.length} orders`
+                  : "No orders yet"}
               </p>
             </div>
           </div>
         </div>
+
+        {userOrders && userOrders.length === 0 && (
+          <EmptyOrders/>
+        )}
 
         {/*  */}
 

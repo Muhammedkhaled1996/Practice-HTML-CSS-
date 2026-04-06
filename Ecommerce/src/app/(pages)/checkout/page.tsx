@@ -2,13 +2,10 @@ import { getUserCart } from "@/src/apiDataFetching/cart/cart.actions";
 import CheckoutSection from "@/src/component/pagesComponents/CheckoutSection/CheckoutSection";
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
 import Link from "next/link";
-import React from "react";
 import { FaExclamationTriangle, FaReceipt } from "react-icons/fa";
 
 export default async function page() {
   const cartResponce = await getUserCart();
-
-  // console.log(cartResponce, "cartResponce from checkout page");
 
   return (
     <>

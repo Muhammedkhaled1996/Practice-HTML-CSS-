@@ -1,11 +1,12 @@
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
 import LowerInstractions from "@/src/component/publicComponents/LowerInstractions/LowerInstractions";
-import React, { Suspense, lazy } from "react";
 import { FaLayerGroup } from "react-icons/fa";
 import SkeletonCards from "@/src/component/publicComponents/SkeletonCards/SkeletonCards";
+import dynamic from "next/dynamic";
 
-const LazyBrandsSection = lazy(
-  () => import("@/src/component/pagesComponents/BrandsSection/BrandsSection")
+const DynamicBrandsSection = dynamic(
+  () => import("@/src/component/pagesComponents/BrandsSection/BrandsSection"),
+  { loading: () => <SkeletonCards /> },
 );
 
 export default async function page() {
@@ -40,9 +41,7 @@ export default async function page() {
       </div>
 
       <div className="container mx-auto px-4 py-10">
-        <Suspense fallback={<SkeletonCards />}>
-          <LazyBrandsSection />
-        </Suspense>
+        <DynamicBrandsSection />
       </div>
 
       <LowerInstractions />

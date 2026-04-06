@@ -49,7 +49,7 @@ export default function AutoSlider({ slides, className }: Props) {
         {slides.map((slide, index) => (
           <SwiperSlide
             key={index}
-            className="flex items-center justify-center bg-gray-700 text-white text-lg"
+            className="relative flex items-center justify-center bg-gray-700 text-white text-lg"
           >
             {slide}
           </SwiperSlide>

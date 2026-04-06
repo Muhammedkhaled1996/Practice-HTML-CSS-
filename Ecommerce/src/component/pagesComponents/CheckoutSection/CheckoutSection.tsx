@@ -204,10 +204,6 @@ export default function CheckoutSection({
                     </Field>
                   )}
                 />
-
-                {/* <FaCity /> */}
-                {/* <FaLocationDot /> */}
-                {/*  <FaPhoneAlt /> */}
               </form>
             </div>
           </div>

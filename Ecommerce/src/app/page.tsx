@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import AutoSlider from "../components/ui/AutoSlider";
 import cart from "@/src/assets/images/freshcartpic.png";
 import Image from "next/image";
@@ -18,18 +18,31 @@ import { FaArrowRotateLeft } from "react-icons/fa6";
 import Link from "next/link";
 import LowerInstractions from "../component/publicComponents/LowerInstractions/LowerInstractions";
 import SkeletonCards from "../component/publicComponents/SkeletonCards/SkeletonCards";
-
-const LazyCategoryHomePage = lazy(
-  () =>
-    import("../component/pagesComponents/CategoryHomePage/CategoryHomePage"),
-);
-
-const LazyAllProductsHomePage = lazy(
-  () =>
-    import("../component/pagesComponents/AllProductsHomePage/AllProductsHomePage"),
-);
+import dynamic from "next/dynamic";
 
 export default async function Home() {
+  //   const LazyCategoriesComponent = lazy(
+  //     () =>
+  //       import("../component/pagesComponents/CategoryHomePage/CategoryHomePage"),
+  //   );
+
+  const DynamicCategoriesComponent = dynamic(
+    () =>
+      import("../component/pagesComponents/CategoryHomePage/CategoryHomePage"),
+    {
+      loading: () => <SkeletonCards />,
+    },
+  );
+  const DynamicProductsComponent = dynamic(
+    () =>
+      import("../component/pagesComponents/AllProductsHomePage/AllProductsHomePage"),
+    {
+      loading: () => <SkeletonCards />,
+    },
+  );
+
+  dynamic;
+
   return (
     <>
       {/* slider */}
@@ -40,10 +53,10 @@ export default async function Home() {
               <Image
                 src={cart}
                 alt="cart"
-                className="relative w-full h-full object-cover"
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-linear-to-r from-green-600/80 to-green-400/60"></div>
-              <div className="absolute md:top-13 md:left-30 md:translate-0 top-[50%] left-[50%] -translate-1/2 font-bold text-4xl text-white w-full p-4 max-md:flex max-md:flex-col max-md:justify-center max-md:items-center ">
+              <div className=" absolute md:top-13 md:left-30 md:translate-0 top-[50%] left-[50%] -translate-1/2 font-bold text-4xl text-white w-full p-4 max-md:flex max-md:flex-col max-md:justify-center max-md:items-center ">
                 <p className="max-md:text-center">Fresh Product Delivered</p>
                 <span>to your Door</span>
                 <br className="max-md:hidden" />
@@ -211,9 +224,8 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-        <Suspense fallback={<SkeletonCards />}>
-          <LazyCategoryHomePage />
-        </Suspense>
+
+        <DynamicCategoriesComponent />
       </div>
       {/* offers */}
       <section className="py-10 px-4 md:px-0">
@@ -248,7 +260,7 @@ export default async function Home() {
                   href="/products"
                 >
                   Shop Now
-                 <FaArrowRight />
+                  <FaArrowRight />
                 </Link>
               </div>
             </div>
@@ -300,9 +312,8 @@ export default async function Home() {
           </div>
         </div>
         {/* all products */}
-        <Suspense fallback={<SkeletonCards />}>
-          <LazyAllProductsHomePage />
-        </Suspense>
+
+        <DynamicProductsComponent />
       </div>
 
       {/* contact us */}
