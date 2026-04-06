@@ -56,13 +56,13 @@ export default function CheckoutSection({
       setNumOfCartItems(0);
       const handleRegister = await handleCashOrderSubmitAction(
         values,
-        cartResponce.data._id,
+        cartResponce?.data?._id,
       );
     } else {
       setNumOfCartItems(0);
       const handleRegister = await handlecheckoutSubmitAction(
         values,
-        cartResponce.data._id,
+        cartResponce?.data?._id,
       );
     }
 
@@ -318,13 +318,13 @@ export default function CheckoutSection({
                 Order Summary
               </h2>
               <p className="text-green-100 text-sm mt-1">
-                {cartResponce.data.products.length} items
+                {cartResponce?.data?.products?.length} items
               </p>
             </div>
             <div className="p-5">
               <div className="space-y-3 max-h-56 overflow-y-auto mb-5 pr-1">
                 {cartResponce?.data &&
-                  cartResponce.data.products.map((product) => (
+                  cartResponce?.data?.products?.map((product) => (
                     <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
                       <div className="w-14 h-14 rounded-lg bg-white p-1 border border-gray-100 shrink-0">
                         <Image
@@ -354,7 +354,7 @@ export default function CheckoutSection({
                 <div className="flex justify-between text-gray-600">
                   <span>Subtotal</span>
                   <span className="font-medium">
-                    {cartResponce.data.totalCartPrice} EGP
+                    {cartResponce?.data?.totalCartPrice} EGP
                   </span>
                 </div>
                 <div className="flex justify-between text-gray-600">
@@ -369,7 +369,7 @@ export default function CheckoutSection({
                   <span className="text-lg font-bold text-gray-900">Total</span>
                   <div className="text-right">
                     <span className="text-2xl font-bold text-green-600">
-                      {cartResponce.data.totalCartPrice}
+                      {cartResponce?.data?.totalCartPrice}
                     </span>
                     <span className="text-sm text-gray-500 ml-1">EGP</span>
                   </div>

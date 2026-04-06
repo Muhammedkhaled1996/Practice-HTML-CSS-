@@ -23,7 +23,7 @@ export default function CartWrapper({ products }: Props) {
     try {
       const data = await clearCart();
 
-      if (data.status === "success") {
+      if (data?.status === "success") {
         toast.success(data.message);
       } else {
         toast.error(data.message);
@@ -48,7 +48,7 @@ export default function CartWrapper({ products }: Props) {
         ) : (
           <Suspense fallback={<div className="flex justify-center py-6"><Spinner /></div>}>
             {products &&
-              products.map((product) => (
+              products?.map((product) => (
                 <LazyCartItem key={product._id} product={product} />
               ))}
           </Suspense>

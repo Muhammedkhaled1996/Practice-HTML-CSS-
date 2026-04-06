@@ -4,6 +4,8 @@ import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBre
 import Link from "next/link";
 import { FaExclamationTriangle, FaReceipt } from "react-icons/fa";
 
+export const dynamic = "force-dynamic";
+
 export default async function page() {
   const cartResponce = await getUserCart();
 
@@ -12,7 +14,7 @@ export default async function page() {
       <div className="container">
         {/* breadcrumb section */}
 
-        {cartResponce.data.products.length > 0 && cartResponce ? (
+        {cartResponce?.data?.products?.length > 0 && cartResponce ? (
           <>
             <div>
               <div className="mt-4">

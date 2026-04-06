@@ -12,16 +12,17 @@ import {
 } from "react-icons/fa";
 import { FaShieldHalved } from "react-icons/fa6";
 
+export const dynamic = "force-dynamic";
+
 export default async function page() {
   // const session = await getServerSession(NextAuthConfig);
   // console.log(session, "session from cart page");
 
   const data = await getUserCart();
 
-  const {
-    numOfCartItems,
-    data: { totalCartPrice, products },
-  } = data;
+  const numOfCartItems = data?.numOfCartItems ?? 0;
+  const totalCartPrice = data?.data?.totalCartPrice ?? 0;
+  const products = data?.data?.products ?? [];
 
   let shippingValue = 0;
   function shippingCalculation() {
@@ -34,9 +35,7 @@ export default async function page() {
   }
 
   const finalShippingValues = shippingCalculation();
-  const finalShippingPercentage =  (totalCartPrice / 500) * 100;
-
-  console.log(finalShippingPercentage, "finalShippingPercentage");
+  const finalShippingPercentage = (totalCartPrice / 500) * 100;
 
   return (
     <>
@@ -72,7 +71,7 @@ export default async function page() {
             </div>
           </div>
         </div>
-        {numOfCartItems === 0 || data.status !== "success" ? (
+        {numOfCartItems === 0 || data?.status !== "success" ? (
           <EmptyCart />
         ) : (
           <>

@@ -19,6 +19,8 @@ import { FaCalendarDays, FaLocationDot } from "react-icons/fa6";
 import { redirect } from "next/navigation";
 import EmptyOrders from "@/src/component/pagesComponents/EmptyOrders/EmptyOrders";
 
+export const dynamic = "force-dynamic";
+
 export default async function AllOrdersPage() {
   const data = await verifyTokenHandler();
 

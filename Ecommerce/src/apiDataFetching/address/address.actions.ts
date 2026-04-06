@@ -20,19 +20,22 @@ export async function addAddressAction(
 ): Promise<AddAddressResponce> {
   const token = await getDecodedUserToken();
   try {
-    const res = await fetch(`https://ecommerce.routemisr.com/api/v1/addresses`, {
-      method: "POST",
-      headers: {
-        token: token as string,
-        "Content-Type": "application/json",
+    const res = await fetch(
+      `https://ecommerce.routemisr.com/api/v1/addresses`,
+      {
+        method: "POST",
+        headers: {
+          token: token as string,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: values.name,
+          details: values.details,
+          phone: values.phone,
+          city: values.city,
+        }),
       },
-      body: JSON.stringify({
-        name: values.name,
-        details: values.details,
-        phone: values.phone,
-        city: values.city,
-      }),
-    });
+    );
     const data = await res.json();
 
     if (data.status === "success") {
@@ -53,26 +56,17 @@ export async function addAddressAction(
 // get all user addresses
 export async function getUserAddresses(): Promise<allUserAddressResponce> {
   const token = await getDecodedUserToken();
-  try {
-    const res = await fetch("https://ecommerce.routemisr.com/api/v1/addresses", {
-      headers: {
-        token: token as string,
-      },
-      next: {
-        tags: ["userAddresses"],
-      },
-      cache: "no-store",
-    });
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error("Error in getUserAddresses:", error);
-    return {
-      status: "fail",
-      results: 0,
-      data: [],
-    };
-  }
+  const res = await fetch("https://ecommerce.routemisr.com/api/v1/addresses", {
+    headers: {
+      token: token as string,
+    },
+    next: {
+      tags: ["userAddresses"],
+    },
+    cache: "no-store",
+  });
+  const data = await res.json();
+  return data;
 }
 
 // get specific addresses
@@ -100,32 +94,23 @@ export async function deleteUserAddress(
 ): Promise<allUserAddressResponce> {
   const token = await getDecodedUserToken();
 
-  try {
-    const res = await fetch(
-      `https://ecommerce.routemisr.com/api/v1/addresses/${addressId}`,
-      {
-        method: "DELETE",
-        headers: {
-          token: token as string,
-          "Content-Type": "application/json",
-        },
+  const res = await fetch(
+    `https://ecommerce.routemisr.com/api/v1/addresses/${addressId}`,
+    {
+      method: "DELETE",
+      headers: {
+        token: token as string,
+        "Content-Type": "application/json",
       },
-    );
+    },
+  );
 
-    const data = await res.json();
+  const data = await res.json();
 
-    if (data.status === "success") {
-      updateTag("userAddresses");
-      revalidatePath("/profile/addresses");
-    }
-
-    return data;
-  } catch (error) {
-    console.error("Error in deleteUserAddress:", error);
-    return {
-      status: "fail",
-      results: 0,
-      data: [],
-    };
+  if (data.status === "success") {
+    updateTag("userAddresses");
+    revalidatePath("/profile/addresses");
   }
+
+  return data;
 }

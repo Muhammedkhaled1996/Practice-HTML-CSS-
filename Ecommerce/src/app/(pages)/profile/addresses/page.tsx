@@ -2,15 +2,17 @@ import { getUserAddresses } from "@/src/apiDataFetching/address/address.actions"
 import DialogDemo from "@/src/component/pagesComponents/AddAddress/AddAddress";
 import AddressSkeleton from "@/src/component/pagesComponents/AddressSkeleton/AddressSkeleton";
 import AddAddressButton from "@/src/component/publicComponents/AddAddressBtn/AddAddressBtn";
-import dynamic from "next/dynamic";
+import nextDynamic from "next/dynamic";
 import { FaLocationDot } from "react-icons/fa6";
+
+export const dynamic = "force-dynamic";
 
 export default async function page() {
   const userAddresses = await getUserAddresses();
 
   console.log(userAddresses, "get all user addresses");
 
-  const DynamicAddressCards = dynamic(
+  const DynamicAddressCards = nextDynamic(
     () => import("@/src/component/pagesComponents/AddressCard/AddressCard"),
     {
       loading: () => <AddressSkeleton />,
