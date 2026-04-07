@@ -36,11 +36,15 @@ export default function AddToCartButton({ productId }: { productId: string }) {
     <>
       <button
         disabled={loading}
-        className="h-10 w-10 rounded-full flex items-center justify-center transition bg-green-600 text-white hover:bg-green-700 disabled:opacity-70 cursor-pointer disabled:cursor-not-allowed disabled:bg-green-200"
+        className="md:size-10 md:ms-2 shrink-0 w-full h-8 rounded-lg md:rounded-full flex items-center justify-center transition bg-green-600 text-white hover:bg-green-700 disabled:opacity-70 cursor-pointer disabled:cursor-not-allowed disabled:bg-green-200"
         onClick={handleAddToCart}
       >
         {loading && <Spinner className="text-5xla text-green-500" />}
-        {!loading && <TiPlus />}
+        {!loading && (
+          <div className="flex justify-center items-center gap-3 font-semibold">
+            <TiPlus /> <span className="text-sm md:hidden">Add To Cart</span>
+          </div>
+        )}
       </button>
     </>
   );

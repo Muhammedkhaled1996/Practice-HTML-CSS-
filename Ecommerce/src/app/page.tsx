@@ -21,11 +21,6 @@ import SkeletonCards from "../component/publicComponents/SkeletonCards/SkeletonC
 import dynamic from "next/dynamic";
 
 export default async function Home() {
-  //   const LazyCategoriesComponent = lazy(
-  //     () =>
-  //       import("../component/pagesComponents/CategoryHomePage/CategoryHomePage"),
-  //   );
-
   const DynamicCategoriesComponent = dynamic(
     () =>
       import("../component/pagesComponents/CategoryHomePage/CategoryHomePage"),
@@ -40,8 +35,6 @@ export default async function Home() {
       loading: () => <SkeletonCards />,
     },
   );
-
-  dynamic;
 
   return (
     <>
@@ -60,10 +53,10 @@ export default async function Home() {
                 <p className="max-md:text-center">Fresh Product Delivered</p>
                 <span>to your Door</span>
                 <br className="max-md:hidden" />
-                <span className="text-lg my-4 font-normal">
+                <span className="text-lg mt-4 font-normal">
                   Get 20% off your first order{" "}
                 </span>
-                <div className="flex  items-center gap-3 mt-6 ">
+                <div className="flex  items-center gap-3 mt-4 ">
                   <Link
                     href={"/products"}
                     className="px-3 py-2 text-2xl rounded-xl cursor-pointer bg-white text-green-600 hover:scale-105 duration-200 transition-all"
@@ -143,7 +136,7 @@ export default async function Home() {
       {/*  */}
       <div className="bg-gray-50">
         <div className="container py-6 px-4 md:px-0">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
             <div
               className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
               style={{ opacity: 1, transform: "none" }}
@@ -224,7 +217,6 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-
         <DynamicCategoriesComponent />
       </div>
       {/* offers */}
@@ -300,11 +292,10 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
       {/* all products */}
       <div className="container px-4 md:px-0 ">
         <div className="flex flex-col sm:flex-row justify-between sm:items-center">
-          <div className="flex  items-center gap-3 my-4">
+          <div className="flex items-center gap-3 my-4">
             <div className="h-8 w-1.5 bg-linear-to-b from-emerald-500 to-emerald-700 rounded-full" />
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
               Featured <span className="text-emerald-600">Products</span>

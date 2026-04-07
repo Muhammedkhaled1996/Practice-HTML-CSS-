@@ -49,10 +49,11 @@ export default function DeleteItemDialog({
       <AlertDialog>
         <AlertDialogTrigger asChild>
           <button
-            className="h-10 w-10 rounded-xl border border-red-200 bg-red-50 text-red-500 hover:bg-red-500 hover:text-white hover:border-red-500 flex items-center justify-center disabled:opacity-40 transition-all duration-200 cursor-pointer"
+            className="py-1 px-2 gap-2 rounded-xl border border-red-200 bg-red-50 text-red-500 hover:bg-red-500 hover:text-white hover:border-red-500 flex items-center justify-center disabled:opacity-40 transition-all duration-200 cursor-pointer"
             title="Remove item"
           >
             <FaTrash className="text-sm" />
+            <span className="font-semibold text-sm">Remove</span>
           </button>
         </AlertDialogTrigger>
         <AlertDialogContent size="sm">

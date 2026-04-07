@@ -19,8 +19,8 @@ export default async function page() {
         <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-white/10 blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-1/4 w-40 h-40 rounded-full bg-white/5 blur-2xl pointer-events-none" />
 
-        <div className="container px-4 md:px-0 py-12 sm:py-16 relative">
-          <div className="my-4">
+        <div className="container px-4 md:px-0 py-8 relative">
+          <div className="mb-4">
             <AppBreadcrumb
               items={[{ label: "Home", href: "/" }]}
               current="Categories"

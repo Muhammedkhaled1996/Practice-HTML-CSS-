@@ -11,13 +11,13 @@ export default async function page() {
 
   return (
     <>
-      <div className="container">
+      <div className="container px-4 md:px-0 py-8 ">
         {/* breadcrumb section */}
 
         {cartResponce?.data?.products?.length > 0 && cartResponce ? (
           <>
             <div>
-              <div className="mt-4">
+              <div className="mb-4">
                 <AppBreadcrumb
                   items={[
                     { label: "Home", href: "/" },
@@ -32,7 +32,7 @@ export default async function page() {
               </div>
 
               {/* bottom Section  */}
-              <div className="flex items-center justify-between mt-5">
+              <div className="flex items-center justify-between">
                 <div>
                   <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                     <span className="bg-linear-to-r from-green-600 to-green-700 text-white w-12 h-12 rounded-lg flex items-center justify-center">

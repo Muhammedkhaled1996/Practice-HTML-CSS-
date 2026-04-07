@@ -20,6 +20,8 @@ export default async function page({
     Object.entries(rawParams || {}).map(([key, value]) => [key, value ?? ""]),
   );
 
+  console.log(searchParamsValues, "searchParamsValues");
+
   // get searched products
   const allProductResponce = await getAllProducts(searchParamsValues);
 

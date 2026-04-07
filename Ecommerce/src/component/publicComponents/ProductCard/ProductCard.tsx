@@ -16,7 +16,7 @@ export function ProductCard({ product }: { product: Product }) {
       >
         <div className="relative">
           <Image
-            className="w-full h-60 object-contain bg-white"
+            className="w-full h-50 md:h-65  object-cover object-center bg-white"
             alt={product.slug}
             src={product.imageCover}
             width={200}
@@ -57,11 +57,11 @@ export function ProductCard({ product }: { product: Product }) {
             {product.category.name}
           </div>
           <h3
-            className="font-medium mb-1 cursor-pointer h-11"
+            className="font-medium mb-1 text-sm cursor-pointer h-auto md:h-11"
             title={product.slug}
           >
             <Link
-              className="line-clamp-2 text-sm "
+              className="md:line-clamp-2 line-clamp-1 text-sm "
               href={`/product/${product._id}`}
             >
               {product.title}
@@ -71,19 +71,19 @@ export function ProductCard({ product }: { product: Product }) {
             <Rating rating={product.ratingsAverage} />
             <span className="text-xs text-gray-500">{`${product.ratingsAverage} (${product.ratingsQuantity})`}</span>
           </div>
-          <div className="flex items-center justify-between">
-            <div>
+          <div className="flex-col md:flex-row flex items-center justify-between">
+            <div className=" flex items-center justify-between md:justify-start my-1 md:my-0 w-full">
               {product.priceAfterDiscount ? (
                 <>
-                  <span className="text-lg font-bold text-green-600">
+                  <span className="  md:text-lg font-bold text-green-600">
                     {product.priceAfterDiscount} EGP
                   </span>
-                  <span className="text-sm text-gray-500 line-through ml-2">
+                  <span className="text-[12px] md:text-sm text-gray-500 line-through ml-2">
                     {product.price} EGP
                   </span>
                 </>
               ) : (
-                <span className="text-lg font-bold text-green-600">
+                <span className=" md:text-lg font-bold text-green-600">
                   {product.price} EGP
                 </span>
               )}

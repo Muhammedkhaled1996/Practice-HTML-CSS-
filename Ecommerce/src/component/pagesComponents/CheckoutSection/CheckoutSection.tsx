@@ -352,7 +352,10 @@ export default function CheckoutSection({
               <hr className="border-gray-100 my-4" />
               <div className="space-y-3">
                 <div className="flex justify-between text-gray-600">
-                  <span>Subtotal</span>
+                  <span>
+                    Subtotal{" "}
+                    <span className="text-[12px] ">Not Including Taxes</span>
+                  </span>
                   <span className="font-medium">
                     {cartResponce?.data?.totalCartPrice} EGP
                   </span>
@@ -362,14 +365,22 @@ export default function CheckoutSection({
                     <FaTruck />
                     Shipping
                   </span>
-                  <span className="text-green-600 font-semibold">FREE</span>
+                  <span className="text-green-600 font-semibold">
+                    {paymentMethod === "cash" ? (
+                      <div>100 EGP</div>
+                    ) : (
+                      <div>Free</div>
+                    )}
+                  </span>
                 </div>
                 <hr className="border-gray-100" />
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-bold text-gray-900">Total</span>
                   <div className="text-right">
                     <span className="text-2xl font-bold text-green-600">
-                      {cartResponce?.data?.totalCartPrice}
+                      {paymentMethod === "cash"
+                        ? cartResponce?.data?.totalCartPrice + 100
+                        : cartResponce?.data?.totalCartPrice}
                     </span>
                     <span className="text-sm text-gray-500 ml-1">EGP</span>
                   </div>

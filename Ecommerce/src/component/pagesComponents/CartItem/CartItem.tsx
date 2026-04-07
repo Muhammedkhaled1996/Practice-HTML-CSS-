@@ -165,7 +165,7 @@ export default function CartItem({ product }: Props) {
           <div className="p-4 sm:p-5">
             <div className="flex gap-4 sm:gap-6">
               <Link
-                className="relative shrink-0 group"
+                className="relative flex justify-center items-center shrink-0 group"
                 href={`/product/${product.product._id}`}
               >
                 <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-xl bg-linear-to-br from-gray-50 via-white to-gray-100 p-3 border border-gray-100 overflow-hidden">
@@ -210,8 +210,8 @@ export default function CartItem({ product }: Props) {
                     <span className="text-xs text-gray-400">per unit</span>
                   </div>
                 </div>
-                <div className="mt-auto flex flex-wrap items-center justify-between gap-4">
-                  <div className="flex items-center">
+                <div className="mt-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center self-start md:self-auto">
                     <div className="flex items-center bg-gray-50 rounded-xl p-1 border border-gray-200">
                       <button
                         onClick={() =>
@@ -237,8 +237,8 @@ export default function CartItem({ product }: Props) {
                       </button>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="text-right">
+                  <div className="flex items-center justify-between w-full md:w-auto gap-4">
+                    <div>
                       <p className="text-xs text-gray-400 mb-0.5">Total</p>
                       <p className="text-xl font-bold text-gray-900">
                         {product.count * product.price}{" "}

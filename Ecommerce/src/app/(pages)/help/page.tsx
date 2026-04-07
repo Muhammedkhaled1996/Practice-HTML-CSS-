@@ -47,8 +47,8 @@ export default function HelpPage() {
     <>
       {/* Hero Section */}
       <div className="green-gradiant text-white">
-        <div className="container mx-auto px-4 py-12 sm:py-16">
-          <div className="my-4">
+        <div className="container px-4 md:px-0 py-8">
+          <div className="mb-4">
             <AppBreadcrumb
               items={[{ label: "Home", href: "/" }]}
               current="Help"

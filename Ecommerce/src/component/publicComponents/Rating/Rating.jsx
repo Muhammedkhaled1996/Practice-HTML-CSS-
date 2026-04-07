@@ -10,7 +10,7 @@ export default function Rating({ rating }) {
           return (
             <FaStar
               key={star}
-              className="w-5 h-5 text-yellow-400 fill-yellow-400"
+              className="md:w-5 md:h-5 w-4 h-4 text-yellow-400 fill-yellow-400"
             />
           );
         }
@@ -18,20 +18,20 @@ export default function Rating({ rating }) {
         // Half Star
         if (star - rating < 1) {
           return (
-            <div key={star} className="relative w-5 h-5">
+            <div key={star} className="relative md:w-5 md:h-5 w-4 h-4">
               {/* Empty Star */}
-              <FaStar className="absolute w-5 h-5 text-gray-300" />
+              <FaStar className="absolute md:w-5 md:h-5 w-4 h-4 text-gray-300" />
 
               {/* Half Fill */}
               <div className="absolute overflow-hidden w-1/2">
-                <FaStar className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                <FaStar className="md:w-5 md:h-5 w-4 h-4 text-yellow-400 fill-yellow-400" />
               </div>
             </div>
           );
         }
 
         // Empty Star
-        return <FaStar key={star} className="w-5 h-5 text-gray-300" />;
+        return <FaStar key={star} className="md:w-5 md:h-5 w-4 h-4 text-gray-300" />;
       })}
     </div>
   );

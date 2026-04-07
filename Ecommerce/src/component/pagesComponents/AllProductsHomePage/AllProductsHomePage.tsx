@@ -7,7 +7,7 @@ export default async function AllProductsHomePage() {
   const allProductResponce = await getAllProducts({});
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 my-2">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-3 my-2">
       {allProductResponce?.data?.length > 0 ? (
         allProductResponce?.data?.map((product: Product) => (
           <ProductCard key={product._id} product={product} />

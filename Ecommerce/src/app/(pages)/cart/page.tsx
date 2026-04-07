@@ -29,7 +29,7 @@ export default async function page() {
     if (totalCartPrice >= 500) {
       shippingValue = 0;
     } else {
-      shippingValue = 50;
+      shippingValue = 100;
     }
     return shippingValue;
   }
@@ -39,10 +39,10 @@ export default async function page() {
 
   return (
     <>
-      <div className="container px-4 md:px-0">
+      <div className="container  px-4 md:px-0 py-8">
         {/* breadcrumb section */}
         <div>
-          <div className="mt-4">
+          <div className="mb-4">
             <AppBreadcrumb
               items={[{ label: "Home", href: "/" }]}
               current="Shopping Cart"
@@ -53,7 +53,7 @@ export default async function page() {
             />
           </div>
 
-          <div className="flex items-center justify-between mt-5">
+          <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                 <span className="bg-linear-to-r from-green-600 to-green-700 text-white w-12 h-12 rounded-lg flex items-center justify-center">
@@ -100,7 +100,7 @@ export default async function page() {
                         </div>
                         <div>
                           <p className="font-semibold text-green-700">
-                            Free Shipping!
+                            Free Shipping For Online Payment!
                           </p>
                           <p className="text-sm text-green-600">
                             You qualify for free delivery
@@ -112,8 +112,9 @@ export default async function page() {
                         <div className="flex items-center gap-2 mb-2">
                           <FaTruck className="text-orange-500" />
 
-                          <span className="text-sm font-medium text-gray-700">
-                            Add {finalShippingValues} EGP for free shipping
+                          <span className="text-[12px] font-medium text-gray-700">
+                            Add {finalShippingValues} EGP for free shipping With
+                            Cash Payment
                           </span>
                         </div>
                         <div className="h-2 bg-orange-100 rounded-full overflow-hidden">
@@ -127,12 +128,18 @@ export default async function page() {
 
                     <div className="space-y-3">
                       <div className="flex justify-between text-gray-600">
-                        <span>Subtotal</span>
-                        <span className="font-medium text-gray-900">
-                          {totalCartPrice} EGP
+                        <span>
+                          Subtotal{" "}
+                          <span className="text-[10px]">
+                            Not Including Taxes
+                          </span>
+                        </span>
+                        <span className="font-medium text-lg text-gray-900">
+                          {totalCartPrice}{" "}
+                          <span className="text-[12px]">EGP</span>
                         </span>
                       </div>
-                      <div className="flex justify-between text-gray-600">
+                      {/* <div className="flex justify-between text-gray-600">
                         <span>Shipping</span>
                         {finalShippingValues === 0 ? (
                           <span className="font-medium text-green-600">
@@ -143,11 +150,30 @@ export default async function page() {
                             {finalShippingValues} EGP
                           </span>
                         )}
-                      </div>
+                      </div> */}
                       <div className="border-t border-dashed border-gray-200 pt-3 mt-3">
                         <div className="flex justify-between items-baseline">
                           <span className="text-gray-900 font-semibold">
-                            Total
+                            Total{" "}
+                            <span className="text-[10px] font-normal">
+                              With Visa Payment
+                            </span>
+                          </span>
+                          <div className="text-right">
+                            <span className="text-2xl font-bold text-gray-900">
+                              {totalCartPrice}
+                            </span>
+                            <span className="text-sm text-gray-500 ml-1">
+                              EGP
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-baseline">
+                          <span className="text-gray-900 font-semibold">
+                            Total{" "}
+                            <span className="text-[10px] font-normal">
+                              With Cash Payment
+                            </span>
                           </span>
                           <div className="text-right">
                             <span className="text-2xl font-bold text-gray-900">

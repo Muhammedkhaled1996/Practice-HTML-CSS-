@@ -12,7 +12,6 @@ import {
   FaMoneyBill,
   FaTruck,
   FaCreditCard,
-  FaShoppingCart,
 } from "react-icons/fa";
 
 import { FaCalendarDays, FaLocationDot } from "react-icons/fa6";
@@ -40,12 +39,11 @@ export default async function AllOrdersPage() {
 
   return (
     <div
-      className="container px-4 md:px-0
-"
+      className="container px-4 md:px-0 py-4"
     >
       {/* breadcrumb section */}
       <div>
-        <div className="mt-4">
+        <div className="my-4">
           <AppBreadcrumb
             items={[{ label: "Home", href: "/" }]}
             current="My Orders"
@@ -56,7 +54,7 @@ export default async function AllOrdersPage() {
           />
         </div>
 
-        <div className="flex items-center justify-between mt-5">
+        <div className="flex items-center justify-between">
           <div className="flex gap-3 items-center justify-center">
             <span className="bg-linear-to-r from-green-600 to-green-700 text-white w-12 h-12 rounded-lg flex items-center justify-center">
               <FaBox className="text-lg" />
@@ -74,9 +72,7 @@ export default async function AllOrdersPage() {
           </div>
         </div>
 
-        {userOrders && userOrders.length === 0 && (
-          <EmptyOrders/>
-        )}
+        {userOrders && userOrders.length === 0 && <EmptyOrders />}
 
         {/*  */}
 

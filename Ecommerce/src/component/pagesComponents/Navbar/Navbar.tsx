@@ -139,10 +139,10 @@ export default function Navbar() {
           <div className="flex justify-between gap-5 w-full py-3 items-center px-3">
             <Link
               href={"/"}
-              className=" flex justify-center items-center gap-1 mx-2"
+              className=" flex justify-center items-center gap-1 ms-4 md:ms-2"
             >
               <Image src={cartLogo} alt="cartLogo" width={35} />
-              <h1 className="font-bold text-3xl">FreshCart</h1>
+              <h1 className="font-bold text-3xl me-2">FreshCart</h1>
             </Link>
             <SearchBar />
 
@@ -272,7 +272,7 @@ export default function Navbar() {
                       <Badge
                         variant="default"
                         color="red"
-                        className="absolute -top-2 -right-2 bg-red-600 font-semibold text-[10px] size-4"
+                        className="absolute -top-2 -right-2 bg-green-600 font-semibold text-[10px] size-4"
                       >
                         {numOfCartItems}
                       </Badge>

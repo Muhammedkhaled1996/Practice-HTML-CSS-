@@ -32,8 +32,8 @@ export default async function details({
 
   return (
     <>
-      <div className="container">
-        <div className="mt-4 mb-6 p-4">
+      <div className="container px-4 md:px-0 py-6">
+        <div className=" p-4">
           <AppBreadcrumb
             items={[
               { label: "Home", href: "/", icon: <IoIosHome /> },
@@ -52,7 +52,7 @@ export default async function details({
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 my-2 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 p-4">
           {/* left Section */}
           <div className="col-span-1 md:col-span-2 md:sticky top-20 left-0  rounded-2xl shadow-lg p-4 h-fit">
             <div>
@@ -83,15 +83,17 @@ export default async function details({
                 </div>
                 <span className="text-sm text-gray-600">{`${product.data.ratingsAverage} (${product.data.ratingsQuantity} reviews)`}</span>
               </div>
-              <div className="flex items-center flex-wrap gap-3 mb-6">
+              <div className="flex items-center flex-wrap justify-between md:justify-start gap-3 mb-6">
                 {product.data.priceAfterDiscount ? (
                   <>
-                    <span className="text-3xl font-bold text-gray-900">
-                      {product.data.priceAfterDiscount} EGP
-                    </span>
-                    <span className="text-lg text-gray-400 line-through">
-                      {product.data.price} EGP
-                    </span>
+                    <div className="flex items-center justify-center gap-3">
+                      <span className="text-3xl font-bold text-gray-900">
+                        {product.data.priceAfterDiscount} EGP
+                      </span>
+                      <span className="text-lg text-gray-400 line-through">
+                        {product.data.price} EGP
+                      </span>
+                    </div>
                     <span className="bg-red-500 text-white text-sm px-3 py-1 rounded-full font-medium">
                       Save{" "}
                       {Math.floor(
