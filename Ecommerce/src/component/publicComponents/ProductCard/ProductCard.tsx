@@ -16,7 +16,7 @@ export function ProductCard({ product }: { product: Product }) {
       >
         <div className="relative">
           <Image
-            className="w-full h-50 md:h-65  object-cover object-center bg-white"
+            className="w-full h-50 md:h-65  object-contain object-center bg-white"
             alt={product.slug}
             src={product.imageCover}
             width={200}

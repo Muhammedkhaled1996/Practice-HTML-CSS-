@@ -53,7 +53,12 @@ export async function addToWishlist(
     },
     body: JSON.stringify({ productId }),
   });
+
+
+
   const data = await res.json();
+
+
   updateTag("allWishlist");
   updateTag("allProducts");
   return data;

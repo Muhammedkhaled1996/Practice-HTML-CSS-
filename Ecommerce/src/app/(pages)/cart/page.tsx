@@ -15,9 +15,6 @@ import { FaShieldHalved } from "react-icons/fa6";
 export const dynamic = "force-dynamic";
 
 export default async function page() {
-  // const session = await getServerSession(NextAuthConfig);
-  // console.log(session, "session from cart page");
-
   const data = await getUserCart();
 
   const numOfCartItems = data?.numOfCartItems ?? 0;
