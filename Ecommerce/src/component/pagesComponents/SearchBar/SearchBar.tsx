@@ -32,7 +32,7 @@ export default function SearchBar() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-      <Field className="hidden md:block">
+      <Field>
         <InputGroup className="rounded-full focus-within:ring-green-100! focus-within:border-green-600! transition-all duration-200">
           <InputGroupInput
             placeholder="Search for product, brands and more..."
@@ -42,7 +42,7 @@ export default function SearchBar() {
           <InputGroupAddon align="inline-end" className="cursor-pointer">
             <button
               type="submit"
-              className="flex items-center justify-center rounded-full bg-green-600 text-white size-6 hover:bg-green-700 duration-300 transition-colors"
+              className="cursor-pointer flex items-center justify-center rounded-full bg-green-600 text-white size-7 hover:bg-green-700 duration-300 transition-colors mx-0.5"
             >
               <IoSearchSharp />
             </button>

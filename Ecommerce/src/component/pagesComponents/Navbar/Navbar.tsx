@@ -144,7 +144,10 @@ export default function Navbar() {
               <Image src={cartLogo} alt="cartLogo" width={35} />
               <h1 className="font-bold text-3xl me-2">FreshCart</h1>
             </Link>
-            <SearchBar />
+
+            <div className="hidden md:block w-full">
+              <SearchBar />
+            </div>
 
             <ul className="flex gap-5 max-lg:hidden">
               <Link

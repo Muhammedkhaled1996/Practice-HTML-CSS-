@@ -30,7 +30,7 @@ export default function page() {
             <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
           </div>
           {/*  */}
-          <p className="text-6xl font-extrabold my-4">Oops! Nothing Here</p>
+          <p className="text-3xl md:text-5xl font-extrabold my-4">Oops! Nothing Here</p>
           {/*  */}
           <span className="text-gray-500 mb-4 font-semibold">
             Looks like this page went out of stock! Don&apos;t worry, there&apos;s plenty

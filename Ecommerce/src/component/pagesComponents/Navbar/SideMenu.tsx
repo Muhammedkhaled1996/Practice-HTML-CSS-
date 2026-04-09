@@ -25,6 +25,7 @@ import { FileUser } from "lucide-react";
 import { FaRightFromBracket } from "react-icons/fa6";
 import { CiUser } from "react-icons/ci";
 import { signOut } from "next-auth/react";
+import SearchBar from "../SearchBar/SearchBar";
 
 interface Props {
   user: userObject;
@@ -53,7 +54,7 @@ export function SideMenu({
           </p>
         </DrawerTrigger>
 
-        <DrawerContent className="data-[vaul-drawer-direction=bottom]:max-h-[50vh] data-[vaul-drawer-direction=top]:max-h-[50vh]">
+        <DrawerContent>
           <DrawerHeader className="mb-3">
             <DrawerTitle className="px-3 bg-gray-200/30 border-b border-gray-300/50">
               <div className="flex items-center justify-between py-4  ">
@@ -71,20 +72,9 @@ export function SideMenu({
             </DrawerTitle>
           </DrawerHeader>
 
-          <Field className="px-5 mb-3">
-            <InputGroup className="focus-within:ring-green-100! focus-within:border-green-600! transition-all duration-200">
-              <InputGroupInput
-                placeholder="Search for product, brands and more..."
-                className="py-2!"
-              />
-
-              <InputGroupAddon align="inline-end" className="cursor-pointer ">
-                <div className="flex items-center justify-center rounded-md bg-green-600 text-white size-6 hover:bg-green-700 duration-300 transition-colors">
-                  <IoSearchSharp />
-                </div>
-              </InputGroupAddon>
-            </InputGroup>
-          </Field>
+          <div className="block w-full px-2 mb-3  ">
+            <SearchBar />
+          </div>
 
           <div className="w-full bg-gray-300/50 h-px"></div>
 

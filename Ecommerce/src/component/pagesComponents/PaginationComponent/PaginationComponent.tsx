@@ -7,7 +7,8 @@ import {
   PaginationLink,
 } from "@/components/ui/pagination";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function PaginationComponent({
   currentPage,
@@ -41,35 +42,47 @@ export default function PaginationComponent({
   };
 
   return (
-    <Pagination>
-      <PaginationContent>
-        {currentPage > 1 && (
-          <PaginationItem>
-            <PaginationLink onClick={() => handlePageChange(currentPage - 1)}>
-              Prev
-            </PaginationLink>
-          </PaginationItem>
-        )}
+    <>
+      {numberOfPages > 1 && (
+        <Pagination className="my-3">
+          <PaginationContent>
+            {currentPage > 1 && (
+              <PaginationItem>
+                <PaginationLink
+                  className="cursor-pointer "
+                  onClick={() => handlePageChange(currentPage - 1)}
+                >
+                  <IoIosArrowBack />
+                </PaginationLink>
+              </PaginationItem>
+            )}
 
-        {getPages().map((p) => (
-          <PaginationItem key={p}>
-            <PaginationLink
-              isActive={p === currentPage}
-              onClick={() => handlePageChange(p)}
-            >
-              {p}
-            </PaginationLink>
-          </PaginationItem>
-        ))}
+            {getPages().map((p) => (
+              <PaginationItem key={p}>
+                <button
+                  className={`cursor-pointer mx-1 size-10 flex justify-center items-center p-3 rounded-lg ${p === currentPage ? " bg-green-500 text-white" : " bg-white text-black hover:bg-gray-200 duration-200 transition-colors"}`}
+                  onClick={() => {
+                    handlePageChange(p);
+                  }}
+                >
+                  {p}
+                </button>
+              </PaginationItem>
+            ))}
 
-        {currentPage < numberOfPages && (
-          <PaginationItem>
-            <PaginationLink onClick={() => handlePageChange(currentPage + 1)}>
-              Next
-            </PaginationLink>
-          </PaginationItem>
-        )}
-      </PaginationContent>
-    </Pagination>
+            {currentPage < numberOfPages && (
+              <PaginationItem>
+                <PaginationLink
+                  className="cursor-pointer "
+                  onClick={() => handlePageChange(currentPage + 1)}
+                >
+                  <IoIosArrowForward />
+                </PaginationLink>
+              </PaginationItem>
+            )}
+          </PaginationContent>
+        </Pagination>
+      )}
+    </>
   );
 }
