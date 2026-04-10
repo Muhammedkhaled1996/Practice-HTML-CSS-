@@ -7,8 +7,24 @@ export async function proxy(req: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  if (!token) {
+  const myPath = req.nextUrl.pathname;
+  const protectedPaths = [
+    "/cart",
+    "/wishlist",
+    "/profile",
+    "/allorders",
+    "/checkout",
+  ];
+  const authPages = ["/login", "/register"];
+
+  // لو المستخدم مش عامل login ويحاول يدخل صفحة محمية
+  if (!token && protectedPaths.some((path) => myPath.startsWith(path))) {
     return NextResponse.redirect(new URL("/login", req.url));
+  }
+
+  // لو المستخدم عامل login ويحاول يدخل login أو register
+  if (token && authPages.some((path) => myPath.startsWith(path))) {
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
   return NextResponse.next();
@@ -21,5 +37,7 @@ export const config = {
     "/profile/:path*",
     "/allorders/:path*",
     "/checkout/:path*",
+    "/login",
+    "/register",
   ],
 };
