@@ -1,10 +1,63 @@
 "use client";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
+import { Spinner } from "@/components/ui/spinner";
+import { VerifyPassword } from "@/src/apiDataFetching/forgetPassword/forgetPassword.actions";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { FaCheck, FaEnvelope, FaKey, FaLock } from "react-icons/fa";
 import { FaArrowLeftLong, FaShieldHalved } from "react-icons/fa6";
+import { toast } from "sonner";
+import z from "zod";
 
-export default function ForgetPasswordSecondPage( {setView} : {setView : any}) {
+export default function ForgetPasswordSecondPage({
+  setView,
+}: {
+  setView: any;
+}) {
+  const [loading, setloading] = useState(false);
+
+  const verifyPasswordSchema = z.object({
+    resetCode: z.string().nonempty("Reset code is required")
+  });
+
+  const { handleSubmit, control, reset } = useForm({
+    defaultValues: {
+      resetCode: "",
+    },
+    resolver: zodResolver(verifyPasswordSchema),
+  });
+
+  async function handleVerifingCodeSubmit(values: { resetCode: string }) {
+    setloading(true);
+    try {
+      const handlePasswordResponce = await VerifyPassword(values.resetCode);
+
+      if (handlePasswordResponce?.status === "Success") {
+        toast.success("Please Enter Your Email and New Password");
+        reset();
+        setTimeout(() => {
+          setView("third");
+        }, 2000);
+      } else {
+        toast.error("Error in Verifying Code");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Error from server");
+    } finally {
+      setloading(false);
+    }
+  }
+
   return (
     <>
       <div
@@ -96,25 +149,61 @@ export default function ForgetPasswordSecondPage( {setView} : {setView : any}) {
                   </div>
                 </div>
               </div>
-              <form className="space-y-6">
+              <form
+                className="space-y-6"
+                onSubmit={handleSubmit(handleVerifingCodeSubmit)}
+              >
                 <div>
-                  <label
-                    htmlFor="resetCode"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Verification Code
-                  </label>
                   <div className="relative">
-                    <input
-                      id="resetCode"
-                      maxLength={6}
-                      className="w-full px-4 py-3 pl-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100 transition-all text-center text-2 xl tracking-[0.5em] font-mono"
-                      placeholder="••••••"
-                      type="text"
+                    <Controller
                       name="resetCode"
+                      control={control}
+                      render={({ field, fieldState }) => (
+                        <Field
+                          className="my-5"
+                          data-invalid={fieldState.invalid}
+                        >
+                          <FieldLabel htmlFor={field.name}>
+                            Verification Code
+                          </FieldLabel>
+
+                          <div className="relative w-full border border-gray-200 py-1 rounded-lg flex  justify-center items-center">
+                            <div>
+                              <InputOTP
+                                maxLength={6}
+                                value={field.value}
+                                onChange={field.onChange}
+                                placeholder="•"
+                                className="focus-within:ring-green-100! focus-within:border-green-600! transition-all duration-200"
+                              >
+                                <InputOTPGroup>
+                                  <InputOTPSlot index={0} />
+                                  <InputOTPSlot index={1} />
+                                  <InputOTPSlot index={2} />
+                                </InputOTPGroup>
+
+                                <InputOTPSeparator />
+
+                                <InputOTPGroup>
+                                  <InputOTPSlot index={3} />
+                                  <InputOTPSlot index={4} />
+                                  <InputOTPSlot index={5} />
+                                </InputOTPGroup>
+                              </InputOTP>
+                            </div>
+
+                            <FaShieldHalved className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                          </div>
+
+                          {fieldState.invalid && (
+                            <FieldError
+                              className="text-start"
+                              errors={[fieldState.error]}
+                            />
+                          )}
+                        </Field>
+                      )}
                     />
-                    <FaShieldHalved className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"/>
-                  
                   </div>
                 </div>
                 <div className="text-center">
@@ -129,13 +218,22 @@ export default function ForgetPasswordSecondPage( {setView} : {setView : any}) {
                   </p>
                 </div>
                 <button
+                  disabled={loading}
                   type="submit"
-                  className="w-full bg-green-600 text-white py-3 px-4 rounded-xl hover:bg-green-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="cursor-pointer w-full bg-green-600 text-white py-3 px-4 rounded-xl hover:bg-green-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Verify Code
+                  {loading ? (
+                    <div className="flex justify-center items-center gap-2">
+                      <Spinner />
+                      <span>Verifying Code...</span>
+                    </div>
+                  ) : (
+                    " Verify Code"
+                  )}
                 </button>
                 <div className="text-center">
                   <button
+                    onClick={() => setView("first")}
                     type="button"
                     className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-green-600 font-medium transition-colors"
                   >

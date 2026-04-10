@@ -1,6 +1,13 @@
 "use client";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
+import { UpdatePassword } from "@/src/apiDataFetching/forgetPassword/forgetPassword.actions";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import React from "react";
+import { redirect } from "next/navigation";
+import React, { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import {
   FaCheck,
   FaEnvelope,
@@ -10,8 +17,61 @@ import {
   FaRegEye,
 } from "react-icons/fa";
 import { FaArrowLeftLong, FaShieldHalved } from "react-icons/fa6";
+import { toast } from "sonner";
+import z from "zod";
 
-export default function ForgetPasswordThirdPage( {setView} : {setView : any}) {
+export default function ForgetPasswordThirdPage({
+  setView,
+  email,
+}: {
+  setView: any;
+  email: any;
+}) {
+  const [loading, setloading] = useState(false);
+
+  const updatePasswordSchema = z
+    .object({
+      newPassword: z.string().nonempty("New Password Required"),
+      confirmPassword: z.string().nonempty("Confirm Password Required"),
+    })
+    .refine((data) => data.newPassword === data.confirmPassword, {
+      message: "Passwords do not match",
+      path: ["confirmPassword"],
+    });
+
+  const { handleSubmit, control, reset } = useForm({
+    defaultValues: {
+      newPassword: "",
+      confirmPassword: "",
+    },
+    resolver: zodResolver(updatePasswordSchema),
+  });
+
+  async function handleUpdatePasswordSubmit(values: { newPassword: string }) {
+    setloading(true);
+    try {
+      const handleUpdatePasswordResponce = await UpdatePassword({
+        email: email,
+        newPassword: values.newPassword,
+      });
+
+      if (handleUpdatePasswordResponce.token) {
+        toast.success("Password Changed Successfully");
+        setTimeout(() => {
+          toast.success("Please login again");
+          redirect("/login");
+        }, 2000);
+      } else {
+        toast.error("Error in Updating Password");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Error from server");
+    } finally {
+      setloading(false);
+    }
+  }
+
   return (
     <>
       <div
@@ -103,61 +163,108 @@ export default function ForgetPasswordThirdPage( {setView} : {setView : any}) {
                   </div>
                 </div>
               </div>
-              <form className="space-y-6">
+              <form
+                className="space-y-6"
+                onSubmit={handleSubmit(handleUpdatePasswordSubmit)}
+              >
                 <div>
-                  <label
-                    htmlFor="password"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    New Password
-                  </label>
                   <div className="relative">
-                    <input
-                      id="password"
-                      className="w-full px-4 py-3 pl-12 pr-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100 transition-all"
-                      placeholder="Enter new password"
-                      type="password"
-                      name="password"
-                    />
-                    <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                    <button
-                      type="button"
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                    >
-                      <FaRegEye />
-                    </button>
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="confirmPassword"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Confirm Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      id="confirmPassword"
-                      className="w-full px-4 py-3 pl-12 pr-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100 transition-all"
-                      placeholder="Confirm new password"
-                      type="password"
-                      name="confirmPassword"
-                    />
-                    <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                    <Controller
+                      name="newPassword"
+                      control={control}
+                      render={({ field, fieldState }) => (
+                        <Field
+                          className="my-5"
+                          data-invalid={fieldState.invalid}
+                        >
+                          <FieldLabel htmlFor={field.name}>
+                            New Password
+                          </FieldLabel>
 
-                    <button
-                      type="button"
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                    >
-                      <FaRegEye />
-                    </button>
+                          <div className="relative">
+                            <Input
+                              className="focus-within:ring-green-100! focus-within:border-green-600! transition-all duration-200 pl-12"
+                              {...field}
+                              id={field.name}
+                              aria-invalid={fieldState.invalid}
+                              placeholder="Please Enter Your New Password"
+                              autoComplete="off"
+                              type="password"
+                            />
+                            <FaLock className="absolute top-1/2 left-5 -translate-1/2 text-gray-400 text-2xl" />
+                            <button
+                              type="button"
+                              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                            >
+                              <FaRegEye />
+                            </button>
+                          </div>
+
+                          {fieldState.invalid && (
+                            <FieldError
+                              className="text-start"
+                              errors={[fieldState.error]}
+                            />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      name="confirmPassword"
+                      control={control}
+                      render={({ field, fieldState }) => (
+                        <Field
+                          className="my-5"
+                          data-invalid={fieldState.invalid}
+                        >
+                          <FieldLabel htmlFor={field.name}>
+                            Confirm Password
+                          </FieldLabel>
+
+                          <div className="relative">
+                            <Input
+                              className="focus-within:ring-green-100! focus-within:border-green-600! transition-all duration-200 pl-12"
+                              {...field}
+                              id={field.name}
+                              aria-invalid={fieldState.invalid}
+                              placeholder="Confirm New Password"
+                              autoComplete="off"
+                              type="password"
+                            />
+                            <FaLock className="absolute top-1/2 left-5 -translate-1/2 text-gray-400 text-2xl" />
+                            <button
+                              type="button"
+                              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                            >
+                              <FaRegEye />
+                            </button>
+                          </div>
+
+                          {fieldState.invalid && (
+                            <FieldError
+                              className="text-start"
+                              errors={[fieldState.error]}
+                            />
+                          )}
+                        </Field>
+                      )}
+                    />
                   </div>
                 </div>
+
                 <button
+                  disabled={loading}
                   type="submit"
-                  className="w-full bg-green-600 text-white py-3 px-4 rounded-xl hover:bg-green-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="cursor-pointer w-full bg-green-600 text-white py-3 px-4 rounded-xl hover:bg-green-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Reset Password
+                  {loading ? (
+                    <div className="flex justify-center items-center gap-2">
+                      <Spinner />
+                      <span>Updating...</span>
+                    </div>
+                  ) : (
+                    "Update Password"
+                  )}
                 </button>
               </form>
             </div>

@@ -1,10 +1,63 @@
 "use client";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
+import { ForgetPassword } from "@/src/apiDataFetching/forgetPassword/forgetPassword.actions";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { register } from "module";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { FaEnvelope, FaKey, FaLock } from "react-icons/fa";
 import { FaArrowLeftLong, FaShieldHalved } from "react-icons/fa6";
+import { toast } from "sonner";
+import z from "zod";
 
-export default function ForgetPasswordFirstPage({setView} : {setView : any}) {
+export default function ForgetPasswordFirstPage({
+  setView,
+  setEmail,
+}: {
+  setView: any;
+  setEmail: any;
+}) {
+  const [loading, setloading] = useState(false);
+
+  const forgetPasswordSchema = z.object({
+    email: z.string().nonempty("Email is required").email("Invalid email"),
+  });
+
+  const { handleSubmit, control, reset } = useForm({
+    defaultValues: async () => {
+      return {
+        email: "",
+      };
+    },
+    resolver: zodResolver(forgetPasswordSchema),
+  });
+
+  async function handleForgetPasswordSubmit(values: { email: string }) {
+    setloading(true);
+    try {
+      const handlePasswordResponce = await ForgetPassword(values.email);
+
+      if (handlePasswordResponce?.statusMsg === "success") {
+        toast.success("Please Check Your Email");
+        setEmail(values.email);
+        reset();
+        setTimeout(() => {
+          setView("second");
+        }, 2000);
+      } else {
+        toast.error("Error in Changing Password");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Error from server");
+    } finally {
+      setloading(false);
+    }
+  }
+
   return (
     <>
       <div className="container py-16 mx-auto px-4">
@@ -93,30 +146,60 @@ export default function ForgetPasswordFirstPage({setView} : {setView : any}) {
                   </div>
                 </div>
               </div>
-              <form className="space-y-6">
+              <form
+                className="space-y-6"
+                onSubmit={handleSubmit(handleForgetPasswordSubmit)}
+              >
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Email Address
-                  </label>
                   <div className="relative">
-                    <input
-                      type="email"
-                      id="email"
-                      className="w-full px-4 py-3 pl-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100 transition-all"
-                      placeholder="Enter your email address"
+                    <Controller
                       name="email"
+                      control={control}
+                      render={({ field, fieldState }) => (
+                        <Field
+                          className="my-5"
+                          data-invalid={fieldState.invalid}
+                        >
+                          <FieldLabel htmlFor={field.name}>
+                            Email Address
+                          </FieldLabel>
+
+                          <div className="relative">
+                            <Input
+                              className="focus-within:ring-green-100! focus-within:border-green-600! transition-all duration-200 pl-12"
+                              {...field}
+                              id={field.name}
+                              aria-invalid={fieldState.invalid}
+                              placeholder="Please Enter Your Email"
+                              autoComplete="off"
+                            />
+                            <FaEnvelope className="absolute top-1/2 left-5 -translate-1/2 text-gray-400 text-2xl" />
+                          </div>
+
+                          {fieldState.invalid && (
+                            <FieldError
+                              className="text-start"
+                              errors={[fieldState.error]}
+                            />
+                          )}
+                        </Field>
+                      )}
                     />
-                    <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                   </div>
                 </div>
                 <button
+                  disabled={loading}
                   type="submit"
-                  className="w-full bg-green-600 text-white py-3 px-4 rounded-xl hover:bg-green-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="cursor-pointer w-full bg-green-600 text-white py-3 px-4 rounded-xl hover:bg-green-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Reset Code
+                  {loading ? (
+                    <div className="flex justify-center items-center gap-2">
+                      <Spinner />
+                      <span>Sending Reset Code...</span>
+                    </div>
+                  ) : (
+                    <span>Send Reset Code</span>
+                  )}
                 </button>
                 <div className="text-center">
                   <Link

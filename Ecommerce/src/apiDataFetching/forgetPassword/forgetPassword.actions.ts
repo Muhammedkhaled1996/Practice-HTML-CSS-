@@ -24,8 +24,12 @@ export async function ForgetPassword(
     );
     const data = await res.json();
 
-    if (!res.ok) {
-      throw new Error(data.message || "Failed to update password");
+    console.log(data, "forget password");
+
+    if (data.statusMsg === "success") {
+      return data;
+    } else {
+      throw new Error(data.message || "Failed to send reset code");
     }
 
     return data;
@@ -39,6 +43,7 @@ export async function ForgetPassword(
 interface VerifyPasswordResponce {
   status: string;
 }
+
 export async function VerifyPassword(
   resetCode: string,
 ): Promise<VerifyPasswordResponce> {
@@ -56,10 +61,7 @@ export async function VerifyPassword(
       },
     );
     const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(data.message || "Failed to update password");
-    }
+    console.log(data, "verify password");
 
     return data;
   } catch (error) {
@@ -74,8 +76,7 @@ interface UpdatePasswordResponce {
 }
 
 export async function UpdatePassword(
-  email: string,
-  newPassword: string,
+  values: { email: string; newPassword: string },
 ): Promise<UpdatePasswordResponce> {
   try {
     const res = await fetch(
@@ -86,15 +87,17 @@ export async function UpdatePassword(
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: email,
-          newPassword: newPassword,
+          email: values.email,
+          newPassword: values.newPassword,
         }),
       },
     );
     const data = await res.json();
 
-    if (!res.ok) {
-      throw new Error(data.message || "Failed to update password");
+    if (data.token) {
+      return data;
+    } else {
+      throw new Error(data.message || "Failed to reset password");
     }
 
     return data;
