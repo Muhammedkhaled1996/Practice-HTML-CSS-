@@ -2,7 +2,7 @@
 import { getSpecificAddresses } from "@/src/apiDataFetching/address/address.actions";
 import React, { useState } from "react";
 import { FaPen } from "react-icons/fa";
-import DialogDemo from "./AddAddress/AddAddress";
+import DialogDemo from "../AddAddress/AddAddress";
 
 export default function EditAddress({ addressId }: { addressId: string }) {
   const [open, setOpen] = useState(false);

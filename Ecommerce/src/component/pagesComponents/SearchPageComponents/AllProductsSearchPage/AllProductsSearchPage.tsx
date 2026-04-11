@@ -1,10 +1,9 @@
 "use client";
 import React, { useEffect } from "react";
-import { ProductCard } from "../../publicComponents/ProductCard/ProductCard";
 import { useToggleStore } from "@/src/stores/viewShape.store";
 import { FaBoxOpen } from "react-icons/fa";
 import Link from "next/link";
-import { Product } from "@/src/types/cart.interface";
+import { ProductCard } from "@/src/component/publicComponents/ProductCard/ProductCard";
 
 export default function AllProductsSearchPage({
   allProductResponce,

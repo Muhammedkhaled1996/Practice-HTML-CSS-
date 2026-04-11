@@ -40,8 +40,6 @@ export async function getDecodedUserToken() {
       secret: process.env.NEXTAUTH_SECRET!,
     });
 
-    console.log(decodedToken, "decodedToken");
-
     return decodedToken?.accessToken ?? null;
   } catch (error) {
     console.error("Token decode error:", error);

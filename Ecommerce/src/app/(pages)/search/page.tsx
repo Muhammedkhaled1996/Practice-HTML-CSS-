@@ -1,14 +1,13 @@
 import { Field } from "@/components/ui/field";
-import { InputGroup, InputGroupInput } from "@/components/ui/input-group";
 import { getAllBrands } from "@/src/apiDataFetching/brands/brands.actions";
 import { getAllCategories } from "@/src/apiDataFetching/categories/categories.actions";
 import { getAllProducts } from "@/src/apiDataFetching/products/products.action";
-import ActiveFilters from "@/src/component/pagesComponents/ActiveFilters/ActiveFilters";
-import { DrawerScrollableContent } from "@/src/component/pagesComponents/DrawerFilterSearchPage/DrawerFilterSearchPage";
-import FiltersComponent from "@/src/component/pagesComponents/FiltersComponent/FiltersComponent";
-import PaginationComponent from "@/src/component/pagesComponents/PaginationComponent/PaginationComponent";
+import ActiveFilters from "@/src/component/pagesComponents/SearchPageComponents/ActiveFilters/ActiveFilters";
+import { DrawerScrollableContent } from "@/src/component/pagesComponents/SearchPageComponents/DrawerFilterSearchPage/DrawerFilterSearchPage";
+import FiltersComponent from "@/src/component/pagesComponents/SearchPageComponents/FiltersComponent/FiltersComponent";
+import PaginationComponent from "@/src/component/pagesComponents/SearchPageComponents/PaginationComponent/PaginationComponent";
 import SearchInput from "@/src/component/pagesComponents/SearchInput/SearchInput";
-import SortComponent from "@/src/component/pagesComponents/SortComponent/SortComponent";
+import SortComponent from "@/src/component/pagesComponents/SearchPageComponents/SortComponent/SortComponent";
 import ViewShapeSearchPage from "@/src/component/pagesComponents/ViewShapeSearchPage/ViewShapeSearchPage";
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
 import SkeletonCards from "@/src/component/publicComponents/SkeletonCards/SkeletonCards";
@@ -17,7 +16,7 @@ import { FaFilter, FaGripVertical, FaList } from "react-icons/fa";
 
 const DynamicProductsComponent = dynamic(
   () =>
-    import("@/src/component/pagesComponents/AllProductsSearchPage/AllProductsSearchPage"),
+    import("@/src/component/pagesComponents/SearchPageComponents/AllProductsSearchPage/AllProductsSearchPage"),
   {
     loading: () => <SkeletonCards />,
   },

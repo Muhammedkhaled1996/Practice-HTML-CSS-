@@ -3,9 +3,9 @@ import Image from "next/image";
 import { FaBoxOpen, FaHeart, FaLongArrowAltLeft } from "react-icons/fa";
 import { getAllWishlist } from "@/src/apiDataFetching/wishlist/wishlist.actions";
 import DeleteBtnWishlist from "../DeleteBtnWishlist/DeleteBtnWishlist";
-import AddToCartProductDetails from "../AddToCartProductDetails/AddToCartProductDetails";
-import InStockComponent from "../InStockComponent/InStockComponent";
-import AppBreadcrumb from "../../publicComponents/AppBreadcrumb/AppBreadcrumb";
+import AddToCartProductDetails from "../../ProductIdPageComponents/AddToCartProductDetails/AddToCartProductDetails";
+import InStockComponent from "../../InStockComponent/InStockComponent";
+import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
 
 export default async function WishlistSection() {
   const data = await getAllWishlist();

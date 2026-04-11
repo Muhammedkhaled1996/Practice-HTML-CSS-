@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaCartPlus, FaCheck } from "react-icons/fa";
 import { toast } from "sonner";
-import { useWishlistStore } from "./../../../stores/wishlistStore.store";
+import { useWishlistStore } from "../../../../stores/wishlistStore.store";
 
 export default function AddToCartProductDetails({
   productId,

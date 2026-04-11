@@ -7,7 +7,7 @@ import React from "react";
 import { FaCity, FaPen, FaPhone, FaTrash } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import DeleteUserAddress from "../DeleteUserAddress/DeleteUserAddress";
-import EditAddress from "../EditAddress";
+import EditAddress from "../EditAddress/EditAddress";
 
 export default async function AddressCard({
   userAddresses,

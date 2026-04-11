@@ -10,11 +10,11 @@ import ProductNumberSec from "@/src/component/pagesComponents/ProductNumberSec/P
 import Gallery from "@/src/component/pagesComponents/Gallery/Gallery";
 import { getAllProductsByParams } from "@/src/apiDataFetching/products/products.action";
 import LowerInstractions from "@/src/component/publicComponents/LowerInstractions/LowerInstractions";
-import { TabsDemo } from "@/src/component/pagesComponents/Tabs/Tabs";
-import SliderRelatedProduct from "@/src/component/pagesComponents/SliderRelatedProduct/SliderRelatedProduct";
-import AddToCartProductDetails from "@/src/component/pagesComponents/AddToCartProductDetails/AddToCartProductDetails";
+import { TabsDemo } from "@/src/component/pagesComponents/ProductIdPageComponents/Tabs/Tabs";
+import AddToCartProductDetails from "@/src/component/pagesComponents/ProductIdPageComponents/AddToCartProductDetails/AddToCartProductDetails";
 import { getSpecificProducts } from "@/src/apiDataFetching/products/products.action";
-import AddtoWishlistProductDetails from "@/src/component/pagesComponents/AddtoWishlistProductDetails/AddtoWishlistProductDetails";
+import AddtoWishlistProductDetails from "@/src/component/pagesComponents/ProductIdPageComponents/AddtoWishlistProductDetails/AddtoWishlistProductDetails";
+import SliderRelatedProduct from "@/src/component/pagesComponents/ProductIdPageComponents/SliderRelatedProduct/SliderRelatedProduct";
 
 export default async function details({
   params,

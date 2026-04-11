@@ -1,9 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Rating from "@/src/component/publicComponents/Rating/Rating";
+import RatingBars from "@/src/component/publicComponents/RatingBars/RatingBars";
 import { sepesificProductResponce } from "@/src/types/allProduct.interface";
 import { FaCheck, FaShieldAlt, FaStar, FaTruck } from "react-icons/fa";
 import { FaArrowRotateLeft } from "react-icons/fa6";
-import RatingBars from "../../publicComponents/RatingBars/RatingBars";
-import Rating from "../../publicComponents/Rating/Rating";
+
 
 interface Props {
   product: sepesificProductResponce;

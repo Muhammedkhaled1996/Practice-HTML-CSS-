@@ -10,7 +10,7 @@ import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { FaCheck, FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import { useCounterStore } from "@/src/stores/cartStore.store";
-import DeleteItemDialog from "../DeleteItemDialog/DeleteItemDialog";
+import DeleteItemDialog from "../../DeleteItemDialog/DeleteItemDialog";
 import { toast } from "sonner";
 
 type Props = {

@@ -1,4 +1,4 @@
-import { WishlistSkeleton } from "@/src/component/pagesComponents/WishlistSkeleton/WishlistSkeleton";
+import { WishlistSkeleton } from "@/src/component/pagesComponents/WishlistPageComponents/WishlistSkeleton/WishlistSkeleton";
 import nextDynamic from "next/dynamic";
 
 export const dynamic = "force-dynamic";
@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export default function page() {
   const DynamicWishlistSection = nextDynamic(
     () =>
-      import("@/src/component/pagesComponents/WishlistSection/WishlistSection"),
+      import("@/src/component/pagesComponents/WishlistPageComponents/WishlistSection/WishlistSection"),
     {
       loading: () => <WishlistSkeleton />,
     },

@@ -1,10 +1,9 @@
 import { verifyTokenHandler } from "@/src/apiDataFetching/authontication/VerifyToken";
 import { getUserOrders } from "@/src/apiDataFetching/order/order.action";
-import DetailsOrderBtn from "@/src/component/pagesComponents/DetailsOrderBtn/DetailsOrderBtn";
-import OrderDetails from "@/src/component/pagesComponents/OrderDetails/OrderDetails";
+import DetailsOrderBtn from "@/src/component/pagesComponents/AllOrdersPageComponents/DetailsOrderBtn/DetailsOrderBtn";
+import OrderDetails from "@/src/component/pagesComponents/AllOrdersPageComponents/OrderDetails/OrderDetails";
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
 import Image from "next/image";
-import React from "react";
 import {
   FaBox,
   FaClock,
@@ -16,7 +15,7 @@ import {
 
 import { FaCalendarDays, FaLocationDot } from "react-icons/fa6";
 import { redirect } from "next/navigation";
-import EmptyOrders from "@/src/component/pagesComponents/EmptyOrders/EmptyOrders";
+import EmptyOrders from "@/src/component/pagesComponents/AllOrdersPageComponents/EmptyOrders/EmptyOrders";
 
 export const dynamic = "force-dynamic";
 

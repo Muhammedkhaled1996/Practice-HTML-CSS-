@@ -1,6 +1,6 @@
 import { verifyTokenHandler } from "@/src/apiDataFetching/authontication/VerifyToken";
-import UserDataForm from "@/src/component/pagesComponents/UserDataForm/UserDataForm";
-import UserPasswordForm from "@/src/component/pagesComponents/UserPasswordForm/UserPasswordForm";
+import UserDataForm from "@/src/component/pagesComponents/ProfilePageComponents/UserDataForm/UserDataForm";
+import UserPasswordForm from "@/src/component/pagesComponents/ProfilePageComponents/UserPasswordForm/UserPasswordForm";
 import React from "react";
 import { FaLock, FaRegEye, FaUser } from "react-icons/fa";
 import { FaFloppyDisk } from "react-icons/fa6";

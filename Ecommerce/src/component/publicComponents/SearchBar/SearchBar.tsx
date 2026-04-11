@@ -6,7 +6,6 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { useForm } from "react-hook-form";
 import { IoSearchSharp } from "react-icons/io5";
 

@@ -1,6 +1,6 @@
 import { getUserCart } from "@/src/apiDataFetching/cart/cart.actions";
-import CartWrapper from "@/src/component/pagesComponents/CartWrapper/CartWrapper";
-import EmptyCart from "@/src/component/pagesComponents/EmptyCart/EmptyCart";
+import CartWrapper from "@/src/component/pagesComponents/CartPageComponents/CartWrapper/CartWrapper";
+import EmptyCart from "@/src/component/pagesComponents/CartPageComponents/EmptyCart/EmptyCart";
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
 import Link from "next/link";
 import {

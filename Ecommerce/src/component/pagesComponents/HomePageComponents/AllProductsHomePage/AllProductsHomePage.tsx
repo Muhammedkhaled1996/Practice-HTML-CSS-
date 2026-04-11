@@ -1,5 +1,5 @@
 import { getAllProducts } from "@/src/apiDataFetching/products/products.action";
-import { ProductCard } from "../../publicComponents/ProductCard/ProductCard";
+import { ProductCard } from "@/src/component/publicComponents/ProductCard/ProductCard";
 import { Product } from "@/src/types/allProduct.interface";
 import { FaBoxOpen } from "react-icons/fa";
 

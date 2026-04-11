@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Exo } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/src/component/pagesComponents/Navbar/Navbar";
 import { Toaster } from "@/components/ui/sonner";
-import Footer from "../component/pagesComponents/Footer/Footer";
 import SessionProviderServer from "../SessionProviderServer/SessionProviderServer";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Navbar from "../component/pagesComponents/Navbar/Navbar";
+import Footer from "../component/pagesComponents/Footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

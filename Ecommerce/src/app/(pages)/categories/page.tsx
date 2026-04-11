@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 
 const DynamicCategoriesSection = dynamic(
   () =>
-    import("@/src/component/pagesComponents/CategoriesSection/CategoriesSection"),
+    import("@/src/component/pagesComponents/CategoryPageComponents/CategoriesSection/CategoriesSection"),
   {
     loading: () => <SkeletonCards />,
   },

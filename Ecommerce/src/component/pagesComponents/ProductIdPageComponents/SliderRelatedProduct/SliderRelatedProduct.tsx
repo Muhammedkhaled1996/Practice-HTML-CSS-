@@ -1,14 +1,11 @@
 "use client";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import "../../../../node_modules/swiper/swiper.css";
-
+import "../../../../../node_modules/swiper/swiper.css";
 import { Navigation } from "swiper/modules";
 import { Product } from "@/src/types/allProduct.interface";
-import { FaArrowLeft, FaArrowRight, FaLongArrowAltRight } from "react-icons/fa";
-import { Link } from "lucide-react";
-import { ProductCard } from "../../publicComponents/ProductCard/ProductCard";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { ProductCard } from "@/src/component/publicComponents/ProductCard/ProductCard";
 
 interface Props {
   relatedProducts: Product[];

@@ -1,7 +1,7 @@
 "use client";
 import { Product } from "@/src/types/cart.interface";
 import Link from "next/link";
-import React, { useState, Suspense, lazy } from "react";
+import  { useState, Suspense, lazy } from "react";
 import { FaTrash } from "react-icons/fa";
 import { Spinner } from "@/components/ui/spinner";
 import { useCounterStore } from "@/src/stores/cartStore.store";

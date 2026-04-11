@@ -88,6 +88,7 @@ export async function getSpecificProducts(
           revalidate: 60,
           tags: ["product"],
         },
+       
       },
     );
 

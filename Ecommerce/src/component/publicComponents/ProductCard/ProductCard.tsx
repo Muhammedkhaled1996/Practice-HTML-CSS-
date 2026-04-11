@@ -4,8 +4,8 @@ import Link from "next/link";
 import { FaRegEye } from "react-icons/fa";
 import { TiArrowSync } from "react-icons/ti";
 import Rating from "./../Rating/Rating";
-import AddToCartButton from "../../pagesComponents/AddToCartButton/AddToCartButton";
-import AddWishlist from "../../pagesComponents/addWishlist/addWishlist";
+import AddToCartButton from "./AddToCartButton/AddToCartButton";
+import AddWishlist from "./addWishlist/addWishlist";
 
 export function ProductCard({ product }: { product: Product }) {
   return (

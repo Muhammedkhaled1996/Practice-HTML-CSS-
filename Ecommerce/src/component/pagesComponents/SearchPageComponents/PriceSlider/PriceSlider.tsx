@@ -13,19 +13,19 @@ export default function PriceSlider() {
 
   const isFirstRender = React.useRef(true);
 
-  // ✅ initial values من URL
+  //  initial values من URL
   const minFromUrl = Number(params.get("price[gte]") || 0);
   const maxFromUrl = Number(params.get("price[lte]") || 200000);
 
-  // ✅ state محلي للـ slider
+  //  state محلي للـ slider
   const [value, setValue] = React.useState([minFromUrl, maxFromUrl]);
 
-  // ✅ sync لو المستخدم عمل back/forward
+  //  sync لو المستخدم عمل back/forward
   useEffect(() => {
     setValue([minFromUrl, maxFromUrl]);
   }, [minFromUrl, maxFromUrl]);
 
-  // ✅ debounce update للـ URL
+  //  debounce update للـ URL
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;

@@ -13,17 +13,9 @@ import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
 import cartLogo from "@/src/assets/images/cart.png";
 import { IoIosClose } from "react-icons/io";
-import { Field } from "@/components/ui/field";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/components/ui/input-group";
-import { IoCart, IoSearchSharp } from "react-icons/io5";
+import { IoCart } from "react-icons/io5";
 import { FaBoxOpen, FaHeadset, FaRegHeart } from "react-icons/fa";
-import { FileUser } from "lucide-react";
 import { FaRightFromBracket } from "react-icons/fa6";
-import { CiUser } from "react-icons/ci";
 import { signOut } from "next-auth/react";
 import SearchBar from "../SearchBar/SearchBar";
 

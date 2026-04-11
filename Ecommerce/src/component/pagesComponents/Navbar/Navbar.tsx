@@ -10,12 +10,8 @@ import {
   FaTruck,
 } from "react-icons/fa";
 import { GoPerson } from "react-icons/go";
-import { IoCart, IoPersonAdd, IoSearchSharp } from "react-icons/io5";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/components/ui/input-group";
+import { IoCart, IoPersonAdd } from "react-icons/io5";
+
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -23,14 +19,13 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
 import cartLogo from "@/src/assets/images/cart.png";
 import Image from "next/image";
-import { SideMenu } from "./SideMenu";
+import { SideMenu } from "../../publicComponents/SideMenu/SideMenu";
 import { Badge } from "@/components/ui/badge";
 import { useCounterStore } from "@/src/stores/cartStore.store";
 import { useEffect } from "react";
@@ -38,7 +33,7 @@ import { useWishlistStore } from "@/src/stores/wishlistStore.store";
 import { signOut, useSession } from "next-auth/react";
 import { FaRightFromBracket } from "react-icons/fa6";
 import { ProfileDropMenu } from "../ProfileDropMenu/ProfileDropMenu";
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../../publicComponents/SearchBar/SearchBar";
 
 export default function Navbar() {
   const pathName = usePathname();
@@ -47,8 +42,8 @@ export default function Navbar() {
   const { getUserWishlist, numOfWishlistItems } = useWishlistStore();
 
   const { data, status } = useSession();
-  // console.log(data, "data session from navbar");
-  // console.log(status, "status session from navbar");
+  console.log(data, "data session from navbar");
+  console.log(status, "status session from navbar");
 
   useEffect(() => {
     getUserCart();

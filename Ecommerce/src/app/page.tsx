@@ -7,31 +7,29 @@ import {
   FaArrowRight,
   FaEnvelope,
   FaGooglePlay,
-  FaHeadset,
   FaLeaf,
   FaLongArrowAltRight,
-  FaShieldAlt,
   FaTag,
   FaTruck,
 } from "react-icons/fa";
-import { FaArrowRotateLeft } from "react-icons/fa6";
 import Link from "next/link";
 import LowerInstractions from "../component/publicComponents/LowerInstractions/LowerInstractions";
 import SkeletonCards from "../component/publicComponents/SkeletonCards/SkeletonCards";
 import dynamic from "next/dynamic";
-import InstractionInHomePage from "../component/pagesComponents/InstractionInHomePage/InstractionInHomePage";
+import InstractionInHomePage from "../component/pagesComponents/HomePageComponents/InstractionInHomePage/InstractionInHomePage";
 
 export default async function Home() {
   const DynamicCategoriesComponent = dynamic(
     () =>
-      import("../component/pagesComponents/CategoryHomePage/CategoryHomePage"),
+      import("../component/pagesComponents/HomePageComponents/CategoryHomePage/CategoryHomePage"),
     {
       loading: () => <SkeletonCards />,
     },
   );
+  
   const DynamicProductsComponent = dynamic(
     () =>
-      import("../component/pagesComponents/AllProductsHomePage/AllProductsHomePage"),
+      import("../component/pagesComponents/HomePageComponents/AllProductsHomePage/AllProductsHomePage"),
     {
       loading: () => <SkeletonCards />,
     },
@@ -135,7 +133,7 @@ export default async function Home() {
         />
       </div>
       {/*  */}
-      <InstractionInHomePage/>
+      <InstractionInHomePage />
       {/* categories */}
       <div className="container px-4 md:px-0 py-4">
         <div className="flex flex-col sm:flex-row justify-between sm:items-center">

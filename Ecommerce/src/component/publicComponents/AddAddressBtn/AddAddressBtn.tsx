@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import DialogDemo from "../../pagesComponents/AddAddress/AddAddress";
+import DialogDemo from "../../pagesComponents/ProfilePageComponents/AddAddress/AddAddress";
 
 export default function AddAddressButton({ title }: { title: string }) {
   const [open, setOpen] = useState(false);
