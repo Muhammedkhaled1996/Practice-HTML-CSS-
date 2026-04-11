@@ -9,9 +9,9 @@ export default function OfferCards() {
     <div className="container mx-auto">
       <div className="grid md:grid-cols-2 gap-6">
         <motion.div
-          initial={{ x: -100, opacity: 0 }}
+          initial={{ x: -60, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay:0.2 , ease: "easeOut" }}
           viewport={{ once: true }}
           className="relative overflow-hidden rounded-2xl bg-linear-to-br from-emerald-500 to-emerald-700 p-8 text-white"
         >
@@ -45,7 +45,7 @@ export default function OfferCards() {
           </div>
         </motion.div>
         <motion.div
-          initial={{ x: 100, opacity: 0 }}
+          initial={{ x: 60, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
