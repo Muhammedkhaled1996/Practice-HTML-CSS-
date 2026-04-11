@@ -25,7 +25,7 @@ export default function SearchBar() {
   function onSubmit(values: FormValues) {
     if (!values.searchValue.trim()) return;
 
-    router.push(`/search?q=${values.searchValue}`);
+    router.push(`/search?q=${values.searchValue}&page=1`);
     reset();
   }
 

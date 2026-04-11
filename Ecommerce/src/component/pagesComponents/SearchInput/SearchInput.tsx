@@ -8,23 +8,25 @@ export default function SearchInput() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleChange = (value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
+  const [value, setValue] = useState(searchParams.get("q") || "");
 
-    if (value) {
-      params.set("q", value);
-    } else {
-      params.delete("q");
-    }
-
-    router.push(`?${params.toString()}`);
-  };
-
-  const [value, setValue] = useState("");
+  useEffect(() => {
+    setValue(searchParams.get("q") || "");
+  }, [searchParams]);
 
   useEffect(() => {
     const t = setTimeout(() => {
-      handleChange(value);
+      const currentQ = searchParams.get("q") || "";
+      if (value !== currentQ) {
+        const params = new URLSearchParams(searchParams.toString());
+        if (value) {
+          params.set("q", value);
+        } else {
+          params.delete("q");
+        }
+        params.set("page", "1");
+        router.push(`?${params.toString()}`);
+      }
     }, 400);
 
     return () => clearTimeout(t);
@@ -35,7 +37,8 @@ export default function SearchInput() {
       <InputGroup className="rounded-xl focus-within:ring-green-100! focus-within:border-green-600! transition-all duration-200">
         <InputGroupInput
           placeholder="Search for product, brands and more..."
-          onChange={(e) => handleChange(e.target.value)}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
         />
       </InputGroup>
     </div>

@@ -12,7 +12,6 @@ import ViewShapeSearchPage from "@/src/component/pagesComponents/ViewShapeSearch
 import AppBreadcrumb from "@/src/component/publicComponents/AppBreadcrumb/AppBreadcrumb";
 import SkeletonCards from "@/src/component/publicComponents/SkeletonCards/SkeletonCards";
 import dynamic from "next/dynamic";
-import { FaFilter, FaGripVertical, FaList } from "react-icons/fa";
 
 const DynamicProductsComponent = dynamic(
   () =>
@@ -33,7 +32,9 @@ export default async function Page({
     Object.entries(rawParams).map(([k, v]) => [k, String(v ?? "")]),
   );
 
-  console.log(searchParamsValues, "searchParamsValues ............");
+
+  console.log(searchParamsValues , "searchParamsValues");
+  
 
   // get categories name
   const allCategoriesResponce = await getAllCategories();

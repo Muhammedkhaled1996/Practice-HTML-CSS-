@@ -44,14 +44,22 @@ export default function ActiveFilters({
 
   const getBrandName = (id: string) => brands.find((b) => b._id === id)?.name;
 
-  console.log(params.get("page"), "active params");
-
   return (
     <>
-      {params.size > 1  && (
+      {params.size > 1 && (
         <>
           <div className="mb-6 flex items-center gap-2 flex-wrap">
             <span className="text-sm text-gray-500">Active:</span>
+
+            {/* q */}
+            {params.get("q") && (
+              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gray-100 text-gray-700 text-xs">
+                "{params.get("q")}"
+                <button onClick={() => removeFilter("q")}>
+                  <FaXmark className="cursor-pointer hover:text-red-500 duration-200 transition-colors" />
+                </button>
+              </span>
+            )}
 
             {/* categories */}
             {params.getAll("category").map((id) => (

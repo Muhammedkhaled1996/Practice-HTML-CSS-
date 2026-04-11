@@ -10,8 +10,10 @@ import { checkoutSchema } from "@/src/schema/checkoutSchema";
 import { useCounterStore } from "@/src/stores/cartStore.store";
 import { CrudCartResponce } from "@/src/types/cart.interface";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { updateTag } from "next/cache";
 import Image from "next/image";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
   FaBox,
@@ -26,13 +28,15 @@ import {
   FaTruck,
   FaWallet,
 } from "react-icons/fa";
-import { FaHouse, FaLocationDot } from "react-icons/fa6";
+import { FaHouse } from "react-icons/fa6";
+import { toast } from "sonner";
 
 export default function CheckoutSection({
   cartResponce,
 }: {
   cartResponce: CrudCartResponce;
 }) {
+  const route = useRouter();
   const [paymentMethod, setpaymentMethod] = useState<"cash" | "visa">("visa");
   const [loading, setLoading] = useState(false);
 
@@ -53,21 +57,39 @@ export default function CheckoutSection({
   async function handleRegisterSubmit(values: any) {
     setLoading(true);
     if (paymentMethod === "cash") {
-      setNumOfCartItems(0);
       const handleRegister = await handleCashOrderSubmitAction(
         values,
         cartResponce?.data?._id,
       );
+
+      if (handleRegister.status !== "success") {
+        toast.error("Error From Server");
+        setLoading(false);
+        return;
+      } else {
+        toast.success("Order Created Successfully");
+        setNumOfCartItems(0);
+        updateTag("userCart");
+
+        route.push("/");
+      }
     } else {
-      setNumOfCartItems(0);
       const handleRegister = await handlecheckoutSubmitAction(
         values,
         cartResponce?.data?._id,
       );
-    }
 
-    reset();
-    setLoading(false);
+      if (handleRegister.status !== "success") {
+        toast.error("Error From Server");
+        setLoading(false);
+        return;
+      } else {
+        toast.success("Order Created Successfully");
+        setNumOfCartItems(0);
+        updateTag("userCart");
+        route.push(handleRegister.session.url);
+      }
+    }
   }
 
   return (

@@ -174,7 +174,7 @@ export default async function page() {
                           </span>
                           <div className="text-right">
                             <span className="text-2xl font-bold text-gray-900">
-                              {totalCartPrice + finalShippingValues}
+                              {totalCartPrice + 100}
                             </span>
                             <span className="text-sm text-gray-500 ml-1">
                               EGP

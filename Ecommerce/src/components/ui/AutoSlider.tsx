@@ -5,7 +5,6 @@ import { fadeInUp, staggerContainer } from "@/lib/motion";
 
 import "../../../node_modules/swiper/swiper.css";
 
-
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 type Props = {
@@ -17,12 +16,11 @@ export default function AutoSlider({ slides, className }: Props) {
   return (
     <div className={`w-full h-full ${className || ""}`}>
       <Swiper
-      spaceBetween={10}
+        spaceBetween={10}
         loop={true}
         autoplay={{
-          delay: 3500,
-          pauseOnMouseEnter:true,
-
+          delay: 4000,
+          pauseOnMouseEnter: true,
         }}
         pagination={{ clickable: true }}
         navigation

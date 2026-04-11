@@ -26,6 +26,7 @@ export default function FiltersComponent({
     max: params.get("price[lte]") || "",
     sort: params.get("sort") || "",
     page: params.get("page") || "",
+    q: params.get("q") || "",
   };
 
   useEffect(() => {
@@ -71,7 +72,7 @@ export default function FiltersComponent({
     });
   };
 
-  // ✅ brand
+  //  brand
   const handleBrandChange = (id: string) => {
     const newParams = new URLSearchParams(params.toString());
 

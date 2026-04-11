@@ -19,6 +19,9 @@ export async function getUserCart(): Promise<CrudCartResponce> {
     });
 
     const data = await res.json();
+
+    console.log(data , "cart data");
+    
     return data;
   } catch (error) {
     console.error("Error in getUserCart:", error);
