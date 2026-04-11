@@ -38,11 +38,11 @@ export default function RootLayout({
         className={`${exo.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProviderServer>
-            <Navbar />
-            {children}
-            <SpeedInsights />
-            <Toaster position="bottom-right" duration={2000} richColors={true} />
-            <Footer />
+          <Navbar />
+          {children}
+          <SpeedInsights />
+          <Toaster position="bottom-right" duration={2000} richColors={true} />
+          <Footer />
         </SessionProviderServer>
       </body>
     </html>

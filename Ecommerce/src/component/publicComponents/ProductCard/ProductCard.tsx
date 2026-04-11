@@ -12,7 +12,7 @@ export function ProductCard({ product }: { product: Product }) {
     <>
       <div
         id="product-card"
-        className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadowlg  hover:-translate-y-1 duration-300 transition-all"
+        className="bg-white dark:bg-gray-800 border border-gray-200 rounded-lg overflow-hidden hover:shadowlg  hover:-translate-y-1 duration-300 transition-all"
       >
         <div className="relative">
           <Image
