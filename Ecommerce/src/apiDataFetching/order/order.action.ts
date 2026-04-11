@@ -1,9 +1,10 @@
 "use server";
 
 import { getDecodedUserToken } from "@/src/lib/getUserToken";
-import { userOrdersResponce } from "@/src/types/orders.interface";
+import { checkoutSessionResponce, userOrdersResponce } from "@/src/types/orders.interface";
 import { updateTag } from "next/cache";
 import { redirect } from "next/navigation";
+import { cashResponce } from './../../types/orders.interface';
 
 export interface checkoutFormValues {
   shippingAddress: {
@@ -29,16 +30,14 @@ export async function handlecheckoutSubmitAction(
       },
     },
   );
-  const data = await res.json();
+  const data :checkoutSessionResponce = await res.json();
 
-  if (data.status === "success") {
+  if(data.status === "success"){
     updateTag("userCart");
     redirect(data.session.url);
   }
 
-  console.log(data, "data visa checkout");
-
-  return data.status;
+  return data;
 }
 
 // create cash order
@@ -58,14 +57,14 @@ export async function handleCashOrderSubmitAction(
       },
     },
   );
-  const data = await res.json();
+  const data : cashResponce = await res.json();
 
-  if (data.status === "success") {
+    if(data.status === "success"){
     updateTag("userCart");
     redirect("/");
   }
 
-  return data.status || "fail";
+  return data ;
 }
 
 // {"status":"success",

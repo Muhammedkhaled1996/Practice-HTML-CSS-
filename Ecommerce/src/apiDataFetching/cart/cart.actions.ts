@@ -6,6 +6,7 @@ import { revalidatePath, updateTag } from "next/cache";
 // get user cart
 export async function getUserCart(): Promise<CrudCartResponce> {
   const token = await getDecodedUserToken();
+  console.log(token, "token");
 
   try {
     const res = await fetch("https://ecommerce.routemisr.com/api/v2/cart", {
@@ -20,8 +21,8 @@ export async function getUserCart(): Promise<CrudCartResponce> {
 
     const data = await res.json();
 
-    console.log(data , "cart data");
-    
+    console.log(data, "cart data");
+
     return data;
   } catch (error) {
     console.error("Error in getUserCart:", error);

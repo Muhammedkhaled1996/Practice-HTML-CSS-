@@ -18,6 +18,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
 import {
   addAddressAction,
+  deleteUserAddress,
   valuesType,
 } from "@/src/apiDataFetching/address/address.actions";
 import { addAddressSchema } from "@/src/schema/addAddressSchema";
@@ -57,8 +58,10 @@ export default function DialogDemo({
       let response;
 
       if (addressData) {
-        // 🔥 هنا تحط API بتاع التعديل
-        response = { status: "success" };
+        response = await deleteUserAddress(addressData._id);
+        if (response?.status === "success") {
+          response = await addAddressAction(values);
+        }
       } else {
         response = await addAddressAction(values);
       }

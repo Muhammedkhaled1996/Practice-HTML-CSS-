@@ -17,6 +17,9 @@ export const dynamic = "force-dynamic";
 export default async function page() {
   const data = await getUserCart();
 
+  console.log(data?.cartId , "cart id");
+  
+
   const numOfCartItems = data?.numOfCartItems ?? 0;
   const totalCartPrice = data?.data?.totalCartPrice ?? 0;
   const products = data?.data?.products ?? [];

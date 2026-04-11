@@ -12,7 +12,7 @@ import { CrudCartResponce } from "@/src/types/cart.interface";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateTag } from "next/cache";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
@@ -54,40 +54,34 @@ export default function CheckoutSection({
     resolver: zodResolver(checkoutSchema),
   });
 
+
+  // handle submit
   async function handleRegisterSubmit(values: any) {
     setLoading(true);
     if (paymentMethod === "cash") {
+      setNumOfCartItems(0);
       const handleRegister = await handleCashOrderSubmitAction(
         values,
         cartResponce?.data?._id,
       );
 
-      if (handleRegister.status !== "success") {
+      if (handleRegister.status === "success") {
+        toast.success("Order Created Successfully");
+      } else {
         toast.error("Error From Server");
         setLoading(false);
-        return;
-      } else {
-        toast.success("Order Created Successfully");
-        setNumOfCartItems(0);
-        updateTag("userCart");
-
-        route.push("/");
       }
     } else {
+      setNumOfCartItems(0);
       const handleRegister = await handlecheckoutSubmitAction(
         values,
         cartResponce?.data?._id,
       );
-
-      if (handleRegister.status !== "success") {
+      if (handleRegister.status === "success") {
+        toast.success("Please Complete Your Payment");
+      } else {
         toast.error("Error From Server");
         setLoading(false);
-        return;
-      } else {
-        toast.success("Order Created Successfully");
-        setNumOfCartItems(0);
-        updateTag("userCart");
-        route.push(handleRegister.session.url);
       }
     }
   }
