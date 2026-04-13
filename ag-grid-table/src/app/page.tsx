@@ -4,8 +4,9 @@ import DataTable from "@/components/DataTable/DataTable";
 import Filters from "@/components/FilterComponent/Filters";
 import { useProducts } from "@/customeHooks/productsHook";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function Page() {
+function PageContent() {
   const searchParams = useSearchParams();
 
   const params = new URLSearchParams(searchParams.toString());
@@ -27,5 +28,13 @@ export default function Page() {
         totalPages={data?.metadata.numberOfPages}
       />
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <PageContent />
+    </Suspense>
   );
 }
