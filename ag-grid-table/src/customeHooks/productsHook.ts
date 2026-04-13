@@ -2,7 +2,7 @@ import { useQuery, keepPreviousData } from "@tanstack/react-query";
 
 async function fetchProducts(params: string) {
   const res = await fetch(
-    `https://ecommerce.routemisr.com/api/v1/products?${params}`,
+    `https://ecommerce.routemisr.com/api/v1/products?${params}`
   );
 
   if (!res.ok) throw new Error("Error fetching");

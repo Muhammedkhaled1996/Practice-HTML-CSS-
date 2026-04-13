@@ -4,15 +4,19 @@ import { allProductsResponse } from "@/types/allOrders.interface";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
-export default function Filters({data}: {data: allProductsResponse | undefined}) {
+export default function Filters({
+  data,
+}: {
+  data: allProductsResponse | undefined;
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
   // 🧠 unified state for all filters
   const [filters, setFilters] = useState({
-    page: searchParams.get("page") || "1",
-    limit: searchParams.get("limit") || "5",
+    page: searchParams.get("page") || "",
+    limit: searchParams.get("limit") || "",
     keyword: searchParams.get("keyword") || "",
     sort: searchParams.get("sort") || "",
     priceGte: searchParams.get("price[gte]") || "",
@@ -35,8 +39,6 @@ export default function Filters({data}: {data: allProductsResponse | undefined})
       }
     });
 
-    params.set("page", "1");
-
     router.push(`${pathname}?${params.toString()}`);
   }
 
@@ -46,7 +48,7 @@ export default function Filters({data}: {data: allProductsResponse | undefined})
       page: "1",
       keyword: "",
       sort: "",
-      limit: "5",
+      limit: "",
       priceGte: "",
       priceLte: "",
       brand: "",
@@ -120,8 +122,8 @@ export default function Filters({data}: {data: allProductsResponse | undefined})
 
   return (
     <>
-      <div className="flex justify-between items-center p-3">
-        <div className="flex gap-3 flex-wrap">
+      <div>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-3 flex-wrap">
           {/* keyword search */}
           <input
             placeholder="Search..."
@@ -147,6 +149,7 @@ export default function Filters({data}: {data: allProductsResponse | undefined})
             onChange={(e) => handleChange("limit", e.target.value)}
             className="border p-2 rounded"
           >
+            <option value={filters.limit}>{filters.limit}</option>
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="20">20</option>
@@ -160,9 +163,7 @@ export default function Filters({data}: {data: allProductsResponse | undefined})
             onChange={(e) => handleChange("brand", e.target.value)}
             className="border p-2 rounded"
           >
-            <option value="">
-              Brand ID
-            </option>
+            <option value="">Brand ID</option>
             {brands &&
               brands.map((brand) => (
                 <option key={brand._id} value={brand._id}>
@@ -177,9 +178,7 @@ export default function Filters({data}: {data: allProductsResponse | undefined})
             onChange={(e) => handleChange("category", e.target.value)}
             className="border p-2 rounded"
           >
-            <option value="">
-              Category ID
-            </option>
+            <option value="">Category ID</option>
             {categories &&
               categories.map((category) => (
                 <option key={category._id} value={category._id}>
@@ -228,9 +227,7 @@ export default function Filters({data}: {data: allProductsResponse | undefined})
         >
           Clear All
         </div>
-        <p className="text-sm text-gray-500">
-          {data?.results} Products
-        </p>
+        <p className="text-sm text-gray-500">{data?.results} Products</p>
       </div>
     </>
   );
