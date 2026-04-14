@@ -39,6 +39,7 @@ const cn = (...classes: any) => classes.filter(Boolean).join(" ");
 
 // --- Components ---
 
+// Navbar component with active link highlighting based on scroll position
 const Navbar = ({
   darkMode,
   setDarkMode,
@@ -73,7 +74,7 @@ const Navbar = ({
   return (
     <nav className="fixed top-0 w-full z-100 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-800/50 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <div className="flex items-center gap-2 group cursor-pointer">
+        <Link href="#" className="flex items-center gap-2 group cursor-pointer">
           <motion.div
             whileHover={{ rotate: 25 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -87,11 +88,11 @@ const Navbar = ({
               Codex
             </span>
           </span>
-        </div>
+        </Link>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.id}
               href={`#${link.id}`}
               className={cn(
@@ -108,7 +109,7 @@ const Navbar = ({
                   className="absolute -bottom-1 left-0 w-full h-0.5 bg-orange-500"
                 />
               )}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -159,7 +160,11 @@ const Hero = () => (
     className="min-h-screen pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12"
   >
     <div className="flex-1 text-center lg:text-left space-y-6">
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <motion.div
+        initial={{ x: -20, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <h3 className="text-orange-500 font-bold text-xl tracking-widest uppercase">
           Hi, I'm Muhammed
         </h3>
@@ -178,12 +183,12 @@ const Hero = () => (
         </p>
       </motion.div>
       <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-        <a
+        <Link
           href="#contact"
           className="cursor-pointer bg-orange-500 text-white px-10 py-4 rounded-xl font-bold shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all hover:-translate-y-1 active:scale-95"
         >
           Hire Me Now
-        </a>
+        </Link>
       </div>
     </div>
     <div className="flex-1 relative flex justify-center items-center">
@@ -255,7 +260,7 @@ const About = () => {
       className="py-24 px-6 bg-white dark:bg-slate-950 overflow-hidden"
     >
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-slate-900 dark:text-white mb-20 underline decoration-orange-500 decoration-4 underline-offset-8">
+        <h2 className="text-4xl font-bold text-center text-slate-900 dark:text-white mb-20 underline decoration-orange-500 decoration-4 underline-offset-2">
           My Journey
         </h2>
 
@@ -370,6 +375,7 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
             className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white"
           >
             Premium <span className="text-orange-500">Solutions</span>
@@ -379,10 +385,11 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
             className="text-slate-600 dark:text-slate-300 mt-6 max-w-2xl mx-auto text-lg leading-relaxed"
           >
             I don't just build websites; I craft high-performance digital
-            products focused on{" "}
+            products focused on
             <span className="text-orange-500 font-semibold italic">
               Scalability
             </span>
@@ -397,10 +404,9 @@ const Services = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, idx) => (
-            <motion.div
+            <div
               key={idx}
-              whileHover={{ y: -10 }}
-              className="p-8 bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none border border-transparent hover:border-orange-500/50 transition-all group"
+              className="p-8 bg-white dark:bg-slate-800 rounded-3xl shadow-gray-200/50 border border-transparent hover:border-orange-500/50 transition-all group hover:shadow-lg/30 hover:-translate-y-1"
             >
               <div className="w-16 h-16 bg-orange-100 dark:bg-orange-500/10 rounded-2xl flex items-center justify-center text-orange-500 mb-6 group-hover:bg-orange-500 group-hover:text-white transition-colors duration-500">
                 {service.icon}
@@ -411,7 +417,7 @@ const Services = () => {
               <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                 {service.desc}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -428,18 +434,21 @@ const Projects = () => {
       category: "React",
       img: "https://placehold.co/600x400/orange/white?text=React+App",
       demo: "",
+      desc: "An online store built with React, featuring a dynamic product catalog, shopping cart, and seamless checkout experience.",
     },
     {
       title: "SaaS Dashboard",
       category: "Next.js",
       img: "https://placehold.co/600x400/333/orange?text=NextJS+Admin",
       demo: "",
+      desc: "An online store built with React, featuring a dynamic product catalog, shopping cart, and seamless checkout experience.",
     },
     {
       title: "Social Media Platform",
       category: "React",
       img: "https://placehold.co/600x400/orange/white?text=Social+UI",
       demo: "",
+      desc: "An online store built with React, featuring a dynamic product catalog, shopping cart, and seamless checkout experience.",
     },
   ];
 
@@ -515,10 +524,10 @@ const Projects = () => {
                   stiffness: 260,
                   damping: 20,
                 }}
-                className="group relative bg-white dark:bg-slate-900 rounded-2xl p-4 border border-gray-100 dark:border-gray-800 hover:border-orange-500/50 transition-all duration-500 shadow hover:shadow-2xl hover:-translate-y-1"
+                className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-orange-500/50 transition-all duration-500 shadow hover:shadow-2xl hover:-translate-y-1"
               >
                 {/* Container الصورة */}
-                <div className="relative h-64 w-full overflow-hidden rounded-2xl isolation-auto">
+                <div className="relative h-64 w-full overflow-hidden rounded-t-2xl isolation-auto">
                   <img
                     src={project.img}
                     className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.17,0.67,0.83,0.67)] group-hover:scale-110"
@@ -551,7 +560,7 @@ const Projects = () => {
                 </div>
 
                 {/* تفاصيل الكارت */}
-                <div className="py-6">
+                <div className="py-6 p-4">
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight group-hover:text-orange-500 transition-colors">
                       {project.title}
@@ -563,8 +572,7 @@ const Projects = () => {
                   </div>
 
                   <p className="text-start text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6 line-clamp-2">
-                    Building high-performance interfaces with a focus on clean
-                    logic and user-centric motion design.
+                    {project.desc ||  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
                   </p>
 
                   {/* Footer الكارت */}
@@ -603,9 +611,133 @@ const Projects = () => {
   );
 };
 
+// skills section
+const skills = [
+  { name: "HTML5", level: 95, color: "#E34F26" },
+  { name: "CSS3", level: 90, color: "#1572B6" },
+  { name: "Bootstrap", level: 80, color: "#7952B3" },
+  { name: "Tailwind CSS", level: 95, color: "#06B6D4" },
+  { name: "JavaScript", level: 88, color: "#F7DF1E" },
+  { name: "React.js", level: 92, color: "#61DAFB" },
+  { name: "Next.js", level: 87, color: "black" },
+];
+
+// مصفوفة الأيقونات العائمة (Icons Floating)
+const FloatingIcon = ({ name, color, index }: any) => {
+  // حركات عشوائية بسيطة لكل أيقونة لتعطي إيحاء أنها تسبح
+  const randomY = [0, -20, 0];
+  const randomX = [0, 10, 0];
+
+  return (
+    <motion.div
+      animate={{
+        y: randomY,
+        x: randomX,
+        rotate: [0, 10, -10, 0],
+      }}
+      transition={{
+        duration: 4 + index, // اختلاف السرعة لكل أيقونة
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className="absolute flex items-center justify-center p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 backdrop-blur-sm"
+      style={{
+        width: "80px",
+        height: "80px",
+        // توزيع الأيقونات بشكل عشوائي في المساحة المخصصة
+        left: `${(index % 3) * 30 + 10}%`,
+        top: `${Math.floor(index / 3) * 30 + 10}%`,
+      }}
+    >
+      {/* هنا نضع اسم المهارة أو اللوجو الخاص بها */}
+      <span className="font-bold text-[10px] text-center" style={{ color }}>
+        {name}
+      </span>
+      {/* تأثير الإضاءة الخلفية لكل أيقونة */}
+      <div
+        className="absolute inset-0 opacity-10 blur-xl rounded-full"
+        style={{ backgroundColor: color }}
+      />
+    </motion.div>
+  );
+};
+
+const SkillsSection = () => {
+  return (
+    <section
+      id="skills"
+      className="py-24 px-6 bg-white dark:bg-[#0B1120] overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        {/* الجزء الأيسر: الأيقونات العائمة */}
+        <div className="relative h-100 hidden md:block">
+          <div className="absolute inset-0 bg-orange-500/5 rounded-full blur-3xl" />
+          {skills.map((skill, idx) => (
+            <FloatingIcon key={idx} {...skill} index={idx} />
+          ))}
+        </div>
+
+        {/* الجزء الأيمن: الـ Progress Bars */}
+        <div className="space-y-8">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl font-black text-slate-900 dark:text-white mb-4">
+              My <span className="text-orange-500">Technical</span> Skills
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400 mb-8">
+              Expertise in building modern web applications with focus on
+              performance and clean code.
+            </p>
+          </motion.div>
+
+          <div className="space-y-6">
+            {skills.map((skill, idx) => (
+              <div key={idx} className="relative">
+                <div className="flex justify-between mb-2">
+                  <span className="font-bold text-slate-700 dark:text-slate-200">
+                    {skill.name}
+                  </span>
+                  <span className="text-orange-500 font-mono">
+                    {skill.level}%
+                  </span>
+                </div>
+
+                {/* الخلفية الخاصة بالبار */}
+                <div className="h-3 w-full bg-gray-100 dark:bg-slate-800 rounded-full overflow-hidden border border-gray-200 dark:border-slate-700">
+                  {/* البار المتحرك */}
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 1.5,
+                      ease: "easeOut",
+                      delay: idx * 0.1,
+                    }}
+                    className="h-full rounded-full relative"
+                    style={{ backgroundColor: skill.color }}
+                  >
+                    {/* تأثير لمعان (Glow) فوق البار */}
+                    <div className="absolute inset-0 bg-white/20 w-full h-full animate-pulse" />
+                  </motion.div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // --- New Contact Section with EmailJS Integration ---
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast"; // استيراد المكتبة
+import Link from "next/link";
+import { desc } from "framer-motion/client";
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -637,7 +769,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 relative overflow-hidden">
+    <section id="contact" className="py-16 px-6 relative overflow-hidden">
       <Toaster position="top-center" reverseOrder={false} />
       {/* Background Decorative Elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-orange-500/5 rounded-full blur-[120px] -z-10" />
@@ -647,6 +779,7 @@ const Contact = () => {
           <motion.span
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             className="text-orange-500 font-black uppercase tracking-[0.3em]"
           >
             Get In Touch
@@ -654,20 +787,21 @@ const Contact = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mt-4"
           >
             Ready to <span className="text-orange-500">Collaborate?</span>
           </motion.h2>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-8">
+        <div className="grid lg:grid-cols-5 gap-4">
           {/* 1. Contact Info Cards */}
           <div className="lg:col-span-2 space-y-4">
             {[
               {
                 icon: <Mail className="text-orange-500" />,
                 label: "Email Me",
-                value: "muhammedkhaled25@gmail.com",
+                value: "MuhammedKhaled25@",
                 action: () =>
                   (window.location.href = "mailto:muhammedkhaled25@gmail.com"),
                 color: "bg-orange-500/10",
@@ -690,9 +824,10 @@ const Contact = () => {
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 onClick={item.action}
-                className="group p-6 bg-white dark:bg-slate-900 rounded-4xl border border-gray-100 dark:border-gray-800 hover:border-orange-500/50 cursor-pointer transition-all duration-300 shadow-sm hover:shadow-xl "
+                className="group p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-orange-500/50 cursor-pointer transition-all duration-300 shadow-sm hover:shadow-xl "
               >
                 <div className="flex items-center gap-5">
                   <div
@@ -717,9 +852,10 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="lg:col-span-3 bg-white dark:bg-slate-900 rounded-[3rem] p-8 md:p-12 border border-gray-100 dark:border-gray-800 shadow-2xl relative overflow-hidden"
+            viewport={{ once: true }}
+            className="lg:col-span-3 bg-white dark:bg-slate-900 rounded-2xl p-3 border border-gray-100 dark:border-gray-800 shadow-2xl relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 p-8 opacity-5 dark:opacity-10">
+            <div className="absolute -top-6 md:top-0 right-0 p-8 opacity-5 dark:opacity-10">
               <MessageSquare
                 size={30}
                 className="text-slate-900 dark:text-white"
@@ -743,7 +879,7 @@ const Contact = () => {
                   required
                   type="text"
                   placeholder="Muhammed Khaled"
-                  className="mt-3 w-full px-6 py-5 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-300 focus:border-orange-500/50 focus:ring-4 ring-orange-500/5 text-slate-900 dark:text-white outline-none transition-all"
+                  className="mt-3 w-full px-6 py-5 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-300 focus:border-orange-500/50 focus:ring-4 ring-orange-500/5 text-slate-900 dark:text-white outline-none transition-all"
                 />
               </div>
               <div className="space-y-2 md:col-span-1">
@@ -755,7 +891,7 @@ const Contact = () => {
                   required
                   type="email"
                   placeholder="muhammed@example.com"
-                  className="mt-3 w-full px-6 py-5 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-300 focus:border-orange-500/50 focus:ring-4 ring-orange-500/5 text-slate-900 dark:text-white outline-none transition-all"
+                  className="mt-3 w-full px-6 py-5 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-300 focus:border-orange-500/50 focus:ring-4 ring-orange-500/5 text-slate-900 dark:text-white outline-none transition-all"
                 />
               </div>
               <div className="space-y-2 md:col-span-2">
@@ -767,7 +903,7 @@ const Contact = () => {
                   required
                   rows={4}
                   placeholder="Tell me about your Dream..."
-                  className="mt-3 w-full px-6 py-5 rounded-3xl bg-gray-50 dark:bg-gray-800/50 border border-gray-300 focus:border-orange-500/50 focus:ring-4 ring-orange-500/5 text-slate-900 dark:text-white outline-none transition-all resize-none"
+                  className="mt-3 w-full px-6 py-5 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-300 focus:border-orange-500/50 focus:ring-4 ring-orange-500/5 text-slate-900 dark:text-white outline-none transition-all resize-none"
                 />
               </div>
 
@@ -775,7 +911,7 @@ const Contact = () => {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="md:col-span-2 w-full bg-orange-500 text-white py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 shadow-[0_20px_40px_-10px_rgba(249,115,22,0.4)] hover:bg-orange-600 transition-all"
+                className="cursor-pointer md:col-span-2 w-full bg-orange-500 text-white py-5 rounded-xl font-black uppercase tracking-widest flex items-center justify-center gap-3 shadow-[0_20px_40px_-10px_rgba(249,115,22,0.4)] hover:bg-orange-600 transition-all"
               >
                 Send Message <Send size={18} />
               </motion.button>
@@ -791,7 +927,7 @@ const Contact = () => {
 const socialLinks = [
   {
     Icon: FaGithub,
-    href: "https://github.com/Muhammedkhaled1996",
+    href: "#",
     label: "Github",
   },
   {
@@ -804,7 +940,11 @@ const socialLinks = [
     href: "#",
     label: "Facebook",
   },
-  { Icon: FaWhatsapp, href: "https://wa.me/01002165352", label: "WhatsApp" },
+  {
+    Icon: FaWhatsapp,
+    href: "https://wa.me/201002165352",
+    label: "WhatsApp",
+  },
 ];
 
 const Footer = () => (
@@ -826,7 +966,7 @@ const Footer = () => (
           </motion.a>
         ))}
       </div>
-      <p className="text-gray-500 text-sm mb-8">
+      <p className="text-gray-500 text-sm mb-8 text-center">
         © {new Date().getFullYear()} MuhammedCodex. Built with 🧡 using Next.js
         & Tailwind.
       </p>
@@ -858,6 +998,7 @@ export default function PortfolioPage() {
       <main>
         <Hero />
         <About />
+        <SkillsSection />
         <Services />
         <Projects />
         <Contact />
