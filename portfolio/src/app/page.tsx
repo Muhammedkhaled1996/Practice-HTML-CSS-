@@ -11,28 +11,19 @@ import {
   Sun,
   Moon,
   Layout,
-  Smartphone,
   Monitor,
   Palette,
   Mail,
   Send,
   Phone,
   Code2,
-  CheckCircle2,
   Cpu,
   Globe,
   Rocket,
   MapPin,
   MessageSquare,
 } from "lucide-react";
-import {
-  FaFacebook,
-  FaFacebookF,
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaFacebookF, FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 // --- Utility for dynamic classes ---
 const cn = (...classes: any) => classes.filter(Boolean).join(" ");
@@ -77,6 +68,7 @@ const Navbar = ({
         <Link href="#" className="flex items-center gap-2 group cursor-pointer">
           <motion.div
             whileHover={{ rotate: 25 }}
+            whileTap={{ rotate: 25 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="w-10 h-10 bg-linear-to-tr from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-orange-500/20"
           >
@@ -126,32 +118,6 @@ const Navbar = ({
   );
 };
 
-const Typewriter = ({ words }: { words: string[] }) => {
-  const [index, setIndex] = useState(0);
-  const [subIndex, setSubIndex] = useState(0);
-  const [reverse, setReverse] = useState(false);
-
-  useEffect(() => {
-    if (subIndex === words[index].length + 1 && !reverse) {
-      setTimeout(() => setReverse(true), 1500);
-      return;
-    }
-    if (subIndex === 0 && reverse) {
-      setReverse(false);
-      setIndex((prev) => (prev + 1) % words.length);
-      return;
-    }
-    const timeout = setTimeout(
-      () => {
-        setSubIndex((prev) => prev + (reverse ? -1 : 1));
-      },
-      reverse ? 75 : 150,
-    );
-    return () => clearTimeout(timeout);
-  }, [subIndex, index, reverse, words]);
-
-  return <span>{words[index].substring(0, subIndex)}</span>;
-};
 
 // hero section
 const Hero = () => (
@@ -168,12 +134,20 @@ const Hero = () => (
         <h3 className="text-orange-500 font-bold text-xl tracking-widest uppercase">
           Hi, I'm Muhammed
         </h3>
-        <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mt-2 leading-tight h-40">
+        <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mt-2 leading-tight ">
           Frontend <br />
           <span className="text-orange-500 h-20">
-            <Typewriter
-              words={["Developer", "React Expert", "Next.js Ninja"]}
+
+
+            <TypeAnimation
+              sequence={["Developer" , 2000 , "React Expert" , 2000 , "Next.js Ninja" , 2000 ]}
+              repeat={Infinity}
+              cursor={true}
+              deletionSpeed={50}
             />
+            {/* <Typewriter
+              words={["Developer", "React Expert", "Next.js Ninja"]}
+            /> */}
           </span>
         </h1>
         <p className="mt-6 text-slate-600 dark:text-slate-300 max-w-xl text-lg leading-relaxed">
@@ -213,6 +187,7 @@ const Hero = () => (
           alt="Profile"
           className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 "
           whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 1.2 }}
         />
       </motion.div>
     </div>
@@ -257,7 +232,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-24 px-6 bg-white dark:bg-slate-950 overflow-hidden"
+      className="py-16 px-6 bg-white dark:bg-slate-950 overflow-hidden"
     >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center text-slate-900 dark:text-white mb-20 underline decoration-orange-500 decoration-4 underline-offset-2">
@@ -368,7 +343,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-24 px-6 bg-gray-50 dark:bg-slate-900">
+    <section id="services" className="py-16 px-6 bg-gray-50 dark:bg-slate-900">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 px-4">
           <motion.h2
@@ -458,7 +433,7 @@ const Projects = () => {
       : projectList.filter((p) => p.category === activeTab);
 
   return (
-    <section id="projects" className="py-24 px-6 bg-white dark:bg-slate-950">
+    <section id="projects" className="py-16 px-6 bg-white dark:bg-slate-950">
       <div className="max-w-7xl mx-auto text-center">
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-16">
@@ -535,9 +510,10 @@ const Projects = () => {
                   />
 
                   {/* الطبقة الزجاجية عند الـ Hover */}
-                  <div className="absolute inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center gap-3">
+                  <div className="absolute inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-500 flex items-center justify-center gap-3">
                     <motion.p
                       whileHover={{ y: -5 }}
+                      whileTap={{ y: -5 }}
                       className="bg-white text-black w-12 h-12 rounded-full flex items-center justify-center shadow-2xl hover:bg-orange-500 hover:text-white transition-colors"
                     >
                       <Code2 size={20} />
@@ -545,6 +521,7 @@ const Projects = () => {
                     <motion.a
                       href="#"
                       whileHover={{ y: -5 }}
+                      whileTap={{ y: -5 }}
                       className="bg-orange-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-2xl hover:bg-white hover:text-orange-500 transition-colors"
                     >
                       <Globe size={20} />
@@ -572,7 +549,8 @@ const Projects = () => {
                   </div>
 
                   <p className="text-start text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6 line-clamp-2">
-                    {project.desc ||  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
+                    {project.desc ||
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
                   </p>
 
                   {/* Footer الكارت */}
@@ -593,6 +571,7 @@ const Projects = () => {
                       target="_blank"
                       className="cursor-pointer group/btn flex items-center gap-2 text-sm font-black uppercase tracking-widest text-orange-500"
                       whileHover={{ gap: "12px" }}
+                      whileTap={{ gap: "12px" }}
                     >
                       Explore
                       <Rocket
@@ -612,19 +591,22 @@ const Projects = () => {
 };
 
 // skills section
+import { FaHtml5, FaCss3Alt, FaBootstrap, FaJs, FaReact } from "react-icons/fa";
+
+import { SiTailwindcss, SiNextdotjs } from "react-icons/si";
+
 const skills = [
-  { name: "HTML5", level: 95, color: "#E34F26" },
-  { name: "CSS3", level: 90, color: "#1572B6" },
-  { name: "Bootstrap", level: 80, color: "#7952B3" },
-  { name: "Tailwind CSS", level: 95, color: "#06B6D4" },
-  { name: "JavaScript", level: 88, color: "#F7DF1E" },
-  { name: "React.js", level: 92, color: "#61DAFB" },
-  { name: "Next.js", level: 87, color: "black" },
+  { name: "HTML5", level: 95, icon: FaHtml5, color: "#E34F26" },
+  { name: "CSS3", level: 90, icon: FaCss3Alt, color: "#1572B6" },
+  { name: "Bootstrap", level: 80, icon: FaBootstrap, color: "#7952B3" },
+  { name: "Tailwind", level: 95, icon: SiTailwindcss, color: "#06B6D4" },
+  { name: "JavaScript", level: 88, icon: FaJs, color: "#F7DF1E" },
+  { name: "React", level: 92, icon: FaReact, color: "#61DAFB" },
+  { name: "Next.js", level: 87, icon: SiNextdotjs, color: "#000000" },
 ];
 
 // مصفوفة الأيقونات العائمة (Icons Floating)
-const FloatingIcon = ({ name, color, index }: any) => {
-  // حركات عشوائية بسيطة لكل أيقونة لتعطي إيحاء أنها تسبح
+const FloatingIcon = ({ icon: Icon, color, index }: any) => {
   const randomY = [0, -20, 0];
   const randomX = [0, 10, 0];
 
@@ -636,28 +618,27 @@ const FloatingIcon = ({ name, color, index }: any) => {
         rotate: [0, 10, -10, 0],
       }}
       transition={{
-        duration: 4 + index, // اختلاف السرعة لكل أيقونة
+        duration: 4 + index,
         repeat: Infinity,
         ease: "easeInOut",
       }}
-      className="absolute flex items-center justify-center p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 backdrop-blur-sm"
+      className="absolute flex items-center justify-center rounded-2xl border border-white/20 dark:border-white/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.1)]"
       style={{
         width: "80px",
         height: "80px",
-        // توزيع الأيقونات بشكل عشوائي في المساحة المخصصة
         left: `${(index % 3) * 30 + 10}%`,
         top: `${Math.floor(index / 3) * 30 + 10}%`,
+        background: "rgba(255,255,255,0.1)", // glass effect
       }}
     >
-      {/* هنا نضع اسم المهارة أو اللوجو الخاص بها */}
-      <span className="font-bold text-[10px] text-center" style={{ color }}>
-        {name}
-      </span>
-      {/* تأثير الإضاءة الخلفية لكل أيقونة */}
+      {/* Glow */}
       <div
-        className="absolute inset-0 opacity-10 blur-xl rounded-full"
+        className="absolute inset-0 rounded-2xl blur-xl opacity-20"
         style={{ backgroundColor: color }}
       />
+
+      {/* Icon */}
+      <Icon size={32} style={{ color }} className="relative z-10" />
     </motion.div>
   );
 };
@@ -666,11 +647,11 @@ const SkillsSection = () => {
   return (
     <section
       id="skills"
-      className="py-24 px-6 bg-white dark:bg-[#0B1120] overflow-hidden"
+      className="py-16 px-6 bg-white dark:bg-[#0B1120] overflow-hidden"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* الجزء الأيسر: الأيقونات العائمة */}
-        <div className="relative h-100 hidden md:block">
+        <div className="relative h-100">
           <div className="absolute inset-0 bg-orange-500/5 rounded-full blur-3xl" />
           {skills.map((skill, idx) => (
             <FloatingIcon key={idx} {...skill} index={idx} />
@@ -738,6 +719,7 @@ import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast"; // استيراد المكتبة
 import Link from "next/link";
 import { desc } from "framer-motion/client";
+import { TypeAnimation } from "react-type-animation";
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -777,8 +759,8 @@ const Contact = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-orange-500 font-black uppercase tracking-[0.3em]"
           >
@@ -801,7 +783,7 @@ const Contact = () => {
               {
                 icon: <Mail className="text-orange-500" />,
                 label: "Email Me",
-                value: "MuhammedKhaled25@",
+                value: "MuhammedKhaled25@gmail.com",
                 action: () =>
                   (window.location.href = "mailto:muhammedkhaled25@gmail.com"),
                 color: "bg-orange-500/10",
@@ -825,7 +807,7 @@ const Contact = () => {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                // transition={{ delay: i * 0.1 }}
                 onClick={item.action}
                 className="group p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-orange-500/50 cursor-pointer transition-all duration-300 shadow-sm hover:shadow-xl "
               >
@@ -855,7 +837,7 @@ const Contact = () => {
             viewport={{ once: true }}
             className="lg:col-span-3 bg-white dark:bg-slate-900 rounded-2xl p-3 border border-gray-100 dark:border-gray-800 shadow-2xl relative overflow-hidden"
           >
-            <div className="absolute -top-6 md:top-0 right-0 p-8 opacity-5 dark:opacity-10">
+            <div className="absolute -top-6 md:-top-6 right-0 p-8 opacity-5 dark:opacity-10">
               <MessageSquare
                 size={30}
                 className="text-slate-900 dark:text-white"
@@ -932,7 +914,7 @@ const socialLinks = [
   },
   {
     Icon: FaLinkedin,
-    href: "www.linkedin.com/in/muhammed-khaled-8a495b196",
+    href: "https://www.linkedin.com/in/muhammed-khaled-8a495b196",
     label: "LinkedIn",
   },
   {
@@ -957,7 +939,8 @@ const Footer = () => (
             href={href}
             target="_blank" // لفتح الرابط في تبويب جديد
             rel="noopener noreferrer" // حماية أمنية للروابط الخارجية
-            whileHover={{ y: -5, scale: 1.1 }}
+            whileHover={{ y: -6, scale: 1.15 }}
+            transition={{ type: "spring", stiffness: 300 }}
             whileTap={{ scale: 0.9 }}
             className="text-gray-400 dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-500 transition-colors duration-300"
             aria-label={label}
