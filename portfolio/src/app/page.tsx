@@ -1,6 +1,6 @@
 "use client";
 
-import profilePicture from "@/assets/images/profilePicture.jpeg";
+import profilePicture from "@/assets/images/profilePicture.png";
 import React, { useState, useEffect, useRef } from "react";
 import {
   motion,
@@ -54,7 +54,7 @@ const Navbar = ({
       if (element) {
         const rect = element.getBoundingClientRect();
 
-        if (rect.top <= 100 && rect.bottom >= 100) {
+        if (rect.top <= 130 && rect.bottom >= 130) {
           setActiveSection(section);
         }
       }
