@@ -1,6 +1,6 @@
 "use client";
 
-import profilePicture from "@/assets/images/profilePicture.jpeg"
+import profilePicture from "@/assets/images/profilePicture.jpeg";
 import React, { useState, useEffect, useRef } from "react";
 import {
   motion,
@@ -24,6 +24,7 @@ import {
   Rocket,
   MapPin,
   MessageSquare,
+  Menu,
 } from "lucide-react";
 import { FaFacebookF, FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
@@ -41,14 +42,18 @@ const Navbar = ({
   setDarkMode: any;
 }) => {
   const [activeSection, setActiveSection] = useState("home");
+  const [open, setOpen] = useState(false);
+
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
+  useMotionValueEvent(scrollY, "change", () => {
     const sections = ["home", "about", "services", "projects", "contact"];
+
     for (const section of sections) {
       const element = document.getElementById(section);
       if (element) {
         const rect = element.getBoundingClientRect();
+
         if (rect.top <= 100 && rect.bottom >= 100) {
           setActiveSection(section);
         }
@@ -65,38 +70,36 @@ const Navbar = ({
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-100 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-800/50 transition-all duration-300">
+    <nav className="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-800/50">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="#" className="flex items-center gap-2 group cursor-pointer">
+        {/* Logo */}
+        <Link href="#" className="flex items-center gap-2">
           <motion.div
             whileHover={{ rotate: 25 }}
-            whileTap={{ rotate: 25 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="w-10 h-10 bg-linear-to-tr from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-orange-500/20"
+            className="w-10 h-10 bg-gradient-to-tr from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold"
           >
             M
           </motion.div>
-          <span className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
-            Muhammed
-            <span className="text-orange-500 font-extrabold underline decoration-2 underline-offset-4">
-              Codex
-            </span>
+
+          <span className="text-xl font-bold">
+            Muhammed <span className="text-orange-500">Codex</span>
           </span>
         </Link>
 
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.id}
               href={`#${link.id}`}
-              className={cn(
-                "relative text-sm font-semibold transition-colors duration-300",
+              className={`relative text-sm font-semibold transition-colors ${
                 activeSection === link.id
                   ? "text-orange-500"
-                  : "text-slate-700 dark:text-slate-200 hover:text-orange-500",
-              )}
+                  : "text-slate-700 dark:text-slate-200 hover:text-orange-500"
+              }`}
             >
               {link.name}
+
               {activeSection === link.id && (
                 <motion.div
                   layoutId="activeNav"
@@ -107,13 +110,64 @@ const Navbar = ({
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
+        {/* Right Actions */}
+        <div className="flex items-center gap-3">
+          {/* Dark mode */}
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-slate-900 dark:text-white hover:ring-2 ring-orange-500/50 transition-all"
+            className="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800"
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
+
+          {/* Mobile Menu */}
+          <div className="md:hidden">
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <button className="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800">
+                  <Menu size={20} />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-80 p-6">
+                {/* Header (Logo) */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-gradient-to-tr from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold shadow-md">
+                    M
+                  </div>
+
+                  <div className="flex flex-col leading-tight">
+                    <span className="font-bold text-lg text-slate-900 dark:text-white">
+                      Muhammed
+                    </span>
+                    <span className="text-sm text-orange-500 font-semibold">
+                      Codex
+                    </span>
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div className="h-px w-full bg-gray-200 dark:bg-gray-800 mb-6" />
+
+                {/* Navigation */}
+                <div className="flex flex-col gap-3">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.id}
+                      href={`#${link.id}`}
+                      onClick={() => setOpen(false)}
+                      className={`px-3 py-2 rounded-xl text-base font-medium transition-all duration-200 ${
+                        activeSection === link.id
+                          ? "bg-orange-500/10 text-orange-500"
+                          : "text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </nav>
@@ -202,33 +256,33 @@ const About = () => {
   const timeline = [
     {
       year: "2021",
-      title: "The Beginning",
+      title: "Frontend Beginner",
       company: "Freelance",
-      desc: "Started the journey by mastering HTML, CSS, and pure JavaScript to build static websites.",
+      desc: "Started the journey by learning HTML, CSS, and JavaScript fundamentals to build responsive static websites.",
     },
     {
       year: "2022",
-      title: "Full Stack Certification",
+      title: "Frontend Trainee",
       company: "Route Academy",
-      desc: "Mastered modern web technologies (MERN Stack) and industrial development standards.",
+      desc: "Focused on modern frontend development using React, building dynamic user interfaces and understanding best practices.",
     },
     {
       year: "2023",
-      title: "React Developer",
+      title: "Frontend Developer",
       company: "Creative Agency",
-      desc: "Built complex UI components, integrated RESTful APIs, and optimized web performance.",
+      desc: "Developed interactive UI components, integrated APIs, and improved performance for web applications.",
     },
     {
       year: "2024",
-      title: "Senior Frontend Developer",
+      title: "Mid-Level Frontend Developer",
       company: "Tech Solutions",
-      desc: "Leading the development of high-performance Next.js applications and mentoring junior developers.",
+      desc: "Built scalable Next.js applications, enhanced UX, and collaborated with teams to deliver high-quality products.",
     },
     {
       year: "2025",
       title: "Senior Frontend Developer",
       company: "Route Academy",
-      desc: "Currently sharing knowledge as a mentor, helping aspiring developers master React and Next.js.",
+      desc: "Mentoring developers, reviewing code, and leading frontend architecture using React and Next.js.",
     },
   ];
 
@@ -269,7 +323,7 @@ const TimelineItem = ({ item, idx }: any) => {
     <div
       ref={ref}
       className={cn(
-        "relative flex flex-col md:flex-row items-center justify-between w-full mb-12", // Added margin for spacing
+        "relative flex flex-col md:flex-row items-center justify-between w-full mb-12",
         isEven ? "md:flex-row-reverse" : "md:flex-row",
       )}
     >
@@ -404,29 +458,91 @@ const Services = () => {
 };
 
 // --- Rest of your components (Projects, Contact, Footer) ---
+
+import freshCartApp from "@/assets/images/apps/FreshCart.png";
+import blablaApp from "@/assets/images/apps/blablaSocialMedia.png";
+import gameArena from "@/assets/images/apps/gameArena.png";
+import nutriPlan from "@/assets/images/apps/nutriPlan.png";
+import whatDinner from "@/assets/images/apps/what'sDinner.png";
+import contacthub from "@/assets/images/apps/contacthub.png";
+import adasa from "@/assets/images/apps/3adasa.png";
+import elitehome from "@/assets/images/apps/eliteHomes.png";
+import modaber from "@/assets/images/apps/modaber.png";
+
 const Projects = () => {
   const [activeTab, setActiveTab] = useState("All");
   const projectList = [
     {
       title: "E-Commerce App",
-      category: "React",
-      img: "https://placehold.co/600x400/orange/white?text=React+App",
-      demo: "",
+      category: "Next.Js",
+      img: freshCartApp,
+      demo: "https://freshcart-khaki-one.vercel.app/",
       desc: "An online store built with React, featuring a dynamic product catalog, shopping cart, and seamless checkout experience.",
-    },
-    {
-      title: "SaaS Dashboard",
-      category: "Next.js",
-      img: "https://placehold.co/600x400/333/orange?text=NextJS+Admin",
-      demo: "",
-      desc: "An online store built with React, featuring a dynamic product catalog, shopping cart, and seamless checkout experience.",
+      tech: ["React", "Tailwind", "Vite"],
     },
     {
       title: "Social Media Platform",
       category: "React",
-      img: "https://placehold.co/600x400/orange/white?text=Social+UI",
-      demo: "",
-      desc: "An online store built with React, featuring a dynamic product catalog, shopping cart, and seamless checkout experience.",
+      img: blablaApp,
+      demo: "https://social-media-app-ten-theta.vercel.app/",
+      desc: "A modern social media platform built with React, offering interactive user feeds, real-time updates, and seamless user engagement features.",
+      tech: ["React", "Tailwind", "Vite"],
+    },
+    {
+      title: "Games Website",
+      category: "Vanilla JS",
+      img: gameArena,
+      demo: "https://gameswebsite-ruddy.vercel.app/",
+      desc: "A dynamic games website built with Vanilla JavaScript, featuring multiple interactive games, smooth gameplay, and an engaging user experience.",
+      tech: ["Html", "Css", "Vanilla JS"],
+    },
+    {
+      title: "NutriPlan Website",
+      category: "Vanilla JS",
+      img: nutriPlan,
+      demo: "https://nutriplan-mu.vercel.app/",
+      desc: "A responsive nutrition-focused website built with Vanilla JavaScript, offering personalized meal plans, healthy recipes, and an intuitive user experience for better lifestyle management.",
+      tech: ["Html", "Css", "Vanilla JS"],
+    },
+    {
+      title: "what's Dinner Website",
+      category: "Vanilla JS",
+      img: whatDinner,
+      demo: "https://practice-html-css-31lo.vercel.app/",
+      desc: "A user-friendly recipe website built with Vanilla JavaScript, designed to help users explore dishes, get meal inspiration, and easily decide what to cook.",
+      tech: ["Html", "Css", "Vanilla JS"],
+    },
+    {
+      title: "Contacts Hub Website",
+      category: "Vanilla JS",
+      img: contacthub,
+      demo: "https://contactshub-mu.vercel.app/",
+      desc: "A clean and efficient contacts management website built with Vanilla JavaScript, allowing users to store, organize, and manage their contacts with an intuitive and seamless experience.",
+      tech: ["Html", "Css", "Vanilla JS"],
+    },
+    {
+      title: "3adasa Photography Website",
+      category: "Vanilla JS",
+      img: adasa,
+      demo: "https://3adasa-photography.vercel.app/",
+      desc: "A modern photography portfolio website built with Vanilla JavaScript, showcasing creative photo collections with a clean layout and smooth browsing experience.",
+      tech: ["Html", "Css", "Vanilla JS"],
+    },
+    {
+      title: "Real Estate Website",
+      category: "Html & Css",
+      img: elitehome,
+      demo: "https://elitehomes-phi.vercel.app/",
+      desc: "A modern real estate website built with HTML and CSS, presenting property listings in a clean, elegant layout with a smooth and user-friendly browsing experience.",
+      tech: ["Html", "Css"],
+    },
+    {
+      title: "Modaber Website",
+      category: "Html & Css",
+      img: modaber,
+      demo: "https://modaber-six.vercel.app/",
+      desc: "A personal finance management website built with HTML and CSS, designed to track income and expenses while helping users manage their budget in an organized and simple way.",
+      tech: ["Html", "Css"],
     },
   ];
 
@@ -457,32 +573,34 @@ const Projects = () => {
 
           <div className="flex justify-center mb-16">
             <div className="relative flex p-1.5 bg-gray-100 dark:bg-slate-800 backdrop-blur-lg rounded-2xl border border-gray-200/50 dark:border-gray-700/50">
-              {["All", "React", "Next.js"].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={cn(
-                    "relative px-8 py-2.5 text-sm font-bold transition-all duration-500 rounded-xl z-10",
-                    activeTab === tab
-                      ? "text-white"
-                      : "text-slate-600 dark:text-slate-300 hover:text-orange-500",
-                  )}
-                >
-                  <span className="relative z-20">{tab}</span>
+              {["All", "Next.Js", "React", "Vanilla JS", "Html & Css"].map(
+                (tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    className={cn(
+                      "relative px-8 py-2.5 text-sm font-bold transition-all duration-500 rounded-xl z-10",
+                      activeTab === tab
+                        ? "text-white"
+                        : "text-slate-600 dark:text-slate-300 hover:text-orange-500",
+                    )}
+                  >
+                    <span className="relative z-20">{tab}</span>
 
-                  {activeTab === tab && (
-                    <motion.div
-                      layoutId="active-pill"
-                      className="absolute inset-0 bg-orange-500 rounded-xl shadow-[0_4px_15px_rgba(249,115,22,0.3)]"
-                      transition={{
-                        type: "spring",
-                        bounce: 0.25,
-                        duration: 0.6,
-                      }}
-                    />
-                  )}
-                </button>
-              ))}
+                    {activeTab === tab && (
+                      <motion.div
+                        layoutId="active-pill"
+                        className="absolute inset-0 bg-orange-500 rounded-xl shadow-[0_4px_15px_rgba(249,115,22,0.3)]"
+                        transition={{
+                          type: "spring",
+                          bounce: 0.25,
+                          duration: 0.6,
+                        }}
+                      />
+                    )}
+                  </button>
+                ),
+              )}
             </div>
           </div>
         </div>
@@ -493,94 +611,74 @@ const Projects = () => {
             {filtered.map((project) => (
               <motion.div
                 key={project.title}
-                layout // يحافظ على انسيابية الحركة عند إعادة الترتيب
-                initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.8, y: 10 }}
-                transition={{
-                  type: "tween",
-                  stiffness: 260,
-                  damping: 20,
-                }}
-                className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-orange-500/50 transition-all duration-500 shadow hover:shadow-2xl hover:-translate-y-1"
+                layout
+                initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.97 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+                className="group relative rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-2xl transition-all"
               >
-                {/* Container الصورة */}
-                <div className="relative h-64 w-full overflow-hidden rounded-t-2xl isolation-auto">
-                  <img
+                {/* IMAGE SECTION */}
+                <div className="relative h-64 w-full overflow-hidden">
+                  <Image
                     src={project.img}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.17,0.67,0.83,0.67)] group-hover:scale-110"
                     alt={project.title}
+                    width={800}
+                    height={600}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
 
-                  {/* الطبقة الزجاجية عند الـ Hover */}
-                  <div className="absolute inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-500 flex items-center justify-center gap-3">
-                    <motion.p
-                      whileHover={{ y: -5 }}
-                      whileTap={{ y: -5 }}
-                      className="bg-white text-black w-12 h-12 rounded-full flex items-center justify-center shadow-2xl hover:bg-orange-500 hover:text-white transition-colors"
-                    >
-                      <Code2 size={20} />
-                    </motion.p>
-                    <motion.a
-                      href="#"
-                      whileHover={{ y: -5 }}
-                      whileTap={{ y: -5 }}
-                      className="bg-orange-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-2xl hover:bg-white hover:text-orange-500 transition-colors"
-                    >
-                      <Globe size={20} />
-                    </motion.a>
-                  </div>
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/50 opacity-100 group-hover:opacity-50 transition-all duration-500 flex items-center justify-center"></div>
 
-                  {/* Badge القسم */}
-                  <div className="absolute top-5 left-5">
-                    <span className="bg-white/80 dark:bg-[#1a1a1a]/80 backdrop-blur-md text-orange-600 dark:text-orange-500 text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-2xl shadow-sm border border-white/20">
+                  {/* CATEGORY */}
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 text-[10px] font-bold tracking-widest uppercase rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-md text-orange-500 border border-white/20">
                       {project.category}
                     </span>
                   </div>
                 </div>
 
-                {/* تفاصيل الكارت */}
-                <div className="py-6 p-4">
-                  <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight group-hover:text-orange-500 transition-colors">
+                {/* CONTENT */}
+                <div className="p-6">
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-orange-500 transition-colors">
                       {project.title}
                     </h3>
-                    <div className="flex gap-1.5 text-orange-500/50">
+
+                    <div className="flex gap-2 text-orange-400/60">
                       <Cpu size={16} />
                       <Layout size={16} />
                     </div>
                   </div>
 
-                  <p className="text-start text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6 line-clamp-2">
-                    {project.desc ||
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2 mb-5 text-start">
+                    {project.desc}
                   </p>
 
-                  {/* Footer الكارت */}
-                  <div className="flex items-center justify-between pt-5 border-t border-gray-100 dark:border-gray-800/50">
-                    <div className="flex -space-x-3">
-                      {["React", "Next"].map((tech, i) => (
-                        <div
-                          key={i}
-                          className="w-9 h-9 rounded-full border-4 border-white dark:border-[#232323] bg-gray-100 dark:bg-[#1a1a1a] flex items-center justify-center text-[9px] font-black dark:text-gray-300"
+                  {/* TECH + ACTION */}
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                    {/* Tech pills */}
+                    <div className="flex items-center gap-2">
+                      {project.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-[10px] font-bold px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
                         >
-                          {tech === "React" ? "RE" : "NX"}
-                        </div>
+                          {tech}
+                        </span>
                       ))}
                     </div>
 
+                    {/* CTA */}
                     <motion.a
                       href={project.demo}
                       target="_blank"
-                      className="cursor-pointer group/btn flex items-center gap-2 text-sm font-black uppercase tracking-widest text-orange-500"
-                      whileHover={{ gap: "12px" }}
-                      whileTap={{ gap: "12px" }}
+                      whileHover={{ x: 4 }}
+                      className="flex items-center gap-2 text-sm font-bold text-orange-500"
                     >
-                      Explore
-                      <Rocket
-                        size={16}
-                        className="transition-transform group-hover/btn:-translate-y-1"
-                      />
+                      View
+                      <Rocket size={16} />
                     </motion.a>
                   </div>
                 </div>
@@ -601,7 +699,7 @@ import { SiTailwindcss, SiNextdotjs } from "react-icons/si";
 const skills = [
   { name: "HTML5", level: 95, icon: FaHtml5, color: "#E34F26" },
   { name: "CSS3", level: 90, icon: FaCss3Alt, color: "#1572B6" },
-  { name: "Bootstrap", level: 80, icon: FaBootstrap, color: "#7952B3" },
+  // { name: "Bootstrap", level: 80, icon: FaBootstrap, color: "#7952B3" },
   { name: "Tailwind", level: 95, icon: SiTailwindcss, color: "#06B6D4" },
   { name: "JavaScript", level: 88, icon: FaJs, color: "#F7DF1E" },
   { name: "React", level: 92, icon: FaReact, color: "#61DAFB" },
@@ -610,7 +708,7 @@ const skills = [
 
 // مصفوفة الأيقونات العائمة (Icons Floating)
 const FloatingIcon = ({ icon: Icon, color, index }: any) => {
-  const randomY = [0, -20, 0];
+  const randomY = [0, -10, 0];
   const randomX = [0, 10, 0];
 
   return (
@@ -630,7 +728,7 @@ const FloatingIcon = ({ icon: Icon, color, index }: any) => {
         width: "80px",
         height: "80px",
         left: `${(index % 3) * 30 + 10}%`,
-        top: `${Math.floor(index / 3) * 30 + 10}%`,
+        top: `${Math.floor(index / 3) * 65 + 10}%`,
         background: "rgba(255,255,255,0.1)", // glass effect
       }}
     >
@@ -641,7 +739,7 @@ const FloatingIcon = ({ icon: Icon, color, index }: any) => {
       />
 
       {/* Icon */}
-      <Icon size={32} style={{ color }} className="relative z-10" />
+      <Icon size={40} style={{ color }} className="relative z-10" />
     </motion.div>
   );
 };
@@ -652,9 +750,27 @@ const SkillsSection = () => {
       id="skills"
       className="py-16 px-6 bg-white dark:bg-[#0B1120] overflow-hidden"
     >
+      <div className="max-w-6xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-4xl font-black text-slate-900 dark:text-white mb-4">
+            My <span className="text-orange-500">Technical</span> Skills
+          </h2>
+          <p className="text-slate-600 dark:text-slate-400 mb-8">
+            Expertise in building modern web applications with focus on
+            performance and clean code.
+          </p>
+        </motion.div>
+      </div>
+
+      {/* ******************************** */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* الجزء الأيسر: الأيقونات العائمة */}
-        <div className="relative h-100">
+        <div className="relative h-50">
           <div className="absolute inset-0 bg-orange-500/5 rounded-full blur-3xl" />
           {skills.map((skill, idx) => (
             <FloatingIcon key={idx} {...skill} index={idx} />
@@ -663,20 +779,6 @@ const SkillsSection = () => {
 
         {/* الجزء الأيمن: الـ Progress Bars */}
         <div className="space-y-8">
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl font-black text-slate-900 dark:text-white mb-4">
-              My <span className="text-orange-500">Technical</span> Skills
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 mb-8">
-              Expertise in building modern web applications with focus on
-              performance and clean code.
-            </p>
-          </motion.div>
-
           <div className="space-y-6">
             {skills.map((skill, idx) => (
               <div key={idx} className="relative">
@@ -721,8 +823,9 @@ const SkillsSection = () => {
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast"; // استيراد المكتبة
 import Link from "next/link";
-import { desc } from "framer-motion/client";
 import { TypeAnimation } from "react-type-animation";
+import Image from "next/image";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
