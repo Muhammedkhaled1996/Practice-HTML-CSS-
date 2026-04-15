@@ -571,15 +571,15 @@ const Projects = () => {
             </p>
           </div>
 
-          <div className="flex justify-center mb-16">
-            <div className="relative flex p-1.5 bg-gray-100 dark:bg-slate-800 backdrop-blur-lg rounded-2xl border border-gray-200/50 dark:border-gray-700/50">
+          <div className="flex justify-center mb-12">
+            <div className="relative flex items-center justify-center flex-wrap p-1.5 bg-gray-100 dark:bg-slate-800 backdrop-blur-lg rounded-2xl border border-gray-200/50 dark:border-gray-700/50">
               {["All", "Next.Js", "React", "Vanilla JS", "Html & Css"].map(
                 (tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     className={cn(
-                      "relative px-8 py-2.5 text-sm font-bold transition-all duration-500 rounded-xl z-10",
+                      "relative px-8 py-2.5 text-sm font-bold transition-all duration-500 rounded-xl z-10 min-w-30",
                       activeTab === tab
                         ? "text-white"
                         : "text-slate-600 dark:text-slate-300 hover:text-orange-500",
@@ -629,7 +629,7 @@ const Projects = () => {
                   />
 
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-black/50 opacity-100 group-hover:opacity-50 transition-all duration-500 flex items-center justify-center"></div>
+                  <div className="absolute inset-0 bg-black/30 opacity-100 group-hover:opacity-50 transition-all duration-500 flex items-center justify-center"></div>
 
                   {/* CATEGORY */}
                   <div className="absolute top-4 left-4">
