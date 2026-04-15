@@ -1,4 +1,6 @@
 "use client";
+
+import profilePicture from "@/assets/images/profilePicture.jpeg"
 import React, { useState, useEffect, useRef } from "react";
 import {
   motion,
@@ -118,7 +120,6 @@ const Navbar = ({
   );
 };
 
-
 // hero section
 const Hero = () => (
   <section
@@ -137,17 +138,19 @@ const Hero = () => (
         <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mt-2 leading-tight ">
           Frontend <br />
           <span className="text-orange-500 h-20">
-
-
             <TypeAnimation
-              sequence={["Developer" , 2000 , "React Expert" , 2000 , "Next.js Ninja" , 2000 ]}
+              sequence={[
+                "Developer",
+                2000,
+                "React Expert",
+                2000,
+                "Next.js Ninja",
+                2000,
+              ]}
               repeat={Infinity}
               cursor={true}
               deletionSpeed={50}
             />
-            {/* <Typewriter
-              words={["Developer", "React Expert", "Next.js Ninja"]}
-            /> */}
           </span>
         </h1>
         <p className="mt-6 text-slate-600 dark:text-slate-300 max-w-xl text-lg leading-relaxed">
@@ -183,7 +186,7 @@ const Hero = () => (
         className="relative w-72 h-72 md:w-105 md:h-105 bg-linear-to-tr from-orange-500 to-orange-400 overflow-hidden shadow-[0_20px_50px_rgba(249,115,22,0.3)] border-4 border-white/20 dark:border-white/10"
       >
         <motion.img
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800"
+          src={profilePicture.src}
           alt="Profile"
           className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 "
           whileHover={{ scale: 1.2 }}

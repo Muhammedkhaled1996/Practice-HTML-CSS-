@@ -1,0 +1,26 @@
+**** If you cloned the repo already and just want updates:
+
+git pull
+
+**** If you're not sure which branch you're on:
+
+git branch
+
+
+**** To pull the latest changes from a GitHub repo into your local project, use:
+
+git pull origin main
+
+
+**** If you haven’t cloned it yet:
+
+git clone <repo-url>
+
+
+**** Common real-world flow:
+
+git checkout main
+git pull origin main
+
+
+
