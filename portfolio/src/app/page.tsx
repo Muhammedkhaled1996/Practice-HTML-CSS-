@@ -76,7 +76,7 @@ const Navbar = ({
         <Link href="#" className="flex items-center gap-2">
           <motion.div
             whileHover={{ rotate: 25 }}
-            className="w-10 h-10 bg-gradient-to-tr from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold"
+            className="w-10 h-10 bg-linear-to-tr from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold"
           >
             M
           </motion.div>
@@ -131,7 +131,7 @@ const Navbar = ({
               <SheetContent side="right" className="w-80 p-6">
                 {/* Header (Logo) */}
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-gradient-to-tr from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold shadow-md">
+                  <div className="w-10 h-10 bg-linear-to-tr from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold shadow-md">
                     M
                   </div>
 
@@ -289,7 +289,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-16 px-6 bg-white dark:bg-slate-950 overflow-hidden"
+      className="py-24 px-6 bg-white dark:bg-slate-950 overflow-hidden"
     >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center text-slate-900 dark:text-white mb-20 underline decoration-orange-500 decoration-4 underline-offset-2">
@@ -400,9 +400,9 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-16 px-6 bg-gray-50 dark:bg-slate-900">
+    <section id="services" className="py-24 px-6 bg-gray-50 dark:bg-slate-900">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 px-4">
+        <div className="text-center mb-12 px-4">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -552,7 +552,7 @@ const Projects = () => {
       : projectList.filter((p) => p.category === activeTab);
 
   return (
-    <section id="projects" className="py-16 px-6 bg-white dark:bg-slate-950">
+    <section id="projects" className="py-24 px-6 bg-white dark:bg-slate-950">
       <div className="max-w-7xl mx-auto text-center">
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-16">
@@ -748,7 +748,7 @@ const SkillsSection = () => {
   return (
     <section
       id="skills"
-      className="py-16 px-6 bg-white dark:bg-[#0B1120] overflow-hidden"
+      className="py-24 px-6 bg-white dark:bg-[#0B1120] overflow-hidden"
     >
       <div className="max-w-6xl mx-auto text-center">
         <motion.div
@@ -857,7 +857,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 px-6 relative overflow-hidden">
+    <section id="contact" className="py-24 px-6 relative overflow-hidden">
       <Toaster position="top-center" reverseOrder={false} />
       {/* Background Decorative Elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-orange-500/5 rounded-full blur-[120px] -z-10" />
