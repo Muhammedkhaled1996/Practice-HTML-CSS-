@@ -117,36 +117,43 @@ export default function Projects() {
           </div>
 
           <div className="flex justify-center mb-12">
-            <div className="relative flex items-center justify-center gap-2 flex-wrap px-1.5 py-1 bg-gray-100 dark:bg-slate-800 backdrop-blur-lg rounded-2xl border border-gray-200/50 dark:border-gray-700/50">
-              {["All", "Next.Js", "React", "Vanilla JS", "Html & Css"].map(
-                (tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={cn(
-                      "cursor-pointer border border-gray-100/20 relative px-8 py-2.5 text-sm font-bold transition-all duration-500 rounded-xl z-10 min-w-30",
-                      activeTab === tab
-                        ? "text-white"
-                        : "text-slate-600 dark:text-slate-300  hover:text-orange-500",
-                    )}
-                  >
-                    <span className="relative z-20">{tab}</span>
+          <div className="relative flex items-center justify-center gap-2 flex-wrap p-2 rounded-2xl 
+bg-white/60 dark:bg-slate-900/40 
+backdrop-blur-xl 
+border border-white/20 dark:border-white/10 
+shadow-lg shadow-black/5">
 
-                    {activeTab === tab && (
-                      <motion.div
-                        layoutId="active-pill"
-                        className="absolute inset-0 bg-orange-500 rounded-xl shadow-[0_4px_15px_rgba(249,115,22,0.3)] border border-orange-500"
-                        transition={{
-                          type: "spring",
-                          bounce: 0.25,
-                          duration: 0.6,
-                        }}
-                      />
-                    )}
-                  </button>
-                ),
-              )}
-            </div>
+  {["All", "Next.Js", "React", "Vanilla JS", "Html & Css"].map(
+    (tab) => (
+      <button
+        key={tab}
+        onClick={() => setActiveTab(tab)}
+        className={cn(
+          "relative px-6 py-2 text-sm font-semibold rounded-xl transition-all duration-300",
+          "text-slate-600 dark:text-slate-300 hover:text-orange-500",
+          "hover:bg-white/40 dark:hover:bg-white/5",
+          activeTab === tab && "text-white"
+        )}
+      >
+        <span className="relative z-20">{tab}</span>
+
+        {activeTab === tab && (
+          <motion.div
+            layoutId="active-pill"
+            className="absolute inset-0 rounded-xl 
+            bg-gradient-to-r from-orange-500 to-orange-400 
+            shadow-[0_8px_25px_rgba(249,115,22,0.35)]"
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 25,
+            }}
+          />
+        )}
+      </button>
+    )
+  )}
+</div>
           </div>
         </div>
 

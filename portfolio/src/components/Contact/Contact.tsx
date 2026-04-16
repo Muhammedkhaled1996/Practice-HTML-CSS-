@@ -57,7 +57,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 relative overflow-hidden">
+    <section id="contact" className="pt-24  pb-12 px-6 relative overflow-hidden">
       <Toaster position="top-center" reverseOrder={false} />
       {/* Background Decorative Elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-orange-500/5 rounded-full blur-[120px] -z-10" />
@@ -115,7 +115,7 @@ export default function Contact() {
             ].map((item, i) => (
               <div
                 onClick={item.action}
-                className="group p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-orange-500/50 cursor-pointer transition-all duration-300 shadow-sm hover:shadow-xl "
+                className="group p-4 bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-orange-500/50 cursor-pointer transition-all duration-300 shadow-sm hover:shadow-xl "
               >
                 <div className="flex items-center gap-5">
                   <div
@@ -143,7 +143,7 @@ export default function Contact() {
             viewport={{ once: true }}
             className="lg:col-span-3 bg-white dark:bg-slate-900 rounded-2xl p-3 border border-gray-100 dark:border-gray-800 shadow-2xl relative overflow-hidden"
           >
-            <div className="absolute -top-6 md:-top-6 right-0 p-8 opacity-5 dark:opacity-10">
+            <div className="absolute -top-6 md:-top-6 -right-4 p-8 opacity-5 dark:opacity-10">
               <MessageSquare
                 size={30}
                 className="text-slate-900 dark:text-white"
@@ -163,13 +163,13 @@ export default function Contact() {
                 value={new Date().toLocaleString()}
               />{" "}
               {/* name */}
-              <div className="md:col-span-1">
+              <div className="col-span-2 md:col-span-1">
                 <Controller
                   name="name"
                   control={control}
                   render={({ field, fieldState }) => (
                     <Field className="my-1" data-invalid={fieldState.invalid}>
-                      <FieldLabel htmlFor={field.name}>Full Name</FieldLabel>
+                      <FieldLabel className="text-gray-400 text-sm" htmlFor={field.name}>Full Name</FieldLabel>
                       <Input
                         className="focus-within:ring-orange-100! focus-within:border-orange-600! transition-all duration-200"
                         {...field}
@@ -189,13 +189,13 @@ export default function Contact() {
                 />
               </div>
               {/* phone */}
-              <div className="md:col-span-1">
+              <div className="col-span-2 md:col-span-1">
                 <Controller
                   name="phone"
                   control={control}
                   render={({ field, fieldState }) => (
                     <Field className="my-1" data-invalid={fieldState.invalid}>
-                      <FieldLabel htmlFor={field.name}>Phone Number</FieldLabel>
+                      <FieldLabel className="text-gray-400 text-sm" htmlFor={field.name}>Phone Number</FieldLabel>
                       <Input
                         className="focus-within:ring-orange-100! focus-within:border-orange-600! transition-all duration-200"
                         {...field}
@@ -221,7 +221,7 @@ export default function Contact() {
                   control={control}
                   render={({ field, fieldState }) => (
                     <Field className="my-1" data-invalid={fieldState.invalid}>
-                      <FieldLabel htmlFor={field.name}>
+                      <FieldLabel className="text-gray-400 text-sm" htmlFor={field.name}>
                         Email Address
                       </FieldLabel>
                       <Input
@@ -249,7 +249,7 @@ export default function Contact() {
                   control={control}
                   render={({ field, fieldState }) => (
                     <Field className="my-1" data-invalid={fieldState.invalid}>
-                      <FieldLabel htmlFor={field.name}>Your Message</FieldLabel>
+                      <FieldLabel className="text-gray-400 text-sm" htmlFor={field.name}>Your Message</FieldLabel>
                       <Textarea
                         rows={3}
                         className="focus-within:ring-orange-100! focus-within:border-orange-600! transition-all duration-200"
@@ -274,7 +274,7 @@ export default function Contact() {
                 disabled={loading}
                 whileHover={!loading ? { scale: 1.02 } : {}}
                 whileTap={!loading ? { scale: 0.98 } : {}}
-                className={`cursor-pointer md:col-span-2 w-full py-5 rounded-xl font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all ${
+                className={`col-span-2 cursor-pointer md:col-span-2 w-fit px-4 py-3  rounded-lg w-full font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all ${
                   loading
                     ? "bg-orange-400 cursor-not-allowed opacity-80"
                     : "bg-orange-500 hover:bg-orange-600 text-white"

@@ -26,7 +26,7 @@ const socialLinks = [
 ];
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-slate-950 pt-10 border-t border-gray-100 dark:border-gray-800">
+    <footer className="bg-white dark:bg-slate-950 pt-8 border-t border-gray-100 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
         <div className="flex gap-6 mb-3">
           {socialLinks.map(({ Icon, href, label }, i) => (
@@ -45,7 +45,7 @@ export default function Footer() {
             </motion.a>
           ))}
         </div>
-        <p className="text-gray-500 text-sm mb-8 text-center">
+        <p className="text-gray-500 text-sm mb-6 text-center">
           © {new Date().getFullYear()} MuhammedCodex. Built with 🧡 using
           Next.js & Tailwind.
         </p>
