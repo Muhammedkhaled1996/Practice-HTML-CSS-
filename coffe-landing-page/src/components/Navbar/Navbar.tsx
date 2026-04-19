@@ -67,16 +67,16 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-black/90 backdrop-blur-xl px-6 py-6"
+            className="md:hidden bg-coffee/20 backdrop-blur-xl px-6 py-6"
           >
             <div className="flex flex-col gap-6 text-center">
               {links.map((link) => (
                 <a
-                  key={link}
+                  key={link.alt}
                   onClick={() => setOpen(false)}
                   className="cursor-pointer text-lg hover:text-main-gold transition"
                 >
-                  {link}
+                  {link.lable}
                 </a>
               ))}
 
