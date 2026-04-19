@@ -2,9 +2,6 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-body {
-  font-family: var(--font-exo);
-}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -131,6 +128,11 @@ body {
     @apply font-sans;
   }
 }
+
+body {
+  font-family: var(--font-exo);
+}
+
 
 @utility container {
   margin: auto;
