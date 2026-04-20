@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { TypeAnimation } from "react-type-animation";
 import profilePicture from "@/assets/images/profilePicture.png";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -68,12 +69,12 @@ export default function Hero() {
           }}
           className="relative w-72 h-72 md:w-105 md:h-105 bg-linear-to-tr from-orange-500 to-orange-400 overflow-hidden shadow-[0_20px_50px_rgba(249,115,22,0.3)] border-4 border-white/20 dark:border-white/10"
         >
-          <motion.img
+          <Image
+            width={500}
+            height={500}
             src={profilePicture.src}
             alt="Profile"
-            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 "
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 1.2 }}
+            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-110"
           />
         </motion.div>
       </div>
