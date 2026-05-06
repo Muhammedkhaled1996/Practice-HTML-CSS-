@@ -10,7 +10,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 
-export const columns: ColumnDef<productsDetails>[] = [
+export const productTableColumns: ColumnDef<productsDetails>[] = [
   {
     accessorKey: "_id",
     header: "ID",

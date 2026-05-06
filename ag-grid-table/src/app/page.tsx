@@ -3,10 +3,10 @@
 import DataTable from "@/components/DataTable/DataTable";
 import Filters from "@/components/FilterComponent/Filters";
 import { useProducts } from "@/customeHooks/productsHook";
+import { productTableColumns } from "@/tablesStructure/allProductsTable.structure";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
 
-function PageContent() {
+export default function Page() {
   const searchParams = useSearchParams();
 
   const params = new URLSearchParams(searchParams.toString());
@@ -20,21 +20,14 @@ function PageContent() {
 
   return (
     <div className="space-y-4">
-      <Filters data={data}/>
+      <Filters data={data} />
 
       <DataTable
         data={data?.data}
+        columns={productTableColumns}
         page={Number(params.get("page"))}
         totalPages={data?.metadata.numberOfPages}
       />
     </div>
-  );
-}
-
-export default function Page() {
-  return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <PageContent />
-    </Suspense>
   );
 }

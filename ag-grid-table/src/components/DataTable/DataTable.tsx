@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { productsDetails } from "@/types/allOrders.interface";
 import {
@@ -7,14 +7,15 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { columns } from "../../tablesStructure/allProductsTable.structure";
 
 export default function DataTable({
   data,
+  columns,
   page,
   totalPages,
 }: {
   data: productsDetails[];
+  columns: any;
   page: number;
   totalPages: number;
 }) {
@@ -50,7 +51,8 @@ export default function DataTable({
                     key={header.id}
                     style={{ width: header.getSize() }}
                     className={`px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase ${
-                      (header.column.columnDef.meta as { className?: string })?.className || ""
+                      (header.column.columnDef.meta as { className?: string })
+                        ?.className || ""
                     }`}
                   >
                     {flexRender(
@@ -74,7 +76,8 @@ export default function DataTable({
                     key={cell.id}
                     style={{ width: cell.column.getSize() }}
                     className={`px-4 py-3 ${
-                      (cell.column.columnDef.meta as { className?: string })?.className || ""
+                      (cell.column.columnDef.meta as { className?: string })
+                        ?.className || ""
                     }`}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
