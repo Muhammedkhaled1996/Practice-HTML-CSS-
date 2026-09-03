@@ -3,6 +3,7 @@ import Link from "next/link";
 import { TypeAnimation } from "react-type-animation";
 import profilePicture from "@/assets/images/profilePicture.png";
 import Image from "next/image";
+import { Download } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -50,6 +51,16 @@ export default function Hero() {
           >
             Hire Me Now
           </Link>
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            download
+            className="flex items-center gap-2 cursor-pointer border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-8 py-4 rounded-xl font-bold transition-all hover:-translate-y-1 active:scale-95 shadow-lg shadow-orange-500/10"
+          >
+            <Download className="w-5 h-5" />
+            Download CV
+          </a>
         </div>
       </div>
       <div className="flex-1 relative flex justify-center items-center">
