@@ -22,8 +22,22 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "MuhamedCodex",
-  description: "MuhamedCodex app",
+  title: "Muhammed Khaled | Frontend Developer & Systems Solutions Engineer",
+  description:
+    "Portfolio of Muhammed Khaled Saleh - Frontend Developer & Systems Solutions Engineer. Ex-Military Engineer Officer & MTC Honors Graduate, specializing in React.js, Next.js, TypeScript, and Data-Driven Dashboards.",
+  keywords: [
+    "Muhammed Khaled",
+    "Frontend Developer",
+    "React.js",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Power BI",
+    "SQL Server",
+    "Web Developer Cairo",
+  ],
+  authors: [{ name: "Muhammed Khaled" }],
+  creator: "Muhammed Khaled",
 };
 
 export default function RootLayout({

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
-import { Mail, MapPin, MessageSquare, Send } from "lucide-react";
+import { Briefcase, Mail, MapPin, MessageSquare, Send } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -112,8 +112,15 @@ export default function Contact() {
                 value: "Cairo, Egypt",
                 color: "bg-blue-500/10",
               },
+              {
+                icon: <Briefcase className="text-emerald-500" />,
+                label: "Availability",
+                value: "Open to Remote & Hybrid Roles",
+                color: "bg-emerald-500/10",
+              },
             ].map((item, i) => (
               <div
+                key={i}
                 onClick={item.action}
                 className="group p-4 bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-orange-500/50 cursor-pointer transition-all duration-300 shadow-sm hover:shadow-xl "
               >

@@ -1,30 +1,30 @@
 import { motion } from 'framer-motion';
-import { Cpu, Globe, Monitor, Palette } from 'lucide-react';
+import { BarChart3, Database, Globe, Palette } from 'lucide-react';
 import React from 'react'
 
 
 export default function Services() {
 
-      const services = [
+  const services = [
     {
       icon: <Globe className="w-8 h-8" />,
-      title: "Web Development",
-      desc: "Building scalable, fast, and SEO-friendly web apps using Next.js.",
+      title: "Next.js & React Web Apps",
+      desc: "Building scalable, high-performance, and SEO-optimized web applications using Next.js App Router and TypeScript.",
     },
     {
-      icon: <Monitor className="w-8 h-8" />,
-      title: "Responsive Design",
-      desc: "Ensuring your website looks perfect on every screen size.",
+      icon: <BarChart3 className="w-8 h-8" />,
+      title: "Interactive Data Dashboards",
+      desc: "Designing dynamic Power BI and web dashboards to visualize complex KPIs, site metrics, and project milestones.",
     },
     {
-      icon: <Cpu className="w-8 h-8" />,
-      title: "Performance Optimization",
-      desc: "Speeding up load times and improving Core Web Vitals.",
+      icon: <Database className="w-8 h-8" />,
+      title: "Systems & Process Automation",
+      desc: "Architecting SQL Server and database workflows to automate estimation, reporting, and multi-department operations.",
     },
     {
       icon: <Palette className="w-8 h-8" />,
-      title: "UI/UX Implementation",
-      desc: "Translating Figma designs into pixel-perfect React components.",
+      title: "Pixel-Perfect UI/UX",
+      desc: "Transforming Figma designs into responsive, accessible, mobile-first interfaces with smooth micro-interactions.",
     },
   ];
   return   <section id="services" className="py-24 px-6 bg-gray-50 dark:bg-slate-900">

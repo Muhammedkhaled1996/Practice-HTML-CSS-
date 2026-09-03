@@ -6,34 +6,39 @@ export const cn = (...classes: any) => classes.filter(Boolean).join(" ");
 export default function About() {
   const timeline = [
     {
-      year: "2021",
-      title: "Frontend Beginner",
-      company: "Freelance",
-      desc: "Started the journey by learning HTML, CSS, and JavaScript fundamentals to build responsive static websites.",
+      year: "2013 – 2018",
+      title: "B.Sc. in Architectural Engineering",
+      company: "Military Technical College (MTC)",
+      badge: "Highest Honors",
+      desc: "Graduated with Highest Honors (Excellent with Honors). Built a solid foundation in engineering problem-solving, structural precision, advanced mathematics, and leadership under high-pressure environments.",
     },
     {
-      year: "2022",
-      title: "Frontend Trainee",
+      year: "2018 – Present",
+      title: "Systems & Database Solutions Engineer",
+      company: "Engineering & Management Authority",
+      badge: "60% Time Saved",
+      desc: "Built internal management systems using SQL Server and MS Access (VBA). Automated BOQ & cost estimation, cutting preparation time by 60% and eliminating calculation errors. Built interactive Power BI dashboards for executive tracking.",
+    },
+    {
+      year: "2024 – Present",
+      title: "Frontend Developer (React.js & Next.js)",
+      company: "Freelance / Self-Employed",
+      badge: "Production Apps",
+      desc: "Architected and delivered fast, responsive web applications and commercial platforms using Next.js, React, and Tailwind CSS. Implemented state management (Redux Toolkit / Context API) and RESTful API integrations.",
+    },
+    {
+      year: "2025 – 2026",
+      title: "Frontend Development Fellow",
       company: "Route Academy",
-      desc: "Focused on modern frontend development using React, building dynamic user interfaces and understanding best practices.",
+      badge: "Professional Diploma",
+      desc: "Completed an intensive professional program building 8+ production-ready web applications. Mastered TypeScript, React.js lifecycle and performance optimization, Next.js App Router (SSR/SSG), and Agile sprint collaboration.",
     },
     {
-      year: "2023",
-      title: "Frontend Developer",
-      company: "Creative Agency",
-      desc: "Developed interactive UI components, integrated APIs, and improved performance for web applications.",
-    },
-    {
-      year: "2024",
-      title: "Mid-Level Frontend Developer",
-      company: "Tech Solutions",
-      desc: "Built scalable Next.js applications, enhanced UX, and collaborated with teams to deliver high-quality products.",
-    },
-    {
-      year: "2025",
-      title: "Senior Frontend Developer",
-      company: "Route Academy",
-      desc: "Mentoring developers, reviewing code, and leading frontend architecture using React and Next.js.",
+      year: "Ongoing",
+      title: "Full-Stack & Systems Architecture",
+      company: "Continuous Specialization",
+      badge: "In Progress",
+      desc: "Expanding full-stack engineering proficiency with Node.js, Express.js, and MongoDB, bridging scalable backend services with high-performance, data-driven frontend interfaces.",
     },
   ];
 
@@ -43,9 +48,19 @@ export default function About() {
       className="py-24 px-6 bg-white dark:bg-slate-950 overflow-hidden"
     >
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-slate-900 dark:text-white mb-20 underline decoration-orange-500 decoration-4 underline-offset-2">
-          My Journey
-        </h2>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-orange-500 font-bold tracking-widest uppercase text-sm">
+            Background & Experience
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-2">
+            My <span className="text-orange-500">Journey</span>
+          </h2>
+          <p className="mt-4 text-slate-600 dark:text-slate-300 text-base leading-relaxed">
+            From military engineering discipline and database automation to modern
+            full-stack and frontend architecture. Here is how my technical journey
+            evolved over the years.
+          </p>
+        </div>
 
         {/* Timeline Container */}
         <div className="relative">
@@ -108,10 +123,17 @@ const TimelineItem = ({ item, idx }: any) => {
           )}
         />
 
-        <span className="text-orange-500 font-black text-sm tracking-tighter bg-orange-500/10 px-3 py-1 rounded-full">
-          {item.year}
-        </span>
-        <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-3">
+        <div className="flex items-center gap-2 flex-wrap mb-3">
+          <span className="text-orange-500 font-black text-sm tracking-tighter bg-orange-500/10 px-3 py-1 rounded-full">
+            {item.year}
+          </span>
+          {item.badge && (
+            <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 bg-slate-200/70 dark:bg-slate-700/60 px-2.5 py-0.5 rounded-full">
+              {item.badge}
+            </span>
+          )}
+        </div>
+        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
           {item.title}
         </h3>
         <p className="text-orange-500/80 font-medium text-sm mb-3">

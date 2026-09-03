@@ -5,7 +5,7 @@ import { FaFacebookF, FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 const socialLinks = [
   {
     Icon: FaGithub,
-    href: "#",
+    href: "https://github.com/muhammedkhaled1996",
     label: "Github",
   },
   {
