@@ -10,6 +10,8 @@ import adasa from "@/assets/images/apps/3adasa.png";
 import elitehome from "@/assets/images/apps/eliteHomes.png";
 import modaber from "@/assets/images/apps/modaber.png";
 import coffeeArea from "@/assets/images/apps/coffeeArea.png";
+import bellaFashionApp from "@/assets/images/apps/bella.png";
+import nefertCosmatics from "@/assets/images/apps/nefertCosmatics.png";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "../About/About";
 import Image from "next/image";
@@ -19,7 +21,23 @@ export default function Projects() {
   const [activeTab, setActiveTab] = useState("All");
   const projectList = [
     {
-      title: "E-Commerce App",
+      title: "Bella Fashion",
+      category: "Next.Js",
+      img: bellaFashionApp, // استورد صورة المشروع وضع المتغير هنا
+      demo: "https://bella-fashion-five.vercel.app/",
+      desc: "A full-featured e-commerce platform with a comprehensive admin dashboard for managing products and orders, powered by Firebase backend services.",
+      tech: ["Next.Js", "Firebase", "Tailwind", "TypeScript"],
+    },
+    {
+      title: "Nefert Cosmatics",
+      category: "Next.Js",
+      img: nefertCosmatics,
+      demo: "https://nefert.vercel.app/en",
+      desc: "A beauty and cosmetics e-commerce platform with a modern design, featuring a comprehensive product catalog and seamless shopping experience.",
+      tech: ["Next.Js", "Firebase", "Tailwind", "TypeScript"],
+    },
+    {
+      title: "FreshCart App",
       category: "Next.Js",
       img: freshCartApp,
       demo: "https://freshcart-khaki-one.vercel.app/",

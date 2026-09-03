@@ -1,8 +1,5 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/motion";
-
 import "../../../node_modules/swiper/swiper.css";
 
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
