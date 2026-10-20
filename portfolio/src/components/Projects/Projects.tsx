@@ -12,6 +12,7 @@ import modaber from "@/assets/images/apps/modaber.png";
 import coffeeArea from "@/assets/images/apps/coffeeArea.png";
 import bellaFashionApp from "@/assets/images/apps/bella.png";
 import nefertCosmatics from "@/assets/images/apps/nefertCosmatics.png";
+import elmamar from "@/assets/images/apps/elmamar.png";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "../About/About";
 import Image from "next/image";
@@ -20,6 +21,14 @@ import { Rocket } from "lucide-react";
 export default function Projects() {
   const [activeTab, setActiveTab] = useState("All");
   const projectList = [
+    {
+      title: "Elmamar Exports",
+      category: "Next.Js",
+      img: elmamar, // استورد صورة المشروع وضع المتغير هنا
+      demo: "https://www.elmamarexports-eg.com/ar",
+      desc: "A modern and responsive website for Elmamar Exports, showcasing their products and services with a clean design and smooth user experience.",
+      tech: ["Next.Js", "Tailwind", "stitch", "TypeScript"],
+    },
     {
       title: "Bella Fashion",
       category: "Next.Js",
